@@ -18,3 +18,5 @@ Operaciones de Perfil Usuario y Mensajes Privados (Form + PHP) [Administracion y
 
 Menos prioridad:
 Gestion de mensajes Administracion => Sin asignar
+Estadisticas web => David
+Cookies para session admin => David
