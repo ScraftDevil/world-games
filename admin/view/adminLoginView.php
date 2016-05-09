@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 	<title>Admin Panel - World Games</title>
 	<meta charset="utf-8"/>
+	<style type="text/css" src="css/bootstrap.min.css"></style>
 	<style type="text/css" src="css/adminLogin.css"></style>
 	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.min.js"></script>
 	<script type="text/javascript" src="js/adminLogin.js"></script>
 </head>
 <body>
