@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
 	<title>Admin Panel - World Games</title>
 	<meta charset="utf-8"/>
