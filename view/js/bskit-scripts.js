@@ -69,16 +69,6 @@ $(window).smartresize(function () {
 // End Isotope Filtering
 
 
-/* -------- Gallery Popup -------- */
-$(document).ready(function(){
-	$('.gallery-zoom').magnificPopup({ 
-		type: 'image'
-		// other options
-	});
-});
-// End Gallery Popup
-
-
 /* -------- Google Map -------- */
 function initMap(elem) {
 
@@ -132,8 +122,3 @@ $(window).load(function() {
 	});
 
 });
-
-document.querySelector("#nav-toggle").addEventListener("click", function() {
-	this.classList.toggle("active");
-});
-
