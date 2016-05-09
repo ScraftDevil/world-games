@@ -3,10 +3,10 @@
 <head>
 	<title>Admin Panel - World Games</title>
 	<meta charset="utf-8"/>
-	<style type="text/css" src="css/bootstrap.min.css"></style>
-	<style type="text/css" src="css/adminLogin.css"></style>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/adminLogin.css">
 	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/adminLogin.js"></script>
 </head>
 <body>
@@ -23,9 +23,9 @@
 						<input type="checkbox" value="remember-me"> Remember me
 					</label>
 				</div>
-				<button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+				<button class="btn btn-lg btn-primary btn-block btn-signin login" type="submit">Sign in</button>
+				<a href="#" class="forgot-password">Forgot the password?</a>
 			</form>
-			<a href="#" class="forgot-password">Forgot the password?</a>
 		</div>
 	</div>
 </body>

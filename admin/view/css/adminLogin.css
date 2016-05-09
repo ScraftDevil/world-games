@@ -1,7 +1,8 @@
 body, html {
     height: 100%;
     background-repeat: no-repeat;
-    background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
+    background-color: #2B3E50;
+    /*background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
 }
 
 .card-container.card {
@@ -19,7 +20,8 @@ body, html {
 }
 
 .card {
-    background-color: #F7F7F7;
+    background-color: #303030;
+    border: 1px solid #464545;
     /* just in case there no content*/
     padding: 20px 25px 30px;
     margin: 0 auto 25px;
@@ -96,7 +98,7 @@ body, html {
 
 .btn.btn-signin {
     /*background-color: #4d90fe; */
-    background-color: rgb(104, 145, 162);
+    background-color: #5bc0de;
     /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
     padding: 0px;
     font-weight: 700;
@@ -115,15 +117,24 @@ body, html {
 .btn.btn-signin:hover,
 .btn.btn-signin:active,
 .btn.btn-signin:focus {
-    background-color: rgb(12, 97, 33);
+    background-color: #31b0d5;
 }
 
 .forgot-password {
-    color: rgb(104, 145, 162);
+    float: left;
+    color: #5bc0de;
 }
 
 .forgot-password:hover,
 .forgot-password:active,
 .forgot-password:focus {
-    color: rgb(12, 97, 33);
+    color: #31b0d5;
+}
+
+a {
+    color: #5bc0de;
+}
+
+#remember {
+    color: #fff;
 }
