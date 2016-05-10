@@ -1,0 +1,22 @@
+#profileForm {
+    width:40%;
+}
+
+.desplegableProfile {
+	background-color:#B40404;
+	color:white;
+	width:60%;
+	cursor:pointer;
+	padding-left: 10px;
+	margin-bottom: 10px;
+}
+
+.attributeText {
+    float:left;
+    width:50%;
+}
+
+.inputAttribute {
+    float:right;
+    width:50%;
+}
