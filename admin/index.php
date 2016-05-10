@@ -1,9 +1,9 @@
 <?php
 
 session_start();
-require_once("config/config.inc.php");
-require_once($_SESSION['BASE_PATH']."config/db.inc.php");
-require_once("/model/autoload.php");
+require_once("../config/config.inc.php");
+require_once($_SESSION['BASE_PATH']."/config/db.inc.php");
+require_once("../model/autoload.php");
 
 /*if (!isset($_SESSION['shop'])) {
 	$shop = new Shop("shopID", "shopName");
