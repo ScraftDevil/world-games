@@ -1,6 +1,6 @@
 <?php
 
-class Shop {
+class Shopping {
 
     private $id;
     private $totalprice;

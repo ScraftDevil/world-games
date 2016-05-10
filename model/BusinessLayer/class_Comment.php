@@ -1,12 +1,14 @@
 <?php
 
-class Shop {
+class Comment {
 
     private $id;
     private $comment;
+    private $user;
 
-    function __construct($comment) {
+    function __construct($comment, $user) {
         $this->setComment($comment);
+        $this->setUser($user);
     }
 
     function getId() {
@@ -23,6 +25,14 @@ class Shop {
 
     function setComment($comment) {
         $this->comment = $comment;
+    }
+
+    function getUser() {
+        return $this->user;
+    }
+
+    function setUser($user) {
+        $this->user = $user;
     }
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-class Shop {
+class Valoration {
 
     private $id;
     private $valoration;
