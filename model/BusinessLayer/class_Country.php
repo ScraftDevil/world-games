@@ -2,13 +2,16 @@
     
 class Country {
     
+    //attributes
     private $id;
     private $name;
     
+    //constructor
     function __construct($name) {
         $this->setName($name);
     }
     
+    //getters and setters
     function getId() {
         return $this->id;
     }
