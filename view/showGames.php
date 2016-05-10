@@ -1,7 +1,13 @@
 <?php
+include_once("../controller/controllerCalculateDiscount.php");
 function showGames($list) {
       for ($i = 0; $i < count($list); $i++) {
       ?>
+            <style>
+            .offerOldPrice {
+                  text-decoration:line-through;
+            }
+            </style>
             <div class="col-md-3 col-sm-6 col-xs-12 gallery-item-wrapper">
                   <div class="gallery-item">
                         <div class="gallery-thumb" title="<?php echo $list[$i]->getTitle()?>">
@@ -13,7 +19,12 @@ function showGames($list) {
                         </div>
                         <div class="gallery-details">
                               <div class="editContent">
-                                    <h5><?php echo $list[$i]->getTitle()?> [<?php echo $list[$i]->getPrice()?>€]</h5>
+                                    <?php
+                                    $price = $list[$i]->getPrice();
+                                    $offer = $list[$i]->getOffer()->getDiscount();
+                                    $priceWithDiscount = calculateDiscount($price, $offer);
+                                    ?>
+                                    <h5><?php echo $list[$i]->getTitle()?> [<span class="offerOldPrice"><?php echo $list[$i]->getPrice()?>€]</span> <?php echo $priceWithDiscount." > ".$list[$i]->getOffer()->getDiscount()?>% Discount</h5>
                               </div>
                         </div>
                   </div>

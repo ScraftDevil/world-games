@@ -57,11 +57,10 @@ class mysqldb {
 	}
 
 	public function getGames() {
-	    $stmt = $this->getLink()->prepare("SELECT G.ID_Game, G.Title, G.Price, G.Stock
-	    	FROM game G
-	    	INNER JOIN game_has_offer GO
-	    	INNER JOIN offer O
-	    	WHERE GO.Game_ID = G.ID_Game AND O.ID_Offer = GO.Offer_ID"); 
+		$sql = "SELECT G.ID_Game, G.Title, G.Price, G.Stock, O.Discount
+		FROM game G INNER JOIN game_has_offer GO INNER JOIN offer O
+		WHERE GO.Game_ID = G.ID_Game AND O.ID_Offer = GO.Offer_ID AND G.Stock>0";
+	    $stmt = $this->getLink()->prepare($sql); 
 	    $stmt->execute();
 	    $result = $stmt->FetchAll();
 	    return $result;
