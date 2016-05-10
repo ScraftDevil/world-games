@@ -56,12 +56,11 @@ class mysqldb {
 		return $this->link;
 	}
 
-	/*
-	public function getCar($idCar) {
-	    $stmt = $this->getLink()->prepare("SELECT RegistrationPlate, Brand, Model, FuelType FROM Cars WHERE id=$idCar"); 
+	public function getGames() {
+	    $stmt = $this->getLink()->prepare("SELECT ID_Game, Title, Price, Stock FROM game"); 
 	    $stmt->execute();
 	    $result = $stmt->FetchAll();
 	    return $result;
-	}*/
+	}
 }
 ?>

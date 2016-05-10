@@ -92,6 +92,7 @@
         					<li>Graphic Adventure</li>
         				</ul>
         			</div>-->
+        			<?php include("../controller/controllerShowGames.php"); ?>
         			<div class="row">
         				<div id="isotope-gallery-container">
         					<div class="col-md-3 col-sm-6 col-xs-12 gallery-item-wrapper artwork creative">
