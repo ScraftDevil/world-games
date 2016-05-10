@@ -5,6 +5,13 @@ body, html {
     /*background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
 }
 
+header {
+    width: 100%;
+    background-color: #f39c12;
+    margin: 0;
+
+}
+
 .card-container.card {
     max-width: 350px;
     padding: 40px 40px;
@@ -17,22 +24,6 @@ body, html {
     -webkit-user-select: none;
     user-select: none;
     cursor: default;
-}
-
-.card {
-    background-color: #303030;
-    border: 1px solid #464545;
-    /* just in case there no content*/
-    padding: 20px 25px 30px;
-    margin: 0 auto 25px;
-    margin-top: 50px;
-    /* shadows and rounded borders */
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    border-radius: 2px;
-    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
 .profile-img-card {
@@ -137,4 +128,25 @@ a {
 
 #remember {
     color: #fff;
+}
+
+.container-fluid {
+    padding-left: 0;
+}
+
+.admin-menu {
+    margin-bottom: 20px;
+    padding-left: 0;
+}
+
+.admin-menu a {
+    border-top-right-radius: 4px;
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: #303030;
+    border-right: 1px solid #464545;
+    border-top: 1px solid #464545;
+    border-bottom: 1px solid #464545;
 }
