@@ -24,7 +24,11 @@ class Shop {
         foreach ($rows as $row) {
             $gameObj = new Game($row['Title'], $row['Price'], $row['Stock']);
             $offer = new Offer($row['Discount']);
+            $genre = new Genre($row['Genre']);
+            $plataform = new Plataform($row['Plataform']);
             $gameObj->setOffer($offer);
+            $gameObj->setGenre($genre);
+            $gameObj->setPlataform($plataform);
             array_push($this->games, $gameObj);
         }
         //end get data games

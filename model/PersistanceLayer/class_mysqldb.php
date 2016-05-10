@@ -57,9 +57,14 @@ class mysqldb {
 	}
 
 	public function getGames() {
-		$sql = "SELECT G.ID_Game, G.Title, G.Price, G.Stock, O.Discount
-		FROM game G INNER JOIN game_has_offer GO INNER JOIN offer O
-		WHERE GO.Game_ID = G.ID_Game AND O.ID_Offer = GO.Offer_ID AND G.Stock>0";
+		$sqlDiscount = "(SELECT O.Discount FROM game_has_offer GO INNER JOIN offer O
+		WHERE GO.Game_ID = G.ID_Game AND O.ID_Offer = GO.Offer_ID) as Discount";
+		$sqlGenre = "(SELECT GE.Name FROM game_has_genre GG INNER JOIN Genre GE
+		WHERE GG.Game_ID = G.ID_Game AND GE.ID_Genre = GG.Genre_ID) as Genre";
+		$sqlPlatafform = "(SELECT GE.Name FROM game_has_plataform GG INNER JOIN plataform GE
+		WHERE GG.Game_ID = G.ID_Game AND GE.ID_Plataform = GG.Plataform_ID) as Plataform";
+		$sql = "SELECT G.ID_Game, G.Title, G.Price, G.Stock, " . $sqlDiscount . ", " . $sqlGenre . ", " . $sqlPlatafform . "  
+		FROM game G WHERE G.Stock>0";
 	    $stmt = $this->getLink()->prepare($sql); 
 	    $stmt->execute();
 	    $result = $stmt->FetchAll();
