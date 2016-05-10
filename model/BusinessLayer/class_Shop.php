@@ -23,7 +23,7 @@ class Shop {
         $rows = $db->getGames();
         foreach ($rows as $row) {
             $gameObj = new Game($row['Title'], $row['Price'], $row['Stock']);
-            array_push($this->games, $game);
+            array_push($this->games, $gameObj);
         }
         //end get data games
     }

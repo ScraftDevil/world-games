@@ -92,24 +92,24 @@
         					<li>Graphic Adventure</li>
         				</ul>
         			</div>-->
-        			<?php include("../controller/controllerShowGames.php"); ?>
         			<div class="row">
         				<div id="isotope-gallery-container">
-        					<div class="col-md-3 col-sm-6 col-xs-12 gallery-item-wrapper artwork creative">
-        						<div class="gallery-item">
-        							<div class="gallery-thumb">
-        								<img src="http://placehold.it/800x600" class="img-responsive" alt="1st gallery Thumb">
-        								<div class="image-overlay"></div>
-        								<a href="http://placehold.it/800x600" class="gallery-zoom"><i class="fa fa-eye"></i></a>
-        								<a href="#" class="gallery-link"><i class="fa fa-shopping-cart"></i></a>
-        							</div>
-        							<div class="gallery-details">
-        								<div class="editContent">
-        									<h5>1st Gallery Item</h5>
-        								</div>
-        							</div>
-        						</div>
-        					</div>
+        					<?php include("../controller/controllerShowGames.php"); ?>
+                            <!--<div class="col-md-3 col-sm-6 col-xs-12 gallery-item-wrapper artwork creative">
+                                <div class="gallery-item">
+                                    <div class="gallery-thumb">
+                                        <img src="http://placehold.it/800x600" class="img-responsive" alt="1st gallery Thumb">
+                                        <div class="image-overlay"></div>
+                                        <a href="http://placehold.it/800x600" class="gallery-zoom"><i class="fa fa-eye"></i></a>
+                                        <a href="#" class="gallery-link"><i class="fa fa-shopping-cart"></i></a>
+                                    </div>
+                                    <div class="gallery-details">
+                                        <div class="editContent">
+                                            <h5>1st Gallery Item</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
         					<div class="col-md-3 col-sm-6 col-xs-12 gallery-item-wrapper nature outside">
         						<div class="gallery-item">
         							<div class="gallery-thumb">
@@ -214,7 +214,7 @@
         								</div>
         							</div>
         						</div>
-        					</div>
+        					</div>-->
         				</div>
         			</div>
         		</div>

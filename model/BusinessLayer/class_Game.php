@@ -11,16 +11,15 @@ class Game {
     private $genre = null;
 
     
-    function __construct( $title, $price, $plataform) {
+    function __construct( $title, $price) {
         $this->setTitle($title);
         $this->setPrice($price);
         $this->setStock(0);
         $this->setOffer(array());
-        $this->setPlataform($plataform);
         $this->setGenre(array());
     }
 
-        function getId() {
+    function getId() {
         return $this->id;
     }
 
