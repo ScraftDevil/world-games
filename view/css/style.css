@@ -1,8 +1,8 @@
 /* titulo del apartado que permite plegarse y desplegarse. Por defecto estará depslegado */
 .desplegableProfile {
-        background-color:#B40404;
+        background-color:#16A085;
 	color:white;
-	width:60%;
+	width:100%;
 	cursor:pointer;
 	padding-left: 10px;
 	margin-bottom: 10px;
@@ -10,22 +10,33 @@
 
 /* Apartado de datos del perfil de usuari donde puede cambiar sus datos personales */
 #profileForm {
-    width:60%;
-}
-
-/* texto de cada input que indica qué valor introducir i se coloca a la izquierda del formulario */
-.attributeText {
-    float:left;
-    width:30%;
-}
-
-/* div contenedor de las casillas input para colocarlas a la derecha del formulario */
-.inputAttribute {
-    float:right;
-    width:60%;
+    width:100%;
 }
 
 /* texto de la etiqueta de cada atributo. Le aplicamos un margen arriba para centrar el texto junto a su input */
 .control-label {
     margin-top:12px;
+}
+
+/* ancho del div que contiene todos los apartados del perfil de usuario */
+.profile {
+    width:100%;
+}
+
+/* separacion entre los form-groups (label + input) en resolucion de tablet */
+@media only screen and (min-width:768px) and (max-width:1200px) {
+    .form-group {
+        margin-bottom: 55px;
+    }
+}
+
+/* boton de guardar cambios de perfil */
+.button-profile {
+    background-color:#49819C;    
+    color:white;
+}
+
+.button-profile:hover {
+    background-color:#36657C;
+    color:white;
 }

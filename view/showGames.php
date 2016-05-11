@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 include_once("../controller/controllerCalculateDiscount.php");
 function showGames($list) {
       for ($i = 0; $i < count($list); $i++) {

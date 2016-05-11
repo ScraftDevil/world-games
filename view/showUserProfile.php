@@ -37,15 +37,6 @@
                                 <li class="active nav-item"><a href="#">Home</a></li>
                                 <li class="nav-item"><a href="#">Games</a></li>
                                 <li class="nav-item"><a href="#">Login</a></li>
-                                <!--<li class="nav-item dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" href="#">Pages <i class="fa fa-angle-down"></i></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Dropdown 1</a></li>
-                                        <li><a href="#">Dropdown 2</a></li>
-                                        <li><a href="#">Dropdown 3</a></li>
-                                        <li><a href="#">Dropdown 4</a></li>
-                                    </ul>
-                                </li>-->
                             </ul>
                         </div>
                     </div>
@@ -72,109 +63,105 @@
                         </div>
                         <hr>
                         <div class="editContent">
-                            <h2>Que te apetece hacer? ;)</h2></div>
+                            <h2>Aqui encontraras todo lo relativo a tu cuenta</h2></div>
                     </div>
-                    <!--<div class="editContent">
-                            <ul class="filter">
-                                    <li class="active">All</li>
-                                    <li>Origin</li>
-                                    <li>Steam</li>
-                                    <li>Xbox</li>
-                                    <li>Playstation Network</li>
-                                    <li>Apple</li>
-                            </ul>
-                    </div>
-                    <div class="editContent">
-                            <ul class="filter">
-                                    <li class="active">RPG</li>
-                                    <li>Adventure</li>
-                                    <li>Action</li>
-                                    <li>Shooter</li>
-                                    <li>Racing</li>
-                                    <li>Graphic Adventure</li>
-                            </ul>
-                    </div>-->
-                    <div class="row col-lg-12 center-block">
-                        <!-- Datos del usuario -->
-                        <div class="desplegableProfile" id="datosPersonales">
-                            <span class="glyphicon glyphicon-edit"></span>
-                            Datos Personales
+
+                    <!-- Lista de opciones del perfil del usuario -->
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+                            <div class="profile">
+                                <!-- Datos del usuario -->
+                                <div class="desplegableProfile" id="datosPersonales">
+                                    <span class="glyphicon glyphicon-edit"></span>
+                                    Datos Personales
+                                </div>
+
+                                <!-- Formulario para poder editar los datos del usuario (obtiene los datos de la BBDD) -->
+                                <form id="profileForm">
+                                    <div class="form-group col-lg-12">
+                                        <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Nombre:</label>
+                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
+                                            <input class="form-control" type="text" name="name" placeholder="Name">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-lg-12">
+                                        <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Contrasena</label>
+                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
+                                            <input class="form-control" type="password" name="password" placeholder="Password">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-lg-12">
+                                        <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">E-mail</label>
+                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
+                                            <input class="form-control" type="text" name="email" placeholder="E-mail">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-lg-12">
+                                        <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Fecha de Nacimiento:</label>
+                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
+                                            <input class="form-control" type="text" name="birthdate" placeholder="DD-MM-YYYY">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-lg-12">
+                                        <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Cuenta PayPal:</label>
+                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
+                                            <input class="form-control" type="text" name="paypal" placeholder="PayPal Account">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-lg-12">
+                                        <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Imagen de Perfil:</label>
+                                        <div class="col-lg-8 inputAttribute">
+                                            <input class="form-control" type="file" name="profileImage">
+                                        </div>
+                                    </div>
+
+                                    <button type="primary" class="button-profile pull-right btn form-button" action="#" method="POST">
+                                        <span class="glyphicon glyphicon-floppy-open"></span>
+                                        Guardar Cambios
+                                    </button>
+
+                                </form>
+
+                                <!-- Compras del usuario -->
+                                <div id="compras">
+                                    <div class="desplegableProfile col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <span class="glyphicon glyphicon-shopping-cart"></span>
+                                        Mis Compras
+                                    </div>
+                                    <div class="col-lg-12" id="comprasUsuario">
+                                        Array de compras
+                                    </div>
+                                </div>
+
+                                <!-- Mis Mensajes -->
+                                <div id="mensajes">
+                                    <div class="desplegableProfile col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <span class="glyphicon glyphicon-envelope"></span>
+                                        Mis Mensajes
+                                    </div>
+                                    <div class="col-lg-12" id="mensajesUsuario">
+                                        Mensaje 1<br>
+                                        Mensaje 2
+                                    </div>
+                                </div>
+
+                                <!-- Configuración de la Cuenta del usuario -->
+                                <div id="configuracion">
+                                    <div class="desplegableProfile col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <span class="glyphicon glyphicon-cog"></span>
+                                        Configuracion de la Cuenta
+                                    </div>
+                                    <div class="col-lg-12" id="configuracionUsuario">
+                                        Desactivar/Eliminar cuenta
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-
-                        <!-- Formulario para poder editar los datos del usuario (obtiene los datos de la BBDD) -->
-                        <form id="profileForm">
-                            <div class="form-group col-lg-12">
-                                <label class="col-lg-4 control-label attributeText">Nombre:</label>
-                                <div class="col-lg-8 inputAttribute">
-                                    <input class="form-control" type="text" name="name" placeholder="Name">
-                                </div>
-                            </div>
-
-                            <div class="form-group col-lg-12">
-                                <label class="col-lg-4 control-label attributeText">Contrasena</label>
-                                <div class="col-lg-8 inputAttribute">
-                                    <input class="form-control" type="password" name="password" placeholder="Password">
-                                </div>
-                            </div>
-
-                            <div class="form-group col-lg-12">
-                                <label class="col-lg-4 control-label attributeText">E-mail</label>
-                                <div class="col-lg-8 inputAttribute">
-                                    <input class="form-control" type="text" name="email" placeholder="E-mail">
-                                </div>
-                            </div>
-
-                            <div class="form-group col-lg-12">
-                                <label class="col-lg-4 control-label attributeText">Fecha de Nacimiento:</label>
-                                <div class="col-lg-8 inputAttribute">
-                                    <input class="form-control" type="text" name="birthdate" placeholder="DD-MM-YYYY">
-                                </div>
-                            </div>
-
-                            <div class="form-group col-lg-12">
-                                <label class="col-lg-4 control-label attributeText">Cuenta PayPal:</label>
-                                <div class="col-lg-8 inputAttribute">
-                                    <input class="form-control" type="text" name="paypal" placeholder="PayPal Account">
-                                </div>
-                            </div>
-
-                            <div class="form-group col-lg-12">
-                                <label class="col-lg-4 control-label attributeText">Imagen de Perfil:</label>
-                                <div class="col-lg-8 inputAttribute">
-                                    <input class="form-control" type="file" name="profileImage">
-                                </div>
-                            </div>
-                        </form>
-
-                        <!-- Compras del usuario -->
-                        <div id="compras"><div class="desplegableProfile col-lg-12" id="comprasUsuario">
-                                <span class="glyphicon glyphicon-shopping-cart"></span>
-                                Mis Compras
-                            </div>
-                            <div class="col-lg-12">
-                                Compra 1<br>
-                                Compra 2
-                            </div>
-                        </div>
-
-                        <!-- Mis Mensajes -->
-                        <div class="desplegableProfile col-lg-12">
-                            <span class="glyphicon glyphicon-envelope"></span>
-                            Mis Mensajes
-                        </div>
-                        <div class="col-lg-12">
-                            Mensaje 1<br>
-                            Mensaje 2
-                        </div>
-
-                        <!-- Configuración de la Cuenta del usuario -->
-                        <div class="desplegableProfile col-lg-12">
-                            <span class="glyphicon glyphicon-cog"></span>
-                            Configuracion de la Cuenta
-                        </div>
-                        <div class="col-lg-12">
-                            Desactivar/Eliminar cuenta
-                        </div>                        
                     </div>
                 </div>
             </section>
