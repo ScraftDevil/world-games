@@ -4,7 +4,7 @@
 <body>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-offset-4 col-md-4">
+			<div class="col-md-offset-4 col-md-4 card card-container">
 				<img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
 				<p id="profile-name" class="profile-name-card"></p>
 				<form class="form-signin">
