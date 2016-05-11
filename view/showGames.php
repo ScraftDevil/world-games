@@ -25,7 +25,7 @@ function showGames($list) {
                                     $priceWithDiscount = calculateDiscount($price, $offer);
                                     ?>
                                     <h5><?php echo $list[$i]->getTitle()?></h5>
-                                    <h6><span class="offerOldPrice"><?php echo $list[$i]->getPrice()?>€</span> <?php echo $priceWithDiscount?>
+                                    <h6><span class="offerOldPrice"><?php echo $list[$i]->getPrice()?>€</span> <?php echo $priceWithDiscount." €"?>
                                     <h6><?php echo $list[$i]->getOffer()->getDiscount()?>% de descuento</h6>
                                     <h5><?php echo $list[$i]->getGenre()->getName()?></h5>
                                     <h6><?php echo $list[$i]->getPlataform()->getName()?></h6>
