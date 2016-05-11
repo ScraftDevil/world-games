@@ -1,9 +1,6 @@
-#profileForm {
-    width:40%;
-}
-
+/* titulo del apartado que permite plegarse y desplegarse. Por defecto estará depslegado */
 .desplegableProfile {
-	background-color:#B40404;
+        background-color:#B40404;
 	color:white;
 	width:60%;
 	cursor:pointer;
@@ -11,12 +8,24 @@
 	margin-bottom: 10px;
 }
 
-.attributeText {
-    float:left;
-    width:50%;
+/* Apartado de datos del perfil de usuari donde puede cambiar sus datos personales */
+#profileForm {
+    width:60%;
 }
 
+/* texto de cada input que indica qué valor introducir i se coloca a la izquierda del formulario */
+.attributeText {
+    float:left;
+    width:30%;
+}
+
+/* div contenedor de las casillas input para colocarlas a la derecha del formulario */
 .inputAttribute {
     float:right;
-    width:50%;
+    width:60%;
+}
+
+/* texto de la etiqueta de cada atributo. Le aplicamos un margen arriba para centrar el texto junto a su input */
+.control-label {
+    margin-top:12px;
 }

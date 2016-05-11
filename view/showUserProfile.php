@@ -94,49 +94,87 @@
                                     <li>Graphic Adventure</li>
                             </ul>
                     </div>-->
-                    <div class="row">
+                    <div class="row col-lg-12 center-block">
                         <!-- Datos del usuario -->
-                        <!--<div class="desplegableProfile" id="datosPersonales">Datos Personales</div>
+                        <div class="desplegableProfile" id="datosPersonales">
+                            <span class="glyphicon glyphicon-edit"></span>
+                            Datos Personales
+                        </div>
+
+                        <!-- Formulario para poder editar los datos del usuario (obtiene los datos de la BBDD) -->
                         <form id="profileForm">
-                            <p class="userAtribute">Nombre: <input type="text" name="name" placeholder="Name"/></p>
-                            <p class="userAtribute">Contrasena: <input type="password" name="password" placeholder="Password"/></p>
-                            <p class="userAtribute">E-mail: <input type="text" name="email" placeholder="E-mail"/></p>
-                            <p class="userAtribute">Fecha de Nacimiento: <input type="text" name="birthdate" placeholder="DD-MM-YYYY"></p>
-                            <p class="userAtribute">Cuenta PayPal: <input type="text" name="paypal" placeholder="PayPal Account"/></p>
-                            <p class="userAtribute">Imagen de Perfil: <input type="file" name="profileImage"/></p>
-                        </form>-->
-                        <div class="desplegableProfile" id="datosPersonales">Datos Personales</div>
-                        <form id="profileForm">
-                            <div class="attributeText">Nombre:</div>
-                            <div class="inputAttribute">
-                                <input type="text" name="name" placeholder="Name"/>
+                            <div class="form-group col-lg-12">
+                                <label class="col-lg-4 control-label attributeText">Nombre:</label>
+                                <div class="col-lg-8 inputAttribute">
+                                    <input class="form-control" type="text" name="name" placeholder="Name">
+                                </div>
                             </div>
 
-                            <div class="attributeText">Contrasena:</div>
-                            <div class="inputAttribute">
-                                <input type="password" name="password" placeholder="Password"/>                                    
+                            <div class="form-group col-lg-12">
+                                <label class="col-lg-4 control-label attributeText">Contrasena</label>
+                                <div class="col-lg-8 inputAttribute">
+                                    <input class="form-control" type="password" name="password" placeholder="Password">
+                                </div>
                             </div>
 
-                            <p>E-mail: <input type="text" name="email" placeholder="E-mail"/></p>
-                            <p>Fecha de Nacimiento: <input type="text" name="birthdate" placeholder="DD-MM-YYYY"></p>
-                            <p>Cuenta PayPal: <input type="text" name="paypal" placeholder="PayPal Account"/></p>
-                            <p>Imagen de Perfil: <input type="file" name="profileImage"/></p>
+                            <div class="form-group col-lg-12">
+                                <label class="col-lg-4 control-label attributeText">E-mail</label>
+                                <div class="col-lg-8 inputAttribute">
+                                    <input class="form-control" type="text" name="email" placeholder="E-mail">
+                                </div>
+                            </div>
+
+                            <div class="form-group col-lg-12">
+                                <label class="col-lg-4 control-label attributeText">Fecha de Nacimiento:</label>
+                                <div class="col-lg-8 inputAttribute">
+                                    <input class="form-control" type="text" name="birthdate" placeholder="DD-MM-YYYY">
+                                </div>
+                            </div>
+
+                            <div class="form-group col-lg-12">
+                                <label class="col-lg-4 control-label attributeText">Cuenta PayPal:</label>
+                                <div class="col-lg-8 inputAttribute">
+                                    <input class="form-control" type="text" name="paypal" placeholder="PayPal Account">
+                                </div>
+                            </div>
+
+                            <div class="form-group col-lg-12">
+                                <label class="col-lg-4 control-label attributeText">Imagen de Perfil:</label>
+                                <div class="col-lg-8 inputAttribute">
+                                    <input class="form-control" type="file" name="profileImage">
+                                </div>
+                            </div>
                         </form>
 
-
-                        <!--<div class="desplegableProfile">Mis Compras</div>
-                        <div>
-                            Compra 1<br>
-                            Compra 2
-                        </div>
-                        <div class="desplegableProfile">
-                            <div id="profileMessages">Mis Mensajes</div>
-                            <div>
+                        <!-- Compras del usuario -->
+                        <div id="compras"><div class="desplegableProfile col-lg-12" id="comprasUsuario">
+                                <span class="glyphicon glyphicon-shopping-cart"></span>
+                                Mis Compras
+                            </div>
+                            <div class="col-lg-12">
                                 Compra 1<br>
                                 Compra 2
                             </div>
                         </div>
-                        <div class="desplegableProfile">Configuracion de la Cuenta</div>-->
+
+                        <!-- Mis Mensajes -->
+                        <div class="desplegableProfile col-lg-12">
+                            <span class="glyphicon glyphicon-envelope"></span>
+                            Mis Mensajes
+                        </div>
+                        <div class="col-lg-12">
+                            Mensaje 1<br>
+                            Mensaje 2
+                        </div>
+
+                        <!-- Configuración de la Cuenta del usuario -->
+                        <div class="desplegableProfile col-lg-12">
+                            <span class="glyphicon glyphicon-cog"></span>
+                            Configuracion de la Cuenta
+                        </div>
+                        <div class="col-lg-12">
+                            Desactivar/Eliminar cuenta
+                        </div>                        
                     </div>
                 </div>
             </section>
@@ -174,7 +212,7 @@
             </section>
         </div>
         <script type="text/javascript" src="js/jquery.min.js"></script>
-        <script type="text/javascript" src="js/formProfileUser.js"></script>
+        <script type="text/javascript" src="js/userProfile.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/headroom.js"></script>
         <script type="text/javascript" src="js/jquery.headroom.js"></script>
