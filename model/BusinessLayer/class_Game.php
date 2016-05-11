@@ -82,5 +82,8 @@ class Game {
         $this->genre = $genre;
     }
 
-
+public function addGameDb($title,$price) {
+        $GameDao = new GameDao();
+        $GameDao->addGame($title,$price);
+    }
 }
