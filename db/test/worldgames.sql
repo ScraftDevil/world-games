@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-05-2016 a las 18:55:29
+-- Tiempo de generación: 11-05-2016 a las 20:03:23
 -- Versión del servidor: 5.6.26
 -- Versión de PHP: 5.5.28
 
@@ -23,25 +23,25 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `admistrador`
+-- Estructura de tabla para la tabla `administrator`
 --
 
-CREATE TABLE IF NOT EXISTS `admistrador` (
-  `ID_Administrador` int(11) NOT NULL,
-  `Username` varchar(45) DEFAULT NULL,
-  `Password` varchar(45) DEFAULT NULL,
-  `Email` varchar(45) DEFAULT NULL,
+CREATE TABLE IF NOT EXISTS `administrator` (
+  `ID_Administrator` int(11) NOT NULL,
+  `Username` char(50) DEFAULT NULL,
+  `Password` char(45) DEFAULT NULL,
+  `Email` char(45) DEFAULT NULL,
   `BannedTime` float DEFAULT NULL,
   `BirthDate` date DEFAULT NULL,
   `Shop_id_Shop` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `admistrador`
+-- Volcado de datos para la tabla `administrator`
 --
 
-INSERT INTO `admistrador` (`ID_Administrador`, `Username`, `Password`, `Email`, `BannedTime`, `BirthDate`, `Shop_id_Shop`) VALUES
-(2, 'admin', 'admin', 'admin@admin.com', NULL, '1995-05-03', 1);
+INSERT INTO `administrator` (`ID_Administrator`, `Username`, `Password`, `Email`, `BannedTime`, `BirthDate`, `Shop_id_Shop`) VALUES
+(1, 'admin', 'admin', 'admin@admin.com', NULL, '2016-05-04', 1);
 
 -- --------------------------------------------------------
 
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `admistrador_has_report` (
 CREATE TABLE IF NOT EXISTS `comment` (
   `ID_Comment` int(11) NOT NULL,
   `Game_ID` int(11) NOT NULL,
-  `Text` varchar(45) DEFAULT NULL
+  `Text` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -75,9 +75,9 @@ CREATE TABLE IF NOT EXISTS `comment` (
 
 CREATE TABLE IF NOT EXISTS `complaint` (
   `ID_Complaint` int(11) NOT NULL,
-  `Reason` varchar(45) DEFAULT NULL,
+  `Reason` char(45) DEFAULT NULL,
   `Date` date DEFAULT NULL,
-  `Status` varchar(45) DEFAULT NULL
+  `Status` char(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -88,8 +88,16 @@ CREATE TABLE IF NOT EXISTS `complaint` (
 
 CREATE TABLE IF NOT EXISTS `country` (
   `ID_Country` int(11) NOT NULL,
-  `Name` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `Name` char(45) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `country`
+--
+
+INSERT INTO `country` (`ID_Country`, `Name`) VALUES
+(1, 'España'),
+(2, 'Argentina');
 
 -- --------------------------------------------------------
 
@@ -109,8 +117,8 @@ CREATE TABLE IF NOT EXISTS `game` (
 --
 
 INSERT INTO `game` (`ID_Game`, `Title`, `Price`, `Stock`) VALUES
-(1, 'Grand Theft Auto V ROCKSTAR CD-KEY GLOBAL', 32.5, 1),
-(2, 'Rocket League STEAM CD-KEY GLOBAL', 11.48, 1);
+(1, 'Grand Theft Auto V ROCKSTAR CD-KEY GLOBAL', 60, 1),
+(2, 'Rocket League STEAM CD-KEY GLOBAL', 20, 1);
 
 -- --------------------------------------------------------
 
@@ -135,14 +143,6 @@ CREATE TABLE IF NOT EXISTS `game_has_genre` (
   `Genre_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `game_has_genre`
---
-
-INSERT INTO `game_has_genre` (`Game_ID`, `Genre_ID`) VALUES
-(1, 1),
-(2, 3);
-
 -- --------------------------------------------------------
 
 --
@@ -154,14 +154,6 @@ CREATE TABLE IF NOT EXISTS `game_has_offer` (
   `Offer_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `game_has_offer`
---
-
-INSERT INTO `game_has_offer` (`Game_ID`, `Offer_ID`) VALUES
-(1, 1),
-(2, 2);
-
 -- --------------------------------------------------------
 
 --
@@ -172,14 +164,6 @@ CREATE TABLE IF NOT EXISTS `game_has_plataform` (
   `Game_ID` int(11) NOT NULL,
   `Plataform_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `game_has_plataform`
---
-
-INSERT INTO `game_has_plataform` (`Game_ID`, `Plataform_ID`) VALUES
-(1, 2),
-(2, 2);
 
 -- --------------------------------------------------------
 
@@ -213,7 +197,7 @@ CREATE TABLE IF NOT EXISTS `game_has_valoration` (
 
 CREATE TABLE IF NOT EXISTS `genre` (
   `ID_Genre` int(11) NOT NULL,
-  `Name` varchar(45) DEFAULT NULL
+  `Name` char(45) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
@@ -234,7 +218,7 @@ INSERT INTO `genre` (`ID_Genre`, `Name`) VALUES
 
 CREATE TABLE IF NOT EXISTS `message` (
   `ID_Message` int(11) NOT NULL,
-  `Content` varchar(45) DEFAULT NULL,
+  `Content` text,
   `Date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -265,7 +249,7 @@ INSERT INTO `offer` (`ID_Offer`, `Discount`) VALUES
 
 CREATE TABLE IF NOT EXISTS `plataform` (
   `ID_Plataform` int(11) NOT NULL,
-  `Name` varchar(45) DEFAULT NULL
+  `Name` char(45) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
@@ -286,9 +270,9 @@ INSERT INTO `plataform` (`ID_Plataform`, `Name`) VALUES
 
 CREATE TABLE IF NOT EXISTS `professional` (
   `ID_Professional` int(11) NOT NULL,
-  `Username` varchar(45) DEFAULT NULL,
-  `Password` varchar(45) DEFAULT NULL,
-  `Email` varchar(45) DEFAULT NULL,
+  `Username` char(45) DEFAULT NULL,
+  `Password` char(45) DEFAULT NULL,
+  `Email` char(45) DEFAULT NULL,
   `BannedTime` float DEFAULT NULL,
   `BirthDate` date DEFAULT NULL,
   `Telephone` varchar(45) DEFAULT NULL,
@@ -315,17 +299,23 @@ CREATE TABLE IF NOT EXISTS `professional_has_report` (
 
 CREATE TABLE IF NOT EXISTS `registered` (
   `ID_Registered` int(11) NOT NULL,
-  `Username` varchar(45) DEFAULT NULL,
-  `Password` varchar(45) DEFAULT NULL,
-  `Email` varchar(45) DEFAULT NULL,
-  `BannedTime` varchar(45) DEFAULT NULL,
+  `Username` char(45) DEFAULT NULL,
+  `Password` char(45) DEFAULT NULL,
+  `Email` char(45) DEFAULT NULL,
+  `BannedTime` float DEFAULT NULL,
   `BirthDate` date DEFAULT NULL,
-  `PaypalAccount` varchar(45) DEFAULT NULL,
-  `AvatarURL` varchar(45) DEFAULT NULL,
+  `PaypalAccount` char(70) DEFAULT NULL,
+  `AvatarURL` char(70) DEFAULT NULL,
   `Shop_ID` int(11) NOT NULL,
-  `Country_ID` int(11) NOT NULL,
-  `Message_ID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `Country_ID` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `registered`
+--
+
+INSERT INTO `registered` (`ID_Registered`, `Username`, `Password`, `Email`, `BannedTime`, `BirthDate`, `PaypalAccount`, `AvatarURL`, `Shop_ID`, `Country_ID`) VALUES
+(1, 'user', 'user', 'user@user.com', NULL, '2016-05-04', NULL, NULL, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -353,14 +343,25 @@ CREATE TABLE IF NOT EXISTS `registered_has_game` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `registered_has_message`
+--
+
+CREATE TABLE IF NOT EXISTS `registered_has_message` (
+  `Registered_ID` int(11) NOT NULL,
+  `Message_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `report`
 --
 
 CREATE TABLE IF NOT EXISTS `report` (
   `ID_Report` int(11) NOT NULL,
-  `Status` varchar(50) DEFAULT NULL,
+  `Status` char(50) DEFAULT NULL,
   `Date` date DEFAULT NULL,
-  `Text` varchar(45) DEFAULT NULL,
+  `Text` text,
   `Registered_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -372,7 +373,7 @@ CREATE TABLE IF NOT EXISTS `report` (
 
 CREATE TABLE IF NOT EXISTS `shop` (
   `ID_Shop` int(11) NOT NULL,
-  `Name` varchar(45) DEFAULT NULL
+  `Name` char(45) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
@@ -403,7 +404,7 @@ CREATE TABLE IF NOT EXISTS `shopping` (
 
 CREATE TABLE IF NOT EXISTS `valoration` (
   `ID_Valoration` int(11) NOT NULL,
-  `Valoration` varchar(45) DEFAULT NULL
+  `Valoration` char(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -411,10 +412,10 @@ CREATE TABLE IF NOT EXISTS `valoration` (
 --
 
 --
--- Indices de la tabla `admistrador`
+-- Indices de la tabla `administrator`
 --
-ALTER TABLE `admistrador`
-  ADD PRIMARY KEY (`ID_Administrador`,`Shop_id_Shop`),
+ALTER TABLE `administrator`
+  ADD PRIMARY KEY (`ID_Administrator`,`Shop_id_Shop`),
   ADD KEY `fk_Admistrador_Shop1_idx` (`Shop_id_Shop`);
 
 --
@@ -546,10 +547,9 @@ ALTER TABLE `professional_has_report`
 -- Indices de la tabla `registered`
 --
 ALTER TABLE `registered`
-  ADD PRIMARY KEY (`ID_Registered`,`Shop_ID`,`Country_ID`,`Message_ID`),
+  ADD PRIMARY KEY (`ID_Registered`,`Shop_ID`,`Country_ID`),
   ADD KEY `fk_Registered_Shop1_idx` (`Shop_ID`),
-  ADD KEY `fk_Registered_Country1_idx` (`Country_ID`),
-  ADD KEY `fk_Registered_Message1_idx` (`Message_ID`);
+  ADD KEY `fk_Registered_Country1_idx` (`Country_ID`);
 
 --
 -- Indices de la tabla `registered_has_comment`
@@ -567,6 +567,14 @@ ALTER TABLE `registered_has_game`
   ADD PRIMARY KEY (`Registered_ID`,`Game_ID`),
   ADD KEY `fk_Registered_has_Game_Game1_idx` (`Game_ID`),
   ADD KEY `fk_Registered_has_Game_Registered1_idx` (`Registered_ID`);
+
+--
+-- Indices de la tabla `registered_has_message`
+--
+ALTER TABLE `registered_has_message`
+  ADD PRIMARY KEY (`Registered_ID`,`Message_ID`),
+  ADD KEY `fk_Registered_has_Message_Message1_idx` (`Message_ID`),
+  ADD KEY `fk_Registered_has_Message_Registered1_idx` (`Registered_ID`);
 
 --
 -- Indices de la tabla `report`
@@ -598,10 +606,10 @@ ALTER TABLE `valoration`
 --
 
 --
--- AUTO_INCREMENT de la tabla `admistrador`
+-- AUTO_INCREMENT de la tabla `administrator`
 --
-ALTER TABLE `admistrador`
-  MODIFY `ID_Administrador` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+ALTER TABLE `administrator`
+  MODIFY `ID_Administrator` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `admistrador_has_report`
 --
@@ -621,7 +629,7 @@ ALTER TABLE `complaint`
 -- AUTO_INCREMENT de la tabla `country`
 --
 ALTER TABLE `country`
-  MODIFY `ID_Country` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Country` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `game`
 --
@@ -656,7 +664,7 @@ ALTER TABLE `professional`
 -- AUTO_INCREMENT de la tabla `registered`
 --
 ALTER TABLE `registered`
-  MODIFY `ID_Registered` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Registered` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `report`
 --
@@ -682,16 +690,16 @@ ALTER TABLE `valoration`
 --
 
 --
--- Filtros para la tabla `admistrador`
+-- Filtros para la tabla `administrator`
 --
-ALTER TABLE `admistrador`
+ALTER TABLE `administrator`
   ADD CONSTRAINT `fk_Admistrador_Shop1` FOREIGN KEY (`Shop_id_Shop`) REFERENCES `shop` (`ID_Shop`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `admistrador_has_report`
 --
 ALTER TABLE `admistrador_has_report`
-  ADD CONSTRAINT `fk_Admistrador_has_Report_Admistrador1` FOREIGN KEY (`Admistrador_ID`) REFERENCES `admistrador` (`ID_Administrador`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Admistrador_has_Report_Admistrador1` FOREIGN KEY (`Admistrador_ID`) REFERENCES `administrator` (`ID_Administrator`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Admistrador_has_Report_Registered1` FOREIGN KEY (`Registered_ID`) REFERENCES `registered` (`ID_Registered`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Admistrador_has_Report_Report1` FOREIGN KEY (`Report_ID`) REFERENCES `report` (`ID_Report`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
@@ -765,7 +773,6 @@ ALTER TABLE `professional_has_report`
 --
 ALTER TABLE `registered`
   ADD CONSTRAINT `fk_Registered_Country1` FOREIGN KEY (`Country_ID`) REFERENCES `country` (`ID_Country`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Registered_Message1` FOREIGN KEY (`Message_ID`) REFERENCES `message` (`ID_Message`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Registered_Shop1` FOREIGN KEY (`Shop_ID`) REFERENCES `shop` (`ID_Shop`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -782,6 +789,13 @@ ALTER TABLE `registered_has_comment`
 ALTER TABLE `registered_has_game`
   ADD CONSTRAINT `fk_Registered_has_Game_Game1` FOREIGN KEY (`Game_ID`) REFERENCES `game` (`ID_Game`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Registered_has_Game_Registered1` FOREIGN KEY (`Registered_ID`) REFERENCES `registered` (`ID_Registered`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `registered_has_message`
+--
+ALTER TABLE `registered_has_message`
+  ADD CONSTRAINT `fk_Registered_has_Message_Message1` FOREIGN KEY (`Message_ID`) REFERENCES `message` (`ID_Message`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Registered_has_Message_Registered1` FOREIGN KEY (`Registered_ID`) REFERENCES `registered` (`ID_Registered`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `report`
