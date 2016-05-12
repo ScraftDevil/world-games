@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html>
-	<?php include("sections/head.php"); ?>
+	<?php
+
+		include("../controller/authController.php");
+		if (!checkAuth()) {
+			header("Location:adminLoginView.php");
+		}
+		include("sections/head.php"); 
+		echo $_SESSION['user'];
+	?>
 <body>
 	<header>
 		<h1>Panel de Administración</h1>
@@ -15,10 +23,8 @@
 				<a id="usuarios-menu">Usuarios</a>
 				<div id="usuarios">
 					<a>Registrados</a>
-					<?php if () { ?>
 						<a>Profesionales</a>
 						<a>Administradores</a>
-					<?php } ?>
 				</div>
 				<a>Buzón</a>
 				<a>Estadísticas</a>
