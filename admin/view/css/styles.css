@@ -178,7 +178,7 @@ a {
     float: left;
 }
 
-#adminView form {
+#adminView form, #adminView form h4, #adminView form button {
     float: left;
 }
 

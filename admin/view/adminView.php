@@ -20,8 +20,8 @@
 			</div>
 			<div class="col-md-offset-1 col-md-3">
 				<form id="logout" action="../controller/adminLogoutController.php" method="POST">
-		            <h4>Welcome, <?php echo $_SESSION['user']; ?></h4>
-		            <input type="submit" name="logout" id="submit" value="Logout"/>
+		            <h4>Hola, <?php echo $_SESSION['user']; ?></h4>
+		            <button class="btn btn-lg btn-primary btn-block btn-signin login" name="logout" type="submit" id="logout"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Sign in</button>
 		        </form>
 		    </div>
 	    </div>
