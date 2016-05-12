@@ -58,18 +58,20 @@ class Shop {
 
     function populateGames($list) {
         foreach ($list as $row) {
+            $idGame = $row['ID_Game'];
             $gameObj = new Game($row['Title'], $row['Price'], $row['Stock']);
-            $gameObj->setID($row['ID_Game']);
+            $gameObj->setID($idGame);
             $offer = new Offer($row['Discount']);
-            $plataform = new Plataform($row['Plataform']);
-            $genres = $this->getGenresGame($row['ID_Game']);
+            //$plataform = new Plataform($row['Plataform']);
+            //$genres = $gameObj->getGenresGame($idGame);
+            /*
             $genresObj = array();
             foreach ($genre as $genres) {
                   $genresObj[] = new Genre($genre['Genre']);
-            }
+            }*/
             $gameObj->setOffer($offer);
-            $gameObj->setGenres($genre);
-            $gameObj->setPlataform($plataform);
+            //$gameObj->setGenres($genre);
+            //$gameObj->setPlataform($plataform);
             array_push($this->games, $gameObj);
         }
     }

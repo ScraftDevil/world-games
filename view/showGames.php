@@ -24,10 +24,18 @@ function showGames($list) {
                                     $priceWithDiscount = calculateDiscount($price, $offer);
                                     ?>
                                     <h5><?php echo $list[$i]->getTitle()?></h5>
-                                    <h6><span class="offerOldPrice"><?php echo $list[$i]->getPrice()?>€</span> <?php echo $priceWithDiscount." €"?>
-                                    <h6><?php echo $list[$i]->getOffer()->getDiscount()?>% de descuento</h6>
-                                    <h5><?php echo $list[$i]->getGenre()->getName()?></h5>
-                                    <h6><?php echo $list[$i]->getPlataform()->getName()?></h6>
+                                    <h6>
+                                    <?php
+                                    if ($priceWithDiscount==$price) {
+                                          echo '<span>'.$list[$i]->getPrice().' €</span>';
+                                    } else {
+                                          echo '<span class="offerOldPrice">'.$list[$i]->getPrice().' €</span> Ahora: '.$priceWithDiscount.' €';
+                                    }
+                                    ?>
+                                    </h6>
+                                    <?php if (!empty($list[$i]->getOffer()->getDiscount())) { echo $list[$i]->getOffer()->getDiscount()." % de descuento";}?></h6>
+                                    <h5><?php if (!empty($list[$i]->getGenres())) { echo $list[$i]->getGenres()->getName();}?></h5>
+                                    <h6><?php if (!empty($list[$i]->getPlataform())) { echo $list[$i]->getPlataform()->getName();}?></h6>
                               </div>
                         </div>
                   </div>
