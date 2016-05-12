@@ -82,5 +82,10 @@ class mysqldb {
 		return $registered;
 	}
 
+	public function updateRegisteredUser($registered) {
+		$registeredDao = new RegisteredDao();
+		$registered = $registeredDao->updateRegisteredUser($registered);
+	}
+
 }
 ?>

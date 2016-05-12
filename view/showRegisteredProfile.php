@@ -2,8 +2,10 @@
 
 /* codigo php */
 
+// controlador del perfil de usuario registrado
 include("../controller/controllerRegisteredProfile.php");
 
+//array que contiene los datos del usuario segun el id obtenido después de hacer login
 $registered = getRegisteredInfo(2);
 
 ?>
@@ -87,7 +89,7 @@ $registered = getRegisteredInfo(2);
                                 </div>
 
                                 <!-- Formulario para poder editar los datos del usuario (obtiene los datos de la BBDD) -->
-                                <form id="profileForm">
+                                <form id="profileForm"  action="controllerRegisteredProfile.php" method="POST">
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Nombre:</label>
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
@@ -130,7 +132,7 @@ $registered = getRegisteredInfo(2);
                                         </div>
                                     </div>
 
-                                    <button type="primary" class="button-profile pull-right btn form-button" action="#" method="POST">
+                                    <button type="primary" class="button-profile pull-right btn form-button">
                                         <span class="glyphicon glyphicon-floppy-open"></span>
                                         Guardar Cambios
                                     </button>

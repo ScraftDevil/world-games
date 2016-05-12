@@ -1,6 +1,6 @@
 /* titulo del apartado que permite plegarse y desplegarse. Por defecto estará depslegado */
 .desplegableProfile {
-        background-color:#16A085;
+    background-color:#16A085;
 	color:white;
 	width:100%;
 	cursor:pointer;

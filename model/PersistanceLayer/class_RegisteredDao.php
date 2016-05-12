@@ -17,6 +17,10 @@ class RegisteredDao {
         return $result;
 
 	}
+
+	public function updateRegisteredUser($registered) {
+		
+	}
 	
 }
 
