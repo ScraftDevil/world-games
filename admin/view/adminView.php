@@ -7,11 +7,15 @@
 			header("Location:adminLoginView.php");
 		}
 		include("sections/head.php"); 
-		echo $_SESSION['user'];
+
 	?>
 <body>
 	<header>
 		<h1>Panel de Administración</h1>
+		<form id="logout" action="../controller/adminLogoutController.php" method="POST">
+            <h4>Welcome, <?php echo $_SESSION['user']; ?></h4>
+            <input type="submit" name="logout" id="submit" value="Logout"/>
+        </form>
 	</header>
 	<div class="container-fluid">
 		<div class="row">

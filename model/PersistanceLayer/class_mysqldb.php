@@ -73,20 +73,9 @@ class mysqldb {
 
 	public function getProfessional($username, $password) {
 	    $stmt = $this->getLink()->prepare("SELECT ID_Professional FROM professional WHERE Username='$username' AND Password='$password' LIMIT 1;"); 
-	    $result = $stmt->execute();
-	    while ($row = $result->fetchAll()) {
-			$user = $row['ID_Professional'];
-		}
-	    return $user;
-	}
-
-	public function getAdministrator($username, $password) {
-	    $stmt = $this->getLink()->prepare("SELECT ID_Administrator FROM administrator WHERE Username='$username' AND Password='$password' LIMIT 1;"); 
-	    $result = $stmt->execute();
-	    while ($row = $result->fetchAll()) {
-			$user = $row['ID_Administrador'];
-		}
-	    return $user;
+	    $stmt->execute();
+	    $result = $stmt->FetchAll();
+	    return $result;
 	}
 
 }
