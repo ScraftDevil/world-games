@@ -56,7 +56,7 @@ class Shop {
         $this->id = $id;
     }
 
-    function populateGames($db) {
+   function populateGames($db) {
         $games = $db->getGames();
         foreach ($games as $game) {
             $genresObj = array();
@@ -65,22 +65,15 @@ class Shop {
             $gameObj = new Game($game['Title'], $game['Price'], $game['Stock']);
             $gameObj->setID($idGame);
             $offer = new Offer($game['Discount']);
-            $n=0;
             foreach ($genres as $genre) {
                 $g = new Genre($genre['Name']);
                 $g->setId($genre['ID_Genre']);
                 $genresObj[] = $g;
-                $n++;
             }
-            //$plataform = new Plataform($game['Plataform']);
-            /*
-            $genresObj = array();
-            foreach ($genre as $genres) {
-                  $genresObj[] = new Genre($genre['Genre']);
-            }*/
+            $plataform = new Plataform($game['Plataform']);
             $gameObj->setOffer($offer);
             $gameObj->setGenres($genresObj);
-            //$gameObj->setPlataform($plataform);
+            $gameObj->setPlataform($plataform);
             array_push($this->games, $gameObj);
         }
     }
