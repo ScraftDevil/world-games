@@ -14,12 +14,12 @@
                     <div class="underlined-title">
                         <div class="editContent">
                             <p>
-                            <h1>Monthy Offers</h1>
+                            <h1>Ofertas Mensuales</h1>
                             </p>
                         </div>
                         <hr>
                         <div class="editContent">
-                            <h2>Choose your offer</h2></div>
+                            <h2>Escoje tu Oferta</h2></div>
                     </div>
                     <div class="row">
                         <div id="isotope-gallery-container">

@@ -13,19 +13,19 @@
         </div>
         <div class="col-md-3 pull-right">
             <div class="editContent">
-                <p class="address-bold-line">We <span class="fa fa-heart pomegranate"></span> our amazing customers</p>
+                <p class="address-bold-line">Regalate lo mejor <span class="fa fa-gift"></span></p>
             </div>
             <div class="editContent">
                 <p class="address small">
-                    123 Anywhere Street,
-                    <br> London,
-                    <br> LO4 6ON
+                    Calle Falsa 123,
+                    <br> Vicialand,
+                    <br> Piso X
                 </p>
             </div>
         </div>
         <div class="col-xs-12 footer-text">
             <div class="editContent">
-                <p>Please take a few minutes to read our <a href="#">Terms &amp; Conditions</a> and <a href="#">Privacy Policy</a></p>
+                <p>Puedes leer los <a href="#">Terminos &amp; Condiciones</a> y <a href="#">Politica de Privacidad</a></p>
             </div>
         </div>
     </div>
