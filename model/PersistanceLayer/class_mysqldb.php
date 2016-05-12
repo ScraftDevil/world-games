@@ -78,5 +78,12 @@ class mysqldb {
 	    return $result;
 	}
 
+	public function getRegisteredInfo($id) {
+		$registeredDao = new RegisteredDao();
+		$registered = $registeredDao->showRegisteredInfo($id);
+
+		return $registered;
+	}
+
 }
 ?>
