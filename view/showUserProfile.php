@@ -1,3 +1,13 @@
+<?php
+
+/* codigo php */
+
+include("../controller/getRegisteredInfoController.php");
+
+$registered = getRegisteredInfo(2);
+
+?>
+
 <!--DOCTYPE html -->
 <html>
     <head>
@@ -63,7 +73,7 @@
                         </div>
                         <hr>
                         <div class="editContent">
-                            <h2>Aqui encontraras todo lo relativo a tu cuenta</h2></div>
+                            <h2>Aqui encontraras todo lo relativo a tu cuenta, <?php echo $registered[0][0] ?></h2></div>
                     </div>
 
                     <!-- Lista de opciones del perfil del usuario -->
@@ -81,12 +91,12 @@
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Nombre:</label>
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
-                                            <input class="form-control" type="text" name="name" placeholder="Name">
+                                            <input class="form-control" type="text" name="name" placeholder="Name" value="<?php echo $registered[0][0];?>">
                                         </div>
                                     </div>
 
                                     <div class="form-group col-lg-12">
-                                        <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Contrasena</label>
+                                        <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Nueva Contrasena</label>
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
                                             <input class="form-control" type="password" name="password" placeholder="Password">
                                         </div>
@@ -95,21 +105,21 @@
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">E-mail</label>
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
-                                            <input class="form-control" type="text" name="email" placeholder="E-mail">
+                                            <input class="form-control" type="text" name="email" placeholder="E-mail" value="<?php echo $registered[0][1];?>">
                                         </div>
                                     </div>
 
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Fecha de Nacimiento:</label>
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
-                                            <input class="form-control" type="text" name="birthdate" placeholder="DD-MM-YYYY">
+                                            <input class="form-control" type="text" name="birthdate" placeholder="DD-MM-YYYY" value="<?php echo $registered[0][2];?>">
                                         </div>
                                     </div>
 
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Cuenta PayPal:</label>
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
-                                            <input class="form-control" type="text" name="paypal" placeholder="PayPal Account">
+                                            <input class="form-control" type="text" name="paypal" placeholder="PayPal Account" value="<?php echo $registered[0][3];?>">
                                         </div>
                                     </div>
 
@@ -134,7 +144,7 @@
                                         Mis Compras
                                     </div>
                                     <div class="col-lg-12" id="comprasUsuario">
-                                        Array de compras
+                                        Lista de compras
                                     </div>
                                 </div>
 
@@ -145,8 +155,7 @@
                                         Mis Mensajes
                                     </div>
                                     <div class="col-lg-12" id="mensajesUsuario">
-                                        Mensaje 1<br>
-                                        Mensaje 2
+                                        Lista de Mensajes
                                     </div>
                                 </div>
 

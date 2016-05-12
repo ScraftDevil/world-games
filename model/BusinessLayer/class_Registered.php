@@ -23,8 +23,7 @@ class Registered extends User {
 
     function __construct() {
         parent::__construct();
-    }
-
+    }    
 }
 
 ?>
