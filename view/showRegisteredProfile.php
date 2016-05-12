@@ -2,7 +2,7 @@
 
 /* codigo php */
 
-include("../controller/getRegisteredInfoController.php");
+include("../controller/controllerRegisteredProfile.php");
 
 $registered = getRegisteredInfo(2);
 
