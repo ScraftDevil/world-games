@@ -15,6 +15,9 @@
 		$valid = $admin->login($username, $password);
 		if ($valid) {
 			$_SESSION['adminAuth'] = true;
+			$_SESSION['user'] = $username;
+			$_SESSION['user_id'] = $admin->getID($username, $password);
+			$_SESSION['userType'] = "admin";
 			header("Location: ../index.php");
 		} else {
 			header("Location: ../view/adminLoginView.php?MSGCODE=invalid_pass");

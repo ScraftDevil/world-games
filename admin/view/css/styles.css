@@ -9,6 +9,12 @@ header {
     width: 100%;
     background-color: #f39c12;
     margin: 0;
+    float: left;
+}
+
+.admin-panel {
+    text-align: center;
+    color: white;
 }
 
 .card-container.card {
@@ -160,6 +166,20 @@ a {
 
 .admin-content {
     border: solid white 1px;
+}
+
+#adminView .logo {
+    width: 150px;
+    height: 150px;
+    float: left;
+}
+
+#adminView h1 {
+    float: left;
+}
+
+#adminView form {
+    float: left;
 }
 
 /* Mobile */

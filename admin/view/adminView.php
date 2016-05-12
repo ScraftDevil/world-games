@@ -10,12 +10,21 @@
 
 	?>
 <body>
-	<header>
-		<h1>Panel de Administración</h1>
-		<form id="logout" action="../controller/adminLogoutController.php" method="POST">
-            <h4>Welcome, <?php echo $_SESSION['user']; ?></h4>
-            <input type="submit" name="logout" id="submit" value="Logout"/>
-        </form>
+	<header id="adminView">
+		<div class="row">
+			<div class="col-md-2">
+				<div class="logo"><img src="images/logo.png"/></div>
+			</div>
+			<div class="col-md-offset-2 col-md-4">
+				<h1>Panel de Administración</h1>
+			</div>
+			<div class="col-md-offset-1 col-md-3">
+				<form id="logout" action="../controller/adminLogoutController.php" method="POST">
+		            <h4>Welcome, <?php echo $_SESSION['user']; ?></h4>
+		            <input type="submit" name="logout" id="submit" value="Logout"/>
+		        </form>
+		    </div>
+	    </div>
 	</header>
 	<div class="container-fluid">
 		<div class="row">
