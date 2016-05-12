@@ -1,6 +1,6 @@
 <?php
 class Genre {
-   private $id = null;
+    private $id = null;
     private $name = null;
     
     function __construct($name) {
@@ -22,8 +22,5 @@ class Genre {
 
     function setName($name) {
         $this->name = $name;
-    }
-
-
-    
+    }   
 }

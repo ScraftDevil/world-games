@@ -34,7 +34,16 @@ function showGames($list) {
                                     ?>
                                     </h6>
                                     <?php if (!empty($list[$i]->getOffer()->getDiscount())) { echo $list[$i]->getOffer()->getDiscount()." % de descuento";}?></h6>
-                                    <h5><?php if (!empty($list[$i]->getGenres())) { echo $list[$i]->getGenres()->getName();}?></h5>
+                                    <h5>
+                                    <?php
+                                    if (!empty($list[$i]->getGenres())) {
+                                          $genres = $list[$i]->getGenres();
+                                          foreach($genres as $genre) {
+                                                echo $genre->getName()."<br>";
+                                          }
+                                    }
+                                    ?>
+                                    </h5>
                                     <h6><?php if (!empty($list[$i]->getPlataform())) { echo $list[$i]->getPlataform()->getName();}?></h6>
                               </div>
                         </div>
