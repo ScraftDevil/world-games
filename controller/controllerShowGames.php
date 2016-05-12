@@ -5,5 +5,5 @@ include_once("../view/showGames.php");
 $shop = unserialize($_SESSION['shop']);
 $shop->populateShop();
 $all = $shop->getGames();
-showGames($all);
+showGames($all, $onlyOffers);
 ?>
