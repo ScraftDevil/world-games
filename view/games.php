@@ -65,12 +65,12 @@
         		<div class="underlined-title">
         			<div class="editContent">
         				<p>
-        					<h1>Monthy Offers</h1>
+        					<h1>List of Games in Shop</h1>
         				</p>
         			</div>
         			<hr>
         			<div class="editContent">
-        				<h2>Choose your offer</h2></div>
+        				<h2>Buy Your favorite Game</h2></div>
         			</div>
         			<!--<div class="editContent">
         				<ul class="filter">
@@ -95,7 +95,7 @@
         			<div class="row">
         				<div id="isotope-gallery-container">
         					<?php
-                                $onlyOffers = true;
+                                $onlyOffers = false;
                                 include("../controller/controllerShowGames.php");
                             ?>
         				</div>
