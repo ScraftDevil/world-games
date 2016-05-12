@@ -20,17 +20,7 @@ class Shop {
         $this->users = array();
         $this->games = array();
         //get data for array games from database
-        $rows = $db->getGames();
-        foreach ($rows as $row) {
-            $gameObj = new Game($row['Title'], $row['Price'], $row['Stock']);
-            $offer = new Offer($row['Discount']);
-            $genre = new Genre($row['Genre']);
-            $plataform = new Plataform($row['Plataform']);
-            $gameObj->setOffer($offer);
-            $gameObj->setGenre($genre);
-            $gameObj->setPlataform($plataform);
-            array_push($this->games, $gameObj);
-        }
+        $this->populateGames($db->getGames());
         //end get data games
     }
 
@@ -66,6 +56,23 @@ class Shop {
         $this->id = $id;
     }
 
+    function populateGames($list) {
+        foreach ($list as $row) {
+            $gameObj = new Game($row['Title'], $row['Price'], $row['Stock']);
+            $gameObj->setID($row['ID_Game']);
+            $offer = new Offer($row['Discount']);
+            $plataform = new Plataform($row['Plataform']);
+            $genres = $this->getGenresGame($row['ID_Game']);
+            $genresObj = array();
+            foreach ($genre as $genres) {
+                  $genresObj[] = new Genre($genre['Genre']);
+            }
+            $gameObj->setOffer($offer);
+            $gameObj->setGenres($genre);
+            $gameObj->setPlataform($plataform);
+            array_push($this->games, $gameObj);
+        }
+    }
 }
 
 ?>

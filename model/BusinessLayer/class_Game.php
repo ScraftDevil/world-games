@@ -6,17 +6,16 @@ class Game {
     private $title;
     private $price;
     private $stock;
-    private $offer = null;
+    private $offer;
     private $plataform;
-    private $genre = null;
+    private $genres = null;
 
     
     function __construct( $title, $price) {
         $this->setTitle($title);
         $this->setPrice($price);
         $this->setStock(0);
-        $this->setOffer(array());
-        $this->setGenre(array());
+        $this->setGenres(array());
     }
 
     function getId() {
@@ -66,8 +65,8 @@ class Game {
         return $this->plataform;
     }
 
-    function getGenre() {
-        return $this->genre;
+    function getGenres() {
+        return $this->genres;
     }
 
     function setOffer($offer) {
@@ -78,8 +77,8 @@ class Game {
         $this->plataform = $plataform;
     }
 
-    function setGenre($genre) {
-        $this->genre = $genre;
+    function setGenres($genres) {
+        $this->genres = $genres;
     }
 
 public function addGameDb($title,$price) {
