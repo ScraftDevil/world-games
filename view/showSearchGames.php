@@ -7,6 +7,16 @@ function showSearchGames($list) {
 }
 
 function printGame($game) {
-    echo "<div>Titulo: ".$game['Title']."</div>";
+    //$game['Title']
+    echo '
+    <div class="row">
+        <div class="col-md-6 col-xs-6">
+        <span><img src="images/games/'.$game['Title'].'.png" class="img-responsive" style="float:left;" alt="'.$game['Title'].'" width="135px"></span>
+        </div>
+        <div class="col-md-6 col-xs-6">
+        '.$game['Title'].'<br><strong style="color:orange">'.$game['Price'].' €</strong>
+        </div>
+    </div>
+    ';
 }
 ?>

@@ -40,11 +40,23 @@
 <script type="text/javascript" src="js/bskit-scripts.js"></script>
 <!--[if lt IE 9]><script src="js/html5shiv.js"></script><script src="js/respond.min.js"></script><![endif]-->
 <script type="text/javascript">
-$("#search").on("click", function(e) {
+var delay = (function(){
+  var timer = 0;
+  return function(callback, ms){
+    clearTimeout (timer);
+    timer = setTimeout(callback, ms);
+  };
+})();
+$("#search").on("keyup", function(e) {
     e.preventDefault();
-    $("#result").slideUp();
+    delay(function() {
+        search();
+    }, 400);
+});
+function search() {
+     $("#result").slideUp();
     var params = {
-        "search" : $("#searchInput").val()
+        "search" : $("#search").val()
     };
     $.ajax({
         data:  params,
@@ -54,9 +66,14 @@ $("#search").on("click", function(e) {
                 $("#result").html("Procesando, espere por favor...");
         },
         success:  function (response) {
-                $("#result").slideDown();
-                $("#result").html(response);
+                if(response=="") {
+                    $("#result").slideUp();
+                } else {
+                    $("#result").slideDown();
+                    $("#result").html(response);
+
+                }
         }
     });
-});
+}
 </script>

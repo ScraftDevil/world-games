@@ -16,15 +16,15 @@
                     <li class="nav-item"><a href="games.php">Juegos</a></li>
                     <li class="nav-item"><a href="login.php">Entrar</a></li>
                 </ul>
-                <div class="col-sm-3 col-md-3">
+                <div class="col-md-4">
                     <form class="navbar-form" role="search" style="padding-top: 13px">
                         <div class="input-group">
-                            <input id="searchInput" type="text" class="form-control" placeholder="Search" name="q">
+                            <input id="search" type="text" class="form-control" placeholder="Buscar tu juego" name="q">
                             <div class="input-group-btn">
-                                <button id="search" class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                             </div>
                         </div>
-                        <div id="result" style="color: white; background: #193441; display: none; margin-top: 22px; border: 2px solid black"></div>
+                        <div id="result" class="col-md-12" style="color: white; background: #193441; display: none; margin-top: 22px; border: 2px solid black"></div>
                     </form>
                 </div>     
             </div>
