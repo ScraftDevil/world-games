@@ -166,7 +166,7 @@ $registered = getRegisteredInfo($id);
                                     Configuracion de la Cuenta
                                 </div>
 
-                                <form id="profileFormDelete" action="#" method="POST">
+                                <form id="profileFormDelete" action="../controller/controllerRegisteredProfile.php" method="POST">
                                     <div class="col-lg-12" id="configuracionUsuario">
                                         <p>Marca la siguiente casilla para indicar que quieres eliminar tu cuenta para siempre. Despues, pulsa el boton Eliminar</p>
                                         <input type="checkbox" name="deleteCheckBox">

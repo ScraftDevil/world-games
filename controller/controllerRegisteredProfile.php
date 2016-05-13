@@ -37,7 +37,7 @@
 
 
 	if (isset($_REQUEST['update'])) {
-		updateRegisteredInfo(3);
+		updateRegisteredInfo(2);
 	}
 
 	if (isset($_REQUEST['delete'])) {

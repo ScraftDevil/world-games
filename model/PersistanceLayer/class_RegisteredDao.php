@@ -58,7 +58,7 @@ class RegisteredDao {
 
 		try {
 			
-			$query = ('DELETE FROM Registered WHERE ID_Registered = "$id"');
+			$query = ("DELETE FROM Registered WHERE ID_Registered = '$id'");
 
 			$db = unserialize($_SESSION['dbconnection']);
 			$resultat = $db->getLink()->prepare($query);

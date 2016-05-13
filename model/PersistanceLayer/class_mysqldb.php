@@ -88,8 +88,7 @@ class mysqldb {
 
 	public function deleteRegisteredUser($id) {
 		$registeredDao = new RegisteredDao();
-		$registered = $registeredDao->showRegisteredInfo($id);
-		return $registered;
+		$registered = $registeredDao->deleteRegisteredUser($id);		
 	}
 
 }
