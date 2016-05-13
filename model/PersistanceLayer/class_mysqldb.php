@@ -76,18 +76,18 @@ class mysqldb {
 	}
 
 	public function getRegisteredInfo($id) {
-		$registeredDao = new RegisteredDao();
+		$registeredDao = new RegisteredDAO();
 		$registered = $registeredDao->showRegisteredInfo($id);
 		return $registered;
 	}
 
 	public function updateRegisteredUser($registered) {
-		$registeredDao = new RegisteredDao();
+		$registeredDao = new RegisteredDAO();
 		$registered = $registeredDao->updateRegisteredUser($registered);
 	}
 
 	public function deleteRegisteredUser($id) {
-		$registeredDao = new RegisteredDao();
+		$registeredDao = new RegisteredDAO();
 		$registered = $registeredDao->deleteRegisteredUser($id);		
 	}
 
@@ -117,6 +117,11 @@ class mysqldb {
     public function getProfessionalID($username) {
     	$professional = new professionalDAO();
     	return $professional->getID($username);
+    }
+
+    public function getRegisteredUsers($order) {
+    	$registered = new RegisteredDAO();
+    	return $registered->showRegistereds($order);
     }
 }
 ?>

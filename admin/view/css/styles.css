@@ -216,6 +216,10 @@ a {
     padding-left: 0;
 }
 
+.container-content p {
+    margin: 10px 0 10px;
+}
+
 
 /* Mobile */
 @media only screen and (min-width: 320px) {

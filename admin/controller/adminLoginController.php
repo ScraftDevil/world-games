@@ -1,7 +1,5 @@
 <?php
 
-	$username = $_POST['username'];
-
 	require_once("../../model/autoload.php");
 
 	if (session_id() == '') {

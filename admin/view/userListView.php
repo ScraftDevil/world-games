@@ -28,10 +28,12 @@
 			</div>
 			<div class="col-md-offset-1 col-md-8 admin-content">
 				<div class="container container-content">
-					<div style="background-color: black;" class="">
-						
-						<p>Total mujeres</p>
-						<p>Total hombre</p>
+					<div class="">
+						<?php
+
+							include("../controller/showUsersController.php");
+
+						?>
 					</div>
 				</div>
 			</div>
