@@ -1,19 +1,19 @@
 <?php
 
 	session_start();
-
-	require_once("../model/autoload.php");
+	
+	require_once("../model/autoload.php");	
 
 	function getRegisteredInfo($id) {
 
-	$shopDb = unserialize($_SESSION['dbconnection']);	
+	$shopDb = unserialize($_SESSION['dbconnection']);
 	$registeredUser = $shopDb->getRegisteredInfo($id);	
 
 	return $registeredUser;
 
 	}
 
-	function updateRegisteredInfo() {
+	function updateRegisteredInfo($id) {
 
 		$username = $_REQUEST['name'];
 		$password = $_REQUEST['password'];
@@ -24,11 +24,26 @@
 
 		$shopDb = unserialize($_SESSION['dbconnection']);
 
-		$registered = new Registered($username, $password, $email, $birthdate, $paypal, $image);
+		$registered = new Registered($username, $password, $email, $birthdate, '');
+		$registered->setId($id);
+
 		$shopDb->updateRegisteredUser($registered);
-		$_SESSION['dbconnection'] = serialize($shopDb);
 	}
 
-	
+	function deleteRegisteredUser($id) {
+		$shopDb = unserialize($_SESSION['dbconnection']);
+		$shopDb->deleteRegisteredUser($id);
+	}
+
+
+	if (isset($_REQUEST['update'])) {
+		updateRegisteredInfo(3);
+	}
+
+	if (isset($_REQUEST['delete'])) {
+		if (isset($_REQUEST['deleteCheckBox'])) {
+			deleteRegisteredUser(3);
+		}	
+	}	
 
 ?>

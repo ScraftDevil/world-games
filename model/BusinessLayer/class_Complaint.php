@@ -76,10 +76,7 @@ class Complain {
 
     function setGame($game) {
         $this->game = $game;
-    }
-
-
-    
+    }    
 }
 
 ?>

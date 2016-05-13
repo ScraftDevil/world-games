@@ -21,8 +21,8 @@ class Registered extends User {
         $this->avatarUrl = $avatarUrl;
     }
 
-    function __construct() {
-        parent::__construct();
+    function __construct($username, $password, $email, $birthDate, $country) {
+        parent::__construct($username, $password, $email, $birthDate, $country);
     }    
 }
 

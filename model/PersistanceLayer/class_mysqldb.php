@@ -86,5 +86,11 @@ class mysqldb {
 		$registered = $registeredDao->updateRegisteredUser($registered);
 	}
 
+	public function deleteRegisteredUser($id) {
+		$registeredDao = new RegisteredDao();
+		$registered = $registeredDao->showRegisteredInfo($id);
+		return $registered;
+	}
+
 }
 ?>

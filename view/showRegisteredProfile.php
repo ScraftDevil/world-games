@@ -6,7 +6,8 @@
 include("../controller/controllerRegisteredProfile.php");
 
 //array que contiene los datos del usuario segun el id obtenido después de hacer login
-$registered = getRegisteredInfo(2);
+$id = 3;
+$registered = getRegisteredInfo($id);
 
 ?>
 
@@ -89,7 +90,7 @@ $registered = getRegisteredInfo(2);
                                 </div>
 
                                 <!-- Formulario para poder editar los datos del usuario (obtiene los datos de la BBDD) -->
-                                <form id="profileForm"  action="controllerRegisteredProfile.php" method="POST">
+                                <form id="profileForm" action="../controller/controllerRegisteredProfile.php" method="POST">
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Nombre:</label>
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
@@ -132,45 +133,50 @@ $registered = getRegisteredInfo(2);
                                         </div>
                                     </div>
 
-                                    <button type="primary" class="button-profile pull-right btn form-button">
+                                    <button name="update" class="button-profile pull-right btn form-button">
                                         <span class="glyphicon glyphicon-floppy-open"></span>
                                         Guardar Cambios
                                     </button>
 
                                 </form>
 
-                                <!-- Compras del usuario -->
-                                <div id="compras">
-                                    <div class="desplegableProfile col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                        <span class="glyphicon glyphicon-shopping-cart"></span>
-                                        Mis Compras
-                                    </div>
-                                    <div class="col-lg-12" id="comprasUsuario">
-                                        Lista de compras
-                                    </div>
+                                <!-- Compras del usuario -->                               
+                                <div id="compras" class="desplegableProfile col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <span class="glyphicon glyphicon-shopping-cart"></span>
+                                    Mis Compras
                                 </div>
+                                <div class="col-lg-12" id="comprasUsuario">
+                                    Lista de compras
+                                </div>
+                                
 
-                                <!-- Mis Mensajes -->
-                                <div id="mensajes">
-                                    <div class="desplegableProfile col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                        <span class="glyphicon glyphicon-envelope"></span>
-                                        Mis Mensajes
-                                    </div>
-                                    <div class="col-lg-12" id="mensajesUsuario">
-                                        Lista de Mensajes
-                                    </div>
+                                <!-- Mis Mensajes -->                                
+                                <div id="mensajes" class="desplegableProfile col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <span class="glyphicon glyphicon-envelope"></span>
+                                    Mis Mensajes
                                 </div>
+                                <div class="col-lg-12" id="mensajesUsuario">
+                                    Lista de Mensajes
+                                </div>
+                                
 
                                 <!-- Configuración de la Cuenta del usuario -->
-                                <div id="configuracion">
-                                    <div class="desplegableProfile col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                        <span class="glyphicon glyphicon-cog"></span>
-                                        Configuracion de la Cuenta
-                                    </div>
-                                    <div class="col-lg-12" id="configuracionUsuario">
-                                        Desactivar/Eliminar cuenta
-                                    </div>
+                                <div id="configuracion" class="desplegableProfile col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <span class="glyphicon glyphicon-cog"></span>
+                                    Configuracion de la Cuenta
                                 </div>
+
+                                <form id="profileFormDelete" action="#" method="POST">
+                                    <div class="col-lg-12" id="configuracionUsuario">
+                                        <p>Marca la siguiente casilla para indicar que quieres eliminar tu cuenta para siempre. Despues, pulsa el boton Eliminar</p>
+                                        <input type="checkbox" name="deleteCheckBox">
+                                    Quiero eliminar mi cuenta de usuario
+                                    <button name="delete" class="btn-danger pull-right btn form-button">                                            
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                            Eliminar
+                                    </button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
