@@ -33,6 +33,9 @@
 	function deleteRegisteredUser($id) {
 		$shopDb = unserialize($_SESSION['dbconnection']);
 		$shopDb->deleteRegisteredUser($id);
+		//metodo de logout
+		//esto es provisional
+		header ("Location: ../index.php");
 	}
 
 
