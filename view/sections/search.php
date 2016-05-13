@@ -4,8 +4,9 @@
               <h2>Busca tu juego</h2>
              </div>
              <form class="footer-form" action="#">
-                     <input type="text" name="" value="" placeholder="" required="">
-                     <input type="submit" name="" value="Buscar">
+                     <input type="text" id="searchInput" value="" placeholder="" required="">
+                     <input type="submit" id="search" name="" value="Buscar">
+                     <div id="result"></div>
              </form>
      </div>
 </section>

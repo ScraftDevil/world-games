@@ -40,5 +40,21 @@
 <script type="text/javascript" src="js/bskit-scripts.js"></script>
 <!--[if lt IE 9]><script src="js/html5shiv.js"></script><script src="js/respond.min.js"></script><![endif]-->
 <script type="text/javascript">
-
+$("#search").on("click", function(e) {
+    e.preventDefault();
+    var params = {
+        "search" : $("#searchInput").val()
+    };
+    $.ajax({
+        data:  params,
+        url:   '../controller/controllerSearch.php',
+        type:  'post',
+        beforeSend: function () {
+                $("#result").html("Procesando, espere por favor...");
+        },
+        success:  function (response) {
+                $("#result").html(response);
+        }
+    });
+});
 </script>
