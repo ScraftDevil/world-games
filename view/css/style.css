@@ -32,7 +32,8 @@
 
 /* boton de guardar cambios de perfil */
 .button-profile {
-    background-color:#49819C;    
+    background-color:#49819C;
+    box-shadow: 0 2px #405E6D;
     color:white;
 }
 
