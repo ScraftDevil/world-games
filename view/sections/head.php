@@ -15,4 +15,5 @@ session_start();
     <link href="css/blog.css" rel="stylesheet">
     <link href="css/header.css" rel="stylesheet">
     <link href="css/footer.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 </head>

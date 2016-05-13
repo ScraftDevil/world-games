@@ -13,48 +13,10 @@ $registered = getRegisteredInfo($id);
 
 <!--DOCTYPE html -->
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>WorldGames - Your Shop Online</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="keywords" content="bskit, bootstrap starter kit, bootstrap builder">
-        <meta name="description" content="Your Favorite Shop of Games">
-        <link rel="shortcut icon" href="ico/favicon.png">
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/style-library.css" rel="stylesheet">
-        <link href="css/gallery.css" rel="stylesheet">
-        <link href="css/blog.css" rel="stylesheet">
-        <link href="css/header.css" rel="stylesheet">
-        <link href="css/search.css" rel="stylesheet">
-        <link href="css/footer.css" rel="stylesheet">
-
-        <link href="css/style.css" rel="stylesheet">
-    </head>
+    <?php include("sections/head.php"); ?>
     <body>
         <div id="page" class="page">
-            <header id="header">
-                <nav class="main-nav navbar-fixed-top headroom headroom--pinned">
-                    <div class="container">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                            <img src="images/logo.png" class="brand-img img-responsive">
-                        </div>
-                        <div class="collapse navbar-collapse">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="active nav-item"><a href="#">Home</a></li>
-                                <li class="nav-item"><a href="#">Games</a></li>
-                                <li class="nav-item"><a href="#">Login</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-            </header>
+            <?php include("sections/nav.php"); ?>
             <section class="content-block-nopad bg-deepocean">
                 <div class="container search">
                     <div class="editContent" style="">
