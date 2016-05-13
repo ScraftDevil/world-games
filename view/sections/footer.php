@@ -42,6 +42,7 @@
 <script type="text/javascript">
 $("#search").on("click", function(e) {
     e.preventDefault();
+    $("#result").slideUp();
     var params = {
         "search" : $("#searchInput").val()
     };
@@ -53,6 +54,7 @@ $("#search").on("click", function(e) {
                 $("#result").html("Procesando, espere por favor...");
         },
         success:  function (response) {
+                $("#result").slideDown();
                 $("#result").html(response);
         }
     });

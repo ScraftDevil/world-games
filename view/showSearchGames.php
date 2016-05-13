@@ -7,6 +7,6 @@ function showSearchGames($list) {
 }
 
 function printGame($game) {
-    echo $game['Title'];
+    echo "<div>Titulo: ".$game['Title']."</div>";
 }
 ?>

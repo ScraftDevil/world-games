@@ -16,6 +16,17 @@
                     <li class="nav-item"><a href="games.php">Juegos</a></li>
                     <li class="nav-item"><a href="login.php">Entrar</a></li>
                 </ul>
+                <div class="col-sm-3 col-md-3">
+                    <form class="navbar-form" role="search" style="padding-top: 13px">
+                        <div class="input-group">
+                            <input id="searchInput" type="text" class="form-control" placeholder="Search" name="q">
+                            <div class="input-group-btn">
+                                <button id="search" class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                            </div>
+                        </div>
+                        <div id="result" style="color: white; background: #193441; display: none; margin-top: 22px; border: 2px solid black"></div>
+                    </form>
+                </div>     
             </div>
         </div>
     </nav>

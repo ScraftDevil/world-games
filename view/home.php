@@ -7,7 +7,6 @@
         <div id="page" class="page">
             <?php
             include("sections/nav.php");
-            include("sections/search.php");
             ?>
             <section class="content-block gallery-1">
                 <div class="container">

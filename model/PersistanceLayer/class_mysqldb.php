@@ -92,7 +92,7 @@ class mysqldb {
 	}
 
 	public function searchGame($value) {
-    	$sql = "SELECT G.ID_Game, G.Title, G.Price FROM game G WHERE G.Title LIKE '".$value."%'";
+    	$sql = "SELECT G.ID_Game, G.Title, G.Price FROM game G WHERE G.Title LIKE '%".$value."%'";
 		$stmt = $this->getLink()->prepare($sql);
 		$stmt->execute();
 		$result = $stmt->FetchAll();

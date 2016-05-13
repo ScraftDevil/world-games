@@ -14,6 +14,5 @@ session_start();
     <link href="css/gallery.css" rel="stylesheet">
     <link href="css/blog.css" rel="stylesheet">
     <link href="css/header.css" rel="stylesheet">
-    <link href="css/search.css" rel="stylesheet">
     <link href="css/footer.css" rel="stylesheet">
 </head>
