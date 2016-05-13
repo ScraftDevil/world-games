@@ -18,7 +18,7 @@
                         </div>
                         <hr>
                         <div class="editContent">
-                            <h2>Escoje tu Oferta</h2></div>
+                            <h2>Escoge tu Oferta</h2></div>
                     </div>
                     <div class="row">
                         <div id="isotope-gallery-container">
