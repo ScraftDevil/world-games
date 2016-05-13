@@ -98,5 +98,25 @@ class mysqldb {
 		$result = $stmt->FetchAll();
 		return $result;
     }
+
+    public function adminBackLogin($username, $password) {
+    	$admin = new administratorDAO();
+		return $admin->login($username, $password);
+    }
+
+    public function getAdminID($username) {
+    	$admin = new administratorDAO();
+    	return $admin->getID($username);
+    }
+
+    public function professionalBackLogin($username, $password) {
+    	$professional = new professionalDAO();
+		return $professional->login($username, $password);
+    }
+
+    public function getProfessionalID($username) {
+    	$professional = new professionalDAO();
+    	return $professional->getID($username);
+    }
 }
 ?>

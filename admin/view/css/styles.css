@@ -7,9 +7,10 @@ body, html {
 
 header {
     width: 100%;
-    background-color: #f39c12;
+    background-color: #375a7f;
     margin: 0;
     float: left;
+    color: white;
 }
 
 .admin-panel {
@@ -146,6 +147,7 @@ a {
 
 .container-fluid {
     padding-left: 0;
+    padding-right: 0;
 }
 
 .admin-menu {
@@ -158,6 +160,7 @@ a {
     display: block;
     padding: 10px 15px;
     margin-bottom: -1px;
+    margin-left: -15px;
     background-color: #303030;
     border-right: 1px solid #464545;
     border-top: 1px solid #464545;
@@ -166,11 +169,11 @@ a {
 
 .admin-content {
     border: solid white 1px;
+    padding-right: 0;
+    background-color: white;
 }
 
 #adminView .logo {
-    width: 150px;
-    height: 150px;
     float: left;
 }
 
@@ -181,6 +184,38 @@ a {
 #adminView form, #adminView form h4, #adminView form button {
     float: left;
 }
+
+#logout {
+    width: 100%;
+    margin-top: 5%;
+}
+
+#header-name {
+    margin-top: 6%;
+    font-weight: bold;
+}
+
+.admin-user h4 {
+    margin-top: 15%;
+}
+
+.pro-user h4 {
+    margin-top: 12%;
+}
+
+.row {
+    margin: 0;
+}
+
+.row-admin {
+    padding-right: 0;
+}
+
+.container-content {
+    width: 100%;
+    padding-left: 0;
+}
+
 
 /* Mobile */
 @media only screen and (min-width: 320px) {
