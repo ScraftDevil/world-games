@@ -99,9 +99,23 @@ $registered = getRegisteredInfo($id);
                                     </div>
 
                                     <div class="form-group col-lg-12">
+                                        <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Contrasena Actual</label>
+                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
+                                            <input class="form-control" type="password" name="oldPassword" placeholder="Actual Password">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Nueva Contrasena</label>
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
-                                            <input class="form-control" type="password" name="password" placeholder="Password">
+                                            <input class="form-control" type="password" name="newPassword" placeholder="Nueva Password">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-lg-12">
+                                        <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Confirmar la Nueva Contrasena</label>
+                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
+                                            <input class="form-control" type="password" name="confirmNewPassowrd" placeholder="Nueva Password">
                                         </div>
                                     </div>
 
