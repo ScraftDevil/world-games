@@ -5,6 +5,23 @@
 	require_once("../model/autoload.php");
 	include("registeredValidationProfileController.php");
 
+
+	function createObjectRegistered($registered) {
+		//var_dump($registered);
+
+		$name = $registered[0][0];
+		$password = $registered[0][1];
+		$email = $registered[0][2];
+		$birthDate = $registered[0][3];
+		$paypalAccount = $registered[0][4];
+		$avatarUrl = $registered[0][5];
+
+		$registeredObj = new Registered($name, $password, $email, $birthDate, "");
+		$registeredObj->setPaypalAccount($paypalAccount);
+		$registeredObj->setAvatarURL($avatarUrl);
+		return $registeredObj;
+	}
+
 	function getRegisteredInfo($id) {
 
 	$shopDb = unserialize($_SESSION['dbconnection']);
@@ -25,11 +42,11 @@
 
 		$shopDb = unserialize($_SESSION['dbconnection']);
 		//metodo para validar si los datos (obligatorios) enviados estan vacios
-		validateInputs($username, $password, $email, $paypal, $image);
+		$registered = validateInputs($id, $username, $password, $email, $paypal, $image);
 		/*$registered = new Registered($username, $password, $email, $birthdate, '');
-		$registered->setId($id);
+		$registered->setId($id);*/
 
-		$shopDb->updateRegisteredUser($registered);*/
+		$shopDb->updateRegisteredUser($registered);
 	}
 
 	function deleteRegisteredUser($id) {
@@ -42,12 +59,12 @@
 
 
 	if (isset($_REQUEST['update'])) {
-		updateRegisteredInfo(2);
+		updateRegisteredInfo($_SESSION['user_id']);
 	}
 
 	if (isset($_REQUEST['delete'])) {
 		if (isset($_REQUEST['deleteCheckBox'])) {
-			deleteRegisteredUser(3);
+			deleteRegisteredUser($_SESSION['user_id']);
 		}	
 	}	
 

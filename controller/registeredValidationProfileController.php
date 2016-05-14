@@ -1,6 +1,6 @@
 <?php
 
-	function validateInputs($username, $password, $email, $paypal, $image) {
+	function validateInputs($id, $username, $password, $email, $paypal, $image) {
 
 	$registered = unserialize($_SESSION['registered']);
 
@@ -10,11 +10,12 @@
 	$newPaypalAccount = setInputPaypalAccountValues($paypal, $registered);
 	$newImage = setInputImageValues($image, $registered);
 
-	echo $newName;
-	echo $newPassword;
-	echo $newEmail;
-	echo $newPaypalAccount;
-	echo $newImage;
+	$registered = new Registered($newName, $newPassword, $newEmail, $birthdate, '');
+	$registered->setId($id);
+	$registered->setPaypalAccount($newPaypalAccount);
+	$registered->setAvatarURL($newImage);
+
+	return $registered;
 
 	}
 

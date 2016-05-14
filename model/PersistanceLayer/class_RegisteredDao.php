@@ -28,7 +28,7 @@ class RegisteredDAO {
 
 		try {
 
-			$query = ("SELECT Username, Email, BirthDate, PaypalAccount FROM Registered WHERE ID_Registered = '$id'");
+			$query = ("SELECT Username, Password, Email, BirthDate, PaypalAccount, AvatarURL FROM Registered WHERE ID_Registered = '$id'");
 
 			$db = unserialize($_SESSION['dbconnection']);
 			$resultat = $db->getLink()->prepare($query);
@@ -47,19 +47,18 @@ class RegisteredDAO {
  	
  	/* Metodo para actualizar los datos del usuario registrado */
 	public function updateRegisteredUser($registered) {
-		echo $registered->getUsername();
 
 		try {			
 
 			$query = ('UPDATE Registered SET Username = "'.$registered->getUsername().'", 
 			Password = "'.$registered->getPassword().'", Email = "'.$registered->getEmail().'", 
 			PaypalAccount = "'.$registered->getPaypalAccount().'", AvatarURL = "'.$registered->getAvatarUrl().'" 
-			WHERE ID_Registered = 2');
+			WHERE ID_Registered = "'.$registered->getId().'"');
 
 			$db = unserialize($_SESSION['dbconnection']);
 			$resultat = $db->getLink()->prepare($query);
         	$resultat->execute();
-        	header("Location:../view/showRegisteredProfile.php");
+        	header("Location:../view/registeredProfileView.php");
 
 		} catch(PDOException $ex) {
 			echo "An Error ocurred!";

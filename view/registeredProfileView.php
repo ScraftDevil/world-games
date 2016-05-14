@@ -6,13 +6,12 @@
 include("../controller/registeredProfileController.php");
 
 //array que contiene los datos del usuario segun el id obtenido después de hacer login
-$id = $_SESSION['user_id'];
-$registered = getRegisteredInfo($id);
+$registered = getRegisteredInfo($_SESSION['user_id']);
 
-$registeredObj = new Registered("german","1234","german@123.com","2011-12-13","Arabia Saudi");
-$registeredObj->setId("123");
+//Objeto usuario con los datos de la base de datos obtenidos a partir del id del usuario tras hacer login
+$registeredObject = createObjectRegistered($registered);
 
-$_SESSION['registered'] = serialize($registeredObj);
+$_SESSION['registered'] = serialize($registeredObject);
 
 ?>
 
@@ -32,7 +31,7 @@ $_SESSION['registered'] = serialize($registeredObj);
                         </div>
                         <hr>
                         <div class="editContent">
-                            <h2>Aqui encontraras todo lo relativo a tu cuenta, <?php echo $registered[0][0] ?></h2></div>
+                            <h2>Aqui encontraras todo lo relativo a tu cuenta, <?php echo $registeredObject->getUsername(); ?></h2></div>
                     </div>
 
                     <!-- Lista de opciones del perfil del usuario -->
@@ -50,7 +49,7 @@ $_SESSION['registered'] = serialize($registeredObj);
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Nombre:</label>
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
-                                            <input class="form-control" type="text" name="name" placeholder="Name" value="<?php echo $registered[0][0];?>">
+                                            <input class="form-control" type="text" name="name" placeholder="Name" value="<?php echo $registeredObject->getUsername();?>">
                                         </div>
                                     </div>
 
@@ -78,21 +77,21 @@ $_SESSION['registered'] = serialize($registeredObj);
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">E-mail</label>
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
-                                            <input class="form-control" type="text" name="email" placeholder="E-mail" value="<?php echo $registered[0][1];?>">
+                                            <input class="form-control" type="text" name="email" placeholder="E-mail" value="<?php echo $registeredObject->getEmail();?>">
                                         </div>
                                     </div>
 
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Fecha de Nacimiento:</label>
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
-                                            <input class="form-control" type="text" name="birthdate" placeholder="YYYY-MM-DD" value="<?php echo $registered[0][2];?>">
+                                            <input class="form-control" type="text" name="birthdate" placeholder="YYYY-MM-DD" value="<?php echo $registeredObject->getBirthDate();?>">
                                         </div>
                                     </div>
 
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Cuenta PayPal:</label>
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
-                                            <input class="form-control" type="text" name="paypal" placeholder="PayPal Account" value="<?php echo $registered[0][3];?>">
+                                            <input class="form-control" type="text" name="paypal" placeholder="PayPal Account" value="<?php echo $registeredObject->getPaypalAccount();?>">
                                         </div>
                                     </div>
 
