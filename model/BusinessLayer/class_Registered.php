@@ -3,28 +3,10 @@
 class Registered extends User {
 
     //attributes
-    private $telephone;
-    private $direction;
     private $paypalAccount;
     private $avatarUrl;
 
     //getters and setters
-    function getTelephone() {
-        return $this->telephone;
-    }
-
-    function getDirection() {
-        return $this->direction;
-    }
-
-    function setTelephone($telephone) {
-        $this->telephone = $telephone;
-    }
-
-    function setDirection($direction) {
-        $this->direction = $direction;
-    }
-
     function getPaypalAccount() {
         return $this->paypalAccount;
     }

@@ -77,7 +77,7 @@ class mysqldb {
 
 	public function getRegisteredInfo($id) {
 		$registeredDao = new RegisteredDAO();
-		$registered = $registeredDao->showRegisteredInfo($id);
+		$registered = $registeredDao->getRegisteredInfo($id);
 		return $registered;
 	}
 

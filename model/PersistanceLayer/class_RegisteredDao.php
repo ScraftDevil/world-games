@@ -24,11 +24,11 @@ class RegisteredDAO {
  	}
  	
 	/* Metodo para obtener datos del usuario registrado */
-	public function showRegisteredInfo($id) {
+	public function getRegisteredInfo($id) {
 
 		try {
 
-			$query = ("SELECT Email, Telephone, Direction, BirthDate, PaypalAccount, AvatarURL FROM Registered WHERE ID_Registered = '$id'");
+			$query = ("SELECT Username, Email, BirthDate, PaypalAccount, AvatarURL FROM Registered WHERE ID_Registered = '$id'");
 
 			$db = unserialize($_SESSION['dbconnection']);
 			$resultat = $db->getLink()->prepare($query);
@@ -50,8 +50,7 @@ class RegisteredDAO {
 
 		try {			
 
-			$query = ('UPDATE Registered SET Username = "'.$registered->getUsername().'", 
-			Password = "'.$registered->getPassword().'", Email = "'.$registered->getEmail().'", 
+			$query = ('UPDATE Registered SET Email = "'.$registered->getEmail().'", BirthDate = "'.$registered->getBirthDate().'",
 			PaypalAccount = "'.$registered->getPaypalAccount().'", AvatarURL = "'.$registered->getAvatarUrl().'" 
 			WHERE ID_Registered = "'.$registered->getId().'"');
 

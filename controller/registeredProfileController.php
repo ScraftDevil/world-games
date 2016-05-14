@@ -7,24 +7,19 @@
 
 
 	function createObjectRegistered($registered) {
-		//var_dump($registered);
+		var_dump($registered);
 
-		$email = $registered[0][0];
-		$telephone = $registered[0][1];
-		$direction = $registered[0][2];
-		$birthDate = $registered[0][3];
-		$paypalAccount = $registered[0][4];
-		$avatarUrl = $registered[0][5];
+		$name = $registered[0][0];
+		$email = $registered[0][1];
+		$birthDate = $registered[0][2];
+		$paypalAccount = $registered[0][3];
+		$avatarUrl = $registered[0][4];
 
-		$registeredObj = new Registered($email, $telephone, $direction, $birthDate, "");
+		$registeredObj = new Registered($name, "", $email, $birthDate, "");
 		$registeredObj->setPaypalAccount($paypalAccount);
 		$registeredObj->setAvatarURL($avatarUrl);
 		return $registeredObj;
 
-		/* 
-		$query = ("SELECT Email, Telephone, Direction, BirthDate, PaypalAccount, AvatarURL FROM Registered 
-		WHERE ID_Registered = '$id'");
-		*/
 	}
 
 	function getRegisteredInfo($id) {
@@ -39,8 +34,6 @@
 	function updateRegisteredInfo($id) {
 		
 		$email = $_REQUEST['email'];
-		$telephone = $_REQUEST['telephone'];
-		$direction = $_REQUEST['direction'];
 		$birthdate = $_REQUEST['birthdate'];
 		$paypal = $_REQUEST['paypal'];
 		$image = $_REQUEST['profileImage'];
@@ -49,7 +42,7 @@
 
 		//metodo que devuelve un objeto Registered. Guardará los campos segun los input 
 		//y si estan vacíos cogerá el valor del objeto serializado registered
-		$registered = validateInputs($id, $email,, $telephone, $direction, $paypal, $image);
+		$registered = validateInputs($id, $email, $birthdate, $paypal, $image);
 
 		$shopDb->updateRegisteredUser($registered);
 	}

@@ -10,6 +10,7 @@ $registered = getRegisteredInfo($_SESSION['user_id']);
 
 //Objeto usuario con los datos de la base de datos obtenidos a partir del id del usuario tras hacer login
 $registeredObject = createObjectRegistered($registered);
+//var_dump($registered);
 
 $_SESSION['registered'] = serialize($registeredObject);
 
@@ -78,20 +79,6 @@ $_SESSION['registered'] = serialize($registeredObject);
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Correo Eletrónico</label>
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
                                             <input class="form-control" type="text" name="email" placeholder="micorreo@ejemplo.com" value="<?php echo $registeredObject->getEmail();?>">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group col-lg-12">
-                                        <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Teléfono:</label>
-                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
-                                            <input class="form-control" type="text" name="telephone" placeholder="Fijo o Móbil" value="<?php echo $registeredObject->getTelephone();?>">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group col-lg-12">
-                                        <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Direction:</label>
-                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
-                                            <input class="form-control" type="text" name="direction" placeholder="Calle falsa 123" value="<?php echo $registeredObject->getDirection();?>">
                                         </div>
                                     </div>
 

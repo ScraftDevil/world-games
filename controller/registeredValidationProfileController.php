@@ -3,7 +3,7 @@
 	include("validateEmailController.php");
 	include("validateNullInputsProfileController.php");
 
-	function validateInputs($id, $username, $password, $email, $paypal, $image) {
+	function validateInputs($id, $email, $birthdate, $paypal, $image) {
 
 	$registered = unserialize($_SESSION['registered']);
 
@@ -12,20 +12,20 @@
 
 	if (validateEmail($email)) {
 		echo "correcto";
-		$newEmail = setInputEmailValues($email, $registered);	
+		$newEmail = setInputEmailValue($email, $registered);	
 	}
 	else {
 		echo "email incorrect";
 	}
 	
-	$newPaypalAccount = setInputPaypalAccountValues($paypal, $registered);
-	$newImage = setInputImageValues($image, $registered);
+	$newBirthDate = setInputBirthDateValue($birthdate, $registered);
+	$newPaypalAccount = setInputPaypalAccountValue($paypal, $registered);
+	$newImage = setInputImageValue($image, $registered);
 
-	$registered = new Registered('', '', $newEmail,/* $newTelephone,*/ $birthdate, '');
+	$registered = new Registered('', '', $newEmail, $newBirthDate, '');
 	$registered->setId($id);
 	$registered->setPaypalAccount($newPaypalAccount);
 	$registered->setAvatarURL($newImage);
-	//$registered->setDirection($newDirection);
 
 	return $registered;
 
