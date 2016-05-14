@@ -122,5 +122,10 @@ class mysqldb {
     	$registered = new RegisteredDAO();
     	return $registered->showRegistereds($order);
     }
+
+    public function registeredBackLogin($username, $password) {
+    	$registered = new registeredDao();
+		return $registered->login($username, $password);
+    }
 }
 ?>

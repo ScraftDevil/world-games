@@ -4,6 +4,25 @@ require_once($_SESSION['BASE_PATH']."/model/autoload.php");
 
 class RegisteredDAO {
 
+	/* Get User if Login is Valid */
+	public function login($username, $password) {
+      $userid = -1;
+      try {
+        $db = unserialize($_SESSION['dbconnection']);
+        $stmt = $db->getLink()->prepare("SELECT ID_Registered FROM registered WHERE Username='$username' AND Password='$password' LIMIT 1;");
+        $stmt->execute();
+        $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
+        if($stmt->rowCount() > 0) {
+          $userid = $userRow['ID_Registered'];
+        }
+      } catch (PDOException $e) {
+        print "¡Error!: " . $e->getMessage() . "<br/>";
+        die();
+      } finally {
+        return $userid;
+      }
+ 	}
+ 	
 	/* Metodo para obtener datos del usuario registrado */
 	public function showRegisteredInfo($id) {
 

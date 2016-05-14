@@ -14,7 +14,7 @@ include("sections/head.php");
           <div class="underlined-title">
            <div class="editContent">
             <p>
-             <h1 class="titul">LOGIN</h1>
+             <h1 class="title">ENTRAR</h1>
          </p>
      </div>
      <hr>
@@ -22,20 +22,19 @@ include("sections/head.php");
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <div class="panel ">
-
                     <div class="row">
                         <div class="col-xs-6">
-                            <a href="#" class="active" id="login-form-link">Login</a>
+                            <a href="#" class="active" id="login-form-link">Entrar</a>
                         </div>
                         <div class="col-xs-6">
-                            <a href="#" id="register-form-link">Register</a>
+                            <a href="#" id="register-form-link">No tienes cuenta?</a>
                         </div>
                     </div>
 
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-12">
-                                <form id="login-form" action="../controller/authUserController.php" method="post" style="display: block;">
+                                <form id="login-form" style="display: block;">
                                     <div class="form-group">
                                         <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
                                     </div>
@@ -51,54 +50,54 @@ include("sections/head.php");
                                  </div>
                                  <div class="form-group text-center">
                                     <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
-                                    <label for="remember"> Remember Me</label>
+                                    <label for="remember"> Recordarme</label>
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-sm-6 col-sm-offset-3">
-                                            <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control " value="Log In">
+                                            <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control " value="Entrar">
                                         </div>
                                     </div>
                                 </div>
-
+                                <div id="msg" role="alert"></div>
                             </form>
                             <form id="register-form" action="" method="post"  style="display: none;">
                                 <div class="form-group">
-                                    <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+                                    <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Usuario" value="">
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
+                                    <input type="email" name="email" id="email" tabindex="2" class="form-control" placeholder="Correo electronico" value="">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+                                    <input type="password" name="password" id="password" tabindex="3" class="form-control" placeholder="Contraseña">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
+                                    <input type="password" name="confirm-password" id="confirm-password" tabindex="4" class="form-control" placeholder="Confirmar Contraseña">
                                 </div>
                                 <div class="form-group">
-                                    <input type="telefon" name="telefon" id="telefon" tabindex="2" class="form-control" placeholder="Telefon">
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="birthday" name="birthday" id="birthday" tabindex="2" class="form-control" placeholder="Birthday">
+                                    <input type="telephone" name="telephone" id="telephone" tabindex="5" class="form-control" placeholder="Telefono">
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="pais" name="pais" id="pais" tabindex="2" class="form-control" placeholder="Pais">
+                                    <input type="date" name="birthday" id="birthday" tabindex="5" class="form-control" placeholder="Fecha Nacimiento">
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="direccio" name="direccio" id="direccio" tabindex="2" class="form-control" placeholder="Direccio">
+                                    <input type="text" name="country" id="country" tabindex="6" class="form-control" placeholder="Pais">
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="PayPal" name="PayPal" id="PayPal" tabindex="2" class="form-control" placeholder="Compte PayPal">
+                                    <input type="text" name="address" id="address" tabindex="7" class="form-control" placeholder="Direccion">
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" name="paypal" id="paypal" tabindex="8" class="form-control" placeholder="Cuenta PayPal">
                                 </div>
 
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-sm-6 col-sm-offset-3">
-                                            <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+                                            <input type="submit" name="register-submit" id="register-submit" tabindex="9" class="form-control btn btn-register" value="Registrarse">
                                         </div>
                                     </div>
                                 </div>
@@ -115,26 +114,5 @@ include("sections/head.php");
 include("sections/footer.php");
 ?>
 </div>
-<script type="text/javascript">
-    $(window).load(function() {
-       $('#login-form-link').click(function(e) {
-        $("#login-form").delay(100).fadeIn(100);
-        $("#register-form").fadeOut(100);
-        $('.titul').html("LOGIN");
-        $('#register-form-link').removeClass('active');
-        $(this).addClass('active');
-        e.preventDefault();
-    });
-       $('#register-form-link').click(function(e) {
-        $("#register-form").delay(100).fadeIn(100);
-        $("#login-form").fadeOut(100);
-        $('.titul').html("REGISTER");
-        $('#login-form-link').removeClass('active');
-        $(this).addClass('active');
-        e.preventDefault();
-    });
-   });
-
-</script>
 </body>
 </html>
