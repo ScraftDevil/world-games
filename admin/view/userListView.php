@@ -30,9 +30,7 @@
 				<div class="container container-content">
 					<div class="">
 						<?php
-
 							include("../controller/showUsersController.php");
-
 						?>
 					</div>
 				</div>

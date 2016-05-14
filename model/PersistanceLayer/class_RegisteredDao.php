@@ -94,13 +94,15 @@ class RegisteredDAO {
 	public function showRegistereds($order) {
 
 		try {
-
-			$query = ("SELECT ID_Registered, Username, Password, Email, BannedTime, BirthDate, PaypalAccount, AvatarURL, (SELECT c.Name FROM Country c WHERE c.ID_Country=r.Country_ID) FROM Registered r ORDER BY $order");
+			$orderSQL = "";
+			if (!empty($order)) {
+				$orderSQL = "ORDER BY ".$order;
+			}
+			$query = ("SELECT ID_Registered, Username, Password, Email, BannedTime, BirthDate, PaypalAccount, AvatarURL, (SELECT c.Name FROM Country c WHERE c.ID_Country=r.Country_ID) FROM Registered r $orderSQL");
 
 			$db = unserialize($_SESSION['dbconnection']);
 			$resultat = $db->getLink()->prepare($query);
-        	$resultat->execute();
-
+			$resultat->execute();
  			$result = $resultat->FetchAll();
 
 		} catch(PDOException $ex) {

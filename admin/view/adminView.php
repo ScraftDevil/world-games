@@ -29,7 +29,6 @@
 			<div class="col-md-offset-1 col-md-8 admin-content">
 				<div class="container container-content">
 					<div class="">
-						
 						<p>Total mujeres</p>
 						<p>Total hombre</p>
 					</div>

@@ -7,7 +7,6 @@
 			$order = $_GET['orderBy'] . " " . $_GET['direction'];
 		}
 		$registered = $db->getRegisteredUsers($order);
-		echo $registered[1];
 		$dg = new Structures_DataGrid();
 		$dg->bind($registered, array(), 'Array');
 		//$dg->renderer->sortIconASC= "&uarr;";
@@ -20,15 +19,13 @@
 		$dg->addColumn($column);
 		$column = new Structures_DataGrid_Column('Email', 'Email', 'Email', array('align'=>'center'));
 		$dg->addColumn($column);
-		$column = new Structures_DataGrid_Column('Banned Time', 'Banned Time', 'Banned Time', array('align'=>'center'));
+		$column = new Structures_DataGrid_Column('Banned Time', 'BannedTime', 'Banned Time', array('align'=>'center'));
 		$dg->addColumn($column);
-		$column = new Structures_DataGrid_Column('Birthdate', 'Birthdate', 'Birthdate', array('align'=>'center'));
+		$column = new Structures_DataGrid_Column('BirthDate', 'BirthDate', 'BirthDate', array('align'=>'center'));
 		$dg->addColumn($column);
-		$column = new Structures_DataGrid_Column('Paypal Account', 'Paypal Account', 'Paypal Account', array('align'=>'center'));
+		$column = new Structures_DataGrid_Column('PaypalAccount', 'PaypalAccount', 'PaypalAccount', array('align'=>'center'));
 		$dg->addColumn($column);
-		$column = new Structures_DataGrid_Column('Avatar URL', 'Avatar URL', 'Avatar URL', array('align'=>'center'));
-		$dg->addColumn($column);
-		$column = new Structures_DataGrid_Column('Country', 'Country', 'Country', array('align'=>'center'));
+		$column = new Structures_DataGrid_Column('AvatarURL', 'AvatarURL', 'AvatarURL', array('align'=>'center'));
 		$dg->addColumn($column);
 		$column = new Structures_DataGrid_Column("Opciones", null, null, array('align' => 'center'), null, 'PrintOption()');
 		$dg->addColumn($column);
@@ -37,7 +34,7 @@
 
 	function PrintOption($params){
 		extract($params);
-		$id = $record['NIF'];
+		$id = $record['ID_Registered'];
 		return "
 		<style> td a { text-decoration: none }</style>
 		<a target=\"_blank\" href=\"PDF_InfoClient.php?nif=$id\">
