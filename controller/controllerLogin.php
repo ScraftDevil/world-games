@@ -14,9 +14,8 @@
 		$db = unserialize($_SESSION['dbconnection']);
 		$userid = $db->registeredBackLogin($username, $password);
 		if ($userid!=-1) {
-			$_SESSION['auth'] = true;
+			$_SESSION['frontAuth'] = true;
 			$_SESSION['user_id'] = $userid;
-			$_SESSION['userType'] = "registered";
 			$status["STATUS"] = "LOGIN_OK";
 		} else {
 			$status["STATUS"] = "LOGIN_INVALID_INFO";

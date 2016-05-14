@@ -26,7 +26,13 @@
                             <?php
                         } else {
                             ?>
-                            <form id="logout" action="../controller/userLogoutController.php" method="POST"><button name="logout" type="submit">Sortir</button></form>
+                            <li class="nav-item dropdown">
+		                        <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" href="#">Mi Cuenta <i class="fa fa-angle-down"></i></a>
+		                        <ul class="dropdown-menu">
+		                            <li><a href="#">Mi Perfil</a></li>
+		                            <li><a id="logout" href="#">Salir</a></li>
+		                        </ul>
+		                    </li>
                             <?php
                         }
 

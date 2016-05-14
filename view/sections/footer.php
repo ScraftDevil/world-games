@@ -122,5 +122,15 @@ function search() {
             });
             return false;
     });
+    $("#logout").on("click", function () {
+            $.ajax({
+                url:   '../controller/controllerLogout.php',
+                type:  'POST',
+                success:  function (response) {
+                    //Pendiente: Añadir mensaje cuando haga logout
+                    window.location = "../index.php";
+                }
+            });
+    });
    });
 </script>
