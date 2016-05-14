@@ -99,15 +99,28 @@ class mysqldb {
 		return $result;
     }
 
-    public function adminLogin($username, $password) {
-    	$values = null;
-    	$sql = "SELECT a.ID_Administrator as ID, (SELECT Group_Name FROM user_group ug WHERE ug.ID_Group=a.ID_Group) 'Group' FROM administrator a WHERE a.Username='$username' AND a.Password='$password' UNION SELECT p.ID_Professional as ID, (SELECT Group_Name FROM user_group ug WHERE ug.ID_Group=p.ID_Group) 'Group' FROM professional p WHERE p.Username='$username' AND p.Password='$password';";
+    public function staffLogin($username, $password) {
+    	$info = array();
+    	$sql = "SELECT ID_Administrator, Username FROM Administrator WHERE Username='$username' AND Password='$password' LIMIT 1;";
 		$stmt = $this->getLink()->prepare($sql);
 		$stmt->execute();
-		$result = $stmt->FetchAll();
-		$values = array("ID" => $result[0][0], "Group" => $result[0][1]);
-		$values = json_encode($values);
-		return $values;
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+		if (!$result) {
+			$sql = "SELECT ID_Professional, Username FROM Professional WHERE Username='$username' AND Password='$password' LIMIT 1;";
+			$stmt = $this->getLink()->prepare($sql);
+			$stmt->execute();
+			$result2 = $stmt->fetch(PDO::FETCH_ASSOC);
+			if ($result2) {
+				$info['userid'] = $result2['ID_Professional'];
+				$info['usertype'] = "Professional";
+				$info['username'] = $result2['Username'];
+			}
+		} else {
+			$info['userid'] = $result['ID_Administrator'];
+			$info['usertype'] = "Administrator";
+			$info['username'] = $result['Username'];
+		}
+		return $info;
     }
 
     public function registeredLogin($username, $password) {

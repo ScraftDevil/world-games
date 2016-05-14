@@ -1,7 +1,7 @@
 <?php
 
-	$user = json_decode($_SESSION['auth'], true);
-	$username = $user['username'];
+	$user = $_SESSION['adminAuth'];
+	$username = $_SESSION['username'];
 
 ?>
 <header id="adminView">

@@ -6,18 +6,27 @@
 	    session_start();
 	}
 
+	$status = array();
+
 	if (isset($_POST['username']) AND isset($_POST['password'])) {
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 		$db = unserialize($_SESSION['dbconnection']);
-		$valid = json_decode($db->adminLogin($username, $password), true);
-		if ($valid['ID'] != null) {
-			$user = array("session" => true, "username" => $username, "ID" => $valid['ID'], "group" => $valid['Group']);
-			$_SESSION['adminAuth'] = json_encode($user);
-			header("Location: ../index.php");
+		$infouser = $db->staffLogin($username, $password);
+		if (isset($infouser['userid']) && !empty($infouser['userid'])) {
+			$_SESSION['adminAuth'] = true;
+			$_SESSION['usertype'] = $infouser['usertype'];
+			$_SESSION['userid'] = $infouser['userid'];
+			//para evitar tener que recoger el nombre con consulta sql (where id=) despues...
+			$_SESSION['username'] = $infouser['username'];
+			$status["STATUS"] = "LOGIN_OK";
 		} else {
-			header("Location: ../view/adminLoginView.php?MSGCODE=invalid_pass");
-		}		
+			$status["STATUS"] = "LOGIN_INVALID_INFO";
+		}
+	} else {
+		 $status["STATUS"] = "LOGIN_INVALID_INFO";
 	}
+
+	echo json_encode($status);
 
 ?>
