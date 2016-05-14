@@ -3,7 +3,7 @@
 	session_start();
 	
 	require_once("../model/autoload.php");
-	include("controllerRegisteredValidationProfile.php");
+	include("registeredValidationProfileController.php");
 
 	function getRegisteredInfo($id) {
 

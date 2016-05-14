@@ -3,10 +3,10 @@
 /* codigo php */
 
 // controlador del perfil de usuario registrado
-include("../controller/controllerRegisteredProfile.php");
+include("../controller/registeredProfileController.php");
 
 //array que contiene los datos del usuario segun el id obtenido después de hacer login
-$id = 3;
+$id = $_SESSION['user_id'];
 $registered = getRegisteredInfo($id);
 
 $registeredObj = new Registered("german","1234","german@123.com","2011-12-13","Arabia Saudi");
@@ -46,7 +46,7 @@ $_SESSION['registered'] = serialize($registeredObj);
                                 </div>
 
                                 <!-- Formulario para poder editar los datos del usuario (obtiene los datos de la BBDD) -->
-                                <form id="profileForm" action="../controller/controllerRegisteredProfile.php" method="POST">
+                                <form id="profileForm" action="../controller/registeredProfileController.php" method="POST">
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Nombre:</label>
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
@@ -136,7 +136,7 @@ $_SESSION['registered'] = serialize($registeredObj);
                                     Configuracion de la Cuenta
                                 </div>
 
-                                <form id="profileFormDelete" action="../controller/controllerRegisteredProfile.php" method="POST">
+                                <form id="profileFormDelete" action="../controller/registeredProfileController.php" method="POST">
                                     <div class="col-lg-12" id="configuracionUsuario">
                                         <p>Marca la siguiente casilla para indicar que quieres eliminar tu cuenta para siempre. Despues, pulsa el boton Eliminar</p>
                                         <input type="checkbox" name="deleteCheckBox">
