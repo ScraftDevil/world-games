@@ -28,7 +28,7 @@
 			</div>
 			<div class="col-md-offset-1 col-md-8 admin-content">
 				<div class="container container-content">
-					<div style="background-color: black;" class="">
+					<div class="">
 						
 						<p>Total mujeres</p>
 						<p>Total hombre</p>

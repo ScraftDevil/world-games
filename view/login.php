@@ -35,7 +35,7 @@ include("sections/head.php");
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-12">
-                                <form id="login-form" action="" method="post"  style="display: block;">
+                                <form id="login-form" action="../controller/authUserController.php" method="post" style="display: block;">
                                     <div class="form-group">
                                         <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
                                     </div>

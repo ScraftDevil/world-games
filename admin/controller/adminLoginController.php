@@ -10,24 +10,13 @@
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 		$db = unserialize($_SESSION['dbconnection']);
-		$valid = $db->adminBackLogin($username, $password);
-		if ($valid) {
-			$_SESSION['adminAuth'] = true;
-			$_SESSION['user'] = $username;
-			$_SESSION['user_id'] = $db->getAdminID($username, $password);
-			$_SESSION['userType'] = "admin";
+		$valid = json_decode($db->adminLogin($username, $password), true);
+		if ($valid['ID'] != null) {
+			$user = array("session" => true, "username" => $username, "ID" => $valid['ID'], "group" => $valid['Group']);
+			$_SESSION['auth'] = json_encode($user);
 			header("Location: ../index.php");
 		} else {
-			$valid = $db->professionalBackLogin($username, $password);
-			if ($valid) {
-				$_SESSION['adminAuth'] = true;
-				$_SESSION['user'] = $username;
-				$_SESSION['user_id'] = $db->getProfessionalID($username, $password);
-				$_SESSION['userType'] = "professional";
-				header("Location: ../index.php");
-			} else {
-				header("Location: ../view/adminLoginView.php?MSGCODE=invalid_pass");
-			}
+			header("Location: ../view/adminLoginView.php?MSGCODE=invalid_pass");
 		}		
 	}
 

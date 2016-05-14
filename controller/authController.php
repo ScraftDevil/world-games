@@ -5,7 +5,7 @@
 
 	function checkAuth() {
 	    $auth = false;
-	    if (isset($_SESSION['adminAuth'])) {
+	    if (isset($_SESSION['frontAuth'])) {
 	        $auth = true;
 	    }
 	    return $auth;

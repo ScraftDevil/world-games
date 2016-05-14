@@ -18,7 +18,19 @@
                     ?>
                     <li class="<?php if ($page=="home") { echo 'active ';}?>nav-item"><a href="home.php">Inicio</a></li>
                     <li class="<?php if ($page=="games") { echo 'active ';}?>nav-item"><a href="games.php">Juegos</a></li>
-                    <li class="<?php if ($page=="login") { echo 'active ';}?>nav-item"><a href="login.php">Entrar</a></li>
+                    <?php
+
+                        if (!isset($_SESSION['frontAuth'])) {
+                            ?>
+                            <li class="<?php if ($page=="login") { echo 'active ';}?>nav-item"><a href="login.php">Entrar</a></li>
+                            <?php
+                        } else {
+                            ?>
+                            <form id="logout" action="../controller/userLogoutController.php" method="POST"><button name="logout" type="submit">Sortir</button></form>
+                            <?php
+                        }
+
+                    ?>
                 </ul>
                 <div class="col-md-4">
                     <form class="navbar-form" role="search" style="padding-top: 13px">
