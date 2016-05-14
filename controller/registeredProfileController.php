@@ -41,10 +41,10 @@
 		$image = $_REQUEST['profileImage'];
 
 		$shopDb = unserialize($_SESSION['dbconnection']);
-		//metodo para validar si los datos (obligatorios) enviados estan vacios
+
+		//metodo que devuelve un objeto Registered. Guardará los campos segun los input 
+		//y ´si estan vacíos cogerá el valor del objeto serializado registered
 		$registered = validateInputs($id, $username, $password, $email, $paypal, $image);
-		/*$registered = new Registered($username, $password, $email, $birthdate, '');
-		$registered->setId($id);*/
 
 		$shopDb->updateRegisteredUser($registered);
 	}
@@ -54,6 +54,7 @@
 		$shopDb->deleteRegisteredUser($id);
 		//metodo de logout
 		//esto es provisional
+		//
 		header ("Location: ../index.php");
 	}
 

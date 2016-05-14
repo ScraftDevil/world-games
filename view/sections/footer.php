@@ -123,6 +123,8 @@ function search() {
             });
             return false;
     });
+
+    //Función jQuery - Ajax para hacer Logout
     $("#logout").on("click", function () {
             $.ajax({
                 url:   '../controller/controllerLogout.php',

@@ -5,7 +5,7 @@
 // controlador del perfil de usuario registrado
 include("../controller/registeredProfileController.php");
 
-//array que contiene los datos del usuario segun el id obtenido despu�s de hacer login
+//array que contiene los datos del usuario segun el id obtenido después de hacer login
 $registered = getRegisteredInfo($_SESSION['user_id']);
 
 //Objeto usuario con los datos de la base de datos obtenidos a partir del id del usuario tras hacer login
@@ -49,49 +49,49 @@ $_SESSION['registered'] = serialize($registeredObject);
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Nombre:</label>
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
-                                            <input class="form-control" type="text" name="name" placeholder="Name" value="<?php echo $registeredObject->getUsername();?>">
+                                            <input class="form-control" type="text" name="name" placeholder="Nombre de usuario" value="<?php echo $registeredObject->getUsername();?>">
                                         </div>
                                     </div>
 
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Contrasena Actual</label>
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
-                                            <input class="form-control" type="password" name="oldPassword" placeholder="Actual Password">
+                                            <input class="form-control" type="password" name="oldPassword" placeholder="Contraseña Actual">
                                         </div>
                                     </div>
 
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Nueva Contrasena</label>
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
-                                            <input class="form-control" type="password" name="newPassword" placeholder="Nueva Password">
+                                            <input class="form-control" type="password" name="newPassword" placeholder="Nueva Contraseña">
                                         </div>
                                     </div>
 
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Confirmar la Nueva Contrasena</label>
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
-                                            <input class="form-control" type="password" name="confirmNewPassowrd" placeholder="Nueva Password">
+                                            <input class="form-control" type="password" name="confirmNewPassowrd" placeholder="Confirmación de la Nueva Contraseña">
                                         </div>
                                     </div>
 
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">E-mail</label>
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
-                                            <input class="form-control" type="text" name="email" placeholder="E-mail" value="<?php echo $registeredObject->getEmail();?>">
+                                            <input class="form-control" type="text" name="email" placeholder="Correo Eletrónico" value="<?php echo $registeredObject->getEmail();?>">
                                         </div>
                                     </div>
 
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Fecha de Nacimiento:</label>
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
-                                            <input class="form-control" type="text" name="birthdate" placeholder="YYYY-MM-DD" value="<?php echo $registeredObject->getBirthDate();?>">
+                                            <input class="form-control" type="text" name="birthdate" placeholder="AAAA-MM-DD" value="<?php echo $registeredObject->getBirthDate();?>">
                                         </div>
                                     </div>
 
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Cuenta PayPal:</label>
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
-                                            <input class="form-control" type="text" name="paypal" placeholder="PayPal Account" value="<?php echo $registeredObject->getPaypalAccount();?>">
+                                            <input class="form-control" type="text" name="paypal" placeholder="Cuenta PayPal" value="<?php echo $registeredObject->getPaypalAccount();?>">
                                         </div>
                                     </div>
 
@@ -129,7 +129,7 @@ $_SESSION['registered'] = serialize($registeredObject);
                                 </div>
                                 
 
-                                <!-- Configuraci�n de la Cuenta del usuario -->
+                                <!-- Configuración de la Cuenta del usuario -->
                                 <div id="configuracion" class="desplegableProfile col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                     <span class="glyphicon glyphicon-cog"></span>
                                     Configuracion de la Cuenta
