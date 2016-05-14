@@ -30,7 +30,7 @@
 		                        <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" href="#">Mi Cuenta <i class="fa fa-angle-down"></i></a>
 		                        <ul class="dropdown-menu">
 		                            <li><a href="registeredProfileView.php">Mi Perfil</a></li>
-		                            <li><a id="logout" href="#">Salir</a></li>
+		                            <li><a id="logout" href="../index.php">Salir</a></li>
 		                        </ul>
 		                    </li>
                             <?php
