@@ -28,7 +28,7 @@ class RegisteredDAO {
 
 		try {
 
-			$query = ("SELECT Username, Password, Email, BirthDate, PaypalAccount, AvatarURL FROM Registered WHERE ID_Registered = '$id'");
+			$query = ("SELECT Email, Telephone, Direction, BirthDate, PaypalAccount, AvatarURL FROM Registered WHERE ID_Registered = '$id'");
 
 			$db = unserialize($_SESSION['dbconnection']);
 			$resultat = $db->getLink()->prepare($query);
