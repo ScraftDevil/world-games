@@ -9,6 +9,11 @@ include("../controller/controllerRegisteredProfile.php");
 $id = 3;
 $registered = getRegisteredInfo($id);
 
+$registeredObj = new Registered("german","1234","german@123.com","2011-12-13","Arabia Saudi");
+$registeredObj->setId("123");
+
+$_SESSION['registered'] = serialize($registeredObj);
+
 ?>
 
 <!--DOCTYPE html -->

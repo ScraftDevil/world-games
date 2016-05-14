@@ -2,7 +2,8 @@
 
 	session_start();
 	
-	require_once("../model/autoload.php");	
+	require_once("../model/autoload.php");
+	include("controllerRegisteredValidationProfile.php");
 
 	function getRegisteredInfo($id) {
 
@@ -16,18 +17,19 @@
 	function updateRegisteredInfo($id) {
 
 		$username = $_REQUEST['name'];
-		$password = $_REQUEST['password'];
+		$password = $_REQUEST['confirmNewPassowrd'];
 		$email = $_REQUEST['email'];
 		$birthdate = $_REQUEST['birthdate'];
 		$paypal = $_REQUEST['paypal'];
 		$image = $_REQUEST['profileImage'];
 
 		$shopDb = unserialize($_SESSION['dbconnection']);
-
-		$registered = new Registered($username, $password, $email, $birthdate, '');
+		//metodo para validar si los datos (obligatorios) enviados estan vacios
+		validateInputs($username, $password, $email, $paypal, $image);
+		/*$registered = new Registered($username, $password, $email, $birthdate, '');
 		$registered->setId($id);
 
-		$shopDb->updateRegisteredUser($registered);
+		$shopDb->updateRegisteredUser($registered);*/
 	}
 
 	function deleteRegisteredUser($id) {
