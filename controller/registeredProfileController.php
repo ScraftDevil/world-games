@@ -43,7 +43,7 @@
 		$shopDb = unserialize($_SESSION['dbconnection']);
 
 		//metodo que devuelve un objeto Registered. Guardará los campos segun los input 
-		//y ´si estan vacíos cogerá el valor del objeto serializado registered
+		//y si estan vacíos cogerá el valor del objeto serializado registered
 		$registered = validateInputs($id, $username, $password, $email, $paypal, $image);
 
 		$shopDb->updateRegisteredUser($registered);
@@ -54,7 +54,7 @@
 		$shopDb->deleteRegisteredUser($id);
 		//metodo de logout
 		//esto es provisional
-		//
+		//Pendiente hacer un logout de sesion con un redirect bien hecho
 		header ("Location: ../index.php");
 	}
 

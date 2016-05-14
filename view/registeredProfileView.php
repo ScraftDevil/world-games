@@ -49,35 +49,35 @@ $_SESSION['registered'] = serialize($registeredObject);
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Nombre:</label>
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
-                                            <input class="form-control" type="text" name="name" placeholder="Nombre de usuario" value="<?php echo $registeredObject->getUsername();?>">
+                                            <input class="form-control" type="text" name="name" placeholder="Usuario" value="<?php echo $registeredObject->getUsername();?>">
                                         </div>
                                     </div>
 
                                     <div class="form-group col-lg-12">
-                                        <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Contrasena Actual</label>
+                                        <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Contraseña Actual</label>
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
                                             <input class="form-control" type="password" name="oldPassword" placeholder="Contraseña Actual">
                                         </div>
                                     </div>
 
                                     <div class="form-group col-lg-12">
-                                        <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Nueva Contrasena</label>
+                                        <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Nueva Contraseña</label>
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
                                             <input class="form-control" type="password" name="newPassword" placeholder="Nueva Contraseña">
                                         </div>
                                     </div>
 
                                     <div class="form-group col-lg-12">
-                                        <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Confirmar la Nueva Contrasena</label>
+                                        <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Confirmar Contraseña</label>
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
-                                            <input class="form-control" type="password" name="confirmNewPassowrd" placeholder="Confirmación de la Nueva Contraseña">
+                                            <input class="form-control" type="password" name="confirmNewPassowrd" placeholder="Confirmar Contraseña">
                                         </div>
                                     </div>
 
                                     <div class="form-group col-lg-12">
-                                        <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">E-mail</label>
+                                        <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Correo Eletrónico</label>
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
-                                            <input class="form-control" type="text" name="email" placeholder="Correo Eletrónico" value="<?php echo $registeredObject->getEmail();?>">
+                                            <input class="form-control" type="text" name="email" placeholder="micorreo@ejemplo.com" value="<?php echo $registeredObject->getEmail();?>">
                                         </div>
                                     </div>
 
@@ -91,7 +91,7 @@ $_SESSION['registered'] = serialize($registeredObject);
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Cuenta PayPal:</label>
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
-                                            <input class="form-control" type="text" name="paypal" placeholder="Cuenta PayPal" value="<?php echo $registeredObject->getPaypalAccount();?>">
+                                            <input class="form-control" type="text" name="paypal" placeholder="micorreoPayPal@ejemplo.com" value="<?php echo $registeredObject->getPaypalAccount();?>">
                                         </div>
                                     </div>
 

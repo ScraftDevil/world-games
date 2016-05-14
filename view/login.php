@@ -36,10 +36,10 @@ include("sections/head.php");
                             <div class="col-lg-12">
                                 <form id="login-form" style="display: block;">
                                     <div class="form-group">
-                                        <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+                                        <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Usuario" value="">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+                                        <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Contraseña">
                                     </div>
                                     <div class="form-group text-center ">
                                         <div class="row">

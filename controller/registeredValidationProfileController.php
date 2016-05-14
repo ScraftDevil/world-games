@@ -1,12 +1,23 @@
 <?php
 
+	include("validateEmailController.php");
+	include("validateNullnputsProfileController.php");
+
 	function validateInputs($id, $username, $password, $email, $paypal, $image) {
 
 	$registered = unserialize($_SESSION['registered']);
 
 	$newName = setInputsNameValue($username, $registered);
 	$newPassword = setInputPasswordValues($password, $registered);
-	$newEmail = setInputEmailValues($email, $registered);
+
+	if (validateEmail($email)) {
+		echo "correcto";
+		$newEmail = setInputEmailValues($email, $registered);	
+	}
+	else {
+		echo "email incorrect";
+	}
+	
 	$newPaypalAccount = setInputPaypalAccountValues($paypal, $registered);
 	$newImage = setInputImageValues($image, $registered);
 
@@ -18,53 +29,6 @@
 	return $registered;
 
 	}
-
-	function setInputsNameValue($username, $registered) {
-
-		if ($username == null) {
-			$username = $registered->getUsername();
-		}
-
-		return $username;
-	}
-
-	function setInputPasswordValues($password, $registered) {
-
-		if ($password == null) {
-			$password = $registered->getPassword();
-		}
-
-		return $password;
-	}
-
-
-	function setInputEmailValues($email, $registered) {
-
-		if ($email == null) {
-			$email = $registered->getEmail();
-		}
-
-		return $email;
-	}
-
-	function setInputPaypalAccountValues($paypal, $registered) {
-
-		if ($paypal == null) {
-			$paypal = $registered->getPaypalAccount();
-		}
-
-		return $paypal;
-	}
-
-	function setInputImageValues($image, $registered) {
-
-		if ($image == null) {
-			$image = $registered->getAvatarUrl();
-		}
-
-		return $image;
-	}
-
 
 	// Funcion que verifica si el input del perfil del usuario está vacío. Si lo está, 
 	// devuelve lo que tiene de valor en la BBDD. Si no está vacío, devuelve el valor introducido.
