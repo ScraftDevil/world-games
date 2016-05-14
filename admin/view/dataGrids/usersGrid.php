@@ -27,6 +27,8 @@
 		$dg->addColumn($column);
 		$column = new Structures_DataGrid_Column('AvatarURL', 'AvatarURL', 'AvatarURL', array('align'=>'center'));
 		$dg->addColumn($column);
+		$column = new Structures_DataGrid_Column('Country', 'Country', 'Country', array('align'=>'center'));
+		$dg->addColumn($column);
 		$column = new Structures_DataGrid_Column("Opciones", null, null, array('align' => 'center'), null, 'PrintOption()');
 		$dg->addColumn($column);
 		$dg->render();

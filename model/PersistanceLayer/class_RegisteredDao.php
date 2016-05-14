@@ -98,8 +98,7 @@ class RegisteredDAO {
 			if (!empty($order)) {
 				$orderSQL = "ORDER BY ".$order;
 			}
-			$query = ("SELECT ID_Registered, Username, Password, Email, BannedTime, BirthDate, PaypalAccount, AvatarURL, (SELECT c.Name FROM Country c WHERE c.ID_Country=r.Country_ID) FROM Registered r $orderSQL");
-
+			$query = ("SELECT ID_Registered, Username, Password, Email, BannedTime, BirthDate, PaypalAccount, AvatarURL, (SELECT c.Name FROM Country c WHERE c.ID_Country=r.Country_ID) as Country FROM Registered r $orderSQL");
 			$db = unserialize($_SESSION['dbconnection']);
 			$resultat = $db->getLink()->prepare($query);
 			$resultat->execute();
