@@ -7,11 +7,12 @@
 			$order = $_GET['orderBy'] . " " . $_GET['direction'];
 		}
 		$registered = $db->getRegisteredUsers($order);
+		echo $registered[1];
 		$dg = new Structures_DataGrid();
 		$dg->bind($registered, array(), 'Array');
-		$dg->renderer->sortIconASC= "&uarr;";
-		$dg->renderer->sortIconDESC = "&darr;";
-		$column = new Structures_DataGrid_Column('ID', 'ID', 'ID', array('align'=>'center'));
+		//$dg->renderer->sortIconASC= "&uarr;";
+		//$dg->renderer->sortIconDESC = "&darr;";
+		$column = new Structures_DataGrid_Column('ID_Registered', 'ID_Registered', 'ID_Registered', array('align'=>'center'));
 		$dg->addColumn($column);
 		$column = new Structures_DataGrid_Column('Username', 'Username', 'Username', array('align'=>'center'));
 		$dg->addColumn($column);

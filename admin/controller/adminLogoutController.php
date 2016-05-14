@@ -4,7 +4,7 @@
     }
 
     if (isset($_POST['logout'])) {
-        $_SESSION['auth'] = false;
+        $_SESSION['adminAuth'] = false;
         if (session_destroy()) {
         	header("Location: ../index.php");
         } else {

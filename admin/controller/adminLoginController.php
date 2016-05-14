@@ -13,7 +13,7 @@
 		$valid = json_decode($db->adminLogin($username, $password), true);
 		if ($valid['ID'] != null) {
 			$user = array("session" => true, "username" => $username, "ID" => $valid['ID'], "group" => $valid['Group']);
-			$_SESSION['auth'] = json_encode($user);
+			$_SESSION['adminAuth'] = json_encode($user);
 			header("Location: ../index.php");
 		} else {
 			header("Location: ../view/adminLoginView.php?MSGCODE=invalid_pass");
