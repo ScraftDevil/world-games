@@ -13,6 +13,9 @@ session_start();
     <link href="css/style-library.css" rel="stylesheet">
     <link href="css/gallery.css" rel="stylesheet">
     <link href="css/blog.css" rel="stylesheet">
+    <link href="css/jquery-ui.css" rel="stylesheet">
+    <link href="css/jquery-ui.theme.css" rel="stylesheet">
+    <link href="css/jquery-ui.structure.css" rel="stylesheet">
     <link href="css/header.css" rel="stylesheet">
     <link href="css/footer.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">

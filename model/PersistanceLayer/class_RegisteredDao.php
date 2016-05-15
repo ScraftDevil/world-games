@@ -73,24 +73,19 @@ class RegisteredDAO {
  	/* Metodo para actualizar los datos del usuario registrado */
 	public function updateRegisteredUser($registered) {
 
+		$country = utf8_decode($registered->getCountry());
+
 		try {			
-
-			/*$query = ('UPDATE Registered SET Email = "'.$registered->getEmail().'", BirthDate = "'.$registered->getBirthDate().'",
-			PaypalAccount = "'.$registered->getPaypalAccount().'", AvatarURL = "'.$registered->getAvatarUrl().'" 
-			WHERE ID_Registered = "'.$registered->getId().'"');*/
-
-			/*update registered r INNER JOIN country c ON 'Méjico' = c.Name SET r.Email = 'german@worldgames.com', 
-			r.BirthDate = '2013-09-16', r.PaypalAccount = '', r.AvatarURL = '', r.Country_ID = c.ID_Country 
-			WHERE r.ID_Registered = '6';*/
-			$query = ('UPDATE registered r INNER JOIN country c ON "'.$registered->getCountry().'" = c.Name 
+			
+			$query = ('UPDATE registered r INNER JOIN country c ON "'.$country.'" = c.Name 
 			SET r.Email = "'.$registered->getEmail().'", r.BirthDate = "'.$registered->getBirthDate().'",
 			r.PaypalAccount = "'.$registered->getPaypalAccount().'", r.AvatarURL = "'.$registered->getAvatarUrl().'", 
-			r.Country_ID = c.ID_Country WHERE r.ID_Registered = "'.$registered->getId().'"');
+			r.Country_ID = c.ID_Country WHERE r.ID_Registered = "'.$registered->getId().';"');
 			
 			$db = unserialize($_SESSION['dbconnection']);
 			$resultat = $db->getLink()->prepare($query);
         	$resultat->execute();
-        	//header("Location:../view/registeredProfileView.php");
+        	header("Location:../view/registeredProfileView.php");
 
 		} catch(PDOException $ex) {
 			echo "An Error ocurred!";

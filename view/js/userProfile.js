@@ -15,6 +15,6 @@ $(document).ready(function () {
     $('#configuracion').click(function () {
         $('#configuracionUsuario').toggle(500);
     });
-    
+        
 });
 
