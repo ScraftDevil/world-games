@@ -7,16 +7,14 @@
 
 	$registered = unserialize($_SESSION['registered']);
 
-	//$newName = setInputsNameValue($username, $registered);
-	//$newPassword = setInputPasswordValues($password, $registered);
-
 	if (validateEmail($email)) {
-		echo "correcto";
-		$newEmail = setInputEmailValue($email, $registered);	
-	}
+		//echo "correcto";
+		$newEmail = setInputEmailValue($email, $registered);
+		echo $newEmail;
+	}/*
 	else {
 		echo "email incorrect";
-	}
+	}*/
 	
 	$newBirthDate = setInputBirthDateValue($birthdate, $registered);
 	$newPaypalAccount = setInputPaypalAccountValue($paypal, $registered);

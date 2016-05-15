@@ -101,7 +101,7 @@ $_SESSION['registered'] = serialize($registeredObject);
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
                                             <select>
                                                 //borrar input
-                                                <input class="form-control" type="text" name="paypal" value="<?php echo $registeredObject->getCountry();?>">
+                                                <input class="form-control" type="text" name="paypal" value="<?php /*echo*/ $registeredObject->getCountry();?>">
                                             </select>
                                         </div>
                                     </div>-->

@@ -7,7 +7,6 @@
 
 
 	function createObjectRegistered($registered) {
-		var_dump($registered);
 
 		$name = $registered[0][0];
 		$email = $registered[0][1];
