@@ -9,8 +9,8 @@
 		$registered = $db->getRegisteredUsers($order);
 		$dg = new Structures_DataGrid();
 		$dg->bind($registered, array(), 'Array');
-		//$dg->renderer->sortIconASC= "&uarr;";
-		//$dg->renderer->sortIconDESC = "&darr;";
+		$dg->renderer->sortIconASC= "&uarr;";
+		$dg->renderer->sortIconDESC = "&darr;";
 		$column = new Structures_DataGrid_Column('ID_Registered', 'ID_Registered', 'ID_Registered', array('align'=>'center'));
 		$dg->addColumn($column);
 		$column = new Structures_DataGrid_Column('Username', 'Username', 'Username', array('align'=>'center'));
@@ -27,7 +27,7 @@
 		$dg->addColumn($column);
 		$column = new Structures_DataGrid_Column('AvatarURL', 'AvatarURL', 'AvatarURL', array('align'=>'center'));
 		$dg->addColumn($column);
-		$column = new Structures_DataGrid_Column('Country', 'Country', 'Country', array('align'=>'center'));
+		$column = new Structures_DataGrid_Column('Country', 'Country', 'Country', array('align'=>'center'), null, 'PrintUTF8()');
 		$dg->addColumn($column);
 		$column = new Structures_DataGrid_Column("Opciones", null, null, array('align' => 'center'), null, 'PrintOption()');
 		$dg->addColumn($column);
@@ -46,5 +46,11 @@
 			<i title=\"Edit\" class=\"fa fa-pencil\"></i>
 		</a>
 		";
+	}
+
+	function PrintUTF8($params){
+		extract($params);
+		$fieldData = $record['Country'];
+		return utf8_encode($fieldData);
 	}
 ?>
