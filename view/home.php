@@ -24,7 +24,7 @@
                         <div id="isotope-gallery-container">
                             <?php
                             $onlyOffers = true;
-                            include("../controller/controllerShowGames.php");
+                            include("../view/ShowGames.php");
                             ?>
                         </div>
                     </div>

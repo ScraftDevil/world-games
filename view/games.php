@@ -8,25 +8,29 @@
             <?php
             include("sections/nav.php");
             ?>
-            <section class="content-block gallery-1">
+            <section>
                 <div class="container">
-                    <div class="underlined-title">
-                        <div class="editContent">
-                            <p>
-                            <h1>Ofertas Mensuales</h1>
-                            </p>
-                        </div>
-                        <hr>
-                        <div class="editContent">
-                            <h2>Escoge tu Oferta</h2></div>
-                    </div>
                     <div class="row">
-                        <div id="isotope-gallery-container">
-                            <?php
-                            $onlyOffers = false;
-                            include("../controller/controllerShowGames.php");
-                            ?>
+                        <div class="col-md-12 underlined-title">
+                            <div>
+                                <p>
+                                <h1>Lista de juegos en la tienda</h1>
+                                </p>
+                            </div>
+                            <hr>
+                            <div>
+                                <h2>Filtra por Genero y/o Plataforma si lo deseas</h2>
+                                <?php include("sections/filter.php"); ?>
+                            </div>
                         </div>
+                        <div class="col-md-12">
+                            <div id="isotope-gallery-container">
+                                <?php
+                                $onlyOffers = false;
+                                include("../view/ShowGames.php");
+                                ?>
+                            </div>
+                    </div>
                     </div>
                 </div>
             </section>

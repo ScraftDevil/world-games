@@ -1,6 +1,6 @@
 ﻿<?php
 include_once("../controller/controllerCalculateDiscount.php");
-
+include_once("../controller/controllerShowGames.php");
 function showGames($list, $onlyOffers) {
     for ($i = 0; $i < count($list); $i++) {
         $offer = $list[$i]->getOffer()->getDiscount();
@@ -68,4 +68,5 @@ function printGame($game) {
     </div>
     <?php
 }
+showGames($games, $onlyOffers);
 ?>
