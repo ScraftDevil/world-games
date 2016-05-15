@@ -75,6 +75,12 @@ class mysqldb {
 		return $result;
 	}
 
+	public function getCountriesList() {
+		$registeredDao = new RegisteredDAO();
+		$countries = $registeredDao->getCountriesList();
+		return $countries;
+	}
+
 	public function getRegisteredInfo($id) {
 		$registeredDao = new RegisteredDAO();
 		$registered = $registeredDao->getRegisteredInfo($id);

@@ -34,16 +34,16 @@ include("validateEmailController.php");
 
 		$newPaypalAccount = null;
 
-		if ($paypal == null) {
-			$newPaypalAccount = $registered->getPaypalAccount();
-		}
-		else {
+		if ($paypal != null) {
 			if (validateEmail($paypal)) {
 				$newPaypalAccount = $paypal;
 			}
 			else {
 				$newPaypalAccount = $registered->getPaypalAccount();
 			}
+		}
+		else {
+			$newPaypalAccount = "";
 		}
 
 		return $newPaypalAccount;

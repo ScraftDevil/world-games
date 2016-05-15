@@ -10,7 +10,6 @@ $registered = getRegisteredInfo($_SESSION['user_id']);
 
 //Objeto usuario con los datos de la base de datos obtenidos a partir del id del usuario tras hacer login
 $registeredObject = createObjectRegistered($registered);
-//var_dump($registered);
 
 $_SESSION['registered'] = serialize($registeredObject);
 
@@ -47,34 +46,6 @@ $_SESSION['registered'] = serialize($registeredObject);
 
                                 <!-- Formulario para poder editar los datos del usuario (obtiene los datos de la BBDD) -->
                                 <form id="profileForm" action="../controller/registeredProfileController.php" method="POST">
-                                    <!--<div class="form-group col-lg-12">
-                                        <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Nombre:</label>
-                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
-                                            <input class="form-control" type="text" name="name" placeholder="Usuario" value="<?php echo $registeredObject->getUsername();?>">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group col-lg-12">
-                                        <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Contraseña Actual</label>
-                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
-                                            <input class="form-control" type="password" name="oldPassword" placeholder="Contraseña Actual">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group col-lg-12">
-                                        <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Nueva Contraseña</label>
-                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
-                                            <input class="form-control" type="password" name="newPassword" placeholder="Nueva Contraseña">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group col-lg-12">
-                                        <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Confirmar Contraseña</label>
-                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
-                                            <input class="form-control" type="password" name="confirmNewPassowrd" placeholder="Confirmar Contraseña">
-                                        </div>
-                                    </div>-->
-
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Correo Eletrónico</label>
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
@@ -96,15 +67,14 @@ $_SESSION['registered'] = serialize($registeredObject);
                                         </div>
                                     </div>
 
-                                    <!--<div class="form-group col-lg-12">
+                                    <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">País:</label>
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
-                                            <select>
-                                                //borrar input
-                                                <input class="form-control" type="text" name="paypal" value="<?php /*echo*/ $registeredObject->getCountry();?>">
+                                            <select name="country">
+                                                <?php getCountriesList($registeredObject->getCountry()); ?>
                                             </select>
                                         </div>
-                                    </div>-->
+                                    </div>
 
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Imagen de Perfil:</label>
