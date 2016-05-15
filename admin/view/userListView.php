@@ -29,7 +29,27 @@
 								<div class="new-button">
 									<div class="btn-group">
 									  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									    Registrados <span class="caret"></span>
+									    <?php
+									    if(isset($_GET['group'])) {
+									    	switch ($_GET['group'])  {
+									    		case "administrator": {
+									    			echo 'Administradores';
+									    			break;
+									    		}
+									    		case "professional": {
+									    			echo 'Professionales';
+									    			break;
+									    		}
+									    		case "registered": {
+									    			echo 'Registrados';
+									    			break;
+									    		}
+									    	}
+									    } else {
+									    	echo 'Registrados';
+									    }
+									    ?>
+										<span class="caret"></span>
 									  </button>
 									  <ul class="dropdown-menu">
 									    <li><a href="userListView.php?group=registered">Registrados</a></li>

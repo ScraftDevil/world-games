@@ -39,6 +39,28 @@
           return $id;
       }
     }
+
+    /* Metodo para obtener todos los datos de todos los usuarios registrados */
+    public function showAdministrators($order) {
+      try {
+        $orderSQL = "";
+        if (!empty($order)) {
+          $orderSQL = "ORDER BY ".$order;
+        }
+        $query = ("SELECT ID_Administrator, Username, Password, Email, BannedTime, BirthDate FROM Administrator $orderSQL");
+        $db = unserialize($_SESSION['dbconnection']);
+        $resultat = $db->getLink()->prepare($query);
+        $resultat->execute();
+        $result = $resultat->FetchAll();
+
+      } catch(PDOException $ex) {
+        echo "An Error ocurred!";
+        some_loggging_function($ex->getMessage());
+      } finally {
+        return $result;   
+      }
+    }
+
   }
 
 ?>

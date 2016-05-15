@@ -143,8 +143,13 @@ class mysqldb {
     }
 
     public function registeredBackLogin($username, $password) {
-    	$registered = new registeredDao();
+    	$registered = new RegisteredDAO();
 		return $registered->login($username, $password);
+    }
+
+    public function getAdministratorUsers($order) {
+    	$administrator = new AdministratorDAO();
+    	return $administrator->showAdministrators($order);
     }
 }
 ?>
