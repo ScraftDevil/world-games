@@ -138,12 +138,113 @@ function search() {
     });
    });
 </script>
-<!--    LOGIN  -->
+<!--    FILTER  -->
 <script type="text/javascript">
+function isEmptyJSON(obj) {
+    for(var i in obj) { return false; }
+    return true;
+}
 $(document).ready(function() {
     $(".genreFilter").on("click", function(e){
         e.preventDefault();
-        
+        $(".genreFilter").each(function() {
+            $(this).find("#selected").remove();
+        });
+        $(".plataformFilter").each(function() {
+            $(this).find("#selected").remove();
+        });
+        var params = {"genre" : $(this).attr("id")};
+        $.ajax({
+            data: params,
+            url:   '../controller/controllerFilterGames.php',
+            type:  'POST',
+            typeData: 'json',
+            success:  function (json) {
+                //
+                if (isEmptyJSON(json)) {
+                    $("#isotope-gallery-container").html("No games to show!");
+                } else {
+                    $.each($.parseJSON(json), function() {
+                         var linesHTML = "";
+                        linesHTML += '<div id="isotope-gallery-container" style="position: relative; overflow: hidden; height: 570px;" class="isotope">';
+                        linesHTML += '<style>.offerOldPrice {text-decoration:line-through;}</style>';
+                        linesHTML += '<div class="col-md-3 col-sm-6 col-xs-12 gallery-item-wrapper isotope-item" style="position: absolute; left: 0px; top: 0px; transform: translate3d(0px, 0px, 0px);">';
+                        linesHTML += '<div class="gallery-item">';
+                        linesHTML += '<div class="gallery-thumb" title="'+this.title+'"><img src="images/games/'+this.title+'.png" width="800px" height="600px" class="img-responsive" alt="'+this.title+'">';
+                        linesHTML += '<div class="image-overlay"></div>';
+                        linesHTML += '<a href="detailsProduct.php" class="gallery-zoom"><i class="fa fa-eye"></i></a>';
+                        linesHTML += '<a href="addShopingCart.php" class="gallery-link"><i class="fa fa-shopping-cart"></i></a>';
+                        linesHTML += '</div>';
+                        linesHTML += '<div class="gallery-details">';
+                        linesHTML += '<div class="editContent">';
+                        if (this.discount==null) {
+                           linesHTML += '<h5>'+this.title+'</h5><h6>'+this.price+' €</h6>';
+                        } else {
+                            linesHTML += '<h5>'+this.title+'</h5><h6><span class="offerOldPrice">60 €</span> Ahora: 24.00 €</h6><h6>60 % de descuento</h6>';
+                        }
+                        linesHTML += '</div>';
+                        linesHTML += '</div>';
+                        linesHTML += '</div>'; 
+                        linesHTML += '</div>';
+                        linesHTML += '</div>';
+                        $("#isotope-gallery-container").html(linesHTML);
+                    });
+                    //
+                }
+            }
+        });
+
+        $(this).append('&nbsp;<i id="selected" class="fa fa-check" aria-hidden="true"></i>');
+    });
+     $(".plataformFilter").on("click", function(e){
+        e.preventDefault();
+        $(".genreFilter").each(function() {
+            $(this).find("#selected").remove();
+        });
+        $(".plataformFilter").each(function() {
+            $(this).find("#selected").remove();
+        });
+        var params = {"plataform" : $(this).attr("id")};
+        $.ajax({
+            data: params,
+            url:   '../controller/controllerFilterGames.php',
+            type:  'POST',
+            typeData: 'json',
+            success:  function (json) {
+                //
+                if (isEmptyJSON(json)) {
+                    $("#isotope-gallery-container").html("No games to show!");
+                } else {
+                    var linesHTML = '<div id="isotope-gallery-container" style="position: relative; overflow: hidden; height: 570px;" class="isotope">';
+                    linesHTML += '<style>.offerOldPrice {text-decoration:line-through;}</style>';
+                    $.each($.parseJSON(json), function() {
+                        linesHTML += '<div class="col-md-3 col-sm-6 col-xs-12 gallery-item-wrapper isotope-item">';
+                        linesHTML += '<div class="gallery-item">';
+                        linesHTML += '<div class="gallery-thumb" title="'+this.title+'"><img src="images/games/'+this.title+'.png" width="800px" height="600px" class="img-responsive" alt="'+this.title+'">';
+                        linesHTML += '<div class="image-overlay"></div>';
+                        linesHTML += '<a href="detailsProduct.php" class="gallery-zoom"><i class="fa fa-eye"></i></a>';
+                        linesHTML += '<a href="addShopingCart.php" class="gallery-link"><i class="fa fa-shopping-cart"></i></a>';
+                        linesHTML += '</div>';
+                        linesHTML += '<div class="gallery-details">';
+                        linesHTML += '<div class="editContent">';
+                        if (this.discount==null) {
+                           linesHTML += '<h5>'+this.title+'</h5><h6>'+this.price+' €</h6>';
+                        } else {
+                            linesHTML += '<h5>'+this.title+'</h5><h6><span class="offerOldPrice">60 €</span> Ahora: 24.00 €</h6><h6>60 % de descuento</h6>';
+                        }
+                        linesHTML += '</div>';
+                        linesHTML += '</div>';
+                        linesHTML += '</div>';
+                        linesHTML += '</div>'; 
+                    });
+                        linesHTML += '</div>';
+                        $("#isotope-gallery-container").html(linesHTML);
+                    //
+                }
+            }
+        });
+
+        $(this).append('&nbsp;<i id="selected" class="fa fa-check" aria-hidden="true"></i>');
     });
 });
 </script>

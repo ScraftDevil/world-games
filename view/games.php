@@ -19,7 +19,7 @@
                             </div>
                             <hr>
                             <div>
-                                <h2>Filtra por Genero y/o Plataforma si lo deseas</h2>
+                                <h2>Filtra por Genero o Plataforma si lo deseas</h2>
                                 <?php include("sections/filter.php"); ?>
                             </div>
                         </div>

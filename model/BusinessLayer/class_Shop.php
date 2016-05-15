@@ -77,6 +77,25 @@ class Shop {
             array_push($this->games, $gameObj);
         }
     }
+
+    function filterGames($filter, $type) {
+        $gamesFiltered = array();
+        $games = $this->getGames();
+        foreach ($games as $game) {
+            if ($type=="genre") { 
+                foreach($game->getGenres() as $genre) {
+                    if ($genre->getName()==$filter) {
+                        $gamesFiltered[] = $game;
+                    }
+                }
+            } else if ($type=="plataform") {
+                if (strtolower($game->getPlataform()->getName())==strtolower($filter)) {
+                        $gamesFiltered[] = $game;
+                    }
+            }
+        }
+        return $gamesFiltered;
+    }
 }
 
 ?>

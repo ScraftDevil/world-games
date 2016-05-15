@@ -1,6 +1,6 @@
 <?php
 
-class Game {
+class Game implements JsonSerializable {
 
     private $id ;
     private $title;
@@ -22,10 +22,6 @@ class Game {
         return $this->id;
     }
 
-    function getCode() {
-        return $this->code;
-    }
-
     function getTitle() {
         return $this->title;
     }
@@ -40,10 +36,6 @@ class Game {
 
     function setId($id) {
         $this->id = $id;
-    }
-
-    function setCode($code) {
-        $this->code = $code;
     }
 
     function setTitle($title) {
@@ -81,8 +73,19 @@ class Game {
         $this->genres = $genres;
     }
 
-    public function addGameDb($title,$price) {
+    function addGameDb($title,$price) {
         $GameDao = new GameDao();
         $GameDao->addGame($title,$price);
+    }
+
+    function jsonSerialize() {
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'price' => $this->price,
+            'stock' => $this->stock,
+            'discount' => $this->offer->getDiscount(),
+            'plataform' => $this->plataform->getName(),
+        ];
     }
 }
