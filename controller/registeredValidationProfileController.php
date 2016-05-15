@@ -1,20 +1,12 @@
 <?php
 
-	include("validateEmailController.php");
 	include("validateNullInputsProfileController.php");
 
 	function validateInputs($id, $email, $birthdate, $paypal, $image) {
 
 	$registered = unserialize($_SESSION['registered']);
 
-	if (validateEmail($email)) {
-		//echo "correcto";
-		$newEmail = setInputEmailValue($email, $registered);
-		echo $newEmail;
-	}/*
-	else {
-		echo "email incorrect";
-	}*/
+	$newEmail = setInputEmailValue($email, $registered);
 	
 	$newBirthDate = setInputBirthDateValue($birthdate, $registered);
 	$newPaypalAccount = setInputPaypalAccountValue($paypal, $registered);
@@ -43,6 +35,6 @@
 
 		return $value;
 
-	}*/
+	}*/	
 
 ?>

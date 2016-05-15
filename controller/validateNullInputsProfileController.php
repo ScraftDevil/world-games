@@ -1,12 +1,24 @@
 <?php
+
+include("validateEmailController.php");
 	
 	function setInputEmailValue($email, $registered) {
 
+		$newEmail = null;
+
 		if ($email == null) {
-			$email = $registered->getEmail();
+			$newEmail = $registered->getEmail();
+		}
+		else {
+			if (validateEmail($email)) {
+				$newEmail = $email;
+			}
+			else {
+				$newEmail = $registered->getEmail();
+			}
 		}
 
-		return $email;
+		return $newEmail;
 	}
 
 	function setInputBirthDateValue($birthdate, $registered) {
@@ -20,11 +32,21 @@
 
 	function setInputPaypalAccountValue($paypal, $registered) {
 
+		$newPaypalAccount = null;
+
 		if ($paypal == null) {
-			$paypal = $registered->getPaypalAccount();
+			$newPaypalAccount = $registered->getPaypalAccount();
+		}
+		else {
+			if (validateEmail($paypal)) {
+				$newPaypalAccount = $paypal;
+			}
+			else {
+				$newPaypalAccount = $registered->getEmail();
+			}
 		}
 
-		return $paypal;
+		return $newPaypalAccount;
 	}
 
 	function setInputImageValue($image, $registered) {
