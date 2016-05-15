@@ -73,9 +73,23 @@ class Game implements JsonSerializable {
         $this->genres = $genres;
     }
 
-    function addGameDb($title,$price) {
+    /*function addGameDb($title,$price) {
         $GameDao = new GameDao();
         $GameDao->addGame($title,$price);
+    }*/
+
+    public function addGameDb($game) {
+        $GameDao = new GameDao();
+        $GameDao->addGame($game);
+    }
+
+    public function addGenre($title,$price) {
+
+        $games = new Game($title,$price);
+        $games->addGameDb($games);
+        array_push($this->games, $games);
+
+        return $games;
     }
 
     function jsonSerialize() {
