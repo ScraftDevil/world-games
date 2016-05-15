@@ -42,7 +42,7 @@ include("validateEmailController.php");
 				$newPaypalAccount = $paypal;
 			}
 			else {
-				$newPaypalAccount = $registered->getEmail();
+				$newPaypalAccount = $registered->getPaypalAccount();
 			}
 		}
 
