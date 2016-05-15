@@ -220,6 +220,36 @@ a {
     margin: 10px 0 10px;
 }
 
+.new-button {
+    margin-bottom: 15px;
+}
+
+.grid {
+    padding: 15px;
+}
+
+.grid th {
+    border: solid black 1px;
+    text-align: center;
+    padding: 6px;
+    background: #1b1e24;
+    border-bottom: 4px solid #9ea7af;
+    border-right: 1px solid #343a45;
+}
+
+.grid th a {
+    text-decoration: none;
+    color: #D5DDE5;
+}
+
+.grid td {
+    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+    border: 1px solid #C1C3D1;
+    background-color: #EBEBEB;
+    text-align: center;
+    padding: 6px;
+}
+
 
 /* Mobile */
 @media only screen and (min-width: 320px) {
