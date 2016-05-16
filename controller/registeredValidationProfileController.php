@@ -1,16 +1,56 @@
 <?php
 
-	include("validateNullInputsProfileController.php");
+	include("validateInputNullController.php");
+	include("validateEmailController.php");
+	include("validateDateController.php");
 
 	function validateInputs($id, $email, $birthdate, $paypal, $image, $country) {
 
 	$registered = unserialize($_SESSION['registered']);
 
-	$newEmail = setInputEmailValue($email, $registered);
-	
-	$newBirthDate = setInputBirthDateValue($birthdate, $registered);
-	$newPaypalAccount = setInputPaypalAccountValue($paypal, $registered);
-	$newImage = setInputImageValue($image, $registered);
+	//Email validation
+	if(nullInputValidate($email)) {
+		if (validateEmail($email)) {
+			$newEmail = $email;
+		} else {
+			$newEmail = $registered->getEmail();
+		}
+	}
+	else {
+		$newEmail = $registered->getEmail();
+	}
+
+	//BirthDate validation
+	if(nullInputValidate($birthdate)) {
+		if (validateDate($birthdate)) {
+			$newBirthDate = $birthdate;
+		} else {
+			$newBirthDate = $registered->getBirthDate();
+		}
+	}
+	else {
+		$newBirthDate = $registered->getBirthDate();
+	}
+
+	//PaypalAccount validation
+	if(nullInputValidate($paypal)) {
+		if (validateEmail($paypal)) {
+			$newPaypalAccount = $paypal;
+		} else {
+			$newPaypalAccount = $registered->getPaypalAccount();
+		}
+	}
+	else {
+		$newPaypalAccount = "";
+	}
+
+	//Image validation (validación en desarrollo)
+	if(nullInputValidate($image)) {
+		$newImage = $image;
+	}
+	else {
+		$newImage = "";
+	}
 
 	$registered = new Registered('', '', $newEmail, $newBirthDate, $country);
 	$registered->setId($id);
@@ -20,21 +60,5 @@
 	return $registered;
 
 	}
-
-	// Funcion que verifica si el input del perfil del usuario está vacío. Si lo está, 
-	// devuelve lo que tiene de valor en la BBDD. Si no está vacío, devuelve el valor introducido.
-	// Este método está preparado para usarse de forma modular para cualquier atributo, 
-	// siempre que se le indique el atributo $atributeName de forma manual al llamar al método, 
-	// ya que no todos los atributos siguen el mismo patrón	
-	// FALLA SOLO CUANDO EL CAMPO ESTÁ VACÍO
-	/*function setInputsValues($value, $registered, $atributeName) {
-
-		if ($value == null) {
-			//$value = $registered->get.$atributeName.();
-		}
-
-		return $value;
-
-	}*/	
 
 ?>
