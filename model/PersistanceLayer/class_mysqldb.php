@@ -5,7 +5,8 @@ class mysqldb {
 	private $dsn, $username, $password, $link;
 
 	public function __construct() {
-		$this->setDSN("mysql:dbname=".$GLOBALS['DATABASE'].";host=".$GLOBALS['SERVER']);
+		$params = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8");  
+		$this->setDSN("mysql:dbname=".$GLOBALS['DATABASE'].";host=".$GLOBALS['SERVER'], $params);
 		$this->setUsername($GLOBALS['USERNAME']);
 		$this->setPassword($GLOBALS['PASSWORD']);
 		$this->connect();
