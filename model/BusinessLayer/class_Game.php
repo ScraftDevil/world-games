@@ -79,7 +79,7 @@ class Game implements JsonSerializable {
     }*/
 
     public function addGameDb($game) {
-        $GameDao = new GameDao();
+        $GameDao = new gameDAO();
         $GameDao->addGame($game);
     }
 
