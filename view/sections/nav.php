@@ -61,10 +61,10 @@
                     }
                     </style>
                     <li class="nav-item dropdown" id="shoppingCartBtn">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" role="button"> <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Carrito<span class="caret"></span></a>
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" role="button"> <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Carrito&nbsp;<span class="badge" id="countShoppingCart"></span><span class="caret"></span></a>
                       <ul class="dropdown-menu dropdown-cart" role="menu">
                           <li id="basket">
-                              <span class="item">
+                            <!--<span class="item">
                                 <span class="item-left">
                                     <img src="http://lorempixel.com/50/50/" alt="" />
                                     <span class="item-info">
@@ -72,7 +72,7 @@
                                         <span>Precio en €</span>
                                     </span>
                                 </span>
-                            </span>
+                            </span>-->
                           </li>
                           <li class="divider"></li>
                           <li><a class="text-center" href="shoppingCart.php">Ver Carrito</a></li>

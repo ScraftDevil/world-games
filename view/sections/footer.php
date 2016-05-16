@@ -175,7 +175,7 @@ $(document).ready(function() {
                         linesHTML += '<div class="gallery-thumb" title="'+this.title+'"><img src="images/games/'+this.title+'.png" width="800px" height="600px" class="img-responsive" alt="'+this.title+'">';
                         linesHTML += '<div class="image-overlay"></div>';
                         linesHTML += '<a href="detailsProduct.php" class="gallery-zoom"><i class="fa fa-eye"></i></a>';
-                        linesHTML += '<a href="addShopingCart.php" class="gallery-link"><i class="fa fa-shopping-cart"></i></a>';
+                        linesHTML += '<a href="#" class="gallery-link buyItem"><i class="fa fa-shopping-cart"></i></a>';
                         linesHTML += '</div>';
                         linesHTML += '<div class="gallery-details">';
                         linesHTML += '<div class="editContent">';
@@ -225,7 +225,7 @@ $(document).ready(function() {
                         linesHTML += '<div class="gallery-thumb" title="'+this.title+'"><img src="images/games/'+this.title+'.png" width="800px" height="600px" class="img-responsive" alt="'+this.title+'">';
                         linesHTML += '<div class="image-overlay"></div>';
                         linesHTML += '<a href="detailsProduct.php" class="gallery-zoom"><i class="fa fa-eye"></i></a>';
-                        linesHTML += '<a href="addShopingCart.php" class="gallery-link"><i class="fa fa-shopping-cart"></i></a>';
+                        linesHTML += '<a href="#" class="gallery-link buyItem"><i class="fa fa-shopping-cart"></i></a>';
                         linesHTML += '</div>';
                         linesHTML += '<div class="gallery-details">';
                         linesHTML += '<div class="editContent">';
@@ -248,5 +248,26 @@ $(document).ready(function() {
 
         $(this).append('&nbsp;<i id="selected" class="fa fa-check" aria-hidden="true"></i>');
     });
+});
+</script>
+<!-- SGOPPING CART -->
+<script>
+$("#basket").html("No hay productos añadidos al carrito");
+$(document).on("click", ".buyItem", function (e) {
+    e.preventDefault();
+    var nitemsOld = 0;
+    if ($("#countShoppingCart").text()!="") {
+        nitemsOld = $("#countShoppingCart").text();
+    } else {
+        $("#basket").html("");
+    }
+    var nitems = parseInt(nitemsOld)+parseInt(1);
+    $("#countShoppingCart").text(nitems);
+    $item = $(this).parent().parent().find(".gallery-details");
+    var itemImageURL = $(this).parent().find("img:eq(0)").attr("src");
+    var title = $item.find("h5:eq(0)").text();
+    var price = $item.find("h6:eq(0)").html();
+     $("#basket").append('<span class="item"><span class="item-left"><img src="'+itemImageURL+'" alt="'+title+'" width="85px" height="105px"/><span class="item-info"><span>'+title+'</span><span>'+price+'</span></span></span></span>');
+    console.log("Item added to Cookie and in html | Title="+title+" and Price="+price);
 });
 </script>
