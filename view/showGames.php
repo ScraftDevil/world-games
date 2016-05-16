@@ -22,7 +22,7 @@ function printGame($game) {
         }
     </style>
     <div class="col-md-3 col-sm-6 col-xs-12 gallery-item-wrapper">
-        <div class="gallery-item">
+        <div class="gallery-item" id="Game_<?php echo $game->getID() ?>">
             <div class="gallery-thumb" title="<?php echo $game->getTitle() ?>">
                 <img src="images/games/<?php echo $game->getTitle() ?>.png" width="800px" height="600px" class="img-responsive" alt="<?php echo $game->getTitle() ?>">
                 <div class="image-overlay"></div>
@@ -40,7 +40,7 @@ function printGame($game) {
                     if ($priceWithDiscount == $price) {
                         echo '<span>' . $game->getPrice() . ' €</span>';
                     } else {
-                        echo '<span class="offerOldPrice">' . $game->getPrice() . ' €</span> Ahora: ' . $priceWithDiscount . ' €';
+                        echo '<span id="price">'.$priceWithDiscount.' €</span>';
                     }
                     echo '<h6>';
                     if (!empty($game->getOffer()->getDiscount())) {
