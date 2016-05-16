@@ -26,7 +26,7 @@ function printGame($game) {
             <div class="gallery-thumb" title="<?php echo $game->getTitle() ?>">
                 <img src="images/games/<?php echo $game->getTitle() ?>.png" width="800px" height="600px" class="img-responsive" alt="<?php echo $game->getTitle() ?>">
                 <div class="image-overlay"></div>
-                <a href="detailsProduct.php" class="gallery-zoom"><i class="fa fa-eye"></i></a>
+                <a href="detailsProduct.php?gameid=<?php echo $game->getID();?>" class="gallery-zoom"><i class="fa fa-eye"></i></a>
                 <a href="#" class="gallery-link buyItem"><i class="fa fa-shopping-cart"></i></a>
             </div>
             <div class="gallery-details">
