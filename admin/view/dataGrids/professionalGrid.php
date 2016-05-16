@@ -33,10 +33,10 @@
 		$id = $record['ID_Professional'];
 		return "
 		<div class=\"btn-group\">
-		  <button type=\"button\" class=\"btn btn-danger\"><a href=\"userDataView.php?id=$id\">Ver</a></button>
+		  <button type=\"button\" class=\"btn btn-danger\"><a class=\"drop-grid\" href=\"userDataView.php?id=$id\">Ver</a></button>
 		  <button type=\"button\" class=\"btn btn-danger dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
 		    <span class=\"caret\"></span>
-		    <span class=\"sr-only\"><a href=\"registeredDataView.php?id=$id\">Ver</a></span>
+		    <span class=\"sr-only\"><a class=\"drop-grid\" href=\"registeredDataView.php?id=$id\">Ver</a></span>
 		  </button>
 		  <ul class=\"dropdown-menu\">
 		    <li><a href=\"registeredDataEdit.php?id=$id\">Modificar</a></li>

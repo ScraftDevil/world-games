@@ -11,7 +11,7 @@
 		$dg->bind($registered, array(), 'Array');
 		$dg->renderer->sortIconASC= "&uarr;";
 		$dg->renderer->sortIconDESC = "&darr;";
-		$column = new Structures_DataGrid_Column('<div>ID de<br>Usuario</div>', 'ID_Administrator', '<p>ID_Administrator</p>', array('class'=>'grid-cel'), "null");
+		$column = new Structures_DataGrid_Column('ID de<br>Usuario', 'ID_Administrator', 'ID_Administrator', array('class'=>'grid-cel'), "null");
 		$dg->addColumn($column);
 		$column = new Structures_DataGrid_Column('Nombre<br>de Usuario', 'Username', 'Username', array('class'=>'grid-cel'));
 		$dg->addColumn($column);
@@ -31,10 +31,10 @@
 		$id = $record['ID_Administrator'];
 		return "
 		<div class=\"btn-group\">
-		  <button type=\"button\" class=\"btn btn-danger\"><a href=\"userDataView.php?id=$id\">Ver</a></button>
+		  <button type=\"button\" class=\"btn btn-danger\"><a class=\"drop-grid\" href=\"userDataView.php?id=$id\">Ver</a></button>
 		  <button type=\"button\" class=\"btn btn-danger dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
 		    <span class=\"caret\"></span>
-		    <span class=\"sr-only\"><a href=\"registeredDataView.php?id=$id\">Ver</a></span>
+		    <span class=\"sr-only\"><a class=\"drop-grid\" href=\"registeredDataView.php?id=$id\">Ver</a></span>
 		  </button>
 		  <ul class=\"dropdown-menu\">
 		    <li><a href=\"registeredDataEdit.php?id=$id\">Modificar</a></li>
