@@ -2,7 +2,7 @@
 
 require_once($_SESSION['BASE_PATH']."/model/autoload.php");
 
-class RegisteredDAO {
+class registeredDAO {
 
 	/* Get User if Login is Valid */
 	public function login($username, $password) {

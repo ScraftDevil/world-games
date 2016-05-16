@@ -14,7 +14,6 @@
                 <ul class="nav navbar-nav navbar-right">
                     <?php
                     $page = str_replace(".php", "", basename($_SERVER['PHP_SELF']));
-                    //echo $page;
                     ?>
                     <li class="<?php if ($page=="home") { echo 'active ';}?>nav-item"><a href="home.php"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;Inicio</a></li>
                     <li class="<?php if ($page=="games") { echo 'active ';}?>nav-item"><a href="games.php"><i class="fa fa-gamepad" aria-hidden="true"></i>&nbsp;Juegos</a></li>
