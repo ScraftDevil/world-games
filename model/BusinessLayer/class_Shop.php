@@ -78,6 +78,19 @@ class Shop {
         }
     }
 
+
+
+public function addGame($title,$price) {
+
+        $games = new Game($title,$price);
+
+        $games->addGameDb($games);
+        array_push($this->games, $games);
+
+        return $games;
+    }
+
+
     function filterGames($filter, $type) {
         $gamesFiltered = array();
         $games = $this->getGames();

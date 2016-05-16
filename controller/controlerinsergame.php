@@ -4,9 +4,6 @@ require_once("../model/autoload.php");
 
 session_start();
 
-
-
-
 if (isset($_REQUEST['add'])) {
  
         $shop = unserialize($_SESSION['shop']);
