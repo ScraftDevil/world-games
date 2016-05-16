@@ -1,7 +1,7 @@
 <?php
 require_once("../model/autoload.php");
 
-class GameDao {
+class gameDAO {
 
     public function addGame($game) {
 
