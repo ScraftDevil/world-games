@@ -1,5 +1,7 @@
 <?php
 
+require_once($_SESSION['BASE_PATH']."/model/autoload.php");
+
 class Registered extends User {
 
     //attributes
@@ -26,7 +28,12 @@ class Registered extends User {
     //constructor
     function __construct($username, $password, $email, $birthDate, $country) {
         parent::__construct($username, $password, $email, $birthDate, $country);
-    }    
+    }
+
+    function insertRegistered() {
+        $registeredDAO = new RegisteredDAO();
+        $registeredDAO->insertRegistered($this);
+    } 
 }
 
 ?>

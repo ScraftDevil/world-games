@@ -139,6 +139,36 @@ class RegisteredDAO {
 		}
 
 	}
+
+	public function insertRegistered($registered) {
+		try {
+			$query = ("INSERT INTO registered (ID_Registered, Username, Password, Email, BannedTime, BirthDate, PaypalAccount, AvatarURL, Shop_ID, Country_ID) VALUES (:id, :username, :password, :email, :bannedtime, :birthdate, :paypal, :avatar, :shop_id, :country)");
+			$stmt = $db->getLink()->prepare($query);
+			$stmt->bindParam(':id', $this->getLastID());
+		    $stmt->bindParam(':username', $registered->getUsername());
+		    $stmt->bindParam(':password', $registered->getPassword());
+		    $stmt->bindParam(':email', $registered->getEmail());
+		    $stmt->bindParam(':bannedtime', $registered->getBannedTime());
+		    $stmt->bindParam(':birthdate', $registered->getBirthDate());
+		    $stmt->bindParam(':paypal', $registered->getPaypalAccount());
+		    $stmt->bindParam(':avatar', $registered->getAvatarUrl());
+		    $stmt->bindParam(':shop_id', 1);
+		    $stmt->bindParam(':country', $registered->getCountry());
+		    $stmt->execute();
+		} catch(PDOException $ex) {
+			echo "An Error ocurred!";
+			some_loggging_function($ex->getMessage());
+			die();
+		}
+	}
+
+	private function getLastID() {
+		$db = unserialize($_SESSION['dbconnection']);
+	    $stmt = $db->getLink()->prepare("SELECT COUNT(*) as total FROM registered");
+	    $stmt->execute();
+	    $result = $stmt->FetchAll();
+	    return $result[0]['total'];
+	}
 }
 
 ?>

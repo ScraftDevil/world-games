@@ -151,5 +151,10 @@ class mysqldb {
     	$administrator = new AdministratorDAO();
     	return $administrator->showAdministrators($order);
     }
+
+    public function getProfessionalUsers($order) {
+    	$professional = new ProfessionalDAO();
+    	return $professional->showProfessionals($order);
+    }
 }
 ?>

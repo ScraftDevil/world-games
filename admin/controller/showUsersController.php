@@ -2,7 +2,11 @@
 	require_once($_SESSION['BASE_PATH']."/model/autoload.php");
 
 	if (isset($_GET['group'])) {
-		$group = $_GET['group'];
+		if ($_GET['group'] == "registered" || $_GET['group'] == "professional" || $_GET['group'] == "administrator") {
+			$group = $_GET['group'];
+		} else {
+			$group = false;
+		}
 	} else {
 		$group = false;
 	}
@@ -17,6 +21,9 @@
 				break;
 			case 'administrator':
 				include_once("dataGrids/administratorGrid.php");
+				break;
+			default:
+				$group = false;
 				break;
 		}
 		showUsers();
