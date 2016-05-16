@@ -1,4 +1,4 @@
-/* titulo del apartado que permite plegarse y desplegarse. Por defecto estar� depslegado */
+/* titulo del apartado que permite plegarse y desplegarse. Por defecto estará depslegado */
 .desplegableProfile {
     background-color:#16A085;
 	color:white;
@@ -40,4 +40,10 @@
 .button-profile:hover {
     background-color:#36657C;
     color:white;
+}
+
+.underlined-title h2 {
+    /* COMENTAR SOBRE DEJAR LAS LETRAS EN MINÚSCULAS */
+	/*text-transform:none;*/
+	letter-spacing:2px;
 }

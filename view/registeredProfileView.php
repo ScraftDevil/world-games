@@ -1,23 +1,23 @@
+<!--DOCTYPE html -->
+<html>
+
 <?php
 
 /* codigo php */
 
+include("sections/head.php");
+
 // controlador del perfil de usuario registrado
 include("../controller/registeredProfileController.php");
 
-//array que contiene los datos del usuario segun el id obtenido después de hacer login
+ //array que contiene los datos del usuario segun el id obtenido después de hacer login
 $registered = getRegisteredInfo($_SESSION['user_id']);
 
 //Objeto usuario con los datos de la base de datos obtenidos a partir del id del usuario tras hacer login
 $registeredObject = createObjectRegistered($registered);
 
-$_SESSION['registered'] = serialize($registeredObject);
+$_SESSION['registered'] = serialize($registeredObject);?>    
 
-?>
-
-<!--DOCTYPE html -->
-<html>
-    <?php include("sections/head.php"); ?>
     <body>
         <div id="page" class="page">
             <?php include("sections/nav.php"); ?>
@@ -31,7 +31,7 @@ $_SESSION['registered'] = serialize($registeredObject);
                         </div>
                         <hr>
                         <div class="editContent">
-                            <h2>Aqui encontraras todo lo relativo a tu cuenta, <?php echo $registeredObject->getUsername(); ?></h2></div>
+                            <h2>Saludos <?php echo $registeredObject->getUsername(); ?>, este es tu espacio personal</h2></div>
                     </div>
 
                     <!-- Lista de opciones del perfil del usuario -->

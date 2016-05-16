@@ -1,6 +1,9 @@
 <?php
 
+session_start();
+
 include("validateEmailController.php");
+include("validateDateController.php");
 	
 	function setInputEmailValue($email, $registered) {
 
@@ -23,11 +26,20 @@ include("validateEmailController.php");
 
 	function setInputBirthDateValue($birthdate, $registered) {
 
+		$newBirthDate = null;
+
 		if ($birthdate == null) {
-			$birthdate = $registered->getBirthDate();
+			$newBirthDate = $registered->getBirthDate();
+		}
+		else {
+			if (validateDate($birthdate)) {
+				$newBirthDate = $birthdate;
+			} else {
+				$newBirthDate = $registered->getBirthDate();
+			}
 		}
 
-		return $birthdate;
+		return $newBirthDate;
 	}
 
 	function setInputPaypalAccountValue($paypal, $registered) {
