@@ -24,6 +24,7 @@ include("sections/head.php");
                <div class="row">
                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
+
                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                         <div class="divimg">
                         <img class="img-responsive imgportada" src="images/portada.jpg">
@@ -32,8 +33,10 @@ include("sections/head.php");
 
                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                     <div class="divdades">
-                        swg
+                    <?php
+                      include("../view/ShowdetallGame.php");
 
+                      ?>
                     </div>
                     </div>
 

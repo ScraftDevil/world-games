@@ -63,7 +63,7 @@ class Shop {
             $idGame = $game['ID_Game'];
             $genres = $db->getGenresGame($idGame);
             $gameObj = new Game($game['Title'], $game['Price'], $game['Stock']);
-            $gameObj->setID($idGame);
+            $gameObj->setId($idGame);
             $offer = new Offer($game['Discount']);
             foreach ($genres as $genre) {
                 $g = new Genre($genre['Name']);
@@ -90,6 +90,19 @@ public function addGame($title,$price) {
         return $games;
     }
 
+  function getGame($idgame) {
+        $gamefound = null;
+        $games = $this->getGames();
+        foreach ($games as $game) {
+            
+            if ($game->getId()==$idgame) {
+
+                $gamefound = $game;
+              
+            }
+        }
+        return $gamefound;
+    }
 
     function filterGames($filter, $type) {
         $gamesFiltered = array();
