@@ -40,7 +40,7 @@
 		  </button>
 		  <ul class=\"dropdown-menu\">
 		    <li><a href=\"registeredDataEdit.php?id=$id\">Modificar</a></li>
-		    <li><a href=\"registeredDelete.php?id=$id\">Eliminar</a></li>
+		    <li><a href=\"#\" onclick=\"deleteUser($id)\" class=\"deleteUser\">Eliminar</a></li>
 		  </ul>
 		</div>";
 	}

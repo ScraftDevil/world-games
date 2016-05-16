@@ -49,7 +49,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<h2> Nuevo Usuario <?php echo $label; ?></h2>
-							<form action="../controller/newUserController.php?<?php echo $group; ?>">
+							<form action="../controller/newUserController.php?group=<?php echo $group ?>" method="POST">
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
@@ -83,7 +83,7 @@
 											<label for="Pais">País</label>
 											<?php include("sections/countryList.php"); ?>
 										</div>
-										<input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info pull-right">
+										<input type="submit" name="submit" id="submit" class="btn btn-info pull-right">
 									</div>
 								</div>
 							</form>

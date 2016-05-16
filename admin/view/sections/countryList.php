@@ -9,7 +9,7 @@
 	$db = unserialize($_SESSION['dbconnection']);
 		$country = $db->getCountries();
 		?>
-			<select>
+			<select name="country" id="country">
 			<?php
 				for ($i=0; $i < count($country); $i++) {
 					$id = $country[$i][0];

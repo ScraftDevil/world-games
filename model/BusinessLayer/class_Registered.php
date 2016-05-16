@@ -32,7 +32,7 @@ class Registered extends User {
 
     function insertRegistered() {
         $registeredDAO = new RegisteredDAO();
-        $registeredDAO->insertRegistered($this);
+        return $registeredDAO->insertRegistered($this);
     } 
 }
 

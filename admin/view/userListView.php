@@ -34,6 +34,33 @@
 			}
 		}
 
+		if(isset($_GET['msg']) AND !empty($_GET['msg'])) {
+			$msg = $_GET['msg'];
+			switch($msg) {
+				case "success":
+				$message = "<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-ok\"></span> ¡Usuario creado satisfactoriamente!</strong></div>";
+				break;
+				
+				case "errusername":
+				$message = "<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Ese Usuario ya existe!</strong></div>";
+				break;
+
+				case "deleteFail":
+				$message = "<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error al borrar el Usuario!</strong></div>";
+				break;
+
+				case "deleteSuccess":
+				$message = "<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-ok\"></span> ¡Usuario eliminado satisfactoriamente!</strong></div>";
+				break;
+
+				default:
+					$message = null;
+				break;
+			}
+		} else {
+			$message = null;
+		}
+
 	?>
 <body>
 	<?php
@@ -50,6 +77,11 @@
 						<div class="col-md-12">
 							<h2> Lista de usuarios <?php echo $label; ?></h2>
 							<div class="grid">
+								<?php
+									if ($message != null) {
+										echo $message;
+									}
+								?>
 								<div class="new-button">
 									<div class="btn-group">
 									  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

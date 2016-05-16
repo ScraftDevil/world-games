@@ -272,6 +272,83 @@ a {
     float: right;
 }
 
+.ocult {
+    display: none;
+}
+
+.btn a {
+    color: white;
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.alert-img {
+    max-width: 50%;
+    margin: 0 25% 0 25%;
+}
+
+.success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+.error {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+.btn-delete {
+    margin-left: 8%;
+    float: left;
+}
+
+.btn-cancel {
+    margin-right: 8%;
+    float: right;
+}
+
+.delete {
+    width: 100%;
+    min-height: 100%;
+    height: auto !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.confirm {
+    width: 300px;
+    height: 300px;
+    border-radius: 5px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -100px 0 0 -150px;
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+}
+
+.confirm p {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.confirm-msg {
+    margin: 15px;
+}
+
 
 /* Mobile */
 @media only screen and (min-width: 320px) {
