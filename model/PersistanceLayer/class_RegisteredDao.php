@@ -141,8 +141,10 @@ class RegisteredDAO {
 	}
 
 	public function insertRegistered($registered) {
+		$proces = 0;
 		try {
 			$query = ("INSERT INTO registered (ID_Registered, Username, Password, Email, BannedTime, BirthDate, PaypalAccount, AvatarURL, Shop_ID, Country_ID) VALUES (:id, :username, :password, :email, :bannedtime, :birthdate, :paypal, :avatar, :shop_id, :country)");
+			$db = unserialize($_SESSION['dbconnection']);
 			$stmt = $db->getLink()->prepare($query);
 			$stmt->bindParam(':id', $this->getLastID());
 		    $stmt->bindParam(':username', $registered->getUsername());
@@ -154,11 +156,13 @@ class RegisteredDAO {
 		    $stmt->bindParam(':avatar', $registered->getAvatarUrl());
 		    $stmt->bindParam(':shop_id', 1);
 		    $stmt->bindParam(':country', $registered->getCountry());
-		    $stmt->execute();
+		    $proces = $stmt->execute();
 		} catch(PDOException $ex) {
 			echo "An Error ocurred!";
 			some_loggging_function($ex->getMessage());
 			die();
+		} finally {
+			return $proces;
 		}
 	}
 

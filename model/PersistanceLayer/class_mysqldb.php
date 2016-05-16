@@ -81,6 +81,14 @@ class mysqldb {
 		return $countries;
 	}
 
+	public function getCountries() {
+		$sql = "SELECT ID_Country, Name FROM Country";
+		$stmt = $this->getLink()->prepare($sql); 
+		$stmt->execute();
+		$result = $stmt->FetchAll();
+		return $result;
+	}
+
 	public function getRegisteredInfo($id) {
 		$registeredDao = new RegisteredDAO();
 		$registered = $registeredDao->getRegisteredInfo($id);
