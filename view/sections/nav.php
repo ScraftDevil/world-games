@@ -16,13 +16,14 @@
                     $page = str_replace(".php", "", basename($_SERVER['PHP_SELF']));
                     echo $page;
                     ?>
-                    <li class="<?php if ($page=="home") { echo 'active ';}?>nav-item"><a href="home.php">Inicio</a></li>
-                    <li class="<?php if ($page=="games") { echo 'active ';}?>nav-item"><a href="games.php">Juegos</a></li>
+                    <li class="<?php if ($page=="home") { echo 'active ';}?>nav-item"><a href="home.php"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;Inicio</a></li>
+                    <li class="<?php if ($page=="games") { echo 'active ';}?>nav-item"><a href="games.php"><i class="fa fa-gamepad" aria-hidden="true"></i>&nbsp;Juegos</a></li>
+                    <li class="nav-item"><a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;Carrito</a></li>
                     <?php
 
                         if (!isset($_SESSION['frontAuth'])) {
                             ?>
-                            <li class="<?php if ($page=="login") { echo 'active ';}?>nav-item"><a href="login.php">Entrar</a></li>
+                            <li class="<?php if ($page=="login") { echo 'active ';}?>nav-item"><a href="login.php"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;Entrar</a></li>
                             <?php
                         } else {
                             ?>
@@ -35,7 +36,6 @@
 		                    </li>
                             <?php
                         }
-
                     ?>
                 </ul>
                 <div class="col-md-4">
