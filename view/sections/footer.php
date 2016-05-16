@@ -297,7 +297,7 @@ $(document).on("click", ".buyItem", function (e) {
         var game = new Game(id, title, price, itemImageURL, 1);
         items.push(game);
         var shoppingCart = JSON.stringify(items);
-        Cookies.set('shoppingCart', shoppingCart);
+        Cookies.set('shoppingCart', shoppingCart, { expires: 1 });
         $("#countShoppingCart").text(nitems);
     } else {
         var items = Cookies.getJSON('shoppingCart');
@@ -310,7 +310,7 @@ $(document).on("click", ".buyItem", function (e) {
             $("#Product"+id).find("#quantity").text("x"+game.quantity);
         }
         items.push(game);
-        Cookies.set('shoppingCart', items);
+        Cookies.set('shoppingCart', items, { expires: 1 });
     }
     if (newGame) {
         $("#basket").append('<span class="item" id="Product'+id+'"><span class="item-left"><img src="'+itemImageURL+'" alt="'+title+'" width="85px" height="105px"/><span class="item-info"><span>'+title+'</span><span id="quantity">x'+game.quantity+'</span><span>'+price+'</span></span></span></span>');
