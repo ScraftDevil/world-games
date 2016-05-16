@@ -19,4 +19,5 @@ session_start();
     <link href="css/header.css" rel="stylesheet">
     <link href="css/footer.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/detall.css" rel="stylesheet">
 </head>

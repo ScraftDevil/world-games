@@ -83,7 +83,9 @@
 											<label for="Pais">País</label>
 											<?php include("sections/countryList.php"); ?>
 										</div>
+										<div class="form-group caixasubmit">
 										<input type="submit" name="submit" id="submit" class="btn btn-info pull-right">
+										</div>
 									</div>
 								</div>
 							</form>

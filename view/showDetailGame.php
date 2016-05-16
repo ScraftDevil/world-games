@@ -8,25 +8,36 @@ function printGame($game) {
         .offerOldPrice {
             text-decoration:line-through;
         }
+
+        .titulgame{
+
+            font-size: 30px;
+    color: red;
+        }
     </style>
-    <div class="col-md-3 col-sm-6 col-xs-12 gallery-item-wrapper">
-        <div class="gallery-item" id="Game_<?php echo $game->getID() ?>">
-            <div class="gallery-thumb" title="<?php echo $game->getTitle() ?>">
-                <img src="images/games/<?php echo $game->getTitle() ?>.png" width="800px" height="600px" class="img-responsive" alt="<?php echo $game->getTitle() ?>">
-                <div class="image-overlay"></div>
-                <a href="detailsProduct.php?gameid=<?php echo $game->getID();?>" class="gallery-zoom"><i class="fa fa-eye"></i></a>
-                <a href="#" class="gallery-link buyItem"><i class="fa fa-shopping-cart"></i></a>
+    <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12 ">
+        
+            <div class="width100" title="<?php echo $game->getTitle() ?>">
+                <img src="images/games/<?php echo $game->getTitle() ?>.png"  class="img-responsive imggrandaria" alt="<?php echo $game->getTitle() ?>">
+                
+                
             </div>
-            <div class="gallery-details">
-                <div class="editContent">
+
+           
+              </div>
+            <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12 ">
+                <div class="caixadetall">
                     <?php
                     $price = $game->getPrice();
                     $offer = $game->getOffer()->getDiscount();
-                    $priceWithDiscount = calculateDiscount($price, $offer);
-                    echo '<h5>' . $game->getTitle() . '</h5>';
+                    $priceWithDiscount = calculateDiscount($price, $offer);?>
+
+                    <span class "titulgame">d<?= $game->getTitle() ?></span>
+
+                    <?php
                     echo '<h6>';
                     if ($priceWithDiscount == $price) {
-                        echo '<span>' . $game->getPrice() . ' €</span>';
+                        echo '<span class="pull-left">' . $game->getPrice() . ' €</span>';
                     } else {
                         echo '<span id="price">'.$priceWithDiscount.' €</span>';
                     }
@@ -52,8 +63,8 @@ function printGame($game) {
 
                 </div>
             </div>
-        </div>
-    </div>
+       
+   
     <?php
 }
 printGame($game);
