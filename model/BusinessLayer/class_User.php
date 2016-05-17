@@ -75,13 +75,12 @@ abstract class User {
         $this->country = $country;
     }
 
-    function __construct($username, $password, $email, $birthDate, $country) {
+    function __construct($username, $password, $email, $birthDate) {
         $this->setUsername($username);
         $this->setPassword($password);
         $this->setEmail($email);
         $this->setBannedTime(null);
         $this->setBirthDate($birthDate);
-        $this->setCountry($country);
         $this->setMessages(array());
     }
 

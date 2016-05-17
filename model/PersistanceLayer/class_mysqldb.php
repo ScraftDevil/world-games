@@ -175,5 +175,15 @@ class mysqldb {
     	$professional = new ProfessionalDAO();
     	return $professional->showProfessionals($order);
     }
+
+    public function deleteProfessionalUser($id) {
+		$professional = new ProfessionalDAO();
+		$professional = $professional->deleteProfessionalUser($id);		
+	}
+
+	public function deleteAdministratorUser($id) {
+		$administrator = new AdministratorDAO();
+		$administrator = $administrator->deleteAdministratorUser($id);		
+	}
 }
 ?>

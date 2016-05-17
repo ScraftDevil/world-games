@@ -146,7 +146,7 @@ class registeredDAO {
 			$exist = 0;
 			$username = $registered->getUsername();
 			$db = unserialize($_SESSION['dbconnection']);
-			$query = ("SELECT Username FROM registered WHERE Username='$username'");
+			$query = ("SELECT p.Username FROM professional p WHERE p.Username='$username' OR p.Email='$email' UNION SELECT a.Username FROM administrator a WHERE a.Username='$username' OR a.Email='$email' UNION SELECT r.Username FROM registered r WHERE r.Username='$username' OR r.Email='$email'");
 			$resultat = $db->getLink()->prepare($query);
 			$resultat->execute();
  			$result = $resultat->fetch(PDO::FETCH_ASSOC);

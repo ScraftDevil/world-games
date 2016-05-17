@@ -1,5 +1,5 @@
 <?php
-	require_once '/Structures/DataGrid.php';
+	require_once 'Structures/DataGrid.php';
 	function showUsers() {
 		$db = unserialize($_SESSION['dbconnection']);
 		$order = "";

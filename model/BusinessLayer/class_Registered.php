@@ -28,6 +28,7 @@ class Registered extends User {
     //constructor
     function __construct($username, $password, $email, $birthDate, $country) {
         parent::__construct($username, $password, $email, $birthDate, $country);
+        $this->setCountry($country);
     }
 
     function insertRegistered() {

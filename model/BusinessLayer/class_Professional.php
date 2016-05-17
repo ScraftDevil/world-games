@@ -30,12 +30,17 @@ class Professional extends User {
         $this->complaints = $complaints;
     }
 
-    function __construct($telephone) {
-        parent::__construct();
-        $this->setTelephone($telephone);
+    function __construct($username, $password, $email, $birthDate) {
+        parent::__construct($username, $password, $email, $birthDate);
+        $this->setTelephone(null);
         $this->setReports(array());
         $this->setComplaints(array());
     }
+
+    function insertProfessional() {
+        $professionalDAO = new ProfessionalDAO();
+        return $professionalDAO->insertProfessional($this);
+    } 
 
 }
 
