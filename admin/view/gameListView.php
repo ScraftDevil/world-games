@@ -71,7 +71,7 @@
 								?>
 								<div class="new-button">
 									
-									<button type="button" class="btn btn-success"><a href="newUserView.php?group=<?php echo $group; ?>"><i class="fa fa-user" aria-hidden="true"></i> Nuevo Juego</a></button>
+									<button type="button" class="btn btn-success"><a href="newGameView.php"><i class="fa fa-user" aria-hidden="true"></i> Nuevo Juego</a></button>
 								</div>
 								<?php
 									include("../controller/showGameController.php");

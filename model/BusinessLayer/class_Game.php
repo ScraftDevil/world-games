@@ -78,10 +78,11 @@ class Game implements JsonSerializable {
         $GameDao->addGame($title,$price);
     }*/
 
-    public function addGameDb($games) {
+    public function insertGame() {
         $GameDao = new gameDAO();
-        $GameDao->addGame($games);
+       return  $GameDao->insertGame($this); 
     }
+
 
     /*public function addGenre($title,$price) {
 

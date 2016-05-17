@@ -19,7 +19,7 @@
 		$dg->addColumn($column);
 		$column = new Structures_DataGrid_Column('Stock juego', 'Stock', 'Stock', array('class'=>'grid-cel'));
 		$dg->addColumn($column);
-		$column = new Structures_DataGrid_Column('ID de <br> plataforma', 'Plataform_ID', 'Plataform_ID', array('class'=>'grid-cel'));
+		$column = new Structures_DataGrid_Column('ID de <br> plataforma', 'Plataform', 'Plataform', array('class'=>'grid-cel'));
 		$dg->addColumn($column);
 		
 		$column = new Structures_DataGrid_Column("<a href='#'>Opciones</a>", null, null, array('class'=>'grid-cel'), null, 'PrintOption()');
@@ -29,7 +29,7 @@
 
 	function PrintOption($params){
 		extract($params);
-		$id = $record['ID_Registered'];
+		$id = $record['ID_Game'];
 		return "
 		<div class=\"btn-group\">
 		  <button type=\"button\" class=\"btn btn-danger\">Selecciona una opcion</button>
@@ -39,14 +39,14 @@
 		  </button>
 		  <ul class=\"dropdown-menu\">
 		    <li><a class=\"drop-grid\" href=\"registeredDataEdit.php?id=$id\">Editar</a></span></li>
-		     <li><a href=\"#\" onclick=\"deleteUser($id)\">Eliminar</a></li>
+		     <li><a href=\"#\" onclick=\"deleteGame($id)\">Eliminar</a></li>
 		  </ul>
 		</div>";
 	}
 
 	function PrintUTF8($params){
 		extract($params);
-		$fieldData = $record['Country'];
+		$fieldData = $record['Plataform'];
 		return utf8_encode($fieldData);
 	}
 

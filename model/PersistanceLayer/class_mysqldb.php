@@ -100,6 +100,14 @@ class mysqldb {
 		return $result;
 	}
 
+	public function getPlataform() {
+		$sql = "SELECT ID_Plataform ,Name FROM plataform";
+		$stmt = $this->getLink()->prepare($sql); 
+		$stmt->execute();
+		$result = $stmt->FetchAll();
+		return $result;
+	}
+
 	public function getRegisteredInfo($id) {
 		$registeredDao = new RegisteredDAO();
 		$registered = $registeredDao->getRegisteredInfo($id);

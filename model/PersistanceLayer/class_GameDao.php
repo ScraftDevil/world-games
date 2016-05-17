@@ -3,9 +3,9 @@ require_once("../model/autoload.php");
 
 class gameDAO {
 
-    public function addGame($games) {
+    public function insertGame($games) {
 
-        $query = "insert into game values('', '" . $games->getTitle() . "', '" . $games->getPrice() . "', '" . 0 ."')";
+        $query = "insert into game values('', '" . $games->getTitle() . "', '" . $games->getPrice() . "', '" . 0 ."','".$games->getPlataform()."')";
 
         $db = unserialize($_SESSION['dbconnection']);
         $resultat = $db->getLink()->prepare($query);
