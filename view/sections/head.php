@@ -20,4 +20,5 @@ session_start();
     <link href="css/footer.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="css/detall.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/detailGame.css"/>
 </head>

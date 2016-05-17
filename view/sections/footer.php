@@ -313,7 +313,13 @@ $(document).on("click", ".buyItem", function (e) {
         Cookies.set('shoppingCart', items, { expires: 1 });
     }
     if (newGame) {
-        $("#basket").append('<span class="item" id="Product'+id+'"><span class="item-left"><img src="'+itemImageURL+'" alt="'+title+'" width="85px" height="105px"/><span class="item-info"><span>'+title+'</span><span id="quantity">x'+game.quantity+'</span><span>'+price+'</span></span></span></span>');
+        var linesHTML = '<span class="item" id="Product'+id+'"><span class="item-left">';
+        linesHTML += '<img src="'+itemImageURL+'" alt="'+title+'" width="85px" height="105px"/><span class="item-info">';
+        linesHTML += '<span>'+title+'</span>';
+        linesHTML += '<span id="quantity">x'+game.quantity+'</span>';
+        linesHTML += '<span>'+price+'</span>';
+        linesHTML += '</span></span></span>';
+        $("#basket").append(linesHTML);
     }
 });
 function getGame(json, idgame) {
