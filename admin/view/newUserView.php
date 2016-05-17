@@ -76,7 +76,7 @@
 										<div class="form-group">
 											<label for="Brithdate">Fecha de Nacimiento</label>
 											<div class="input-group">
-												<input type="text" class="form-control" id="Birthdate" name="birthdate" placeholder="Birthdate" required><span class="input-group-addon"><span>&nbsp;&nbsp;&nbsp;</span></span>
+												<input type="text" class="form-control" id="calendar" name="birthdate" placeholder="Birthdate" required><span class="input-group-addon"><span>&nbsp;&nbsp;&nbsp;</span></span>
 											</div>
 										</div>
 										<div class="form-group">
