@@ -15,11 +15,26 @@ body{
 	margin-right: auto;
 	margin-left: auto;
 	display: block;
-	margin-bottom: 7px;
-	margin-top: 7px;
-	-webkit-box-shadow: 0px 0px 24px 0px rgba(255,255,255,1);
-	-moz-box-shadow: 0px 0px 24px 0px rgba(255,255,255,1);
-	box-shadow: 0px 0px 24px 0px rgba(255,255,255,1);
+	margin-bottom: 23px;
+	margin-top: 23px;
+	
+}
+
+
+.boto{
+	margin-top: 10px;
+}
+
+.divform{
+	margin-top: 50px;
+	/*background-color: #736B58;*/
+	background-color: #E6E6E6;
+	color: #585858;
+	padding: 10px;
+	margin-bottom: 50px;
+	width: 100%;
+	text-align: center;
+	overflow: auto;
 }
 
 .span1{
