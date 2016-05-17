@@ -33,14 +33,14 @@ CREATE TABLE IF NOT EXISTS `administrator` (
   `Email` char(45) DEFAULT NULL,
   `BannedTime` float DEFAULT NULL,
   `BirthDate` date DEFAULT NULL,
-  `Shop_id_Shop` int(11) NOT NULL
+  `Shop_ID` int(11) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `administrator`
 --
 
-INSERT INTO `administrator` (`ID_Administrator`, `Username`, `Password`, `Email`, `BannedTime`, `BirthDate`, `Shop_id_Shop`) VALUES
+INSERT INTO `administrator` (`ID_Administrator`, `Username`, `Password`, `Email`, `BannedTime`, `BirthDate`, `Shop_ID`) VALUES
 (1, 'admin', 'admin', 'admin@admin.com', NULL, '2016-05-04', 1);
 
 -- --------------------------------------------------------
@@ -403,8 +403,8 @@ CREATE TABLE IF NOT EXISTS `valoration` (
 -- Indices de la tabla `administrator`
 --
 ALTER TABLE `administrator`
-  ADD PRIMARY KEY (`ID_Administrator`,`Shop_id_Shop`),
-  ADD KEY `fk_Admistrador_Shop1_idx` (`Shop_id_Shop`);
+  ADD PRIMARY KEY (`ID_Administrator`,`Shop_ID`),
+  ADD KEY `fk_Admistrador_Shop1_idx` (`Shop_ID`);
 
 --
 -- Indices de la tabla `admistrador_has_report`
@@ -667,7 +667,7 @@ ALTER TABLE `valoration`
 -- Filtros para la tabla `administrator`
 --
 ALTER TABLE `administrator`
-  ADD CONSTRAINT `fk_Admistrador_Shop1` FOREIGN KEY (`Shop_id_Shop`) REFERENCES `shop` (`ID_Shop`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Admistrador_Shop1` FOREIGN KEY (`Shop_ID`) REFERENCES `shop` (`ID_Shop`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `admistrador_has_report`
