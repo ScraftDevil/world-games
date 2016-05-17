@@ -9,6 +9,7 @@
 		$name = $registered[0][0];
 		$email = $registered[0][1];
 		$birthDate = $registered[0][3];
+		$birthDate = date('d-m-Y', strtotime($birthDate));
 		$paypalAccount = $registered[0][4];
 		$avatarUrl = $registered[0][5];
 		$country = $registered[0][6];
@@ -60,6 +61,7 @@
 		
 		$email = $_REQUEST['email'];
 		$birthdate = $_REQUEST['birthdate'];
+		$birthdate = date('Y-m-d', strtotime($birthdate));
 		$paypal = $_REQUEST['paypal'];
 		$image = $_REQUEST['profileImage'];
 		$country = $_REQUEST['country'];

@@ -13,6 +13,10 @@ header {
     color: white;
 }
 
+h1 {
+    font-size: 2.1875em;
+}
+
 a:hover {
     color: white;
     text-decoration: none;
@@ -265,9 +269,6 @@ a {
     color: white !important;
 }
 
-#user-form {
-}
-
 #user-form p {
     float: right;
 }
@@ -347,6 +348,19 @@ a {
 
 .confirm-msg {
     margin: 15px;
+}
+
+.panel {
+    margin-top: 20px;
+}
+
+.input-radius input {
+    border-radius: 4px !important;
+    width: 300px !important;
+}
+
+#general-error {
+    margin-top: 10px;
 }
 
 

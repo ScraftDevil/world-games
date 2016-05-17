@@ -48,47 +48,51 @@
 				<div class="container container-content">
 					<div class="row">
 						<div class="col-md-12">
-							<h2> Nuevo Usuario <?php echo $label; ?></h2>
-							<form action="../controller/newUserController.php?group=<?php echo $group ?>" method="POST">
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="Username">Nombre de Usuario</label>
-											<div class="input-group">
-											<input type="text" class="form-control" name="username" id="Username" placeholder="Username" required>
-												<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="Password">Contraseña</label>
-											<div class="input-group">
-												<input type="password" class="form-control" id="Password" name="password" placeholder="Password" required>
-												<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="Email">Email</label>
-											<div class="input-group">
-												<input type="email" class="form-control" id="Email" name="email" placeholder="Email" required>
-												<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="Brithdate">Fecha de Nacimiento</label>
-											<div class="input-group">
-												<input type="text" class="form-control" id="calendar" name="birthdate" placeholder="Birthdate" required><span class="input-group-addon"><span>&nbsp;&nbsp;&nbsp;</span></span>
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="Pais">País</label>
-											<?php include("sections/countryList.php"); ?>
-										</div>
-										<div class="form-group caixasubmit">
-										<input type="submit" name="submit" id="submit" class="btn btn-info pull-right">
-										</div>
-									</div>
+							<div class="panel panel-primary">
+								<div class="panel-heading">
+									<h2 class="panel-title"> Nuevo Usuario <?php echo $label; ?></h2>
 								</div>
-							</form>
+							  	<div class="panel-body">
+								    <form id="registered-user">
+										<div class="row">
+											<div class="col-md-12">
+												<div id="general-error"></div>
+												<div class="form-group">
+													<label for="Username">Nombre de Usuario</label><label for="user-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
+													<div class="input-group input-radius">
+													<input type="text" class="form-control" name="username" id="Username" placeholder="Username" required><span id="user-error" class="server-error"></span>
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="Password">Contraseña</label><label for="password-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
+													<div class="input-group input-radius">
+														<input type="password" class="form-control" id="Password" name="password" placeholder="Password" required><span class="server-error"></span>
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="Email">Email</label><label for="email-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
+													<div class="input-group input-radius">
+														<input type="email" class="form-control" id="Email" name="email" placeholder="Email" required><span class="server-error"></span>
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="Brithdate">Fecha de Nacimiento</label><label for="birthdate-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
+													<div class="input-group input-radius">
+														<input type="text" class="form-control" id="calendar" name="birthdate" placeholder="Birthdate" required><span class="server-error"></span>
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="Pais">País</label><label for="country-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
+													<?php include("sections/countryList.php"); ?><span class="server-error"></span>
+												</div>
+												<div class="form-group caixasubmit">
+												<button type="button" name="submit" id="submit" class="btn btn-info pull-left">Enviar</button>
+												</div>
+											</div>
+										</div>
+									</form>
+							  	</div>
+							</div>
 						</div>
 					</div>
 				</div>
