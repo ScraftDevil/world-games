@@ -1,11 +1,11 @@
 /* titulo del apartado que permite plegarse y desplegarse. Por defecto estará depslegado */
 .desplegableProfile {
     background-color:#16A085;
-	color:white;
-	width:100%;
-	cursor:pointer;
-	padding-left: 10px;
-	margin-bottom: 10px;
+    color:white;
+    width:100%;
+    cursor:pointer;
+    padding-left: 10px;
+    margin-bottom: 10px;
 }
 
 /* Apartado de datos del perfil de usuari donde puede cambiar sus datos personales */
@@ -44,6 +44,84 @@
 
 .underlined-title h2 {
     /* COMENTAR SOBRE DEJAR LAS LETRAS EN MINÚSCULAS */
-	/*text-transform:none;*/
-	letter-spacing:2px;
+    /*text-transform:none;*/
+    letter-spacing:2px;
+}
+
+/*  ICONS Platafforms   */
+#Steam {
+    padding-left: 45px;
+    background-image: url("../images/platforms/steam.png");
+    background-size: 18% 100%;
+    background-repeat: no-repeat;
+    margin-left: 3px;
+}
+
+#Origin {
+    padding-left: 45px;
+    background-image: url("../images/platforms/origin.png");
+    background-size: 18% 100%;
+    background-repeat: no-repeat;
+    margin-left: 3px;
+}
+
+#Xbox {
+    padding-left: 45px;
+    background-image: url("../images/platforms/xbox.png");
+    background-size: 18% 100%;
+    background-repeat: no-repeat;
+    margin-left: 3px;
+}
+
+#PSN {
+    padding-left: 45px;
+    background-image: url("../images/platforms/psn.png");
+    background-size: 18% 100%;
+    background-repeat: no-repeat;
+    margin-left: 3px;
+}
+/*  Shopping Cart CSS   */
+ul.dropdown-cart{
+    min-width:250px;
+}
+ul.dropdown-cart li .item{
+    display:block;
+    padding:3px 10px;
+    margin: 3px 0;
+}
+ul.dropdown-cart li .item:hover{
+    background-color: #193441;
+    cursor: pointer;
+    cursor: hand;
+}
+ul.dropdown-cart li .item:after{
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+ul.dropdown-cart li .item-left{
+    float:left;
+}
+ul.dropdown-cart li .item-left img,
+ul.dropdown-cart li .item-left span.item-info{
+    float:left;
+}
+ul.dropdown-cart li .item-left span.item-info{
+    margin-left:10px;   
+}
+ul.dropdown-cart li .item-left span.item-info span{
+    display:block;
+}
+ul.dropdown-cart li .item-right{
+    float:right;
+}
+ul.dropdown-cart li .item-right button{
+    margin-top:14px;
+}
+.item-info span {
+    color: white;
 }

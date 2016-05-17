@@ -253,7 +253,8 @@ $(document).ready(function() {
 </script>
 <!-- SHOPPING CART -->
 <script>
-if (typeof Cookies.get('shoppingCart') == "undefined") {
+var shoppingCart = typeof Cookies.get('shoppingCart');
+if (shoppingCart == "undefined") {
     $("#basket").html("No hay productos añadidos al carrito");
 } else {
     var json = Cookies.getJSON('shoppingCart');
@@ -263,7 +264,8 @@ if (typeof Cookies.get('shoppingCart') == "undefined") {
         if($product.length > 0) {
             $("#Product"+item.id).find("#quantity").text("x"+item.quantity);
         } else {
-            $("#basket").append('<span class="item" id="Product'+item.id+'"><span class="item-left"><img src="'+item.image+'" alt="'+item.name+'" width="85px" height="105px"/><span class="item-info"><span>'+item.name+'</span><span id="quantity">x'+item.quantity+'</span><span>'+item.price+'</span></span></span></span>');
+            var buttonRemoveHTML = '<button type="button" class="removeItem btn btn-danger" style="position: absolute;padding: 0px;margin: 0px;margin-left: 145px;width: 19px;">X</button>';
+            $("#basket").append('<span class="item" id="Product'+item.id+'">'+buttonRemoveHTML+'<span onclick="loadDetailGame('+item.id+')" class="item-left"><img src="'+item.image+'" alt="'+item.name+'" width="85px" height="105px"/><span class="item-info"><span>'+item.name+'</span><span id="quantity">x'+item.quantity+'</span><span>'+item.price+'</span></span></span></span>');
             nitems++;
         }
     });
@@ -292,7 +294,7 @@ $(document).on("click", ".buyItem", function (e) {
     var title = $item.find("h5:eq(0)").text();
     var price = $item.find("h6:eq(0)").text();
     var newGame = true;
-    if (typeof Cookies.get('shoppingCart') == "undefined") {
+    if (typeof Cookies.getJSON('shoppingCart') == "undefined") {
         var items = Array();
         var game = new Game(id, title, price, itemImageURL, 1);
         items.push(game);
@@ -303,17 +305,19 @@ $(document).on("click", ".buyItem", function (e) {
         var items = Cookies.getJSON('shoppingCart');
         var game = getGame(items, id);
         if(game==null) {
+            newGame = true;
             game = new Game(id, title, price, itemImageURL, 1);
+            items.push(game);
             $("#countShoppingCart").text(nitems);
         } else {
             newGame = false;
             $("#Product"+id).find("#quantity").text("x"+game.quantity);
         }
-        items.push(game);
         Cookies.set('shoppingCart', items, { expires: 1 });
     }
     if (newGame) {
-        var linesHTML = '<span class="item" id="Product'+id+'"><span class="item-left">';
+        var buttonRemoveHTML = '<button type="button" class="removeItem btn btn-danger" style="position: absolute;padding: 0px;margin: 0px;margin-left: 145px;width: 19px;">X</button>';
+        var linesHTML = '<span class="item" id="Product'+id+'">'+buttonRemoveHTML+'<span onclick="loadDetailGame('+id+')" class="item-left">';
         linesHTML += '<img src="'+itemImageURL+'" alt="'+title+'" width="85px" height="105px"/><span class="item-info">';
         linesHTML += '<span>'+title+'</span>';
         linesHTML += '<span id="quantity">x'+game.quantity+'</span>';
@@ -332,4 +336,58 @@ function getGame(json, idgame) {
     });
     return game;
 }
+function getGameDecr(json, idgame) {
+    var game = null;
+    $.each(json, function(i, item) {
+        if (item.id==idgame) {
+            item.quantity--;
+            game = item;
+        }
+    });
+    return game;
+}
+function getPositionGame(json, idgame) {
+    var gamePos = -1;
+    $.each(json, function(i, item) {
+        if (item.id==idgame) {
+            gamePos = i;
+        }
+    });
+    return gamePos;
+}
+
+function getNumItems(json) {
+    var nItems = 0;
+    $.each(json, function() {
+        nItems++;
+    });
+    return nItems;
+}
+
+function loadDetailGame(idgame) {
+    window.location.href="detailsProduct.php?gameid="+idgame;
+    return false;
+}
+$(document).ready(function() {
+    $(document).on("click", ".removeItem", function (e) {
+        e.preventDefault();
+        $obj = $(this).parent();
+        var quantitygame = parseInt($obj.find(".item-info #quantity").text().replace("x", ""));
+        var idgame = $obj.attr("id").replace("Product", "");
+        var games = Cookies.getJSON('shoppingCart');
+        if (quantitygame<=1) {
+            $obj.remove();
+            games.splice(getPositionGame(games, idgame), 1);
+            var shoppingCart = JSON.stringify(games);
+            Cookies.set('shoppingCart', shoppingCart, { expires: 1 });
+        } else {
+            var game = getGameDecr(games, idgame);
+            var shoppingCart = JSON.stringify(games);
+            Cookies.set('shoppingCart', shoppingCart, { expires: 1 });
+            $obj.find(".item-info #quantity").text("x"+(quantitygame-1));
+        }
+        $("#countShoppingCart").text(getNumItems(games));
+    });
+
+});
 </script>
