@@ -25,27 +25,7 @@
 			case 'registered':
 				$country = $user->country;
 				$proces = addRegistered($username, $password, $email, $birthdate, $country);
-				switch($proces) {
-					case "success":
-						$response = array("id" => "success");
-					break;
-
-					case "username":
-						$response = array("id" => "error-username");
-					break;
-
-					case "email":
-						$response = array("id" => "error-email");
-					break;
-
-					case "null":
-						$response = array("id" => "error-null");
-					break;
-
-					default:
-						$response = array("id" => "error");
-					break;
-				}
+				$response = messages($proces);
 			break;
 
 			case 'professional':
@@ -116,6 +96,61 @@
 			}
 		}
 		return $proces;
+	}
+
+	function validateDateFormat($date) {
+
+		$correct = false;
+
+		/* Date regular expression */
+		$dateSintax = '/[0-9]{2}\-[0-9]{2}\-[0-9]{4}/';
+
+
+		if (preg_match($dateSintax, $date)) {
+			$correct = true;
+		}
+
+		return $correct;
+
+	}
+
+	function validateEmail($email) {
+		$correct = false;
+
+		/* Email regular expression */
+		$emailSintax = '/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/';
+
+		if (preg_match($emailSintax, $email)) {
+			$correct = true;
+		}
+
+		return $correct;
+	}
+
+	function messages($proces) {
+		$response = null;
+		switch($proces) {
+			case "success":
+			$response = array("id" => "success");
+			break;
+
+			case "username":
+			$response = array("id" => "error-username");
+			break;
+
+			case "email":
+			$response = array("id" => "error-email");
+			break;
+
+			case "null":
+			$response = array("id" => "error-null");
+			break;
+
+			default:
+			$response = array("id" => "error");
+			break;
+		}
+		return $response;
 	}
 
 	echo json_encode($response);
