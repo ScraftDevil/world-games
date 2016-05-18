@@ -25,12 +25,14 @@
 			case 'registered':
 				$country = $user->country;
 				$proces = addRegistered($username, $password, $email, $birthdate, $country);
-				if ($proces != 0) {
+				if ($proces == "success") {
 					$response = array("id" => "success");
-				} else if ($proces == 1) {
-					$response = array("id" => "error");
-				} else {
-					
+				} else if ($proces == "username") {
+					$response = array("id" => "error-username");
+				} else if ($proces == "email") {
+					$response = array("id" => "error-email");
+				} else if ($proces == "null") {
+					$response = array("id" => "error-null");
 				}
 			break;
 
@@ -62,11 +64,12 @@
 
 
 	function addRegistered($username, $password, $email, $birthdate, $country) {
-		$proces = 0;
 		if ($username != "" AND $password != "" AND $email != "" AND $birthdate != "" AND $country != "") {
 				$birthdate = date('Y-m-d', strtotime($birthdate));
 				$registered = new Registered($username, $password, $email, $birthdate, $country);
 				$proces = $registered->insertRegistered();
+		} else {
+			$proces = "null";
 		}
 		return $proces;
 	}

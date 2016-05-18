@@ -41,8 +41,12 @@
 				$message = "<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-ok\"></span> ¡Usuario creado satisfactoriamente!</strong></div>";
 				break;
 				
-				case "errusername":
-				$message = "<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Ese Usuario ya existe!</strong></div>";
+				case "error-username":
+				$message = "<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Ese nombre de Usuario ya existe!</strong></div>";
+				break;
+
+				case "error-email":
+				$message = "<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Ese email ya esta en uso!</strong></div>";
 				break;
 
 				case "deleteFail":

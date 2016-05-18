@@ -91,18 +91,28 @@ function sendGame(game) {
 
 function getInsertUserProcess(data) {
 	switch(data.id) {
-		case "error":
-			$("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en la validación de datos del usuario!</strong></div>");
-		break;
+		case "error-null":
+            $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en la validación de datos del usuario!</strong></div>");
+        break;
 
-		case "success":
-			var delay = 0;
-        	setTimeout(function(){ window.location = "userListView.php?group=" + group + "&msg=" + data.id; }, delay);
-		break;
+        case "success":
+            var delay = 0;
+            setTimeout(function(){ window.location = "userListView.php?" + group + "&msg=" + data.id; }, delay);
+        break;
 
-		default:
-			$("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error inesperado!</strong></div>");
-		break;
+        case "error-email":
+            var delay = 0;
+            setTimeout(function(){ window.location = "userListView.php?" + group + "&msg=" + data.id; }, delay);
+        break;
+
+        case "error-username":
+            var delay = 0;
+            setTimeout(function(){ window.location = "userListView.php?" + group + "&msg=" + data.id; }, delay);
+        break;
+
+        default:
+            $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error inesperado!</strong></div>");
+        break;
 	}
 }
 
@@ -114,7 +124,7 @@ function getInsertGameProcess(data) {
 
         case "success":
             var delay = 0;
-            setTimeout(function(){ window.location = "gameListView.php" + group + "&msg=" + data.id; }, delay);
+            setTimeout(function(){ window.location = "gameListView.php?" + group + "&msg=" + data.id; }, delay);
         break;
 
         default:

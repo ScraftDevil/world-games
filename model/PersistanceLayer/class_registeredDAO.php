@@ -141,17 +141,19 @@ class registeredDAO {
 	}
 
 	public function insertRegistered($registered) {
-		$proces = 0;
 		try {
-			$usernameexist = 0;
 			$username = $registered->getUsername();
 			$email = $registered->getEmail();
 			$db = unserialize($_SESSION['dbconnection']);
-			$query = ("SELECT p.Username FROM professional p WHERE p.Username='$username' OR p.Email='$email' UNION SELECT a.Username FROM administrator a WHERE a.Username='$username' OR a.Email='$email' UNION SELECT r.Username FROM registered r WHERE r.Username='$username' OR r.Email='$email'");
+			$query = ("SELECT p.Username FROM professional p WHERE p.Username='$username' UNION SELECT a.Username FROM administrator a WHERE a.Username='$username' UNION SELECT r.Username FROM registered r WHERE r.Username='$username'");
 			$resultat = $db->getLink()->prepare($query);
 			$resultat->execute();
  			$result = $resultat->fetch(PDO::FETCH_ASSOC);
  			if (!$result) {
+ 				$query = ("SELECT p.Username FROM professional p WHERE p.Email='$email' UNION SELECT a.Username FROM administrator a WHERE a.Email='$email' UNION SELECT r.Username FROM registered r WHERE r.Email='$email'");
+				$resultat = $db->getLink()->prepare($query);
+				$resultat->execute();
+ 				$result = $resultat->fetch(PDO::FETCH_ASSOC);
 				if (!$result) {
 					$query = ("INSERT INTO registered (ID_Registered, Username, Password, Email, BannedTime, BirthDate, PaypalAccount, AvatarURL, Shop_ID, Country_ID) VALUES (:id, :username, :password, :email, :bannedtime, :birthdate, :paypal, :avatar, :shop_id, :country)");
 					$stmt = $db->getLink()->prepare($query);
@@ -166,10 +168,12 @@ class registeredDAO {
 				    $stmt->bindParam(':shop_id', $this->getShopID());
 				    $stmt->bindParam(':country', $registered->getCountry());
 				    $stmt->execute();
-				    $proces = 2;
+				    $proces = "success";
 				} else {
-					$proces = 1;
+					$proces = "email";
 				}
+			} else {
+				$proces = "username";
 			}
 		} catch(PDOException $ex) {
 			echo "An Error ocurred!";
