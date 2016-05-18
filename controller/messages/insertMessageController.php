@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("../model/autoload.php");
+require_once("../../model/autoload.php");
 $comentari = $_POST["comentari"];
 $gameid = $_POST["gameid"];
 if (isset($_SESSION['user_id'])) {

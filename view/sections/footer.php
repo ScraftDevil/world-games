@@ -42,7 +42,11 @@
 <script type="text/javascript" src="js/userProfile.js"></script>
 <script type="text/javascript" src="js/calendar.js"></script>
 <script type="text/javascript" src="js/js.cookie.js"></script>
-<script type="text/javascript" src='js/message.js'></script>
+<?php
+if (basename($_SERVER['PHP_SELF'])=="detailsProduct.php") {
+    echo '<script type="text/javascript" src="js/messages.js"></script>';
+}
+?>
 <script src='js/jquery.rating.js' type="text/javascript" language="javascript"></script>
 <!--[if lt IE 9]><script src="js/html5shiv.js"></script><script src="js/respond.min.js"></script><![endif]-->
 <script type="text/javascript">

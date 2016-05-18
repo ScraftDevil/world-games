@@ -5,7 +5,7 @@ setInterval(ajaxCall, 2000);
 function ajaxCall() {
     $.ajax({
       type: "POST",
-      url: "../controller/getMessageController.php",
+      url: "../controller/messages/getMessageController.php",
       data:         
       {
       "gameid":getterURL('gameid')
@@ -33,7 +33,7 @@ $("#enviar").click(function (){
       $.ajax({
         type: "POST",
 
-        url: "../controller/insertMessageController.php",
+        url: "../controller/messages/insertMessageController.php",
         data:         
         {
           "comentari":comentari,
