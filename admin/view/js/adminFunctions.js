@@ -1,56 +1,12 @@
 group = getterURL("group");
 
-$("#submit").click(function() {
+$("#insert-user").click(function() {
 	var username = $("#Username").val();
 	var password = $("#Password").val();
 	var email = $("#Email").val();
 	var birthdate = $("#calendar").val();
 	var country = document.getElementById("country").value; 
 	var user = {"username": username, "password": password, "email": email, "birthdate": birthdate, "country": country, "group": group};
-	// JQUERY VALIDATIONS
-
-(function($,W,D)
-{
-    var JQUERY4U = {};
-
-    JQUERY4U.UTIL =
-    {
-        setupFormValidation: function()
-        {
-            //form validation rules
-            $("#registered-user").validate({
-                rules: {
-                    Username: "required",
-                    Password: "required",
-                    Email: {
-                        required: true,
-                        email: true
-                    }
-                },
-                messages: {
-                    Username: "Introduce el nombre de usuario",
-                    Password: "Introduce la contraseña",
-                    //password: {
-                        //required: "Please provide a password",
-                        //minlength: "Your password must be at least 5 characters long"
-                    //},
-                    Email: "Please enter a valid email address"
-                    //agree: "Please accept our policy"
-                },
-                submitHandler: function(form) {
-                    form.submit();
-                }
-            });
-        }
-    }
-
-    //when the dom has loaded setup form validation rules
-    $(D).ready(function($) {
-        JQUERY4U.UTIL.setupFormValidation();
-    });
-
-})(jQuery, window, document);
-
 	sendUser(user);
 });
 
