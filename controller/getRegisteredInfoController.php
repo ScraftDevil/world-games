@@ -1,7 +1,7 @@
 <?php
 
 	require_once("../model/autoload.php");
-	include("registeredValidationProfileController.php");
+	//include("registeredValidationProfileController.php");
 
 
 	function createObjectRegistered($registered) {
@@ -45,36 +45,6 @@
     	}
 	}
 
-	function updateRegisteredInfo($id) {
-		
-		$email = $_REQUEST['email'];
-		$birthdate = $_REQUEST['birthdate'];
-		$birthdate = date('Y-m-d', strtotime($birthdate));
-		$paypal = $_REQUEST['paypal'];
-		$image = $_REQUEST['profileImage'];
-		$country = $_REQUEST['country'];
-
-		$shopDb = unserialize($_SESSION['dbconnection']);
-
-		$errors = 0;
-
-		//metodo que devuelve un objeto Registered. Guardará los campos segun los input 
-		//y si estan vacíos cogerá el valor del objeto serializado registered
-		//$registered = validateInputs($id, $email, $birthdate, $paypal, $image, $country);
-
-		$errors = validateInputs($id, $email, $birthdate, $paypal, $image, $country, $errors);
-
-		if ($errors == 0) {
-			$response = array("id" => "success");
-		}
-		else {
-			if ($errors != 0) {
-				$response = array("id" => "error");
-			}
-		}
-		
-	}
-
 	function deleteRegisteredUser($id) {
 		$shopDb = unserialize($_SESSION['dbconnection']);
 		$shopDb->deleteRegisteredUser($id);
@@ -84,15 +54,10 @@
 		header ("Location: ../index.php");
 	}
 
-
-	if (isset($_REQUEST['update'])) {
-		updateRegisteredInfo($_SESSION['user_id']);
-	}
-
 	if (isset($_REQUEST['delete'])) {
 		if (isset($_REQUEST['deleteCheckBox'])) {
 			deleteRegisteredUser($_SESSION['user_id']);
 		}	
-	}	
+	}
 
 ?>

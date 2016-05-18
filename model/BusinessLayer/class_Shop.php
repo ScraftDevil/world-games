@@ -80,7 +80,7 @@ class Shop {
 
 
 
-public function addGame($title,$price) {
+  function addGame($title,$price) {
 
         $games = new Game($title,$price);
 
@@ -94,11 +94,8 @@ public function addGame($title,$price) {
         $gamefound = null;
         $games = $this->getGames();
         foreach ($games as $game) {
-            
             if ($game->getId()==$idgame) {
-
                 $gamefound = $game;
-              
             }
         }
         return $gamefound;

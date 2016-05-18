@@ -45,18 +45,12 @@
 <script type="text/javascript" src='js/message.js'></script>
 <script src='js/jquery.rating.js' type="text/javascript" language="javascript"></script>
 <!--[if lt IE 9]><script src="js/html5shiv.js"></script><script src="js/respond.min.js"></script><![endif]-->
-
-<!--    SEARCH  -->
 <script type="text/javascript">
 $(document).ready(function() {
     $('#star').rating('../controller/advote.php', {maxvalue: 5});
-
 });
-
 </script>
-
-
-
+<!--    SEARCH  -->
 <script type="text/javascript">
 var delay = (function(){
   var timer = 0;

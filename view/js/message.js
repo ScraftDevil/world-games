@@ -1,20 +1,17 @@
-$(document).ready(function() {  
+$(document).ready(function() {
 
- setInterval(ajaxCall, 1000); 
+setInterval(ajaxCall, 2000);
 
 function ajaxCall() {
     $.ajax({
       type: "POST",
-      url: "../controller/getmessagecontroler.php",
+      url: "../controller/getMessageController.php",
       data:         
       {
-     
       "gameid":getterURL('gameid')
-      
-    },
+      },
       success: function(data) {
-      $("#comentariosusers").html(data);
-      
+        $("#comentariosusers").html(data);
     }
   });
 }
@@ -31,27 +28,20 @@ function getterURL(variable) {
   return variable;
 }
 
-  $("#enviar").click(function (){
+$("#enviar").click(function (){
+    var comentari = $("#comentari").val();
+      $.ajax({
+        type: "POST",
 
-
-var comentari = $("#comentari").val();
-
-  
-    $.ajax({
-      type: "POST",
-
-      url: "../controller/messagecontroler.php",
-      data:         
-      {
-      "comentari":comentari,
-      "gameid":getterURL('gameid')
-      
-    },
-    success: function(data) {
-   $("#message").html("Gràcies per la seva opinió");
-      
-    }
-  });
-
-  });
+        url: "../controller/insertMessageController.php",
+        data:         
+        {
+          "comentari":comentari,
+          "gameid":getterURL('gameid')
+        },
+        success: function(data) {
+          $("#message").html("Se ha enviado el mensaje con exito.");
+        }
+      });
+    });
 });
