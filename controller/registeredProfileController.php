@@ -68,11 +68,24 @@
 
 		$shopDb = unserialize($_SESSION['dbconnection']);
 
+		$errors = array();
+
 		//metodo que devuelve un objeto Registered. Guardará los campos segun los input 
 		//y si estan vacíos cogerá el valor del objeto serializado registered
-		$registered = validateInputs($id, $email, $birthdate, $paypal, $image, $country);
+		//$registered = validateInputs($id, $email, $birthdate, $paypal, $image, $country);
+		$errorsList = validateInputs($id, $email, $birthdate, $paypal, $image, $country, $errors);
 
-		$shopDb->updateRegisteredUser($registered);
+		if ($errorsList == null) {
+			$registered = new Registered('', '', $email, $birthdate, $country, $errors);
+			$registered->setId($id);
+			$registered->setPaypalAccount($paypal);
+			$registered->setAvatarURL($image);
+			$shopDb->updateRegisteredUser($registered);
+		}
+		else {
+			print_r($errorsList);
+		}
+		
 	}
 
 	function deleteRegisteredUser($id) {

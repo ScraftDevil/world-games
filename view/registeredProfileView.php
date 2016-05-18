@@ -48,28 +48,28 @@ $_SESSION['registered'] = serialize($registeredObject);?>
                                 <form id="profileForm" action="../controller/registeredProfileController.php" method="POST">
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Correo Eletrónico</label>
-                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
+                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-5 inputAttribute">
                                             <input class="form-control" type="text" name="email" placeholder="micorreo@ejemplo.com" value="<?php echo $registeredObject->getEmail();?>">
                                         </div>
                                     </div>
 
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Fecha de Nacimiento:</label>
-                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
+                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-5 inputAttribute">
                                             <input id="calendar" class="form-control" type="text" name="birthdate" placeholder="AAAA-MM-DD" value="<?php echo $registeredObject->getBirthDate();?>">
                                         </div>
                                     </div>
 
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Cuenta PayPal:</label>
-                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
+                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-5 inputAttribute">
                                             <input class="form-control" type="text" name="paypal" placeholder="micorreoPayPal@ejemplo.com" value="<?php echo $registeredObject->getPaypalAccount();?>">
                                         </div>
                                     </div>
 
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">País:</label>
-                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 inputAttribute">
+                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-5 inputAttribute">
                                             <select name="country">
                                                 <?php getCountriesList($registeredObject->getCountry()); ?>
                                             </select>

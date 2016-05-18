@@ -23,6 +23,11 @@
     width:100%;
 }
 
+.errorLabel {
+    color:red;
+    float:left;
+}
+
 /* separacion entre los form-groups (label + input) en resolucion de tablet */
 @media only screen and (min-width:768px) and (max-width:1200px) {
     .form-group {
@@ -42,13 +47,12 @@
     color:white;
 }
 
+/* separación entre caracteres del subtitulo */
 .underlined-title h2 {
-    /* COMENTAR SOBRE DEJAR LAS LETRAS EN MINÚSCULAS */
-    /*text-transform:none;*/
     letter-spacing:2px;
 }
 
-/*  ICONS Platafforms   */
+/*  Platafforms Icons */
 #Steam {
     padding-left: 45px;
     background-image: url("../images/platforms/steam.png");
@@ -80,7 +84,7 @@
     background-repeat: no-repeat;
     margin-left: 3px;
 }
-/*  Shopping Cart CSS   */
+/*  Shopping Cart CSS  */
 ul.dropdown-cart{
     min-width:250px;
 }
