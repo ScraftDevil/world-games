@@ -56,8 +56,8 @@ function printGame($game) {
                     }
                     echo '</h5>';
                     echo '<h6>';
-                    if (!empty($game->getPlataform())) {
-                        echo $game->getPlataform()->getName();
+                    if (!empty($game->getPlatform())) {
+                        echo $game->getPlatform()->getName();
                     }
                     echo '</h6>';
                     ?>

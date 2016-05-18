@@ -6,7 +6,7 @@ $shop->populateShop();
 if (isset($_POST['genre'])) {
 	$games = $shop->filterGames($_POST['genre'], "genre");
 } else if (isset($_POST['plataform'])) {
-	$games = $shop->filterGames($_POST['plataform'], "plataform");
+	$games = $shop->filterGames($_POST['platform'], "platform");
 }
 if (!empty($games)) {
 	echo json_encode($games);

@@ -55,8 +55,8 @@ function printGame($game) {
         <span class="spanprecio2">Plataforma producto:</span>
         <span class="span1 spanplataforma">
             <?php
-            if (!empty($game->getPlataform())) {
-                echo $game->getPlataform()->getName();
+            if (!empty($game->getPlatform())) {
+                echo $game->getPlatform()->getName();
             }
             ?>
         </span>
