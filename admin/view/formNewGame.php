@@ -1,7 +1,7 @@
 
 <?php
 session_start();
-include("../controller/controlerselectoffer.php");
+include("../controller/showOffersController.php");
 
  ?>
 
