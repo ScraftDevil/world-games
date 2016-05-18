@@ -28,8 +28,6 @@ class registeredDAO {
 
  		try {
 
-			//$query = ("SELECT r.Email, r.BannedTime, r.BirthDate, r.PaypalAccount, r.AvatarURL, c.Name as 'Pais'
-			//FROM registered r INNER JOIN country c ON r.Country_ID = c.ID_Country where r.ID_Registered = '$id';");
 			$query = ("SELECT Name FROM Country ORDER BY Name");
 
 			$db = unserialize($_SESSION['dbconnection']);
