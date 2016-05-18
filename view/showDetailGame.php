@@ -4,12 +4,8 @@ include_once("../controller/controllerCalculateDiscount.php");
 include_once("../controller/controllershowgamedetails.php");
 function printGame($game) {
     ?>
-    <?php   
-
-    echo $_SESSION['user_id'];
-    echo $_GET['gameid'];
-
-
+    <?php
+    //echo $_GET['gameid'];
     ?>
 
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 " >
