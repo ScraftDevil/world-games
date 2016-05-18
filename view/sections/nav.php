@@ -21,20 +21,10 @@
                     <li class="nav-item dropdown" id="shoppingCartBtn">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" role="button"> <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Carrito&nbsp;<span class="badge" id="countShoppingCart"></span><span class="caret"></span></a>
                       <ul class="dropdown-menu dropdown-cart" role="menu">
-                          <li id="basket">
-                            <!--<span class="item">
-                                <span class="item-left">
-                                    <img src="http://lorempixel.com/50/50/" alt="" />
-                                    <span class="item-info">
-                                        <span>Nombre Item</span>
-                                        <span>Precio en €</span>
-                                    </span>
-                                </span>
-                            </span>-->
-                          </li>
+                          <li id="basket"></li>
                           <li class="divider"></li>
                           <li><a class="text-center" href="shoppingCart.php">Finalizar Compra</a></li>
-                          <li><a class="text-center" href="#">Vaciar Carrito</a></li>
+                          <li><a class="text-center" href="#" id="clearShop">Vaciar Carrito</a></li>
                       </ul>
                     </li>
                     <!-- SHOPPING CART -->

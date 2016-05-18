@@ -375,6 +375,11 @@ function loadDetailGame(idgame) {
     return false;
 }
 $(document).ready(function() {
+    $(document).on("click", "#clearShop", function() {
+        $("#basket").html("");
+        $("#countShoppingCart").html("");
+        Cookies.remove('shoppingCart');
+    });
     $(document).on("click", ".removeItem", function (e) {
         e.preventDefault();
         $obj = $(this).parent();
