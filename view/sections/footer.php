@@ -45,15 +45,10 @@
 <?php
 if (basename($_SERVER['PHP_SELF'])=="detailsProduct.php") {
     echo '<script type="text/javascript" src="js/messages.js"></script>';
+    echo '<script src="js/rating.js" type="text/javascript" language="javascript"></script>';
 }
 ?>
-<script src='js/jquery.rating.js' type="text/javascript" language="javascript"></script>
 <!--[if lt IE 9]><script src="js/html5shiv.js"></script><script src="js/respond.min.js"></script><![endif]-->
-<script type="text/javascript">
-$(document).ready(function() {
-    $('#star').rating('../controller/advote.php', {maxvalue: 5});
-});
-</script>
 <!--    SEARCH  -->
 <script type="text/javascript">
 var delay = (function(){
@@ -405,4 +400,32 @@ $(document).ready(function() {
     });
 
 });
+</script>
+<!--    RATING SYSTEM   -->
+<script>
+$(document).ready(function() {
+    var params = {"gameid" : getterURL('gameid')};
+    $.ajax({
+        data: params,
+        url:   '../controller/getRatingGame.php',
+        type:  'POST',
+        success:  function (response) {
+            $("#totalScore").html("Total Score: "+response);
+        }
+    });
+});
+</script>
+<!--  GET FROM URL -->
+<script>
+function getterURL(variable) {
+  var query = window.location.search.substring(1);
+  var vars = query.split("?");
+  for (var i=0; i < vars.length; i++) {
+    var pair = vars[i].split("=");
+    if (pair[0] == variable) {
+      return pair[1];
+    }
+  } 
+  return variable;
+}
 </script>

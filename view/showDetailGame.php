@@ -64,14 +64,16 @@ function printGame($game) {
     </div>
 </div>
 
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " >
-<div id="star" class="rating">&nbsp;</div>
-<input name="star1" type="radio" id="star" class="star"/>
-<input name="star1" type="radio" id="star" class="star"/>
-<input name="star1" type="radio" id="star" class="star"/>
-<input name="star1" type="radio" id="star" class="star"/>
-<input name="star1" type="radio" id="star" class="star"/>
-
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+  <p id="totalScore">Score: 0</p>
+  <select id="rating">
+    <option value="5">Excelent</option>
+    <option value="4">Very Good</option>
+    <option value="3">Good</option>
+    <option value="2">Bad</option>
+    <option value="1">Very Bad</option>
+  </select>
+  <button type="button" id="rateBtn">Rate</button>
 </div>
 
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " >
