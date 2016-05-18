@@ -25,14 +25,26 @@
 			case 'registered':
 				$country = $user->country;
 				$proces = addRegistered($username, $password, $email, $birthdate, $country);
-				if ($proces == "success") {
-					$response = array("id" => "success");
-				} else if ($proces == "username") {
-					$response = array("id" => "error-username");
-				} else if ($proces == "email") {
-					$response = array("id" => "error-email");
-				} else if ($proces == "null") {
-					$response = array("id" => "error-null");
+				switch($proces) {
+					case "success":
+						$response = array("id" => "success");
+					break;
+
+					case "username":
+						$response = array("id" => "error-username");
+					break;
+
+					case "email":
+						$response = array("id" => "error-email");
+					break;
+
+					case "null":
+						$response = array("id" => "error-null");
+					break;
+
+					default:
+						$response = array("id" => "error");
+					break;
 				}
 			break;
 
