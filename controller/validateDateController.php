@@ -19,4 +19,21 @@
 
 	}
 
+	/* Date format validation. Returns if a date is in dd-mm-yyyy format or not */
+	function validateDateFormat($date) {
+
+		$correct = false;
+
+		/* Date regular expression */
+		$dateSintax = '/[0-9]{2}\-[0-9]{2}\-[0-9]{4}/';
+
+
+		if (preg_match($dateSintax, $date)) {
+			$correct = true;
+		}
+
+		return $correct;
+
+	}
+
 ?>

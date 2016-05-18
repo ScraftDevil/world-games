@@ -8,46 +8,39 @@
 
 	$registered = unserialize($_SESSION['registered']);
 
+
 	//Email validation
-	// Aunque este vacía, coge por defecto la fecha 1970-01-01
 	if(nullInputValidate($email)) {
 		if (!validateEmail($email)) {
-			//$newEmail = $email;
-			//$newEmail = $registered->getEmail();
-			array_push($errors, "El correo introducido no es válido");
+			$errors++;
 		}
 	}
 	else {
-		//$newEmail = $registered->getEmail();
-		array_push($errors, "Debes introducir un correo electrónico");
+		$errors++;
 	}
 
-	//Falla la comprobacion de si es null o no, ya que por defecto coge el valor 1970-01-01
-	if(nullInputValidate($birthdate)) {
-		if (!validateDate($birthdate)) {
-			array_push($errors, "No puedes introducir una fecha posterior a hoy!");
+	//BirthDate validation
+	if(nullInputValidate($birthdate) AND $birthdate != '1970-01-01') {
+		if (!validateDate($birthdate) AND !validateDateFormat($birthdate)) {
+			$errors++;
 		}
 	}
 	else {
-		array_push($errors, "Debes introducir una fecha");
+		$errors++;
 	}
 
 	//PaypalAccount validation
 	if(nullInputValidate($paypal)) {
 		if (!validateEmail($paypal)) {
-			array_push($errors, "El correo introducido no es válido");
+			$errors++;
 		}
 	}
 
 	//Image validation (validación en desarrollo)
-	/*if(nullInputValidate($image)) {
-		$newImage = $image;
-	}
-	else {
-		$newImage = "";
-	}*/
 
 	return $errors;
+
+	
 
 
 	############### ------------------------------ ###############

@@ -23,11 +23,6 @@
     width:100%;
 }
 
-.errorLabel {
-    color:red;
-    float:left;
-}
-
 /* separacion entre los form-groups (label + input) en resolucion de tablet */
 @media only screen and (min-width:768px) and (max-width:1200px) {
     .form-group {

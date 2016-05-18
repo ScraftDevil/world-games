@@ -6,9 +6,9 @@ session_start();
 	function nullInputValidate($value) {
 		$valid = true;
 
-		if ($value == null) {
+		if ($value == "") {
 			$valid = false;
-		}
+		}		
 
 		return $valid;
 	}

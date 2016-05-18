@@ -43,18 +43,6 @@
         		?><option><?php echo utf8_encode($countries[$x][0]) ?></option><?php
         	}
     	}
-
-    	/* version modularizada para tambien poder ser utilizada en el formulario de registro, etc
-		 falta comprobar si en el formulario de registro no afecta el valor seleccionado*/
-		/*for ($x = 0; $x < count($countries); $x++) {
-			if (isset($_SESSION['user_id'])) {
-				if ($countries[$x][0] == $myCountry) {
-					?><option selected><?php echo utf8_encode($myCountry) ?></option><?php
-				} else {
-					?><option><?php echo utf8_encode($countries[$x][0]) ?></option><?php
-				}
-			}        	
-    	}*/
 	}
 
 	function updateRegisteredInfo($id) {
@@ -68,22 +56,21 @@
 
 		$shopDb = unserialize($_SESSION['dbconnection']);
 
-		$errors = array();
+		$errors = 0;
 
 		//metodo que devuelve un objeto Registered. Guardará los campos segun los input 
 		//y si estan vacíos cogerá el valor del objeto serializado registered
 		//$registered = validateInputs($id, $email, $birthdate, $paypal, $image, $country);
-		$errorsList = validateInputs($id, $email, $birthdate, $paypal, $image, $country, $errors);
 
-		if ($errorsList == null) {
-			$registered = new Registered('', '', $email, $birthdate, $country, $errors);
-			$registered->setId($id);
-			$registered->setPaypalAccount($paypal);
-			$registered->setAvatarURL($image);
-			$shopDb->updateRegisteredUser($registered);
+		$errors = validateInputs($id, $email, $birthdate, $paypal, $image, $country, $errors);
+
+		if ($errors == 0) {
+			$response = array("id" => "success");
 		}
 		else {
-			print_r($errorsList);
+			if ($errors != 0) {
+				$response = array("id" => "error");
+			}
 		}
 		
 	}
