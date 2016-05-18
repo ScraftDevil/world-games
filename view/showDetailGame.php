@@ -1,7 +1,10 @@
 <?php
 $gameid = $_GET['gameid'];
+if (isset($_SESSION['user_id'])) {
+  $userid = $_SESSION['user_id'];
+}
 include_once("../controller/controllerCalculateDiscount.php");
-include_once("../controller/controllershowgamedetails.php");
+include_once("../controller/controllerShowGameDetails.php");
 function printGame($game) {
     ?>
     <?php
@@ -72,20 +75,14 @@ function printGame($game) {
 </div>
 
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " >
-
-    <div class="divform">
-       <form action="" method="post" class="login">
-
+  <div class="divform">
+    <form action="" method="post" class="login">
         <p>Escriu al teu comentari aqui: </p>
-
         <textarea id="comentari" class="form-control" type="text" rows="6" name="comentari" value="" ></textarea>
-
-
         <div id="message"></div>
-
-        <input id="enviar" class="boto" type="button" name="enviar" value="ENVIAR">
+        <input id="enviar" class="boto" type="button" name="enviar" value="ENVIAR"/>
     </form>
-</div>
+  </div>
 </div>
 
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " >
@@ -167,7 +164,6 @@ function printGame($game) {
    <span class="spancolor">Me lo compro porque milloneti</span>
 </div>
 </div>-->
-
 </div>
 <?php
 }
