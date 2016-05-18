@@ -10,14 +10,50 @@ $("#insert-user").click(function() {
 	sendUser(user);
 });
 
+$("#title").keyup(function() {
+
+});
+
 $("#insert-game").click(function() {
-    var title = $("#title").val();
+
+     $( "#gameinsert" ).validate({
+            rules: {
+                title: {
+                    required: true,
+                    maxlength: 25
+
+                },
+
+                precio: {
+                    required: true,
+                    digit: true
+                }
+            },
+            messages: {
+                title: {
+                    required:"Pon un titulo porfiii",
+                    maxlength: jQuery.validator.format("Tienes que poner menos {0} que noooo")
+                    
+                },
+
+                precio: {
+                    required: "Los juegos no son gratis ;)",
+                    digit: "El precio no son letras -_- "
+                }
+            }
+
+
+
+
+        });
+
+
+    /*var title = $("#title").val();
     var price = parseFloat($("#price").val());
-    var stock = parseInt($("#stock").val());
     var platform = document.getElementById("platform").value;
     // Carles cambiar a partir de aqui, te he dejado ya preparado las funciones para convertir a numeros los valores decimales (precio y stock)
-    //var user = {"username": username, "password": password, "email": email, "birthdate": birthdate, "country": country, "group": group};
-    sendGame(game);
+    var game = {"title": title, "price": price, "platform": platform};
+    sendGame(game);*/
 });
 
 function deleteUser(value) {
@@ -131,4 +167,33 @@ function getInsertGameProcess(data) {
             $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error inesperado!</strong></div>");
         break;
     }
+}
+
+function gameFiledsValidator() {
+    $( "#gameinsert" ).validate({
+        rules: {
+            title: {
+                required: true,
+                maxlength: 25
+
+            },
+
+            precio: {
+                required: true,
+                digit: true
+            }
+        },
+        messages: {
+            title: {
+                required:"Pon un titulo porfiii",
+                maxlength: jQuery.validator.format("Tienes que poner menos {0} que noooo")
+
+            },
+
+            precio: {
+                required: "Los juegos no son gratis ;)",
+    digit: "El precio no son letras -_- "
+}
+}
+});
 }

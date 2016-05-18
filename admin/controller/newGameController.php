@@ -19,7 +19,6 @@ $game = json_decode($post);
 
 $title = $game->title;
 $price = $game->price;
-$stock = $game->stock;
 $platform = $game->platform;
 $proces = addGame($title, $price, $platform);
 if ($proces != 0) {
@@ -32,9 +31,9 @@ if ($proces != 0) {
 
 
 
-function addGame($title, $price, $stock, $plataform) {
+function addGame($title, $price, $platform) {
 	$proces = 0;
-	if ($title != "" AND $price != "" AND $stock != "" AND $platform != "" ) {
+	if ($title != "" AND $price != ""  AND $platform != "" ) {
 		
 		$game = new Game($title, $price, $platform);
 		$proces = $game->insertGame();

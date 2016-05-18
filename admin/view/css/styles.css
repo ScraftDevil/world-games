@@ -27,6 +27,16 @@ a:hover {
     color: white;
 }
 
+    input.error,textarea.error{
+    border: 1px solid red !important;
+}
+
+label.error{
+    background-color: red;
+    margin-left: 10px;
+    color:white;
+}
+
 .card-container.card {
     padding: 40px 40px;
 }

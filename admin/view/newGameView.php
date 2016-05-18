@@ -35,35 +35,29 @@
 									<h2 class="panel-title"> Nuevo Juego <?php echo $label; ?></h2>
 								</div>
 							  	<div class="panel-body">
-								    <form id="registered-user">
+								    <form id="gameinsert">
 										<div class="row">
 											<div class="col-md-12">
 												<div id="general-error"></div>
 												<div class="form-group">
 													<label for="Title">Titulo juego</label><label for="user-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
 													<div class="input-group input-radius">
-													<input type="text" class="form-control" name="title" id="Title" placeholder="Title" required><span id="user-error" class="server-error"></span>
+													<input type="text" class="form-control" name="title" id="title" placeholder="Title" required />
 													</div>
 												</div>
 												<div class="form-group">
 													<label for="Precio">Precio juego</label><label for="password-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
 													<div class="input-group input-radius">
-														<input type="text" class="form-control" id="Password" name="price" placeholder="Precio" required><span class="server-error"></span>
+														<input type="text" class="form-control" id="precio" name="precio" placeholder="Precio" required />
 													</div>
 												</div>
-												<div class="form-group">
-													<label for="Email">Stock juego</label><label for="email-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
-													<div class="input-group input-radius">
-														<input type="email" class="form-control" id="Email" name="stock" placeholder="Stock" required><span class="server-error"></span>
-													</div>
-												</div>
-												
+																							
 												<div class="form-group">
 													<label for="plataform">Plataforma juego</label><label for="country-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
 													<?php include("sections/plataformList.php"); ?><span class="server-error"></span>
 												</div>
 												<div class="form-group caixasubmit">
-												<button type="button" name="submit" id="submit" class="btn btn-info pull-left">Enviar</button>
+												<button type="button" name="insert-game" id="insert-game" class="btn btn-info pull-left">Enviar</button>
 												</div>
 											</div>
 										</div>
