@@ -1,5 +1,5 @@
 <?php
-class Plataform {
+class Platform {
     
     private $id = null;
     private $name = null;

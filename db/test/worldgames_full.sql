@@ -110,14 +110,14 @@ CREATE TABLE IF NOT EXISTS `game` (
   `Title` varchar(45) DEFAULT NULL,
   `Price` float DEFAULT NULL,
   `Stock` int(11) DEFAULT NULL,
-  `Plataform_ID` int(11) NOT NULL
+  `Platform_ID` int(11) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `game`
 --
 
-INSERT INTO `game` (`ID_Game`, `Title`, `Price`, `Stock`, `Plataform_ID`) VALUES
+INSERT INTO `game` (`ID_Game`, `Title`, `Price`, `Stock`, `Platform_ID`) VALUES
 (1, 'Grand Theft Auto V ROCKSTAR CD-KEY GLOBAL', 60, 1, 2),
 (2, 'Rocket League STEAM CD-KEY GLOBAL', 20, 1, 2);
 
@@ -232,19 +232,19 @@ INSERT INTO `offer` (`ID_Offer`, `Discount`, `Game_ID`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `plataform`
+-- Estructura de tabla para la tabla `platform`
 --
 
-CREATE TABLE IF NOT EXISTS `plataform` (
-  `ID_Plataform` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `platform` (
+  `ID_Platform` int(11) NOT NULL,
   `Name` char(45) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `plataform`
+-- Volcado de datos para la tabla `platform`
 --
 
-INSERT INTO `plataform` (`ID_Plataform`, `Name`) VALUES
+INSERT INTO `platform` (`ID_Platform`, `Name`) VALUES
 (1, 'Origin'),
 (2, 'Steam'),
 (3, 'Xbox'),
@@ -438,8 +438,8 @@ ALTER TABLE `country`
 -- Indices de la tabla `game`
 --
 ALTER TABLE `game`
-  ADD PRIMARY KEY (`ID_Game`,`Plataform_ID`),
-  ADD KEY `fk_Game_Plataform1_idx` (`Plataform_ID`);
+  ADD PRIMARY KEY (`ID_Game`,`Platform_ID`),
+  ADD KEY `fk_Game_Platform1_idx` (`Platform_ID`);
 
 --
 -- Indices de la tabla `game_has_complaint`
@@ -496,10 +496,10 @@ ALTER TABLE `offer`
   ADD KEY `fk_Offer_Game1_idx` (`Game_ID`);
 
 --
--- Indices de la tabla `plataform`
+-- Indices de la tabla `platform`
 --
-ALTER TABLE `plataform`
-  ADD PRIMARY KEY (`ID_Plataform`);
+ALTER TABLE `platform`
+  ADD PRIMARY KEY (`ID_Platform`);
 
 --
 -- Indices de la tabla `professional`
@@ -625,10 +625,10 @@ ALTER TABLE `message`
 ALTER TABLE `offer`
   MODIFY `ID_Offer` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT de la tabla `plataform`
+-- AUTO_INCREMENT de la tabla `platform`
 --
-ALTER TABLE `plataform`
-  MODIFY `ID_Plataform` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+ALTER TABLE `platform`
+  MODIFY `ID_Platform` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `professional`
 --
@@ -687,7 +687,7 @@ ALTER TABLE `comment`
 -- Filtros para la tabla `game`
 --
 ALTER TABLE `game`
-  ADD CONSTRAINT `fk_Game_Plataform1` FOREIGN KEY (`Plataform_ID`) REFERENCES `plataform` (`ID_Plataform`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Game_Platform1` FOREIGN KEY (`Platform_ID`) REFERENCES `platform` (`ID_Platform`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `game_has_complaint`

@@ -58,35 +58,35 @@
 											<div class="col-md-12">
 												<div id="general-error"></div>
 												<div class="form-group">
-													<label for="Username">Nombre de Usuario</label><label for="user-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
+													<label for="username">Nombre de Usuario</label><label for="user-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
 													<div class="input-group input-radius">
-													<input type="text" class="form-control" name="username" id="Username" placeholder="Username" required><span id="user-error" class="server-error"></span>
+													<input type="text" class="form-control" name="username" id="username" placeholder="Username" required><span id="user-error" class="server-error"></span>
 													</div>
 												</div>
 												<div class="form-group">
-													<label for="Password">Contraseña</label><label for="password-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
+													<label for="password">Contraseña</label><label for="password-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
 													<div class="input-group input-radius">
-														<input type="password" class="form-control" id="Password" name="password" placeholder="Password" required><span class="server-error"></span>
+														<input type="password" class="form-control" id="password" name="password" placeholder="Password" required><span class="server-error"></span>
 													</div>
 												</div>
 												<div class="form-group">
-													<label for="Email">Email</label><label for="email-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
+													<label for="email">Email</label><label for="email-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
 													<div class="input-group input-radius">
-														<input type="email" class="form-control" id="Email" name="email" placeholder="Email" required><span class="server-error"></span>
+														<input type="email" class="form-control" id="email" name="email" placeholder="Email" required><span class="server-error"></span>
 													</div>
 												</div>
 												<div class="form-group">
-													<label for="Brithdate">Fecha de Nacimiento</label><label for="birthdate-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
+													<label for="birthdate">Fecha de Nacimiento</label><label for="birthdate-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
 													<div class="input-group input-radius">
 														<input type="text" class="form-control" id="calendar" name="birthdate" placeholder="Birthdate" required><span class="server-error"></span>
 													</div>
 												</div>
 												<div class="form-group">
-													<label for="Pais">País</label><label for="country-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
+													<label for="country">País</label><label for="country-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
 													<?php include("sections/countryList.php"); ?><span class="server-error"></span>
 												</div>
-												<div class="form-group caixasubmit">
-												<button type="button" name="submit" id="submit" class="btn btn-info pull-left">Enviar</button>
+												<div class="form-group">
+												<button type="button" name="insert-user" id="insert-user" class="btn btn-info pull-left">Enviar</button>
 												</div>
 											</div>
 										</div>

@@ -27,8 +27,10 @@
 				$proces = addRegistered($username, $password, $email, $birthdate, $country);
 				if ($proces != 0) {
 					$response = array("id" => "success");
-				} else if ($proces == 0) {
+				} else if ($proces == 1) {
 					$response = array("id" => "error");
+				} else {
+					
 				}
 			break;
 

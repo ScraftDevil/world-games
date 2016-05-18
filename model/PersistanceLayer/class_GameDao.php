@@ -5,7 +5,7 @@ class gameDAO {
 
     public function insertGame($games) {
 
-        $query = "insert into game values('', '" . $games->getTitle() . "', '" . $games->getPrice() . "', '" . 0 ."','".$games->getPlataform()."')";
+        $query = "insert into game values('', '" . $games->getTitle() . "', '" . $games->getPrice() . "', '" . 0 ."','".$games->getPlatform()."')";
 
         $db = unserialize($_SESSION['dbconnection']);
         $resultat = $db->getLink()->prepare($query);

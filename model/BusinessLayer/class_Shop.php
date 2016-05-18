@@ -70,10 +70,10 @@ class Shop {
                 $g->setId($genre['ID_Genre']);
                 $genresObj[] = $g;
             }
-            $plataform = new Plataform($game['Plataform']);
+            $platform = new Platform($game['Platform']);
             $gameObj->setOffer($offer);
             $gameObj->setGenres($genresObj);
-            $gameObj->setPlataform($plataform);
+            $gameObj->setPlatform($platform);
             array_push($this->games, $gameObj);
         }
     }

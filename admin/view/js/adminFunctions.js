@@ -1,13 +1,23 @@
 group = getterURL("group");
 
 $("#insert-user").click(function() {
-	var username = $("#Username").val();
-	var password = $("#Password").val();
-	var email = $("#Email").val();
+	var username = $("#username").val();
+	var password = $("#password").val();
+	var email = $("#email").val();
 	var birthdate = $("#calendar").val();
 	var country = document.getElementById("country").value; 
 	var user = {"username": username, "password": password, "email": email, "birthdate": birthdate, "country": country, "group": group};
 	sendUser(user);
+});
+
+$("#insert-game").click(function() {
+    var title = $("#title").val();
+    var price = parseFloat($("#price").val());
+    var stock = parseInt($("#stock").val());
+    var platform = document.getElementById("platform").value;
+    // Carles cambiar a partir de aqui, te he dejado ya preparado las funciones para convertir a numeros los valores decimales (precio y stock)
+    //var user = {"username": username, "password": password, "email": email, "birthdate": birthdate, "country": country, "group": group};
+    sendGame(game);
 });
 
 function deleteUser(value) {
@@ -51,10 +61,10 @@ function changeCountry(elem) {
 	$("#country").html(elem.text + " <span class=\"caret\"></span>");
 }
 
-function changePlataform(elem) {
+function changePlatform(elem) {
     var value = elem.getAttribute("value");
-    document.getElementById("plataform").value = value;
-    $("#plataform").html(elem.text + " <span class=\"caret\"></span>");
+    document.getElementById("platform").value = value;
+    $("#platform").html(elem.text + " <span class=\"caret\"></span>");
 }
 
 function sendUser(user) {
@@ -64,7 +74,7 @@ function sendUser(user) {
 		url:   '../controller/newUserController.php',
 		type:  'POST',
 		dataType: 'json',
-		success: getProcess
+		success: getInsertUserProcess
 	});
 }
 
@@ -75,11 +85,11 @@ function sendGame(game) {
         url:   '../controller/newGameController.php',
         type:  'POST',
         dataType: 'json',
-        success: getProcess2
+        success: getInsertGameProcess
     });
 }
 
-function getProcess(data) {
+function getInsertUserProcess(data) {
 	switch(data.id) {
 		case "error":
 			$("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en la validación de datos del usuario!</strong></div>");
@@ -96,7 +106,7 @@ function getProcess(data) {
 	}
 }
 
-function getProcess2(data) {
+function getInsertGameProcess(data) {
     switch(data.id) {
         case "error":
             $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en la validación de datos del juego!</strong></div>");
