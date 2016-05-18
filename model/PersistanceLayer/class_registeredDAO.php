@@ -143,7 +143,7 @@ class registeredDAO {
 	public function insertRegistered($registered) {
 		$proces = 0;
 		try {
-			$exist = 0;
+			$usernameexist = 0;
 			$username = $registered->getUsername();
 			$email = $registered->getEmail();
 			$db = unserialize($_SESSION['dbconnection']);
@@ -151,23 +151,25 @@ class registeredDAO {
 			$resultat = $db->getLink()->prepare($query);
 			$resultat->execute();
  			$result = $resultat->fetch(PDO::FETCH_ASSOC);
-			if (!$result) {
-				$query = ("INSERT INTO registered (ID_Registered, Username, Password, Email, BannedTime, BirthDate, PaypalAccount, AvatarURL, Shop_ID, Country_ID) VALUES (:id, :username, :password, :email, :bannedtime, :birthdate, :paypal, :avatar, :shop_id, :country)");
-				$stmt = $db->getLink()->prepare($query);
-				$stmt->bindParam(':id', $this->getLastID());
-			    $stmt->bindParam(':username', $registered->getUsername());
-			    $stmt->bindParam(':password', $registered->getPassword());
-			    $stmt->bindParam(':email', $registered->getEmail());
-			    $stmt->bindParam(':bannedtime', $registered->getBannedTime());
-			    $stmt->bindParam(':birthdate', $registered->getBirthDate());
-			    $stmt->bindParam(':paypal', $registered->getPaypalAccount());
-			    $stmt->bindParam(':avatar', $registered->getAvatarUrl());
-			    $stmt->bindParam(':shop_id', $this->getShopID());
-			    $stmt->bindParam(':country', $registered->getCountry());
-			    $stmt->execute();
-			    $proces = 2;
-			} else {
-				$proces = 1;
+ 			if (!$result) {
+				if (!$result) {
+					$query = ("INSERT INTO registered (ID_Registered, Username, Password, Email, BannedTime, BirthDate, PaypalAccount, AvatarURL, Shop_ID, Country_ID) VALUES (:id, :username, :password, :email, :bannedtime, :birthdate, :paypal, :avatar, :shop_id, :country)");
+					$stmt = $db->getLink()->prepare($query);
+					$stmt->bindParam(':id', $this->getLastID());
+				    $stmt->bindParam(':username', $registered->getUsername());
+				    $stmt->bindParam(':password', $registered->getPassword());
+				    $stmt->bindParam(':email', $registered->getEmail());
+				    $stmt->bindParam(':bannedtime', $registered->getBannedTime());
+				    $stmt->bindParam(':birthdate', $registered->getBirthDate());
+				    $stmt->bindParam(':paypal', $registered->getPaypalAccount());
+				    $stmt->bindParam(':avatar', $registered->getAvatarUrl());
+				    $stmt->bindParam(':shop_id', $this->getShopID());
+				    $stmt->bindParam(':country', $registered->getCountry());
+				    $stmt->execute();
+				    $proces = 2;
+				} else {
+					$proces = 1;
+				}
 			}
 		} catch(PDOException $ex) {
 			echo "An Error ocurred!";
