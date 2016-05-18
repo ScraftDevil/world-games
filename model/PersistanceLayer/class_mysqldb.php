@@ -67,16 +67,6 @@ class mysqldb {
 		return $result;
 	}
 
-	/*public function getGame() {
-		$sqlDiscount = ", (SELECT O.Discount FROM Offer O WHERE O.Game_ID = G.ID_Game) as Discount";
-		$sqlPlataform = ", (SELECT P.Name FROM plataform P WHERE P.ID_Plataform = G.Plataform_ID) as Plataform";
-		$sql = "SELECT G.ID_Game, G.Title, G.Price, G.Stock ".$sqlDiscount." ".$sqlPlataform." FROM game G WHERE G.ID_Game = 1";
-		$stmt = $this->getLink()->prepare($sql);
-		$stmt->execute();
-		$result = $stmt->FetchAll();
-		return $result;
-	}*/
-
 	public function getGenresGame($gameid) {
 		$sql = "SELECT GE.ID_Genre, GE.Name FROM game_has_genre GG INNER JOIN Genre GE
 		WHERE GE.ID_Genre = GG.Genre_ID AND GG.Game_ID = $gameid";

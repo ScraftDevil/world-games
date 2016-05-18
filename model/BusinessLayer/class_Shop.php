@@ -114,8 +114,8 @@ public function addGame($title,$price) {
                         $gamesFiltered[] = $game;
                     }
                 }
-            } else if ($type=="plataform") {
-                if (strtolower($game->getPlataform()->getName())==strtolower($filter)) {
+            } else if ($type=="platform") {
+                if (strtolower($game->getPlatform()->getName())==strtolower($filter)) {
                         $gamesFiltered[] = $game;
                     }
             }

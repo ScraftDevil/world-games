@@ -33,7 +33,8 @@
                             </span>-->
                           </li>
                           <li class="divider"></li>
-                          <li><a class="text-center" href="shoppingCart.php">Ver Carrito</a></li>
+                          <li><a class="text-center" href="shoppingCart.php">Finalizar Compra</a></li>
+                          <li><a class="text-center" href="#">Vaciar Carrito</a></li>
                       </ul>
                     </li>
                     <!-- SHOPPING CART -->

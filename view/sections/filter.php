@@ -12,9 +12,9 @@
 	<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Plataforma
 	<span class="caret"></span></button>
 	<ul class="dropdown-menu">
-	  <li><a href="#" class="plataformFilter" id="Origin">Origin</a></li>
-	  <li><a href="#" class="plataformFilter" id="Steam">Steam</a></li>
-	  <li><a href="#" class="plataformFilter" id="Xbox">Xbox</a></li>
-	  <li><a href="#" class="plataformFilter" id="PSN">PSN</a></li>
+	  <li><a href="#" class="platformFilter" id="Origin">Origin</a></li>
+	  <li><a href="#" class="platformFilter" id="Steam">Steam</a></li>
+	  <li><a href="#" class="platformFilter" id="Xbox">Xbox</a></li>
+	  <li><a href="#" class="platformFilter" id="PSN">PSN</a></li>
 	</ul>
  </div>

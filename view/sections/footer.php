@@ -165,7 +165,7 @@ $(document).ready(function() {
         $(".genreFilter").each(function() {
             $(this).find("#selected").remove();
         });
-        $(".plataformFilter").each(function() {
+        $(".platformFilter").each(function() {
             $(this).find("#selected").remove();
         });
         var params = {"genre" : $(this).attr("id")};
@@ -211,15 +211,15 @@ $(document).ready(function() {
 
         $(this).append('&nbsp;<i id="selected" class="fa fa-check" aria-hidden="true"></i>');
     });
-     $(".plataformFilter").on("click", function(e){
+     $(".platformFilter").on("click", function(e){
         e.preventDefault();
         $(".genreFilter").each(function() {
             $(this).find("#selected").remove();
         });
-        $(".plataformFilter").each(function() {
+        $(".platformFilter").each(function() {
             $(this).find("#selected").remove();
         });
-        var params = {"plataform" : $(this).attr("id")};
+        var params = {"platform" : $(this).attr("id")};
         $.ajax({
             data: params,
             url:   '../controller/controllerFilterGames.php',
