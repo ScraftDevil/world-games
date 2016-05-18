@@ -2,14 +2,14 @@
 <html>
 	<?php
 
-		include("../controller/authController.php");
+		include("../../controller/adminAuthControllers/authController.php");
 		if (!checkAuth()) {
-			header("Location:adminLoginView.php");
+			header("Location:../mainViews/adminLoginView.php");
 		}
 		if ($_SESSION['usertype'] == "Professional") {
 			header("Location:../index.php");
 		}
-		include("sections/head.php"); 
+		include("../resources/sections/head.php"); 
 
 		$group = null;
 		$label = null;
@@ -20,12 +20,12 @@
 <body>
 	<?php
 
-		include("sections/header.php"); 
+		include("../resources/sections/header.php"); 
 
 	?>
 	<div class="container-fluid">
 		<div class="row row-admin">
-			<?php include ("sections/menu.php"); ?>
+			<?php include ("../resources/sections/menu.php"); ?>
 			<div class="col-md-10 admin-content">
 				<div class="container container-content">
 					<div class="row">
@@ -54,7 +54,7 @@
 																							
 												<div class="form-group">
 													<label for="plataform">Plataforma juego</label><label for="country-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
-													<?php include("sections/plataformList.php"); ?><span class="server-error"></span>
+													<?php include("../resources/sections/platformList.php"); ?><span class="server-error"></span>
 												</div>
 												<div class="form-group caixasubmit">
 												<button type="button" name="insert-game" id="insert-game" class="btn btn-info pull-left">Enviar</button>
@@ -71,7 +71,7 @@
 		</div>
 	</div>
 	<footer>
-		<?php include("sections/footer.php"); ?>
+		<?php include("../resources/sections/footer.php"); ?>
 	</footer>
 </body>
 </html>

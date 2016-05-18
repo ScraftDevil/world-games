@@ -1,6 +1,6 @@
 <?php
 
-	require_once("../../model/autoload.php");
+	require_once($_SESSION["BASE_PATH"]."/model/autoload.php");
 
 	if (session_id() == '') {
 	    session_start();
@@ -12,32 +12,32 @@
 			case 'registered':
 				$proces = deleteRegistered();
 				if ($proces == -1) {
-					header("Location:../view/newUserView.php?group=".$group."&msg=deleteFail");
+					header("Location:../../view/userViews/newUserView.php?group=".$group."&msg=deleteFail");
 				} else {
-					header("Location:../view/userListView.php?group=".$group."&msg=deleteSuccess");
+					header("Location:../../view/userViews/userListView.php?group=".$group."&msg=deleteSuccess");
 				}
 			break;
 
 			case 'professional':
 				$proces = deleteProfessional();
 				if ($proces == -1) {
-					header("Location:../view/newUserView.php?group=".$group."&msg=deleteFail");
+					header("Location:../../view/userViews/newUserView.php?group=".$group."&msg=deleteFail");
 				} else {
-					header("Location:../view/userListView.php?group=".$group."&msg=deleteSuccess");
+					header("Location:../../view/userViews/userListView.php?group=".$group."&msg=deleteSuccess");
 				}
 			break;
 
 			case 'administrator':
 				$proces = deleteAdministrator();
 				if ($proces == -1) {
-					header("Location:../view/newUserView.php?group=".$group."&msg=deleteFail");
+					header("Location:../../view/userViews/newUserView.php?group=".$group."&msg=deleteFail");
 				} else {
-					header("Location:../view/userListView.php?group=".$group."&msg=deleteSuccess");
+					header("Location:../../view/userViews/userListView.php?group=".$group."&msg=deleteSuccess");
 				}
 			break;		
 		}
 	} else {
-		header("Location:../index.php");
+		header("Location:../../index.php");
 	}
 
 	function deleteRegistered() {

@@ -14,13 +14,13 @@
 	if ($group != false) {
 		switch ($group) {
 			case 'registered':
-				include_once("dataGrids/registeredGrid.php");
+				include_once("../../views/userViews/dataGrids/registeredGrid.php");
 				break;
 			case 'professional':
-				include_once("dataGrids/professionalGrid.php");
+				include_once("../../views/userViews/dataGrids/professionalGrid.php");
 				break;
 			case 'administrator':
-				include_once("dataGrids/administratorGrid.php");
+				include_once("../../views/userViews/dataGrids/administratorGrid.php");
 				break;
 			default:
 				$group = false;
@@ -28,7 +28,7 @@
 		}
 		showUsers();
 	} else {
-		header("Location:../index.php");
+		header("Location:../../index.php");
 	}
 	
 ?>

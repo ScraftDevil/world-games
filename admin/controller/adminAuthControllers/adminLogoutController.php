@@ -6,7 +6,7 @@
     if (isset($_POST['logout'])) {
         $_SESSION['adminAuth'] = false;
         if (session_destroy()) {
-        	header("Location: ../index.php");
+        	header("Location: ../../index.php");
         } else {
         	echo "Fallo en login!";
         }

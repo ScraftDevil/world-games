@@ -4,7 +4,7 @@ $(document).ready(function() {
         var params = {"username" : $("#username").val(), "password" : $("#password").val()};
             $.ajax({
                 data:  params,
-                url:   '../controller/adminLoginController.php',
+                url:   '../../controller/adminAuthControllers/adminLoginController.php',
                 type:  'POST',
                 dataType: 'json',
                 success:  function (data) {
@@ -17,7 +17,7 @@ $(document).ready(function() {
                         $("#msg").html('<span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span><span class="sr-only">Login Correcto:</span>&nbsp;Has entrado con exito en la cuenta. Seras redirigido a tu perfil en menos de 1 segundo.');
                         $("#msg").slideDown();
                         var delay = 1000;
-                        setTimeout(function(){ window.location = "../index.php"; }, delay);
+                        setTimeout(function(){ window.location = "../../index.php"; }, delay);
                     }
                 }
             });

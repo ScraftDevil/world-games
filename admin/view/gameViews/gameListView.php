@@ -2,14 +2,14 @@
 <html>
 	<?php
 
-		include("../controller/authController.php");
+		include("../../controller/adminAuthControllers/authController.php");
 		if (!checkAuth()) {
-			header("Location:adminLoginView.php");
+			header("Location:../adminLoginView.php");
 		}
 		if ($_SESSION['usertype'] == "Professional") {
 			header("Location:../index.php");
 		}
-		include("sections/head.php"); 
+		include("../resources/sections/head.php"); 
 
 		$group = null;
 		$label = null;
@@ -52,12 +52,12 @@
 <body>
 	<?php
 
-		include("sections/header.php"); 
+		include("../resources/sections/header.php"); 
 
 	?>
 	<div class="container-fluid">
 		<div class="row row-admin">
-			<?php include ("sections/menu.php"); ?>
+			<?php include ("../resources/sections/menu.php"); ?>
 			<div class="col-md-10 admin-content">
 				<div class="container container-content">
 					<div class="row">
@@ -74,7 +74,7 @@
 									<button type="button" class="btn btn-success"><a href="newGameView.php"><i class="fa fa-user" aria-hidden="true"></i> Nuevo Juego</a></button>
 								</div>
 								<?php
-									include("../controller/showGameController.php");
+									include("../../controller/gameControllers/showGameController.php");
 								?>
 							</div>
 						</div>
@@ -84,7 +84,7 @@
 		</div>
 	</div>
 	<footer>
-		<?php include("sections/footer.php"); ?>
+		<?php include("../resources/sections/footer.php"); ?>
 	</footer>
 </body>
 </html>

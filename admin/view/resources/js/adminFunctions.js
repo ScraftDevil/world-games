@@ -1,62 +1,3 @@
-
-group = getterURL("group");
-
-$("#insert-user").click(function() {
-	var username = $("#username").val();
-	var password = $("#password").val();
-	var email = $("#email").val();
-	var birthdate = $("#calendar").val();
-	var country = document.getElementById("country").value; 
-	var user = {"username": username, "password": password, "email": email, "birthdate": birthdate, "country": country, "group": group};
-	sendUser(user);
-});
-
-$("#title").keyup(function() {
-
-});
-
-$("#insert-game").click(function() {
-
-     $( "#gameinsert" ).validate({
-            rules: {
-                title: {
-                    required: true,
-                    maxlength: 25
-
-                },
-
-                precio: {
-                    required: true,
-                    digit: true
-                }
-            },
-            messages: {
-                title: {
-                    required:"Pon un titulo porfiii",
-                    maxlength: jQuery.validator.format("Tienes que poner menos {0} que noooo")
-                    
-                },
-
-                precio: {
-                    required: "Los juegos no son gratis ;)",
-                    digit: "El precio no son letras -_- "
-                }
-            }
-
-
-
-
-        });
-
-
-    /*var title = $("#title").val();
-    var price = parseFloat($("#price").val());
-    var platform = document.getElementById("platform").value;
-    // Carles cambiar a partir de aqui, te he dejado ya preparado las funciones para convertir a numeros los valores decimales (precio y stock)
-    var game = {"title": title, "price": price, "platform": platform};
-    sendGame(game);*/
-});
-=======
 $(document).ready(load);
 
 group = null;
@@ -82,8 +23,7 @@ function load() {
         //var user = {"username": username, "password": password, "email": email, "birthdate": birthdate, "country": country, "group": group};
         sendGame(game);
     });
-} 
->>>>>>> origin/master
+}
 
 function deleteUser(value) {
    var id = value;
@@ -115,9 +55,9 @@ function getterURL(variable) {
     var pair = vars[i].split("=");
     if (pair[0] == variable) {
       return pair[1];
-  }
-} 
-return variable;
+    }
+  } 
+  return variable;
 }
 
 function changeCountry(elem) {
@@ -136,7 +76,7 @@ function sendUser(user) {
    var user = JSON.stringify(user);
    $.ajax({
       data:  "user=" + user,
-      url:   '../controller/newUserController.php',
+      url:   '../../controller/userControllers/newUserController.php',
       type:  'POST',
       dataType: 'json',
       success: getInsertUserProcess
@@ -147,7 +87,7 @@ function sendGame(game) {
     var game = JSON.stringify(game);
     $.ajax({
         data:  "game=" + game,
-        url:   '../controller/newGameController.php',
+        url:   '../../controller/gameControllers/newGameController.php',
         type:  'POST',
         dataType: 'json',
         success: getInsertGameProcess
@@ -155,7 +95,6 @@ function sendGame(game) {
 }
 
 function getInsertUserProcess(data) {
-<<<<<<< HEAD
 	switch(data.id) {
 		case "error-null":
             $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en la validación de datos del usuario!</strong></div>");
@@ -163,17 +102,17 @@ function getInsertUserProcess(data) {
 
         case "success":
             var delay = 0;
-            setTimeout(function(){ window.location = "userListView.php?" + group + "&msg=" + data.id; }, delay);
+            setTimeout(function(){ window.location = "../../userViews/userListView.php?group=" + group + "&msg=" + data.id; }, delay);
         break;
 
         case "error-email":
             var delay = 0;
-            setTimeout(function(){ window.location = "userListView.php?" + group + "&msg=" + data.id; }, delay);
+            setTimeout(function(){ window.location = "../../userViews/userListView.php?group=" + group + "&msg=" + data.id; }, delay);
         break;
 
         case "error-username":
             var delay = 0;
-            setTimeout(function(){ window.location = "userListView.php?" + group + "&msg=" + data.id; }, delay);
+            setTimeout(function(){ window.location = "../../userViews/userListView.php?group=" + group + "&msg=" + data.id; }, delay);
         break;
 
         default:
@@ -190,7 +129,7 @@ function getInsertGameProcess(data) {
 
         case "success":
             var delay = 0;
-            setTimeout(function(){ window.location = "gameListView.php?" + group + "&msg=" + data.id; }, delay);
+            setTimeout(function(){ window.location = "../../gameViews/gameListView.php?msg=" + data.id; }, delay);
         break;
 
         default:
@@ -200,74 +139,28 @@ function getInsertGameProcess(data) {
 }
 
 function gameFiledsValidator() {
-    $( "#gameinsert" ).validate({
-        rules: {
-            title: {
-                required: true,
-                maxlength: 25
+  $("#gameinsert").validate({
+    rules: {
+      title: {
+        required: true,
+        maxlength: 25
 
-            },
+      },
+      precio: {
+        required: true,
+        digit: true
+      }
+    },
+    messages: {
+      title: {
+        required: "Pon un titulo porfiii",
+        maxlength: jQuery.validator.format("Tienes que poner menos {0} que noooo")
 
-            precio: {
-                required: true,
-                digit: true
-            }
-        },
-        messages: {
-            title: {
-                required:"Pon un titulo porfiii",
-                maxlength: jQuery.validator.format("Tienes que poner menos {0} que noooo")
-
-            },
-
-            precio: {
-                required: "Los juegos no son gratis ;)",
-    digit: "El precio no son letras -_- "
+      },
+      precio: {
+        required: "Los juegos no son gratis ;)",
+        digit: "El precio no son letras -_- "
+      }
+    }
+  });
 }
-}
-});
-}
-=======
-   switch(data.id) {
-      case "error-null":
-      $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en la validación de datos del usuario!</strong></div>");
-      break;
-
-      case "success":
-      var delay = 0;
-      setTimeout(function(){ window.location = "userListView.php?group=" + group + "&msg=success"; }, delay);
-      break;
-
-      case "error-email":
-      var delay = 0;
-                setTimeout(function(){ window.location = "userListView.php?group=" + group + "&msg=" + data.id; }, delay);
-                break;
-
-                case "error-username":
-                var delay = 0;
-                setTimeout(function(){ window.location = "userListView.php?group=" + group + "&msg=" + data.id; }, delay);
-                break;
-
-                default:
-                $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error inesperado!</strong></div>");
-                break;
-            }
-        }
-
-        function getInsertGameProcess(data) {
-            switch(data.id) {
-                case "error":
-                $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en la validación de datos del juego!</strong></div>");
-                break;
-
-                case "success":
-                var delay = 0;
-                setTimeout(function(){ window.location = "gameListView.php?group=" + group + "&msg=" + data.id; }, delay);
-                break;
-
-                default:
-                $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error inesperado!</strong></div>");
-                break;
-            }
-        }
->>>>>>> origin/master

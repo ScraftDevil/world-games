@@ -2,13 +2,13 @@
 <html>
 	<?php
 
-	include("../controller/authController.php");
+	include("../../controller/adminAuthControllers/authController.php");
 
 	if (checkAuth()) {
 		header("Location:adminView.php");
 	}
 
-	include("sections/head.php");
+	include("../resources/sections/head.php");
 
 	?>
 <body>
@@ -36,6 +36,6 @@
 			</div>
 		</div>
 	</div>
-<?php include("sections/footer.php"); ?>
+<?php include("../resources/sections/footer.php"); ?>
 </body>
 </html>

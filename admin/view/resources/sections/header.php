@@ -7,13 +7,13 @@
 <header id="adminView">
 	<div class="row">
 		<div class="col-md-2">
-			<div class="logo"><img src="images/logo.png"/></div>
+			<div class="logo"><img src="../resources/images/logo.png"/></div>
 		</div>
 		<div class="col-md-offset-2 col-md-4">
 			<h1 id="header-name">Panel de Administración</h1>
 		</div>
 		<div class="col-md-4">
-			<form id="logout" action="../controller/adminLogoutController.php" method="POST">
+			<form id="logout" action="../../controller/adminAuthControllers/adminLogoutController.php" method="POST">
 				<div class="row">
 					<?php
 					if (strlen($username) > 6) {

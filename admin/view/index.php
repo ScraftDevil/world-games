@@ -1,9 +1,9 @@
 <?php
 
 session_start();
-require_once("../config/config.inc.php");
+require_once($_SESSION['BASE_PATH']."/config/config.inc.php");
 require_once($_SESSION['BASE_PATH']."/config/db.inc.php");
-require_once("../model/autoload.php");
+require_once($_SESSION['BASE_PATH']."/model/autoload.php");
 
 /*if (!isset($_SESSION['shop'])) {
 	$shop = new Shop("shopID", "shopName");
@@ -13,5 +13,5 @@ require_once("../model/autoload.php");
 	$shop = unserialize($_SESSION['shop']);
 }*/
 
-header("Location:view/mainViews/adminLoginView.php");
+header("Location:../index.php");
 ?>
