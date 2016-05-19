@@ -104,6 +104,12 @@ class mysqldb {
 		return $registered;
 	}
 
+	public function getAllRegisteredInfo($id) {
+		$registeredDao = new RegisteredDAO();
+		$registered = $registeredDao->getAllRegisteredInfo($id);
+		return $registered;
+	}
+
 	public function updateRegisteredUser($registered) {
 		$registeredDao = new RegisteredDAO();
 		$registered = $registeredDao->updateRegisteredUser($registered);

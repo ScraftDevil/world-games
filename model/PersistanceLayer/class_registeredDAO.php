@@ -67,6 +67,28 @@ class registeredDAO {
 		}
 
 	}
+
+	public function getAllRegisteredInfo($id) {
+
+		try {
+
+			$query = ("SELECT r.Username,, r.Password, r.Email, r.BannedTime, r.BirthDate, r.PaypalAccount, r.AvatarURL, c.Name as 'Pais'
+			FROM registered r INNER JOIN country c ON r.Country_ID = c.ID_Country where r.ID_Registered = '$id';");			
+
+			$db = unserialize($_SESSION['dbconnection']);
+			$resultat = $db->getLink()->prepare($query);
+        	$resultat->execute();
+
+ 			$result = $resultat->FetchAll();
+
+		} catch(PDOException $ex) {
+			echo "An Error ocurred!";
+			some_loggging_function($ex->getMessage());
+		} finally {
+			return $result;		
+		}
+
+	}
  	
  	/* Metodo para actualizar los datos del usuario registrado */
 	public function updateRegisteredUser($registered) {

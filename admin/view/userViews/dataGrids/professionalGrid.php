@@ -39,7 +39,7 @@
 		    <span class=\"sr-only\"><a class=\"drop-grid\" href=\"#\">Selecciona una operación</a></span>
 		  </button>
 		  <ul class=\"dropdown-menu\">
-		  	<li><a href=\"userDataEdit.php?id=$id\">Modificar</a></li>
+		  	<li><a href=\"userDataEditView.php?group=professional&id=$id\">Modificar</a></li>
 		    <li><a href=\"#\" onclick=\"deleteUser($id)\">Eliminar</a></li>
 		  </ul>
 		</div>";

@@ -1,0 +1,78 @@
+<?php
+
+	if (session_id() == '') {
+	    session_start();
+	}
+
+	require_once($_SESSION["BASE_PATH"]."/model/autoload.php");
+
+	$data = json_decode($_POST['data']);
+
+	$group = $data->group;
+	$id = $data->id;
+
+	$response = null;
+
+	if ($data != null) {
+		if ($group == "registered" || $group == "professional" || $group == "administrator") {
+			if (validateID($id) == true) {
+				switch($group) {
+					case "registered":
+						$registered = getRegisteredInfo($id);
+					break;
+
+					case "professional":
+					break;
+
+					case "administrator":
+					break;
+				}
+			} else {
+				$response = array("id" => "id-error");
+			}
+		} else {
+			$response = array("id" => "group-error");
+		}
+	} else {
+		$response = array("id" => "data-error");
+	}
+
+	function getRegisteredInfo() {
+		$registered = -1;
+		if (isset($_POST['delete']) AND !empty($_POST['delete'])) {
+			$db = unserialize($_SESSION['dbconnection']);
+			$proces = $db->deleteRegisteredUser($_POST['delete']);
+		}
+		return $proces;
+	}
+
+	function deleteProfessional() {
+		$proces = -1;
+		if (isset($_POST['delete']) AND !empty($_POST['delete'])) {
+			$db = unserialize($_SESSION['dbconnection']);
+			$proces = $db->deleteProfessionalUser($_POST['delete']);
+		}
+		return $proces;
+	}
+
+	function deleteAdministrator() {
+		$proces = -1;
+		if (isset($_POST['delete']) AND !empty($_POST['delete'])) {
+			$db = unserialize($_SESSION['dbconnection']);
+			$proces = $db->deleteAdministratorUser($_POST['delete']);
+		}
+		return $proces;
+	}
+
+	function validateID($id) {
+		$proces = false;
+		if ($id != null AND $id != "") {
+			$id = intval($id);
+			if (!is_nan($id)) {
+				$proces = true;
+			}
+		}
+		return $proces;
+	}
+
+?>
