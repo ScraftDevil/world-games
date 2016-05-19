@@ -11,10 +11,25 @@ function ajaxCall() {
       "gameid":getterURL('gameid')
       },
       success: function(data) {
+
         $("#comentariosusers").html(data);
+        
+
     }
   });
 }
+ 
+
+$('#enviar').click(function(){
+
+$("#comentariosusers").each(function () {
+                   /* this.innerHTML=dades[$i];
+                    $i++;*/
+                     $('body').scrollTo('#comentariosusers',{duration:2000, offsetTop : '50'});
+                });
+
+     
+    });
 
 function getterURL(variable) {
   var query = window.location.search.substring(1);
@@ -43,6 +58,7 @@ $("#enviar").click(function (){
           $(".ocultar").show();
           $("#message").html("Se ha enviado el mensaje con exito.");
           $(".ocultar").delay(4000).hide(100);
+
         }
       });
     });
