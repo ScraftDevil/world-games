@@ -29,7 +29,7 @@ function getterURL(variable) {
 }
 
 $("#enviar").click(function (){
-    var comentari = $("#comentari").val();
+    var comentari = $("#comentari ").val();
       $.ajax({
         type: "POST",
 
