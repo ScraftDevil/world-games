@@ -24,11 +24,11 @@ for($i = 0; $i < count($result); $i++) {
 	echo '</div >';
 
 	echo '<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 " >';
-	echo ' <span class="span2 span2grandaria">Escrito por '.$result[$i]['Usuario'].'</span>';
+	echo ' <span class="span2 nomusuari span2grandaria">Escrito por '.$result[$i]['Usuario'].'</span>';
 	echo '<p >';
 	echo ' <span class=" glyphicon glyphicon-calendar ">'.$result[$i]['Date'].'</span>';
 	echo '</p >';
-	echo '<span id="mensajejuego">'.$result[$i]['Text'].'</span>';
+	echo '<span id="comentariojuego">'.$result[$i]['Text'].'</span>';
 	echo '</div >';
 	echo '</div >';
 }

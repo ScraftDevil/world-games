@@ -100,6 +100,8 @@ textarea:focus{
 	background-color: #E6E6E6;
 	color: #585858;
 	padding: 10px;
+	margin-top: 20px;
+	margin-bottom: 40px;
 	border: 2px solid #585858;
 	border-radius: 20px;
 	z-index: 1;
@@ -119,6 +121,10 @@ textarea:focus{
 	border-width: 44px 76px 69px 15px;
 	border-color: blue transparent transparent transparent;
 
+}
+
+#comentariojuego{
+	font-size: 15px;
 }
 
 .flecha_abajo {
@@ -170,6 +176,13 @@ textarea:focus{
 	text-align: center;
 	color: rgb(255, 71, 71);
 }
+
+.nomusuari{
+font-size: 20px;
+font-weight: bold;
+color: blue;
+}
+
 .spanprecio2{
 	font-size: 20px;
 	margin-bottom: 10px;
