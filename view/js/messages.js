@@ -21,12 +21,17 @@ function ajaxCall() {
  
 
 $('#enviar').click(function(){
-
-$("#comentariosusers").each(function () {
-                   /* this.innerHTML=dades[$i];
-                    $i++;*/
-                     $('body').scrollTo('#comentariosusers',{duration:2000, offsetTop : '50'});
-                });
+var i = 0;
+/*$(".divcomentari").each(function () {
+                    this.innerHTML=dades[$i];
+                    $i++;
+                     $('body').scrollTo('.divcomentari',{duration:2000, offsetTop : '50'});
+                });*/
+$('.divcomentari').each(function () { 
+   var n = $( ".divcomentari" ).size();
+    document.write(n);
+  //$(this).text();
+});
 
      
     });
