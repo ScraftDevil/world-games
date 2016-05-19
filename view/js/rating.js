@@ -35,7 +35,23 @@ $(document).ready(function() {
           }
           case "NO_RATE_INPUT":
           {
-            $("#msgRate").html('<div class="alert alert-info">No puedes pasarte por el forro el control.</div>');
+            $("#msgRate").html('<div class="alert alert-info">No se ha escogido un valor valido.</div>');
+            break;
+          }
+          case "ALREADY_RATED_GAME":
+          {
+            $("#msgRate").html('<div class="alert alert-warning">Ya has votado este juego.</div>');
+            break;
+          }
+          case "RATED_FAIL":
+          {
+            $("#msgRate").html('<div class="alert alert-danger">Error al votar. Intenta mas tarde.</div>');
+            break;
+          }
+          case "RATED_OK":
+          {
+            $("#msgRate").html('<div class="alert alert-success">Has votado el juego con exito.</div>');
+            getRating();
             break;
           }
         }
@@ -43,17 +59,20 @@ $(document).ready(function() {
     });
   });
   //get rating
-  var params = {"gameid" : getterURL('gameid')};
-  $.ajax({
-    data: params,
-    url:   '../controller/getRatingGame.php',
-    type:  'POST',
-    success:  function (response) {
-      if (response == "") {
-        $("#totalScore").html("Total Score: 0");
-      } else {
-        $("#totalScore").html("Total Score: " + response);
+  function getRating() {
+    var params = {"gameid" : getterURL('gameid')};
+    $.ajax({
+      data: params,
+      url:   '../controller/getRatingGame.php',
+      type:  'POST',
+      success:  function (response) {
+        if (response == "") {
+          $("#totalScore").html("Total Score: 0");
+        } else {
+          $("#totalScore").html("Total Score: " + response);
+        }
       }
-    }
-  });
+    });
+  }
+  getRating();
 });

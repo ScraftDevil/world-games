@@ -23,7 +23,7 @@ function printGame($game) {
        </div>
      </div>
      <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 " >
-     <div class="pull-right">
+       <div class="pull-right">
         <span class="bigSpan spantitul"><?php echo $game->getTitle();?></span>
         <span class="bigSpan spanprecio2">Genero producto:</span>
         <span class="bigSpan spangenero">
@@ -104,23 +104,9 @@ function printGame($game) {
 
     <div class="col-lg-8 col-md-offset-2 col-md-offset-2 col-md-8 col-sm-12 col-xs-12  " >
       <div id="comentariosusers">
-    <!--<div class="divcomentari">
-       <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 " >
-          <img class ="img-responsive " src="imagenes/user.jpg">
       </div>
-
-      <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 " >
-       <span class="span2 span2grandaria">Escrito por Carles</span>
-       <p>
-           <span class=" glyphicon glyphicon-calendar ">17/05/2016</span>
-           
-       </p>
-       <span id="mensajejuego"></span>
-   </div>
- </div>-->
-</div>
-</div>
-<?php
-}
-printGame($game);
-?>
+    </div>
+    <?php
+  }
+  printGame($game);
+  ?>
