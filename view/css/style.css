@@ -1,3 +1,7 @@
+.contenedor {
+    background-color:blue;
+}
+
 /* titulo del apartado que permite plegarse y desplegarse. Por defecto estará depslegado */
 .desplegableProfile {
     background-color:#16A085;
@@ -6,6 +10,7 @@
     cursor:pointer;
     padding-left: 10px;
     margin-bottom: 10px;
+    /*border:1px solid #16A085;*/
 }
 
 /* Apartado de datos del perfil de usuari donde puede cambiar sus datos personales */
@@ -28,6 +33,27 @@
     .form-group {
         margin-bottom: 55px;
     }
+}
+
+/* Updating messages using server validations */
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+.error {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
 }
 
 /* boton de guardar cambios de perfil */
@@ -79,6 +105,7 @@
     background-repeat: no-repeat;
     margin-left: 3px;
 }
+
 /*  Shopping Cart CSS  */
 ul.dropdown-cart{
     min-width:250px;
