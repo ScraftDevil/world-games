@@ -12,7 +12,6 @@ function printGame($game) {
   ?>
 
   <div class="col-lg-8 col-md-offset-2 col-md-offset-2 col-md-8 col-sm-12 col-xs-12 " >
-    <div class="  divspan">
       <?php
       $price = $game->getPrice();
       $offer = $game->getOffer()->getDiscount();
@@ -62,7 +61,7 @@ function printGame($game) {
         ?>
 
 
-        <div class="enviarcarrito"><span class="spanenviar">Añadir al carrito</span></div>
+        <div class="enviarcarrito buyGame"><span class="spanenviar">Añadir al carrito</span></div>
         <div class="espai"></div>
 
       </div>

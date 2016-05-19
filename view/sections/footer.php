@@ -330,7 +330,7 @@ $(document).on("click", ".buyItem", function (e) {
     }
 });
 //buy from detailProduct
-$(document).on("click", ".buyItem", function (e) {
+$(document).on("click", ".buyGame", function (e) {
     e.preventDefault();
     var nitemsOld = 0;
     if ($("#countShoppingCart").text()!="") {
@@ -339,9 +339,9 @@ $(document).on("click", ".buyItem", function (e) {
         $("#basket").html("");
     }
     var nitems = parseInt(nitemsOld)+parseInt(1);
-    $item = $(this).parent().parent().find(".gallery-details");
-    var itemImageURL = $(this).parent().find("img:eq(0)").attr("src");
-    var id = $(this).parent().parent().attr("id");
+    $item = $(this).parent().parent().parent(".divspan");
+    var itemImageURL = $item.find(".imageGame").attr("src");
+    var id = $item.attr("id");
     id = id.split("_")[1];
     function Game(id, name, price, image, quantity) {
         this.id = id;
@@ -350,8 +350,8 @@ $(document).on("click", ".buyItem", function (e) {
         this.image = image;
         this.quantity = quantity;
     }
-    var title = $item.find("h5:eq(0)").text();
-    var price = $item.find("h6:eq(0)").text();
+    var title = $item.find(".spantitul").text();
+    var price = $item.find(".spanprecio").text();
     var newGame = true;
     if (typeof Cookies.getJSON('shoppingCart') == "undefined") {
         var items = Array();
