@@ -11,7 +11,7 @@ function getterURL(variable) {
 }
 
 $(document).ready(function() {
-  //get rating
+  //insert rating
   $("#rateBtn").on("click", function () {
     var rate = $(this).parent().parent().find("#rating").val();
     var params = {
@@ -22,15 +22,27 @@ $(document).ready(function() {
       data:  params,
       url:   '../controller/rateGameController.php',
       type:  'POST',
+      dataType: 'json',
       beforeSend: function () {
         $(this).parent().parent().html("Porfavor espere...");
       },
-      success:  function (response) {
-        $(this).parent().parent().html("OK!");
+      success:  function (json) {
+        switch(json.msg) {
+          case "LOGIN_ERROR":
+          {
+            $("#msgRate").html('<div class="alert alert-info">No has hecho login, no puedes puntuar.</div>');
+            break;
+          }
+          case "NO_RATE_INPUT":
+          {
+            $("#msgRate").html('<div class="alert alert-info">No puedes pasarte por el forro el control.</div>');
+            break;
+          }
+        }
       }
     });
   });
-  //insert rating
+  //get rating
   var params = {"gameid" : getterURL('gameid')};
   $.ajax({
     data: params,

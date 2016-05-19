@@ -80,27 +80,21 @@ function printGame($game) {
             <option value="2">Bad</option>
             <option value="1">Very Bad</option>
           </select>
+          <div id="msgRate"></div>
           <center>
             <button type="button" class="buttonCustom" id="rateBtn">Rate</button>
           </div>
-
-
           <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 " >
             <div class="width100">
               <form action="" method="post" class="login">
                 <textarea id="comentari" class="form-control" type="text" rows="6" name="comentari" value="" placeholder="Escriu al teu comentari aqui:"></textarea>
-
                 <div class="alert alert-success ocultar">
                   <div id="message"></div>
                 </div>
-
-
                 <input id="enviar" class="buttonCustom" type="button" name="enviar" value="ENVIAR"/>
               </form>
             </div>
           </div>
-
-
           <div class="clear"></div>
         </div>
 
