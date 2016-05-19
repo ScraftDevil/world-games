@@ -9,10 +9,13 @@
 	if($id != null) {
 
 		$shopDb = unserialize($_SESSION['dbconnection']);
+
+		//Logout del usuario
 		include("../controller/controllerLogout.php");
 
-		//$shopDb->deleteRegisteredUser($id);
-		//metodo de logout
+		$shopDb->deleteRegisteredUser($id);
+		
+		//redirecciona tras borrar la sesion y el usuario
 		header ("Location: ../view/home.php?msg=ACCOUNT_DELETED");
 
 	}
