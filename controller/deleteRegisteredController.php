@@ -13,8 +13,6 @@
 
 		//$shopDb->deleteRegisteredUser($id);
 		//metodo de logout
-		//esto es provisional
-		//Pendiente hacer un logout de sesion con un redirect bien hecho
 		header ("Location: ../view/home.php?msg=ACCOUNT_DELETED");
 
 	}

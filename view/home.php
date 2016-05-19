@@ -10,8 +10,9 @@
 
             if (isset($_GET['msg']) && $_GET['msg']=="ACCOUNT_DELETED") {
                 ?> <div class="delete-success">¡Tu usuario ha sido eliminado correctamente!<br>
-                    Serás redirigido a la página principal en 3 segundos.</div> <?php
-                echo "<script>setTimeout (\"window.location.href='../'\", 3000);</script>";
+                    Serás redirigido a la página principal en <span id="contenedor"><?php "<script>tiempo()</script>" ?></span> segundos.</div> <?php
+                //echo "<script>setTimeout (\"window.location.href='../'\", 3000);</script>";
+                    //echo "<script>tiempo()</script>";
             }
 
             if (isset($_SESSION['shop'])) {
