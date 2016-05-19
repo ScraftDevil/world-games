@@ -40,6 +40,10 @@
 				$message = "<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-ok\"></span> Juego eliminado satisfactoriamente!</strong></div>";
 				break;
 
+				case "gameNotSelected":
+				$message = "<div class=\"alert alert-warning\"><strong>Aviso:</strong> No has seleccionado ningun juego para gestionar la seva oferta.</div>";
+				break;
+
 				default:
 					$message = null;
 				break;
@@ -70,8 +74,8 @@
 									}
 								?>
 								<div class="new-button">
-									
 									<button type="button" class="btn btn-success"><a href="newGameView.php"><i class="fa fa-user" aria-hidden="true"></i> Nuevo Juego</a></button>
+									<button type="button" id="offerGame" class="btn btn-success"><a href="offers/offersGameView.php"><i class="fa fa-cog" aria-hidden="true"></i> Gestionar Oferta</a></button>
 								</div>
 								<?php
 									include("../../controller/gameControllers/showGameController.php");
@@ -84,7 +88,27 @@
 		</div>
 	</div>
 	<footer>
-		<?php include("../sections/footer.php"); ?>
+		<?php include("../sections/footer.php"); ?>	
+		<script>
+		$("#offerGame").click(function () {
+			var anySelected = false;
+			$('.grid tr').each(function() {
+				if ($(this).hasClass("selected")) {
+					anySelected = true;
+				}
+			});
+			if (!anySelected) {
+				window.location.href = 'gameListView.php?msg=gameNotSelected';
+				return false;
+			}
+		});
+		$(".selectGame").click(function () {
+			$('.grid tr').each(function() {
+				$(this).removeClass("selected");
+			});
+			$(this).parent().parent().parent().attr("class", "selected");
+		});
+		</script>
 	</footer>
 </body>
 </html>

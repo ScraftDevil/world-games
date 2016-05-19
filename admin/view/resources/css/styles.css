@@ -269,6 +269,10 @@ a {
     padding: 6px;
 }
 
+.selected td {
+    background-color: #B3FFE6;
+}
+
 .drop-grid {
     text-decoration: none;
     color: white;

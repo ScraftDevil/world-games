@@ -32,7 +32,7 @@
 		$id = $record['ID_Game'];
 		return "
 		<div class=\"btn-group\">
-		  <button type=\"button\" class=\"btn btn-danger\">Selecciona una opcion</button>
+		  <button type=\"button\" class=\"btn btn-danger selectGame\">Selecciona</button>
 		  <button type=\"button\" class=\"btn btn-danger dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
 		    <span class=\"caret\"></span>
 		    <span class=\"sr-only\">Selecciona una opcion</span>
