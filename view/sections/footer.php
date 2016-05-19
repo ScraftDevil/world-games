@@ -329,6 +329,7 @@ $(document).on("click", ".buyItem", function (e) {
         $("#basket").append(linesHTML);
     }
 });
+//buy
 function getGame(json, idgame) {
     var game = null;
     $.each(json, function(i, item) {
