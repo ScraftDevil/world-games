@@ -40,7 +40,9 @@ $("#enviar").click(function (){
           "gameid":getterURL('gameid')
         },
         success: function(data) {
+          $(".ocultar").show();
           $("#message").html("Se ha enviado el mensaje con exito.");
+          $(".ocultar").delay(4000).hide(100);
         }
       });
     });

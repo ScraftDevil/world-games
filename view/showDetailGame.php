@@ -11,31 +11,24 @@ function printGame($game) {
     //echo $_GET['gameid'];
     ?>
 
-    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 " >
-        <div class="imgcaixa">
-
-         <img class ="img-responsive imggrandaria" src="images/games/<?php echo $game->getTitle();?>.png">
-
-     </div>
- </div>
- <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 " >
-    <div class="divspan">
+    <div class="col-lg-8 col-md-offset-2 col-md-offset-2 col-md-8 col-sm-12 col-xs-12 " >
+        <div class="  divspan">
         <?php
         $price = $game->getPrice();
         $offer = $game->getOffer()->getDiscount();
         ?>
-        <span class="span1 spantitul"><?php echo $game->getTitle();?></span>
-        <?php
-        $priceWithDiscount = calculateDiscount($price, $offer);
-        if (!empty($game->getOffer()->getDiscount())) {
-            echo '<span class="spanprecio2">Descuento producto:</span>
-            <span class="span1 spandescuento">'.$game->getOffer()->getDiscount().'% de descuento</span>';
-            echo '<span class="span1 spanprecio">'.$priceWithDiscount.' €</span>';
-        } else {
-            echo '<span class="span1 spanprecio">'.$price.' €</span>';
-        }
-        ?>
-        <span class="spanprecio2">Genero producto:</span>
+         <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 " >
+        <div class="pull-left">
+               <img class ="img-responsive imggrandaria" src="images/games/<?php echo $game->getTitle();?>.png">
+           </div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 " >
+           <div class="pull-right widthparragraf">
+            <span class="span1 spantitul"><?php echo $game->getTitle();?></span>
+
+         
+
+           <span class="span1 spanprecio2">Genero producto:</span>
         <span class="span1 spangenero">
             <?php
             if (!empty($game->getGenres())) {
@@ -51,7 +44,7 @@ function printGame($game) {
             }
             ?>
         </span>
-        <span class="spanprecio2">Plataforma producto:</span>
+        <span class="span1 spanprecio2">Plataforma producto:</span>
         <span class="span1 spanplataforma">
             <?php
             if (!empty($game->getPlatform())) {
@@ -59,33 +52,64 @@ function printGame($game) {
             }
             ?>
         </span>
+
+
+            <?php
+        $priceWithDiscount = calculateDiscount($price, $offer);
+        if (!empty($game->getOffer()->getDiscount())) {
+            echo '  <span class="span1 spandescuento">'.$game->getOffer()->getDiscount().'% de descuento</span>';
+            echo '<span class="span1 spanprecio">'.$priceWithDiscount.' €</span>';
+        } else {
+            echo '<span class="span1 spanprecio">'.$price.' €</span>';
+        }
+        ?>
+
+
         <div class="enviarcarrito"><span class="spanenviar">Añadir al carrito</span></div>
         <div class="espai"></div>
-    </div>
-</div>
 
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        </div>
+
+    </div>
+
+    <div class="divform">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
   <p id="totalScore">Score: 0</p>
+  <center class="bottom">
   <select id="rating">
     <option value="5">Excelent</option>
     <option value="4">Very Good</option>
     <option value="3">Good</option>
     <option value="2">Bad</option>
     <option value="1">Very Bad</option>
-  </select>
-  <button type="button" id="rateBtn">Rate</button>
+</select>
+<center>
+<button type="button" class="boto" id="rateBtn">Rate</button>
 </div>
 
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " >
-  <div class="divform">
+
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 " >
+<div class="width100">
     <form action="" method="post" class="login">
-        <p>Escriu al teu comentari aqui: </p>
-        <textarea id="comentari" class="form-control" type="text" rows="6" name="comentari" value="" ></textarea>
-        <div id="message"></div>
+            <textarea id="comentari" class="form-control" type="text" rows="6" name="comentari" value="" placeholder="Escriu al teu comentari aqui:"></textarea>
+       
+       <div class="alert alert-success ocultar">
+  <div id="message"></div>
+</div>
+           
+       
         <input id="enviar" class="boto" type="button" name="enviar" value="ENVIAR"/>
     </form>
-  </div>
 </div>
+</div>
+
+
+<div class="clear"></div>
+</div>
+
+
+     </div>
+      </div>
 
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " >
     <div id="comentariosusers">
@@ -104,68 +128,6 @@ function printGame($game) {
    </div>
 </div>-->
 </div>
-
-
-<!--<div class="divcomentari">
-   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 " >
-      <img class ="img-responsive " src="imagenes/user.jpg">
-  </div>
-
-  <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 " >
-   <span class="span2 span2grandaria">Escrito por David</span>
-   <p>
-       <span class=" glyphicon glyphicon-calendar ">17/05/2016</span>
-       
-   </p>
-   <span>Nunca habia jugado i segun e visto me a molado bastante lo mas seguro es que me lo pille gracias</span>
-</div>
-</div>
-
-<div class="divcomentari">
-   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 " >
-      <img class ="img-responsive " src="imagenes/user.jpg">
-  </div>
-
-  <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 " >
-   <span class="span2 span2grandaria">Escrito por Olga</span>
-   <p>
-       <span class=" glyphicon glyphicon-calendar ">17/05/2016</span>
-       
-   </p>
-   <span>No me lo compro porque no es legible</span>
-</div>
-</div>
-
-
-<div class="divcomentari">
-   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 " >
-      <img class ="img-responsive " src="imagenes/user.jpg">
-  </div>
-
-  <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 " >
-   <span class="span2 span2grandaria">Escrito por Ignacio</span>
-   <p>
-       <span class=" glyphicon glyphicon-calendar ">17/05/2016</span>
-       
-   </p>
-   <span>Muy caro nose si eso en un futuro me lo compro</span>
-</div>
-</div>
-
-<div class="divcomentari">
-   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 " >
-      <img class ="img-responsive " src="imagenes/user.jpg">
-  </div>
-
-  <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 " >
-   <span class="span2 span2grandaria spancolor">Escrito por Crisitan</span>
-   <p>
-       <span class=" glyphicon glyphicon-calendar spancolor ">17/05/2016</span>
-       
-   </p>
-   <span class="spancolor">Me lo compro porque milloneti</span>
-</div>
-</div>-->
 </div>
 <?php
 }

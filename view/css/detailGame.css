@@ -6,35 +6,55 @@ body{
 
 	/*background-color: #736B58;*/
 	background-color: #E6E6E6;
-	width: 100%;
+	
 	border: 2px solid #585858;
 	border-radius: 20px;
 }
 .imggrandaria{
-	width: 90%;
-	margin-right: auto;
-	margin-left: auto;
-	display: block;
-	margin-bottom: 23px;
+	width: 100%;
+	
 	margin-top: 23px;
 	
+}
+
+.col-center{
+    float: none;
+    margin: 0 auto;
 }
 
 
 .boto{
 	margin-top: 10px;
 }
-
+.colorscore{
+	color: blue!important;
+}
 .divform{
-	margin-top: 50px;
+	
 	/*background-color: #736B58;*/
 	background-color: #E6E6E6;
 	color: #585858;
 	padding: 10px;
-	margin-bottom: 50px;
+	margin-top: 15px;
 	width: 100%;
+	
+	
+	
+	border-radius: 20px;
+}
+.bottom{
+	margin-bottom: 20px;
+}
+#totalScore{
+	font-size: 41px;
+	margin-top: 0px;
+	color: blue;
 	text-align: center;
-	overflow: auto;
+	
+}
+select {
+	text-align: center;
+	margin-bottom: 20px;
 }
 
 .span1{
@@ -45,15 +65,31 @@ body{
 	width: 100%;
 	display: block;
 }
+textarea{
+	border:3px solid #16A085!important;
+	resize:none;
+}
+textarea:focus{
+	outline: none !important;
+    border-color: none!important;
+    box-shadow: 0 0 0 white!important;
 
+}
+.widthparragraf{
+	width: 100%;
+}
 .divspan{
 	font-weight: bold;
 	/*background-color: #736B58;*/
 	background-color: #E6E6E6;
-	width: 100%;
+	width: 100%;margin-bottom: 20px;
 	color: #585858;
 	border: 2px solid #585858;
 	border-radius: 20px;
+	
+}
+.clear{
+	clear: both;
 }
 .espaispan{
 	margin-left: 20px;
@@ -61,25 +97,83 @@ body{
 
 .spantitul{
 	text-align: center;
-	font-size: 40px;
-	border-bottom: 1px solid #585858;
+	font-size: 25px;
+	font-weight: 900;
+	border-bottom: 3px solid #585858;
 	padding-top: 10px;
 	color: #585858;
 
 }
 .span2grandaria{
-	font-size: 30px;
+	font-size: 10px;
 }
 
 .divcomentari{
-	margin-top: 50px;
+	
 	/*background-color: #736B58;*/
 	background-color: #E6E6E6;
 	color: #585858;
 	padding: 10px;
-	margin-bottom: 50px;
+	border: 2px solid #585858;
+	border-radius: 20px;
+	z-index: 1;
 	width: 100%;
+	position: relative;
 	overflow: auto;
+}
+
+#flechaTorcida {
+    
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    left: 500px;
+    top: 161px;
+    position: absolute;
+    border-width: 44px 76px 69px 15px;
+    border-color: blue transparent transparent transparent;
+
+}
+
+.flecha_abajo {
+  
+    width: 0;
+    height: 0;
+    position: absolute;
+    margin-left: 73%;
+    border-left: 85px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 31px solid #E6E6E6;
+
+}
+
+.arrow-before {
+width: 0;
+    height: 0px;
+    border-left: 83px solid transparent;
+    border-right: 44px solid transparent;
+    border-top: 33px solid black;
+    font-size: 0px;
+    line-height: 0px;
+    top: 0px;
+    /* left: 0px; */
+    margin-left: 65%;
+    position: relative;
+
+}
+.arrow-after {
+   width: 0;
+    height: 0;
+    border-left: 83px solid transparent;
+    border-right: 45px solid transparent;
+    border-top: 33px solid #E6E6E6;
+  z-index: 2;
+    font-size: 0px;
+    line-height: 0px;
+    margin-left: 65%;
+    top: -35px;
+    /* left: 4px; */
+    position: relative;
 }
 
 .enviarcarrito:hover{
@@ -88,46 +182,83 @@ body{
 
 .spanprecio{
 	
-	font-size: 40px;
+	font-size: 35px;
 	text-align: center;
 	color: rgb(255, 71, 71);
 }
 .spanprecio2{
-	font-size: 30px;
-	padding-left: 75px;
+	font-size: 20px;
+	margin-bottom: 10px;
+	margin-top: 20px;
+	text-align: center;
 }
 
 .spandescuento{
-	font-size: 25px;
-	padding-left: 75px;
+	font-size: 20px;
+	
+	text-align: center;
+	
 }
 
 .spangenero{
-	font-size: 25px;
-	padding-left: 75px;
+	font-size: 16px;
+	text-align: center;
+	margin-bottom: 10px;
+	
 
 }
 .spanplataforma{
-	font-size: 25px;
-	padding-left: 75px;
+	font-size: 16px;
+	text-align: center;
+	margin-bottom: 10px;
+	
+}
+
+.ocultar{
+	display: none;
 }
 
 .enviarcarrito{
 	cursor: pointer;
-	font-size: 20px;
+	font-size: 15px;
 	margin-top: 12px;
-	/* padding-bottom: 15px; */
-	padding-left: 5px;
-	padding-right: 5px;
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding-left: 2.5px;
+	padding-right: 2.5px;
+	padding-top: 5px;
+	margin-bottom: 33px;
+	padding-bottom: 5px;
 	color: #FAFAFA;
 	text-align: center;
 	background-color: #585858;
 	width: 30%;
 	margin-right: auto;
 	margin-left: auto;
-	border-radius: 20px;
+	
+}
+.width100{
+	width: 100%;
+}
+.login{
+	width: 100%;
+	text-align: center;
+}
+
+.boto{
+	cursor: pointer;
+	font-size: 15px;
+	margin-top: 12px;
+	padding-left: 2.5px;
+	padding-right: 2.5px;
+	padding-top: 5px;
+	margin-bottom: 10px;
+	padding-bottom: 5px;
+	color: #FAFAFA;
+	text-align: center;
+	background-color: #585858;
+	border: none;
+	width: 30%;
+	margin-right: auto;
+	margin-left: auto;
 }
 
 .spanenviar{
