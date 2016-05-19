@@ -329,7 +329,63 @@ $(document).on("click", ".buyItem", function (e) {
         $("#basket").append(linesHTML);
     }
 });
-//buy
+//buy from detailProduct
+$(document).on("click", ".buyItem", function (e) {
+    e.preventDefault();
+    var nitemsOld = 0;
+    if ($("#countShoppingCart").text()!="") {
+        nitemsOld = $("#countShoppingCart").text();
+    } else {
+        $("#basket").html("");
+    }
+    var nitems = parseInt(nitemsOld)+parseInt(1);
+    $item = $(this).parent().parent().find(".gallery-details");
+    var itemImageURL = $(this).parent().find("img:eq(0)").attr("src");
+    var id = $(this).parent().parent().attr("id");
+    id = id.split("_")[1];
+    function Game(id, name, price, image, quantity) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.image = image;
+        this.quantity = quantity;
+    }
+    var title = $item.find("h5:eq(0)").text();
+    var price = $item.find("h6:eq(0)").text();
+    var newGame = true;
+    if (typeof Cookies.getJSON('shoppingCart') == "undefined") {
+        var items = Array();
+        var game = new Game(id, title, price, itemImageURL, 1);
+        items.push(game);
+        var shoppingCart = JSON.stringify(items);
+        Cookies.set('shoppingCart', shoppingCart, { expires: 1 });
+        $("#countShoppingCart").text(nitems);
+    } else {
+        var items = Cookies.getJSON('shoppingCart');
+        var game = getGame(items, id);
+        if(game==null) {
+            newGame = true;
+            game = new Game(id, title, price, itemImageURL, 1);
+            items.push(game);
+            $("#countShoppingCart").text(nitems);
+        } else {
+            newGame = false;
+            $("#Product"+id).find("#quantity").text("x"+game.quantity);
+        }
+        Cookies.set('shoppingCart', items, { expires: 1 });
+    }
+    if (newGame) {
+        var buttonRemoveHTML = '<button type="button" class="removeItem btn btn-danger" style="position: absolute;padding: 0px;margin: 0px;margin-left: 145px;width: 19px;">X</button>';
+        var linesHTML = '<span class="item" id="Product'+id+'">'+buttonRemoveHTML+'<span onclick="loadDetailGame('+id+')" class="item-left">';
+        linesHTML += '<img src="'+itemImageURL+'" alt="'+title+'" width="85px" height="105px"/><span class="item-info">';
+        linesHTML += '<span>'+title+'</span>';
+        linesHTML += '<span id="quantity">x'+game.quantity+'</span>';
+        linesHTML += '<span>'+price+'</span>';
+        linesHTML += '</span></span></span>';
+        $("#basket").append(linesHTML);
+    }
+});
+//functions game
 function getGame(json, idgame) {
     var game = null;
     $.each(json, function(i, item) {
