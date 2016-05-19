@@ -12,6 +12,7 @@ function printGame($game) {
   ?>
 
   <div class="col-lg-8 col-md-offset-2 col-md-offset-2 col-md-8 col-sm-12 col-xs-12 " >
+    <div class="divspan" id="Product_<?php echo $game->getId();?>">
       <?php
       $price = $game->getPrice();
       $offer = $game->getOffer()->getDiscount();
