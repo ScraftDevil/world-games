@@ -9,7 +9,7 @@
 		if ($_SESSION['usertype'] == "Professional") {
 			header("Location:../index.php");
 		}
-		include("../resources/sections/head.php"); 
+		include("../sections/head.php"); 
 
 		$group = null;
 		$label = null;
@@ -69,12 +69,12 @@
 <body>
 	<?php
 
-		include("../resources/sections/header.php"); 
+		include("../sections/header.php"); 
 
 	?>
 	<div class="container-fluid">
 		<div class="row row-admin">
-			<?php include ("../resources/sections/menu.php"); ?>
+			<?php include ("../sections/menu.php"); ?>
 			<div class="col-md-10 admin-content">
 				<div class="container container-content">
 					<div class="row">
@@ -111,7 +111,7 @@
 		</div>
 	</div>
 	<footer>
-		<?php include("../resources/sections/footer.php"); ?>
+		<?php include("../sections/footer.php"); ?>
 	</footer>
 </body>
 </html>

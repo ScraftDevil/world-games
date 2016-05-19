@@ -9,7 +9,7 @@
 		if ($_SESSION['usertype'] == "Professional") {
 			header("Location:../index.php");
 		}
-		include("../resources/sections/head.php"); 
+		include("../sections/head.php"); 
 
 		$group = null;
 		$label = null;
@@ -38,12 +38,12 @@
 <body>
 	<?php
 
-		include("../resources/sections/header.php"); 
+		include("../sections/header.php"); 
 
 	?>
 	<div class="container-fluid">
 		<div class="row row-admin">
-			<?php include ("../resources/sections/menu.php"); ?>
+			<?php include ("../sections/menu.php"); ?>
 			<div class="col-md-10 admin-content">
 				<div class="container container-content">
 					<div class="row">
@@ -83,7 +83,7 @@
 												</div>
 												<div class="form-group">
 													<label for="country">País</label><label for="country-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
-													<?php include("../resources/sections/countryList.php"); ?><span class="server-error"></span>
+													<?php include("../sections/countryList.php"); ?><span class="server-error"></span>
 												</div>
 												<div class="form-group">
 												<button type="button" name="insert-user" id="insert-user" class="btn btn-info pull-left">Enviar</button>
@@ -100,7 +100,7 @@
 		</div>
 	</div>
 	<footer>
-		<?php include("../resources/sections/footer.php"); ?>
+		<?php include("../sections/footer.php"); ?>
 	</footer>
 </body>
 </html>

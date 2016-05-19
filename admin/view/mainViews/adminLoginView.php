@@ -8,7 +8,7 @@
 		header("Location:adminView.php");
 	}
 
-	include("../resources/sections/head.php");
+	include("../sections/head.php");
 
 	?>
 <body>
@@ -36,6 +36,6 @@
 			</div>
 		</div>
 	</div>
-<?php include("../resources/sections/footer.php"); ?>
+<?php include("../sections/footer.php"); ?>
 </body>
 </html>
