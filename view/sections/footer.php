@@ -42,21 +42,14 @@
 <script type="text/javascript" src="js/userProfile.js"></script>
 <script type="text/javascript" src="js/calendar.js"></script>
 <script type="text/javascript" src="js/js.cookie.js"></script>
-<script type="text/javascript" src='js/message.js'></script>
-<script src='js/jquery.rating.js' type="text/javascript" language="javascript"></script>
+<?php
+if (basename($_SERVER['PHP_SELF'])=="detailsProduct.php") {
+    echo '<script type="text/javascript" src="js/messages.js"></script>';
+    echo '<script src="js/rating.js" type="text/javascript" language="javascript"></script>';
+}
+?>
 <!--[if lt IE 9]><script src="js/html5shiv.js"></script><script src="js/respond.min.js"></script><![endif]-->
-
 <!--    SEARCH  -->
-<script type="text/javascript">
-$(document).ready(function() {
-    $('#star').rating('../controller/advote.php', {maxvalue: 5});
-
-});
-
-</script>
-
-
-
 <script type="text/javascript">
 var delay = (function(){
   var timer = 0;
@@ -181,10 +174,9 @@ $(document).ready(function() {
                 } else {
                     $.each($.parseJSON(json), function() {
                          var linesHTML = "";
-                        linesHTML += '';
                         linesHTML += '<style>.offerOldPrice {text-decoration:line-through;}</style>';
                         linesHTML += '<div class="col-md-3 col-sm-6 col-xs-12 gallery-item-wrapper isotope-item" style="position: absolute; left: 0px; top: 0px; transform: translate3d(0px, 0px, 0px);">';
-                        linesHTML += '<div class="gallery-item">';
+                        linesHTML += '<div class="gallery-item" id="Game_'+this.id+'">';
                         linesHTML += '<div class="gallery-thumb" title="'+this.title+'"><img src="images/games/'+this.title+'.png" width="800px" height="600px" class="img-responsive" alt="'+this.title+'">';
                         linesHTML += '<div class="image-overlay"></div>';
                         linesHTML += '<a href="detailsProduct.php?gameid='+this.id+'" class="gallery-zoom"><i class="fa fa-eye"></i></a>';
@@ -201,7 +193,6 @@ $(document).ready(function() {
                         linesHTML += '</div>';
                         linesHTML += '</div>'; 
                         linesHTML += '</div>';
-                        linesHTML += '';
                         $("#isotope-gallery-container").html(linesHTML);
                     });
                     //
@@ -338,6 +329,7 @@ $(document).on("click", ".buyItem", function (e) {
         $("#basket").append(linesHTML);
     }
 });
+//buy
 function getGame(json, idgame) {
     var game = null;
     $.each(json, function(i, item) {
@@ -381,6 +373,11 @@ function loadDetailGame(idgame) {
     return false;
 }
 $(document).ready(function() {
+    $(document).on("click", "#clearShop", function() {
+        $("#basket").html("");
+        $("#countShoppingCart").html("");
+        Cookies.remove('shoppingCart');
+    });
     $(document).on("click", ".removeItem", function (e) {
         e.preventDefault();
         $obj = $(this).parent();
@@ -402,4 +399,32 @@ $(document).ready(function() {
     });
 
 });
+</script>
+<!--    RATING SYSTEM   -->
+<script>
+$(document).ready(function() {
+    var params = {"gameid" : getterURL('gameid')};
+    $.ajax({
+        data: params,
+        url:   '../controller/getRatingGame.php',
+        type:  'POST',
+        success:  function (response) {
+            $("#totalScore").html("Total Score: "+response);
+        }
+    });
+});
+</script>
+<!--  GET FROM URL -->
+<script>
+function getterURL(variable) {
+  var query = window.location.search.substring(1);
+  var vars = query.split("?");
+  for (var i=0; i < vars.length; i++) {
+    var pair = vars[i].split("=");
+    if (pair[0] == variable) {
+      return pair[1];
+    }
+  } 
+  return variable;
+}
 </script>

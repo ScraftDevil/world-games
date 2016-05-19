@@ -91,7 +91,7 @@ class mysqldb {
 	}
 
 	public function getPlatform() {
-		$sql = "SELECT ID_Platform ,Name FROM platform";
+		$sql = "SELECT ID_Platform, Name FROM platform";
 		$stmt = $this->getLink()->prepare($sql); 
 		$stmt->execute();
 		$result = $stmt->FetchAll();

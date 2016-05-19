@@ -7,9 +7,8 @@
 
 include("sections/head.php");
 
-// controladores del perfil de usuario registrado
-include("../controller/getRegisteredInfoController.php");
-//include("../controller/updateRegisteredController.php");
+// controlador del perfil de usuario registrado
+include("../controller/registeredProfileController.php");
 
  //array que contiene los datos del usuario segun el id obtenido después de hacer login
 $registered = getRegisteredInfo($_SESSION['user_id']);
@@ -46,7 +45,7 @@ $_SESSION['registered'] = serialize($registeredObject);?>
                                 </div>
 
                                 <!-- Formulario para poder editar los datos del usuario (obtiene los datos de la BBDD) -->
-                                <form id="profileForm" action="../controller/updateRegisteredController.php" method="POST">
+                                <form id="profileForm" action="../controller/registeredProfileController.php" method="POST">
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Correo Eletrónico</label>
                                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-5 inputAttribute">

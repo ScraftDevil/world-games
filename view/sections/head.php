@@ -19,7 +19,6 @@ session_start();
     <link href="css/header.css" rel="stylesheet">
     <link href="css/footer.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/detailGame.css" rel="stylesheet">
     <link rel="stylesheet" href="css/detailGame.css"/>
     <link href='css/jquery.rating.css' type="text/css" rel="stylesheet"/>
 </head>
