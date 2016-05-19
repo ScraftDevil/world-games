@@ -1,5 +1,5 @@
 $("#rateBtn").on("click", function () {
-	var rate = $(this).parent().find("#rating").val();
+	var rate = $(this).parent().parent().find("#rating").val();
 	var params = {
         "rate" : rate,
         "gameid" : getterURL('gameid')
