@@ -9,10 +9,10 @@ $("#rateBtn").on("click", function () {
         url:   '../controller/rateGameController.php',
         type:  'POST',
         beforeSend: function () {
-                $(this).parent().html("Porfavor espere...");
+                $(this).parent().parent().html("Porfavor espere...");
         },
         success:  function (response) {
-                $(this).parent().html("OK!");
+                $(this).parent().parent().html("OK!");
         }
     });
 });
