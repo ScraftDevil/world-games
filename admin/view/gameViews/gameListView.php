@@ -11,15 +11,6 @@
 		}
 		include("../sections/head.php"); 
 
-		$group = null;
-		$label = null;
-
-		if(isset($_GET['group'])) {
-
-			$label = 'Juegos';
-			$group = 'game';
-			
-		}
 
 		if(isset($_GET['msg']) AND !empty($_GET['msg'])) {
 			$msg = $_GET['msg'];
@@ -66,7 +57,7 @@
 				<div class="container container-content">
 					<div class="row">
 						<div class="col-md-12">
-							<h2> Lista de  <?php echo $label; ?></h2>
+							<h2> Lista de  Juegos</h2>
 							<div class="grid">
 								<?php
 									if ($message != null) {
@@ -75,7 +66,7 @@
 								?>
 								<div class="new-button">
 									<button type="button" class="btn btn-success"><a href="newGameView.php"><i class="fa fa-user" aria-hidden="true"></i> Nuevo Juego</a></button>
-									<button type="button" id="offerGame" class="btn btn-success"><a href="offers/offersGameView.php"><i class="fa fa-cog" aria-hidden="true"></i> Gestionar Oferta</a></button>
+									<button type="button" id="offerGame" class="btn btn-success"><a href=""><i class="fa fa-cog" aria-hidden="true"></i> Gestionar Oferta</a></button>
 								</div>
 								<?php
 									include("../../controller/gameControllers/showGameController.php");
@@ -90,6 +81,7 @@
 	<footer>
 		<?php include("../sections/footer.php"); ?>	
 		<script>
+		var idgame = 0;
 		$("#offerGame").click(function () {
 			var anySelected = false;
 			$('.grid tr').each(function() {
@@ -106,6 +98,8 @@
 			$('.grid tr').each(function() {
 				$(this).removeClass("selected");
 			});
+			idgame = $(this).parent().parent().parent().find("td:eq(0)").text();
+			$("#offerGame a").attr("href", "offers/offersGameView.php?gameid="+idgame);
 			$(this).parent().parent().parent().attr("class", "selected");
 		});
 		</script>
