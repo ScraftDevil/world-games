@@ -32,12 +32,12 @@ function load() {
     $('#delete-registered').click(function() {
         var checkbox = $('input:checkbox[name=deleteCheckBox]:checked').val();
 
-        if (checkbox != undefined) {
+        if (checkbox == 'on') {
 
             var alert ="<img class=\"alert-img\" src=\"images/alert.png\"/>";
             var deleteButton = "<button id=\"delete\" name=\"delete\" type=\"submit\" class=\"btn btn-success btn-delete\">Borrar</button>";
             var cancelButton = "<button onclick=\"cancelDelete()\" type=\"button\" class=\"btn btn-danger btn-cancel\">Cancelar</button>";
-            var form = "<form action=\"../controller/deleteUserController.php? method=\"POST\">" + deleteButton + " " + cancelButton + "</form>";
+            var form = "<form action=\"../controller/deleteRegisteredController.php\">" + deleteButton + " " + cancelButton + "</form>";
             var deleteAccount = "<div class=\"confirm\"><div class=\"confirm-msg\">" + alert + "<p>¿Realmente deseas eliminar definitivamente tu cuenta?</p>" + form + "</div></div>";
 
             $("body").append("<div class=\"delete\">" + deleteAccount + "</div>");

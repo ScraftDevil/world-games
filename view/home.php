@@ -7,6 +7,14 @@
         <div id="page" class="page">
             <?php
             include("sections/nav.php");
+
+            if (isset($_GET['msg']) && $_GET['msg']=="ACCOUNT_DELETED") {
+                ?> <div class="delete-success">¡Tu usuario ha sido eliminado correctamente!<br>
+                    Serás redirigido a la página principal en 3 segundos.</div> <?php
+                echo "<script>setTimeout (\"window.location.href='../'\", 3000);</script>";
+            }
+
+            if (isset($_SESSION['shop'])) {
             ?>
             <section class="content-block gallery-1">
                 <div class="container">
@@ -31,6 +39,7 @@
                 </div>
             </section>
             <?php
+        }
             include("sections/footer.php");
             ?>
         </div>
