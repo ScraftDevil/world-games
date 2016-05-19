@@ -69,17 +69,24 @@ class registeredDAO {
 	}
 
 	public function getAllRegisteredInfo($id) {
-
 		try {
 
-			$query = ("SELECT r.Username,, r.Password, r.Email, r.BannedTime, r.BirthDate, r.PaypalAccount, r.AvatarURL, c.Name as 'Pais'
-			FROM registered r INNER JOIN country c ON r.Country_ID = c.ID_Country where r.ID_Registered = '$id';");			
-
+			$query = ("SELECT Username, Password, Email, BannedTime, BirthDate, PaypalAccount, AvatarURL, Country_ID FROM registered where ID_Registered = '$id'");				
 			$db = unserialize($_SESSION['dbconnection']);
 			$resultat = $db->getLink()->prepare($query);
         	$resultat->execute();
-
- 			$result = $resultat->FetchAll();
+ 			while ($row = $resultat->fetch(PDO::FETCH_ASSOC)) {
+				$username = $row['Username'];
+				$password = $row['Password'];
+				$email = $row['Email'];
+				$bannedtime = $row['BannedTime'];
+				$birthdate = $row['BirthDate'];
+				$paypal = $row['PaypalAccount'];
+				$avatar = $row['AvatarURL'];
+				$country = $row['Country_ID'];
+				$user = array('username'=> $username, 'password'=> $password, 'email'=>$email, 'bannedtime'=> $bannedtime, "birthdate"=> date('d-m-Y', strtotime($birthdate)), "paypal"=> $paypal, "avatar"=>$avatar, "country"=>$country);
+			}
+			$result = $user;
 
 		} catch(PDOException $ex) {
 			echo "An Error ocurred!";

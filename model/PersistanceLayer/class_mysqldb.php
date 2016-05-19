@@ -105,7 +105,7 @@ class mysqldb {
 	}
 
 	public function getAllRegisteredInfo($id) {
-		$registeredDao = new RegisteredDAO();
+		$registeredDao = new registeredDAO();
 		$registered = $registeredDao->getAllRegisteredInfo($id);
 		return $registered;
 	}

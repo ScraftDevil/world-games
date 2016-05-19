@@ -7,36 +7,10 @@
 	require_once($_SESSION["BASE_PATH"]."/model/autoload.php");
 
 	$group = $_GET['group'];
+	$id = $_GET['user'];
 
 	if ($group == "registered" || $group == "professional" || $group == "administrator") {
-		switch ($group) {
-			case 'registered':
-				$proces = deleteRegistered();
-				if ($proces == -1) {
-					header("Location:../../view/userViews/newUserView.php?group=".$group."&msg=deleteFail");
-				} else {
-					header("Location:../../view/userViews/userListView.php?group=".$group."&msg=deleteSuccess");
-				}
-			break;
-
-			case 'professional':
-				$proces = deleteProfessional();
-				if ($proces == -1) {
-					header("Location:../../view/userViews/newUserView.php?group=".$group."&msg=deleteFail");
-				} else {
-					header("Location:../../view/userViews/userListView.php?group=".$group."&msg=deleteSuccess");
-				}
-			break;
-
-			case 'administrator':
-				$proces = deleteAdministrator();
-				if ($proces == -1) {
-					header("Location:../../view/userViews/newUserView.php?group=".$group."&msg=deleteFail");
-				} else {
-					header("Location:../../view/userViews/userListView.php?group=".$group."&msg=deleteSuccess");
-				}
-			break;		
-		}
+		
 	} else {
 		header("Location:../../index.php");
 	}

@@ -6,12 +6,16 @@
 
 	require_once($_SESSION["BASE_PATH"]."/model/autoload.php");
 
-	$data = json_decode($_POST['data']);
+	$post = $_POST['data'];
+
+	$data = json_decode($post);
+
+	$response = null;
+
+	$registered = null;
 
 	$group = $data->group;
 	$id = $data->id;
-
-	$response = null;
 
 	if ($data != null) {
 		if ($group == "registered" || $group == "professional" || $group == "administrator") {
@@ -37,12 +41,9 @@
 		$response = array("id" => "data-error");
 	}
 
-	function getRegisteredInfo() {
-		$registered = -1;
-		if (isset($_POST['delete']) AND !empty($_POST['delete'])) {
-			$db = unserialize($_SESSION['dbconnection']);
-			$proces = $db->deleteRegisteredUser($_POST['delete']);
-		}
+	function getRegisteredInfo($id) {
+		$db = unserialize($_SESSION['dbconnection']);
+		$proces = $db->getAllRegisteredInfo($id);
 		return $proces;
 	}
 
@@ -74,5 +75,7 @@
 		}
 		return $proces;
 	}
+
+	echo json_encode($registered);
 
 ?>
