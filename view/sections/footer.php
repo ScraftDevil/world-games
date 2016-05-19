@@ -174,10 +174,9 @@ $(document).ready(function() {
                 } else {
                     $.each($.parseJSON(json), function() {
                          var linesHTML = "";
-                        linesHTML += '';
                         linesHTML += '<style>.offerOldPrice {text-decoration:line-through;}</style>';
                         linesHTML += '<div class="col-md-3 col-sm-6 col-xs-12 gallery-item-wrapper isotope-item" style="position: absolute; left: 0px; top: 0px; transform: translate3d(0px, 0px, 0px);">';
-                        linesHTML += '<div class="gallery-item">';
+                        linesHTML += '<div class="gallery-item" id="Game_'+this.id+'">';
                         linesHTML += '<div class="gallery-thumb" title="'+this.title+'"><img src="images/games/'+this.title+'.png" width="800px" height="600px" class="img-responsive" alt="'+this.title+'">';
                         linesHTML += '<div class="image-overlay"></div>';
                         linesHTML += '<a href="detailsProduct.php?gameid='+this.id+'" class="gallery-zoom"><i class="fa fa-eye"></i></a>';
@@ -194,7 +193,6 @@ $(document).ready(function() {
                         linesHTML += '</div>';
                         linesHTML += '</div>'; 
                         linesHTML += '</div>';
-                        linesHTML += '';
                         $("#isotope-gallery-container").html(linesHTML);
                     });
                     //
