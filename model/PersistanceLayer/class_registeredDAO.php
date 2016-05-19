@@ -71,25 +71,39 @@ class registeredDAO {
  	/* Metodo para actualizar los datos del usuario registrado */
 	public function updateRegisteredUser($registered) {
 
+		$id = $registered->getId();
+		$email = $registered->getEmail();
 		$country = utf8_decode($registered->getCountry());
 
-		try {			
-			
-			$query = ('UPDATE registered r INNER JOIN country c ON "'.$country.'" = c.Name 
-			SET r.Email = "'.$registered->getEmail().'", r.BirthDate = "'.$registered->getBirthDate().'",
-			r.PaypalAccount = "'.$registered->getPaypalAccount().'", r.AvatarURL = "'.$registered->getAvatarUrl().'", 
-			r.Country_ID = c.ID_Country WHERE r.ID_Registered = "'.$registered->getId().';"');
-			
+		try {
+
+			$query = ('SELECT ID_Registered FROM Registered WHERE Email = "$email";');
+
 			$db = unserialize($_SESSION['dbconnection']);
 			$resultat = $db->getLink()->prepare($query);
-        	$resultat->execute();
-        	header("Location:../view/registeredProfileView.php");
+        	$result = $resultat->execute();
+
+        	if(!$result == "" || $result == $id) {
+	        	$query = ('UPDATE registered r INNER JOIN country c ON "'.$country.'" = c.Name 
+				SET r.Email = "'.$registered->getEmail().'", r.BirthDate = "'.$registered->getBirthDate().'",
+				r.PaypalAccount = "'.$registered->getPaypalAccount().'", r.AvatarURL = "'.$registered->getAvatarUrl().'", 
+				r.Country_ID = c.ID_Country WHERE r.ID_Registered = "'.$registered->getId().';"');
+				
+				$db = unserialize($_SESSION['dbconnection']);
+				$resultat = $db->getLink()->prepare($query);
+	        	$resultat->execute();
+
+	        	$response = "success";
+        	}
+        	else {
+        		$response = "email";
+        	}
 
 		} catch(PDOException $ex) {
 			echo "An Error ocurred!";
 			some_loggging_function($ex->getMessage());
 		} finally {
-			return $resultat;
+			return $response;
 			$_SESSION['dbconnection'] = serialize($db);			
 		}
 

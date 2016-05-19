@@ -4,19 +4,24 @@
 	include("registeredValidationProfileController.php");
 
 	$id = $_SESSION['user_id'];
-	$email = $_REQUEST['email'];
-	$birthdate = $_REQUEST['birthdate'];
+	
+	$registered = json_decode($_REQUEST['registered']);
+
+	$email = $registered->email;
+	$birthdate = $registered->birthdate;
 	$birthdate = date('Y-m-d', strtotime($birthdate));
-	$paypal = $_REQUEST['paypal'];
-	$image = $_REQUEST['profileImage'];
-	$country = $_REQUEST['country'];
+	$paypal = $registered->paypal;
+	$image = $registered->image;
+	$country = $registered->country;
 
 	$shopDb = unserialize($_SESSION['dbconnection']);
 
 	$errors = 0;
 
+	$response = "";
+
 	//Validacion de los campos introducidos. Si devuelve 0 es que no hay errores
-	$errors = validateInputs($id, $email, $birthdate, $paypal, $image, $country, $errors);
+	$errors = validateInputs($email, $birthdate, $paypal, $image, $country);
 
 	if ($errors == 0) {
 		$shopDb = unserialize($_SESSION['dbconnection']);
@@ -26,10 +31,14 @@
 		$registered->setPaypalAccount($paypal);
 		$registered->setAvatarURL($image);
 
-		$shopDb->updateRegisteredUser($registered);
+		$result = $shopDb->updateRegisteredUser($registered);
+
+		$response = 0;
 	}
 	else {
-		//header("Location: ../view/registeredProfileView.php");
+		$response = 1;		
 	}
+
+	echo json_encode($response);
 
 ?>

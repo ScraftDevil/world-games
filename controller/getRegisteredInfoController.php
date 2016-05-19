@@ -45,7 +45,7 @@
     	}
 	}
 
-	function deleteRegisteredUser($id) {
+	/*function deleteRegisteredUser($id) {
 		$shopDb = unserialize($_SESSION['dbconnection']);
 		$shopDb->deleteRegisteredUser($id);
 		//metodo de logout
@@ -58,6 +58,6 @@
 		if (isset($_REQUEST['deleteCheckBox'])) {
 			deleteRegisteredUser($_SESSION['user_id']);
 		}	
-	}
+	}*/
 
 ?>
