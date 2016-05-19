@@ -27,20 +27,20 @@ function load() {
 
 function deleteUser(value) {
    var id = value;
-   var alert = "<img class=\"alert-img\" src=\"images/alert.png\"/>";
+   var alert = "<img class=\"alert-img\" src=\"../resources/images/alert.png\"/>";
    var deleteButton = "<button name=\"delete\" value=\"" + id + "\" type=\"submit\" class=\"btn btn-success btn-delete\">Borrar</button>";
    var cancel = "<button onclick=\"cancelDelete()\" type=\"button\" class=\"btn btn-danger btn-cancel\">Cancelar</button>";
-   var form = "<form action=\"../controller/deleteUserController.php?group=" + group + "\" method=\"POST\">" + deleteButton + " " + cancel + "</form>";
+   var form = "<form action=\"../../controller/userControllers/deleteUserController.php?group=" + group + "\" method=\"POST\">" + deleteButton + " " + cancel + "</form>";
    var deleteUsr = "<div class=\"confirm\"><div class=\"confirm-msg\">" + alert + "<p>¿Seguro que deseas eliminar el Usuario con ID " + id + "?</p>" + form + "</div></div>";
    $("body").append("<div class=\"delete\">" + deleteUsr + "</div>");
 }
 
 function deleteGame(value) {
     var id = value;
-    var alert = "<img class=\"alert-img\" src=\"images/alert.png\"/>";
+    var alert = "<img class=\"alert-img\" src=\"../resources/images/alert.png\"/>";
     var deleteButton = "<button name=\"delete\" value=\"" + id + "\" type=\"submit\" class=\"btn btn-success btn-delete\">Borrar</button>";
     var cancel = "<button onclick=\"cancelDelete()\" type=\"button\" class=\"btn btn-danger btn-cancel\">Cancelar</button>";
-    var form = "<form action=\"../controller/deleteUserController.php?group=" + group + "\" method=\"POST\">" + deleteButton + " " + cancel + "</form>";
+    var form = "<form action=\"../../controller/gameControllers/deleteGameController.php?group=" + group + "\" method=\"POST\">" + deleteButton + " " + cancel + "</form>";
     var deletegame = "<div class=\"confirm\"><div class=\"confirm-msg\">" + alert + "<p>¿Seguro que deseas eliminar el Juego con ID " + id + "?</p>" + form + "</div></div>";
     $("body").append("<div class=\"delete\">" + deletegame + "</div>");
 }
@@ -102,17 +102,17 @@ function getInsertUserProcess(data) {
 
         case "success":
             var delay = 0;
-            setTimeout(function(){ window.location = "../../userViews/userListView.php?group=" + group + "&msg=" + data.id; }, delay);
+            setTimeout(function(){ window.location = "../../view/userViews/userListView.php?group=" + group + "&msg=" + data.id; }, delay);
         break;
 
         case "error-email":
             var delay = 0;
-            setTimeout(function(){ window.location = "../../userViews/userListView.php?group=" + group + "&msg=" + data.id; }, delay);
+            setTimeout(function(){ window.location = "../../view/userViews/userListView.php?group=" + group + "&msg=" + data.id; }, delay);
         break;
 
         case "error-username":
             var delay = 0;
-            setTimeout(function(){ window.location = "../../userViews/userListView.php?group=" + group + "&msg=" + data.id; }, delay);
+            setTimeout(function(){ window.location = "../../view/userViews/userListView.php?group=" + group + "&msg=" + data.id; }, delay);
         break;
 
         default:
@@ -129,7 +129,7 @@ function getInsertGameProcess(data) {
 
         case "success":
             var delay = 0;
-            setTimeout(function(){ window.location = "../../gameViews/gameListView.php?msg=" + data.id; }, delay);
+            setTimeout(function(){ window.location = "../../view/gameViews/gameListView.php?msg=" + data.id; }, delay);
         break;
 
         default:

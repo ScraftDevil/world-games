@@ -1,10 +1,11 @@
 <?php
 
-	require_once($_SESSION["BASE_PATH"]."/model/autoload.php");
-
 	if (session_id() == '') {
 	    session_start();
 	}
+
+	require_once($_SESSION["BASE_PATH"]."/model/autoload.php");
+
 	$group = $_GET['group'];
 
 	if ($group == "registered" || $group == "professional" || $group == "administrator") {
