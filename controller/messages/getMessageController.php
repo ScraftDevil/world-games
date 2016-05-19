@@ -26,10 +26,13 @@ for($i = 0; $i < count($result); $i++) {
 	echo '<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 " >';
 	echo ' <span class="span2 nomusuari span2grandaria">Escrito por '.$result[$i]['Usuario'].'</span>';
 	echo '<p >';
-	echo ' <span class=" glyphicon glyphicon-calendar ">'.$result[$i]['Date'].'</span>';
+	echo ' <span class=" glyphicon glyphicon-calendar margin-left ">'.$result[$i]['Date'].'</span>';
+	echo ' <span class=" glyphicon glyphicon-exclamation-sign "><a class="linkreport" href="../view/formNew">REPORT</a></span>'; 
 	echo '</p >';
 	echo '<span id="comentariojuego">'.$result[$i]['Text'].'</span>';
 	echo '</div >';
 	echo '</div >';
 }
+/*glyphicon glyphicon-pushpin*/
 ?>
+

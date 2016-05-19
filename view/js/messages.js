@@ -1,8 +1,7 @@
 $(document).ready(function() {
-
-setInterval(ajaxCall, 1000);
-
+setInterval(ajaxCall, 2000);
 function ajaxCall() {
+
     $.ajax({
       type: "POST",
       url: "../controller/messages/getMessageController.php",
@@ -13,28 +12,27 @@ function ajaxCall() {
       success: function(data) {
 
         $("#comentariosusers").html(data);
-        
+      
 
     }
   });
+
 }
+
  
 
-$('#enviar').click(function(){
+/*$('#enviar').click(function(){
 var i = 0;
-/*$(".divcomentari").each(function () {
-                    this.innerHTML=dades[$i];
-                    $i++;
-                     $('body').scrollTo('.divcomentari',{duration:2000, offsetTop : '50'});
-                });*/
-$('.divcomentari').each(function () { 
-   var n = $( ".divcomentari" ).size();
-    document.write(n);
-  //$(this).text();
-});
+
+  var n = $( ".divcomentari" ).size();*/
+  //  alert("total divs creats: "+n);
+//$('.divcomentari').each(function () { 
+   
+  //$('body').scrollTo(".divcomentari",{duration:2000, offsetTop : '50'});
+//});
 
      
-    });
+  //  });
 
 function getterURL(variable) {
   var query = window.location.search.substring(1);

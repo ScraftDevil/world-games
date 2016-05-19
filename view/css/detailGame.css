@@ -176,7 +176,22 @@ textarea:focus{
 	text-align: center;
 	color: rgb(255, 71, 71);
 }
+.linkreport{
+	color:red;
+	
+	font-size: 15px;
+	font-weight: bold;
+}
 
+.margin-left{
+	margin-right: 10px;
+}
+
+.linkreport:hover{
+	color:red;
+	font-weight: bold;
+	
+}
 .nomusuari{
 font-size: 20px;
 font-weight: bold;
