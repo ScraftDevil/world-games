@@ -460,20 +460,6 @@ $(document).ready(function() {
 
 });
 </script>
-<!--    RATING SYSTEM   -->
-<script>
-$(document).ready(function() {
-    var params = {"gameid" : getterURL('gameid')};
-    $.ajax({
-        data: params,
-        url:   '../controller/getRatingGame.php',
-        type:  'POST',
-        success:  function (response) {
-            $("#totalScore").html("Total Score: "+response);
-        }
-    });
-});
-</script>
 <!--  GET FROM URL -->
 <script>
 function getterURL(variable) {
