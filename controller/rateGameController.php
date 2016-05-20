@@ -8,7 +8,7 @@ if (isset($_POST['rate'])) {
 		$userid = $_SESSION['user_id'];
 		$db = unserialize($_SESSION['dbconnection']);
 		//check if already rate this game
-		$sql = "SELECT COUNT(*) AS rates FROM game_has_valoration GV WHERE GV.Registered_ID=$userid AND GV.Game_ID_Game=$gameid";
+		$sql = "SELECT COUNT(*) AS rates FROM game_has_valoration GV WHERE GV.Registered_ID=$userid AND GV.Game_ID=$gameid";
 		$stmt = $db->getLink()->prepare($sql);
 		$stmt->execute();
 		$result = $stmt->FetchAll();
