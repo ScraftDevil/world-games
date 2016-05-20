@@ -10,12 +10,34 @@ function getterURL(variable) {
   return variable;
 }
 
+function showStars(nStars) {
+  var rate = parseInt(nStars);
+  var txt = "";
+  var rateLast = 0;
+  for(var i = 0; i < rate; i++) {
+    txt += '<i id="star'+(i+1)+'" class="fa fa-star fa-2x" style="padding-top: 6px; color: #FFD700; font-weight: bold;" aria-hidden="true"></i>';
+    rateLast++;
+  }
+  var needStars = 5-rate;
+  for(var i = 0; i < needStars; i++) {
+    txt += '<i id="star'+(rateLast+i+1)+'" class="fa fa-star-o fa-2x" style="padding-top: 6px; color: #FFD700; font-weight: bold;" aria-hidden="true"></i>';
+  }
+  $("#rating").html(txt);
+}
+
 $(document).ready(function() {
-  //insert rating
-  $("#rateBtn").on("click", function () {
-    var rate = $(this).parent().parent().find("#rating").val();
+  //rating stars
+  /*$(document).on("mouseenter", "#rating i", function() {
+    var scoreRate = $(this).attr("id").replace("star", "");
+    showStars(scoreRate);
+  });*/
+  $(document).on("mouseleave", ".imgDetail", function() {
+    getRating();
+  });
+  $(document).on("click", "#rating i", function() {
+    var scoreRate = $(this).attr("id").replace("star", "");
     var params = {
-      "rate" : rate,
+      "rate" : scoreRate,
       "gameid" : getterURL('gameid')
     };
     $.ajax({
@@ -57,6 +79,7 @@ $(document).ready(function() {
         }
       }
     });
+    showStars(scoreRate);
   });
   //get rating
   function getRating() {
@@ -67,9 +90,9 @@ $(document).ready(function() {
       type:  'POST',
       success:  function (response) {
         if (response == "") {
-          $("#totalScore").html("Total Score: 0");
+          showStars(0);
         } else {
-          $("#totalScore").html("Total Score: " + response);
+          showStars(response);
         }
       }
     });

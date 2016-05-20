@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-05-2016 a las 13:49:47
+-- Tiempo de generación: 20-05-2016 a las 15:09:41
 -- Versión del servidor: 5.6.26
 -- Versión de PHP: 5.5.28
 
@@ -64,7 +64,8 @@ CREATE TABLE IF NOT EXISTS `admistrador_has_report` (
 CREATE TABLE IF NOT EXISTS `comment` (
   `ID_Comment` int(11) NOT NULL,
   `Game_ID` int(11) NOT NULL,
-  `Text` text
+  `Text` text,
+  `Date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -111,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `game` (
   `Price` float DEFAULT NULL,
   `Stock` int(11) DEFAULT NULL,
   `Platform_ID` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `game`
@@ -119,7 +120,8 @@ CREATE TABLE IF NOT EXISTS `game` (
 
 INSERT INTO `game` (`ID_Game`, `Title`, `Price`, `Stock`, `Platform_ID`) VALUES
 (1, 'Grand Theft Auto V ROCKSTAR CD-KEY GLOBAL', 60, 1, 2),
-(2, 'Rocket League STEAM CD-KEY GLOBAL', 20, 1, 2);
+(2, 'Rocket League STEAM CD-KEY GLOBAL', 20, 1, 2),
+(3, 'Call of Duty', 50, 0, 2);
 
 -- --------------------------------------------------------
 
@@ -176,6 +178,13 @@ CREATE TABLE IF NOT EXISTS `game_has_valoration` (
   `Registered_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `game_has_valoration`
+--
+
+INSERT INTO `game_has_valoration` (`Game_ID`, `Valoration_ID`, `Registered_ID`) VALUES
+(1, 3, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -219,7 +228,14 @@ CREATE TABLE IF NOT EXISTS `offer` (
   `ID_Offer` int(11) NOT NULL,
   `Discount` float DEFAULT NULL,
   `Game_ID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `offer`
+--
+
+INSERT INTO `offer` (`ID_Offer`, `Discount`, `Game_ID`) VALUES
+(2, 60, 1);
 
 -- --------------------------------------------------------
 
@@ -392,7 +408,14 @@ CREATE TABLE IF NOT EXISTS `shopping` (
 CREATE TABLE IF NOT EXISTS `valoration` (
   `ID_Valoration` int(11) NOT NULL,
   `Valoration` char(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `valoration`
+--
+
+INSERT INTO `valoration` (`ID_Valoration`, `Valoration`) VALUES
+(3, '3');
 
 --
 -- Índices para tablas volcadas
@@ -606,7 +629,7 @@ ALTER TABLE `country`
 -- AUTO_INCREMENT de la tabla `game`
 --
 ALTER TABLE `game`
-  MODIFY `ID_Game` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `ID_Game` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `genre`
 --
@@ -621,7 +644,7 @@ ALTER TABLE `message`
 -- AUTO_INCREMENT de la tabla `offer`
 --
 ALTER TABLE `offer`
-  MODIFY `ID_Offer` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Offer` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `platform`
 --
@@ -656,7 +679,7 @@ ALTER TABLE `shopping`
 -- AUTO_INCREMENT de la tabla `valoration`
 --
 ALTER TABLE `valoration`
-  MODIFY `ID_Valoration` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Valoration` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- Restricciones para tablas volcadas
 --

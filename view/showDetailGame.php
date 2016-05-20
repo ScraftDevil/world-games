@@ -17,9 +17,11 @@ function printGame($game) {
       $price = $game->getPrice();
       $offer = $game->getOffer()->getDiscount();
       ?>
-      <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 " >
-        <div class="pull-left">
-         <img class ="img-responsive imageGame" src="images/games/<?php echo $game->getTitle();?>.png">
+      <div class="imgDetail col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
+       <img class="img-responsive imageGame" src="images/games/<?php echo $game->getTitle();?>.png">
+       <div>
+       <span id="rating" title="Votar el juego!" class="pull-left"></span>
+       <span><button type="button" class="buttonCustom" id="rateBtn">Rate</button></span>
        </div>
      </div>
      <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 " >
@@ -71,42 +73,40 @@ function printGame($game) {
 
     <div class="gameForm">
       <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-        <p id="totalScore">Score: 0</p>
         <center class="bottom">
-          <select id="rating">
+          <!--<select id="rating">
             <option value="5">Excelent</option>
             <option value="4">Very Good</option>
             <option value="3">Good</option>
             <option value="2">Bad</option>
             <option value="1">Very Bad</option>
-          </select>
+          </select>-->
           <div id="msgRate"></div>
-          <center>
-            <button type="button" class="buttonCustom" id="rateBtn">Rate</button>
-          </div>
-          <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 " >
-            <div class="width100">
-              <form action="" method="post" class="login">
-                <textarea id="comentari" class="form-control" type="text" rows="6" name="comentari" value="" placeholder="Escriu al teu comentari aqui:"></textarea>
-                <div class="alert alert-success ocultar">
-                  <div id="message"></div>
-                </div>
-                <input id="enviar" class="buttonCustom" type="button" name="enviar" value="ENVIAR"/>
-              </form>
+        </center>
+      </div>
+      <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 " >
+        <div class="width100">
+          <form action="" method="post" class="login">
+            <textarea id="comentari" class="form-control" type="text" rows="6" name="comentari" value="" placeholder="Escriu al teu comentari aqui:"></textarea>
+            <div class="alert alert-success ocultar">
+              <div id="message"></div>
             </div>
-          </div>
-          <div class="clear"></div>
+            <input id="enviar" class="buttonCustom" type="button" name="enviar" value="ENVIAR"/>
+          </form>
         </div>
-
-
       </div>
+      <div class="clear"></div>
     </div>
 
-    <div class="col-lg-8 col-md-offset-2 col-md-offset-2 col-md-8 col-sm-12 col-xs-12  " >
-      <div id="comentariosusers">
-      </div>
-    </div>
-    <?php
-  }
-  printGame($game);
-  ?>
+
+  </div>
+</div>
+
+<div class="col-lg-8 col-md-offset-2 col-md-offset-2 col-md-8 col-sm-12 col-xs-12  " >
+  <div id="comentariosusers">
+  </div>
+</div>
+<?php
+}
+printGame($game);
+?>
