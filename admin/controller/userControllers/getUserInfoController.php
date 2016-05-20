@@ -23,6 +23,7 @@
 				switch($group) {
 					case "registered":
 						$registered = getRegisteredInfo($id);
+						$response = $registered;
 					break;
 
 					case "professional":
@@ -76,6 +77,6 @@
 		return $proces;
 	}
 
-	echo json_encode($registered);
+	echo json_encode($response);
 
 ?>

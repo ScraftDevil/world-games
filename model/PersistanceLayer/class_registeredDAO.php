@@ -71,7 +71,7 @@ class registeredDAO {
 	public function getAllRegisteredInfo($id) {
 		try {
 
-			$query = ("SELECT Username, Password, Email, BannedTime, BirthDate, PaypalAccount, AvatarURL, r.Country_ID, (SELECT c.ID_Country FROM country c WHERE c.ID_Country=r.Country_ID) AS Country FROM registered r where ID_Registered = '$id'");				
+			$query = ("SELECT r.Username, r.Password, r.Email, r.BannedTime, r.BirthDate, r.PaypalAccount, r.AvatarURL, r.Country_ID, (SELECT c.Name FROM country c WHERE c.ID_Country=r.Country_ID) AS Country FROM registered r where ID_Registered = '$id'");				
 			$db = unserialize($_SESSION['dbconnection']);
 			$resultat = $db->getLink()->prepare($query);
         	$resultat->execute();
@@ -83,9 +83,9 @@ class registeredDAO {
 				$birthdate = $row['BirthDate'];
 				$paypal = $row['PaypalAccount'];
 				$avatar = $row['AvatarURL'];
-				$country_id = $row['Country_ID'];
+				$countryID = $row['Country_ID'];
 				$country = $row['Country'];
-				$user = array('username'=> $username, 'password'=> $password, 'email'=>$email, 'bannedtime'=> $bannedtime, "birthdate"=> date('d-m-Y', strtotime($birthdate)), "paypal"=> $paypal, "avatar"=>$avatar, "country_id"=>$country_id, "country"=>$country);
+				$user = array('username'=> $username, 'password'=> $password, 'email'=>$email, 'bannedtime'=> $bannedtime, "birthdate"=> date('d-m-Y', strtotime($birthdate)), "paypal"=> $paypal, "avatar"=>$avatar, "countryID"=>$countryID, "country"=>utf8_encode($country));
 			}
 			$result = $user;
 
@@ -137,6 +137,49 @@ class registeredDAO {
 			$_SESSION['dbconnection'] = serialize($db);			
 		}
 
+	}
+
+	public function updateAllRegisteredUser($registered) {
+		try {
+			$username = $registered->getUsername();
+			$email = $registered->getEmail();
+			$db = unserialize($_SESSION['dbconnection']);
+			$query = ("SELECT p.Username FROM professional p WHERE p.Username='$username' UNION SELECT a.Username FROM administrator a WHERE a.Username='$username' UNION SELECT r.Username FROM registered r WHERE r.Username='$username'");
+			$resultat = $db->getLink()->prepare($query);
+			$resultat->execute();
+ 			$result = $resultat->fetch(PDO::FETCH_ASSOC);
+ 			if (!$result) {
+ 				$query = ("SELECT p.Username FROM professional p WHERE p.Email='$email' UNION SELECT a.Username FROM administrator a WHERE a.Email='$email' UNION SELECT r.Username FROM registered r WHERE r.Email='$email'");
+				$resultat = $db->getLink()->prepare($query);
+				$resultat->execute();
+ 				$result = $resultat->fetch(PDO::FETCH_ASSOC);
+				if (!$result) {
+					$query = ("UPDATE registered SET Username=:username, Password=:password, Email=:email, BannedTime=:bannedtime, BirthDate=:birthdate, PaypalAccount=:paypal, AvatarURL=:avatar, Country_ID=:country)");
+					$stmt = $db->getLink()->prepare($query);
+					$stmt->bindParam(':id', $this->getLastID());
+				    $stmt->bindParam(':username', $registered->getUsername());
+				    $stmt->bindParam(':password', $registered->getPassword());
+				    $stmt->bindParam(':email', $registered->getEmail());
+				    $stmt->bindParam(':bannedtime', $registered->getBannedTime());
+				    $stmt->bindParam(':birthdate', $registered->getBirthDate());
+				    $stmt->bindParam(':paypal', $registered->getPaypalAccount());
+				    $stmt->bindParam(':avatar', $registered->getAvatarUrl());
+				    $stmt->bindParam(':country', $registered->getCountry());
+				    $stmt->execute();
+				    $proces = "success";
+				} else {
+					$proces = "email";
+				}
+			} else {
+				$proces = "username";
+			}
+		} catch(PDOException $ex) {
+			echo "An Error ocurred!";
+			some_loggging_function($ex->getMessage());
+			die();
+		} finally {
+			return $proces;
+		}
 	}
 
 	/* Metodo para eliminar el usuario registrado */

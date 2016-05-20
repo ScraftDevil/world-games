@@ -28,7 +28,8 @@ function load() {
 
     case "userDataEditView":
       group = getterURL("group");
-      var data = {"group": deleteGetTrash(group), "id": id};
+      group = deleteGetTrash(group);
+      var data = {"group": group, "id": id};
       getUser(data);
     break;
 
@@ -110,9 +111,9 @@ function deleteUser(value) {
 
 // GET USER DATA FROM ID
 function getUser(data) {
-   var user = JSON.stringify(data);
+   var data = JSON.stringify(data);
    $.ajax({
-      data:  "data=" + user,
+      data:  "data=" + data,
       url:   '../../controller/userControllers/getUserInfoController.php',
       type:  'POST',
       dataType: 'json',
@@ -129,8 +130,8 @@ function getUpdateUserProcess(data) {
   $("#bannedtime").val(data.bannedtime);
   $("#calendar").val(data.birthdate);
   $("#paypal").val(data.paypal);
-  $("#country").val(country);
-  var platform = document.getElementById("country").value = data.country_id;
+  $("#country").html(data.country + " <span class=\"caret\"></span>");
+  var platform = document.getElementById("country").value = data.countryID;
 }
 
 

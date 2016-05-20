@@ -120,6 +120,11 @@ class mysqldb {
 		$registered = $registeredDao->updateRegisteredUser($registered);
 	}
 
+	public function updateAllRegisteredUser($registered) {
+		$registeredDao = new registeredDAO();
+		$registered = $registeredDao->updateAllRegisteredUser($registered);
+	}
+
 	public function deleteRegisteredUser($id) {
 		$registeredDao = new RegisteredDAO();
 		$registered = $registeredDao->deleteRegisteredUser($id);		
