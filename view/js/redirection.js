@@ -11,4 +11,4 @@ var segundos = 3;
 			clearTimeout(t);
 		}
 	}  
-tiempo()
+tiempo();

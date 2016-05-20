@@ -42,7 +42,6 @@
 <script type="text/javascript" src="js/userProfile.js"></script>
 <script type="text/javascript" src="js/calendar.js"></script>
 <script type="text/javascript" src="js/js.cookie.js"></script>
-<script type="text/javascript" src="js/redirection.js"></script>
 <script type="text/javascript" src="js/jqueryscrollTo.js"></script>
 <script type="text/javascript" src="js/scrollTogeneric.js"></script>
 
