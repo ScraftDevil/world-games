@@ -17,14 +17,25 @@
 	$group = $user->group;
 
 	if ($group == "registered" || $group == "professional" || $group == "administrator") {
+		$id = $user->id;
 		$username = $user->username;
 		$password = $user->password;
 		$email = $user->email;
+		$bannedtime = $user->bannedtime;
 		$birthdate = $user->birthdate;
+		$birthdate = date('Y-m-d', strtotime($birthdate));
 		switch ($group) {
 			case 'registered':
+				$paypal = $user->paypal;
+				$avatar = $user->avatar;
 				$country = $user->country;
-				$proces = updateRegistered($username, $password, $email, $birthdate, $country);
+				$registered = new Registered($username, $password, $email, $birthdate, $country);
+				$registered->setID($id);
+				$registered->setBannedTime($bannedtime);
+				$registered->setPaypalAccount($paypal);
+				$registered->setAvatarUrl($avatar);
+				$proces = updateRegistered($registered);
+				echo $proces;
 				$response = messages($proces);
 			break;
 
@@ -55,15 +66,15 @@
 	}
 
 
-	function addRegistered($username, $password, $email, $birthdate, $country) {
-		if ($username != "" AND $password != "" AND $email != "" AND $birthdate != "" AND $country != "") {
-				$birthdate = date('Y-m-d', strtotime($birthdate));
-				$registered = new Registered($username, $password, $email, $birthdate, $country);
-				$proces = $registered->insertRegistered();
+	function updateRegistered($registered) {
+		if ($registered->getUsername() != "" AND $registered->getPassword() != "" AND $registered->getEmail() != "" AND $registered->getBirthdate() != "" AND $registered->getCountry() != "") {
+				$db = unserialize($_SESSION['dbconnection']);
+				$proces = $db->updateAllRegisteredUser($registered);
 		} else {
 			$proces = "null";
 		}
-		return $proces;
+		//return $proces;
+		echo $proces;
 	}
 
 	function addProfessional() {
@@ -153,6 +164,6 @@
 		return $response;
 	}
 
-	echo json_encode($response);
+	//echo json_encode($response);
 
 ?>

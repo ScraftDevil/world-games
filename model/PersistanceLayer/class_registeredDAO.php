@@ -149,14 +149,14 @@ class registeredDAO {
 			$resultat->execute();
  			$result = $resultat->fetch(PDO::FETCH_ASSOC);
  			if (!$result) {
- 				$query = ("SELECT p.Username FROM professional p WHERE p.Email='$email' UNION SELECT a.Username FROM administrator a WHERE a.Email='$email' UNION SELECT r.Username FROM registered r WHERE r.Email='$email'");
+ 				$query = ("SELECT p.ID_Registered FROM professional p WHERE p.Email='$email' UNION SELECT a.Username FROM administrator a WHERE a.Email='$email' UNION SELECT r.Username FROM registered r WHERE r.Email='$email'");
 				$resultat = $db->getLink()->prepare($query);
 				$resultat->execute();
  				$result = $resultat->fetch(PDO::FETCH_ASSOC);
 				if (!$result) {
-					$query = ("UPDATE registered SET Username=:username, Password=:password, Email=:email, BannedTime=:bannedtime, BirthDate=:birthdate, PaypalAccount=:paypal, AvatarURL=:avatar, Country_ID=:country)");
+					$query = ("UPDATE registered SET Username=:username, Password=:password, Email=:email, BannedTime=:bannedtime, BirthDate=:birthdate, PaypalAccount=:paypal, AvatarURL=:avatar, Country_ID=:country WHERE ID_Registered=:id");
 					$stmt = $db->getLink()->prepare($query);
-					$stmt->bindParam(':id', $this->getLastID());
+					$stmt->bindParam(':id', $registered->getID());
 				    $stmt->bindParam(':username', $registered->getUsername());
 				    $stmt->bindParam(':password', $registered->getPassword());
 				    $stmt->bindParam(':email', $registered->getEmail());
@@ -168,7 +168,27 @@ class registeredDAO {
 				    $stmt->execute();
 				    $proces = "success";
 				} else {
-					$proces = "email";
+					$query = ("SELECT ID_Registered FROM registered WHERE Email='$email'");
+					$resultat = $db->getLink()->prepare($query);
+					$resultat->execute();
+ 					$result = $resultat->fetch(PDO::FETCH_ASSOC);
+					if(!$result) {
+						$proces = "email";
+					} else {
+						$query = ("UPDATE registered SET Username=:username, Password=:password, Email=:email, BannedTime=:bannedtime, BirthDate=:birthdate, PaypalAccount=:paypal, AvatarURL=:avatar, Country_ID=:country WHERE ID_Registered=:id");
+						$stmt = $db->getLink()->prepare($query);
+						$stmt->bindParam(':id', $registered->getID());
+					    $stmt->bindParam(':username', $registered->getUsername());
+					    $stmt->bindParam(':password', $registered->getPassword());
+					    $stmt->bindParam(':email', $registered->getEmail());
+					    $stmt->bindParam(':bannedtime', $registered->getBannedTime());
+					    $stmt->bindParam(':birthdate', $registered->getBirthDate());
+					    $stmt->bindParam(':paypal', $registered->getPaypalAccount());
+					    $stmt->bindParam(':avatar', $registered->getAvatarUrl());
+					    $stmt->bindParam(':country', $registered->getCountry());
+					    $stmt->execute();
+					    $proces = "success";
+					}
 				}
 			} else {
 				$proces = "username";
@@ -176,6 +196,7 @@ class registeredDAO {
 		} catch(PDOException $ex) {
 			echo "An Error ocurred!";
 			some_loggging_function($ex->getMessage());
+			$proces = "username";
 			die();
 		} finally {
 			return $proces;

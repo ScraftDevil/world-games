@@ -31,6 +31,18 @@ function load() {
       group = deleteGetTrash(group);
       var data = {"group": group, "id": id};
       getUser(data);
+      $("#update-user").click(function() {
+          var username = $("#username").val();
+          var password = $("#password").val();
+          var email = $("#email").val();
+          var bannedtime = $("#bannedtime").val();
+          var birthdate = $("#calendar").val();
+          var paypal = $("#paypal").val();
+          var avatar = null;
+          var country = document.getElementById("country").value;
+          var user = {"id": id, "username": username, "password": password, "email": email, "bannedtime": bannedtime, "birthdate": birthdate, "paypal":paypal, "avatar": avatar, "country": country, "group": group};
+          updateUser(user);
+      });
     break;
 
     // USER OPTIONS SWITCH FINISH
@@ -117,24 +129,63 @@ function getUser(data) {
       url:   '../../controller/userControllers/getUserInfoController.php',
       type:  'POST',
       dataType: 'json',
+      success: getUserInfo
+  });
+}
+
+function getUserInfo(data) {
+   if(data != null) {
+      $("#username").val(data.username);
+      $("#password").val(data.password);
+      $("#email").val(data.email);
+      $("#bannedtime").val(data.bannedtime);
+      $("#calendar").val(data.birthdate);
+      $("#paypal").val(data.paypal);
+      $("avatar").val(data.avatar);
+      document.getElementById("country").value = data.countryID;
+      $("#country").html(data.country + " <span class=\"caret\"></span>");
+   }
+}
+
+// USER UPDATE AJAX FUNCTION
+function updateUser(user) {
+   var user = JSON.stringify(user);
+   $.ajax({
+      data:  "user=" + user,
+      url:   '../../controller/userControllers/updateUserController.php',
+      type:  'POST',
+      dataType: 'json',
       success: getUpdateUserProcess
   });
 }
 
-// SET USER DATA INTO INPUTS & NAME SPAN
+//
 function getUpdateUserProcess(data) {
-  $("#user").html(data.username);
-  $("#username").val(data.username);
-  $("#password").val(data.password);
-  $("#email").val(data.email);
-  $("#bannedtime").val(data.bannedtime);
-  $("#calendar").val(data.birthdate);
-  $("#paypal").val(data.paypal);
-  $("#country").html(data.country + " <span class=\"caret\"></span>");
-  var platform = document.getElementById("country").value = data.countryID;
+  switch(data.id) {
+    case "error-null":
+            $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en la validación de datos del usuario!</strong></div>");
+        break;
+
+        case "success":
+            var delay = 0;
+            setTimeout(function(){ window.location = "../../view/userViews/userListView.php?group=" + group + "&msg=" + data.id; }, delay);
+        break;
+
+        case "error-email":
+            var delay = 0;
+            setTimeout(function(){ window.location = "../../view/userViews/userListView.php?group=" + group + "&msg=" + data.id; }, delay);
+        break;
+
+        case "error-username":
+            var delay = 0;
+            setTimeout(function(){ window.location = "../../view/userViews/userListView.php?group=" + group + "&msg=" + data.id; }, delay);
+        break;
+
+        default:
+            $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error inesperado!</strong></div>");
+        break;
+  }
 }
-
-
 
 
 /// USER ACTIONS FINISH
