@@ -17,6 +17,6 @@ Operaciones de Buzon(Quejas y Denuncias) [Parte Usuario] => Carlos
 Operaciones de Perfil Usuario y Mensajes Privados (Form + PHP) [Administracion y Parte Usuario] => Ignacio
 
 Menos prioridad:
-Gestion de mensajes Administracion => Sin asignar
+Gestion de mensajes Administracion => David
 Estadisticas web => David
 Cookies para session admin => David
