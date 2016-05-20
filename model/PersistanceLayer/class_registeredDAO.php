@@ -140,55 +140,20 @@ class registeredDAO {
 	}
 
 	public function updateAllRegisteredUser($registered) {
+		$proces = "";
 		try {
 			$username = $registered->getUsername();
 			$email = $registered->getEmail();
 			$db = unserialize($_SESSION['dbconnection']);
-			$query = ("SELECT p.Username FROM professional p WHERE p.Username='$username' UNION SELECT a.Username FROM administrator a WHERE a.Username='$username' UNION SELECT r.Username FROM registered r WHERE r.Username='$username'");
-			$resultat = $db->getLink()->prepare($query);
-			$resultat->execute();
- 			$result = $resultat->fetch(PDO::FETCH_ASSOC);
- 			if (!$result) {
- 				$query = ("SELECT p.ID_Registered FROM professional p WHERE p.Email='$email' UNION SELECT a.Username FROM administrator a WHERE a.Email='$email' UNION SELECT r.Username FROM registered r WHERE r.Email='$email'");
-				$resultat = $db->getLink()->prepare($query);
-				$resultat->execute();
- 				$result = $resultat->fetch(PDO::FETCH_ASSOC);
-				if (!$result) {
-					$query = ("UPDATE registered SET Username=:username, Password=:password, Email=:email, BannedTime=:bannedtime, BirthDate=:birthdate, PaypalAccount=:paypal, AvatarURL=:avatar, Country_ID=:country WHERE ID_Registered=:id");
-					$stmt = $db->getLink()->prepare($query);
-					$stmt->bindParam(':id', $registered->getID());
-				    $stmt->bindParam(':username', $registered->getUsername());
-				    $stmt->bindParam(':password', $registered->getPassword());
-				    $stmt->bindParam(':email', $registered->getEmail());
-				    $stmt->bindParam(':bannedtime', $registered->getBannedTime());
-				    $stmt->bindParam(':birthdate', $registered->getBirthDate());
-				    $stmt->bindParam(':paypal', $registered->getPaypalAccount());
-				    $stmt->bindParam(':avatar', $registered->getAvatarUrl());
-				    $stmt->bindParam(':country', $registered->getCountry());
-				    $stmt->execute();
+			// USERNAME VALIDATION IN TABLES
+			if($this->usernameInUse($registered, $db) == false) {
+				// EMAIL VALIDATION IN TABLES
+				if($this->emailInUse($registered, $db) == false) {
+					// UPDATE ALL COLUMNS IN REGISTERED TABLE
+					$this->updateAllRegistered($registered, $db);
 				    $proces = "success";
 				} else {
-					$query = ("SELECT ID_Registered FROM registered WHERE Email='$email'");
-					$resultat = $db->getLink()->prepare($query);
-					$resultat->execute();
- 					$result = $resultat->fetch(PDO::FETCH_ASSOC);
-					if(!$result) {
-						$proces = "email";
-					} else {
-						$query = ("UPDATE registered SET Username=:username, Password=:password, Email=:email, BannedTime=:bannedtime, BirthDate=:birthdate, PaypalAccount=:paypal, AvatarURL=:avatar, Country_ID=:country WHERE ID_Registered=:id");
-						$stmt = $db->getLink()->prepare($query);
-						$stmt->bindParam(':id', $registered->getID());
-					    $stmt->bindParam(':username', $registered->getUsername());
-					    $stmt->bindParam(':password', $registered->getPassword());
-					    $stmt->bindParam(':email', $registered->getEmail());
-					    $stmt->bindParam(':bannedtime', $registered->getBannedTime());
-					    $stmt->bindParam(':birthdate', $registered->getBirthDate());
-					    $stmt->bindParam(':paypal', $registered->getPaypalAccount());
-					    $stmt->bindParam(':avatar', $registered->getAvatarUrl());
-					    $stmt->bindParam(':country', $registered->getCountry());
-					    $stmt->execute();
-					    $proces = "success";
-					}
+					$proces = "email";
 				}
 			} else {
 				$proces = "username";
@@ -196,11 +161,90 @@ class registeredDAO {
 		} catch(PDOException $ex) {
 			echo "An Error ocurred!";
 			some_loggging_function($ex->getMessage());
-			$proces = "username";
+			$proces = "error";
 			die();
 		} finally {
 			return $proces;
 		}
+	}
+
+	private function emailInUse($registered, $db) {
+		$use = 0;
+
+		$email = $registered->getEmail();
+		$id = $registered->getID();
+
+		// Select que comprueba si existe el email en cualquiera de las tablas de usuario
+		$query = ("SELECT p.Username FROM professional p WHERE p.Email='$email' UNION SELECT a.Username FROM administrator a WHERE a.Email='$email' UNION SELECT r.Username FROM registered r WHERE r.Email='$email'");
+		$resultat = $db->getLink()->prepare($query);
+		$resultat->execute();
+ 		$emailInTables = $resultat->fetch(PDO::FETCH_ASSOC);
+
+ 		// Select que comprueba si el email es el mismo que esta usando
+ 		$query = ("SELECT ID_Registered FROM registered WHERE Email='$email' AND ID_Registered='$id'");
+		$resultat = $db->getLink()->prepare($query);
+		$resultat->execute();
+ 		$thisEmail = $resultat->fetch(PDO::FETCH_ASSOC);
+
+ 		// Si el email existe en una tabla, esta es la tabla del usuario y su ID coincide o si el email no existe en ninguna tabla devuelve un 0 porque puede usarlo, en caso contrario devuelve un 1 denegando la operacion.
+ 		if (!$emailInTables) {
+ 			$use = false;
+ 		} else {
+ 			if (!$thisEmail) {
+ 				$use = true;
+ 			} else {
+ 				$use = false;
+ 			}
+ 		}
+
+ 		return $use;
+	}
+
+	private function usernameInUse($registered, $db) {
+		$use = 0;
+
+		$username = $registered->getUsername();
+		$id = $registered->getID();
+
+		// Select que comprueba si existe el nombre de usuario en cualquiera de las tablas de usuario
+		$query = ("SELECT p.Username FROM professional p WHERE p.Username='$username' UNION SELECT a.Username FROM administrator a WHERE a.Username='$username' UNION SELECT r.Username FROM registered r WHERE r.Username='$username'");
+		$resultat = $db->getLink()->prepare($query);
+		$resultat->execute();
+ 		$usernameInTables = $resultat->fetch(PDO::FETCH_ASSOC);
+
+ 		// Select que comprueba si el nombre de usuario es el mismo que esta usando
+ 		$query = ("SELECT ID_Registered FROM registered WHERE Username='$username' AND ID_Registered='$id'");
+		$resultat = $db->getLink()->prepare($query);
+		$resultat->execute();
+ 		$thisUsername = $resultat->fetch(PDO::FETCH_ASSOC);
+
+ 		// Si el nombre de usuario existe en una tabla, esta es la tabla del usuario y su ID coincide o si el nombre de usuario no existe en ninguna tabla devuelve un 0 porque puede usarlo, en caso contrario devuelve un 1 denegando la operacion.
+ 		if (!$usernameInTables) {
+ 			$use = false;
+ 		} else {
+ 			if (!$thisUsername) {
+ 				$use = true;
+ 			} else {
+ 				$use = false;
+ 			}
+ 		}
+
+ 		return $use;
+	}
+
+	private function updateAllRegistered($registered, $db) {
+		$query = ("UPDATE registered SET Username=:username, Password=:password, Email=:email, BannedTime=:bannedtime, BirthDate=:birthdate, PaypalAccount=:paypal, AvatarURL=:avatar, Country_ID=:country WHERE ID_Registered=:id");
+		$stmt = $db->getLink()->prepare($query);
+		$stmt->bindParam(':id', $registered->getID());
+		$stmt->bindParam(':username', $registered->getUsername());
+		$stmt->bindParam(':password', $registered->getPassword());
+		$stmt->bindParam(':email', $registered->getEmail());
+		$stmt->bindParam(':bannedtime', $registered->getBannedTime());
+		$stmt->bindParam(':birthdate', $registered->getBirthDate());
+		$stmt->bindParam(':paypal', $registered->getPaypalAccount());
+		$stmt->bindParam(':avatar', $registered->getAvatarUrl());
+		$stmt->bindParam(':country', $registered->getCountry());
+		$stmt->execute();
 	}
 
 	/* Metodo para eliminar el usuario registrado */

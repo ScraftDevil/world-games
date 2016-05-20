@@ -37,8 +37,12 @@
 		if(isset($_GET['msg']) AND !empty($_GET['msg'])) {
 			$msg = $_GET['msg'];
 			switch($msg) {
-				case "success":
+				case "i-success":
 				$message = "<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-ok\"></span> ¡Usuario creado satisfactoriamente!</strong></div>";
+				break;
+
+				case "u-success":
+				$message = "<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-ok\"></span> ¡Usuario actualizado satisfactoriamente!</strong></div>";
 				break;
 				
 				case "error-username":

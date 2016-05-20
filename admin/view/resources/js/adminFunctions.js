@@ -91,7 +91,7 @@ function getInsertUserProcess(data) {
 
         case "success":
             var delay = 0;
-            setTimeout(function(){ window.location = "../../view/userViews/userListView.php?group=" + group + "&msg=" + data.id; }, delay);
+            setTimeout(function(){ window.location = "../../view/userViews/userListView.php?group=" + group + "&msg=i-" + data.id; }, delay);
         break;
 
         case "error-email":
@@ -168,7 +168,7 @@ function getUpdateUserProcess(data) {
 
         case "success":
             var delay = 0;
-            setTimeout(function(){ window.location = "../../view/userViews/userListView.php?group=" + group + "&msg=" + data.id; }, delay);
+            setTimeout(function(){ window.location = "../../view/userViews/userListView.php?group=" + group + "&msg=u-" + data.id; }, delay);
         break;
 
         case "error-email":

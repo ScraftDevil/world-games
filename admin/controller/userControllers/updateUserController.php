@@ -35,7 +35,6 @@
 				$registered->setPaypalAccount($paypal);
 				$registered->setAvatarUrl($avatar);
 				$proces = updateRegistered($registered);
-				echo $proces;
 				$response = messages($proces);
 			break;
 
@@ -73,8 +72,7 @@
 		} else {
 			$proces = "null";
 		}
-		//return $proces;
-		echo $proces;
+		return $proces;
 	}
 
 	function addProfessional() {
@@ -164,6 +162,6 @@
 		return $response;
 	}
 
-	//echo json_encode($response);
+	echo json_encode($response);
 
 ?>
