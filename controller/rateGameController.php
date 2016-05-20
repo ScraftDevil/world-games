@@ -18,7 +18,7 @@ if (isset($_POST['rate'])) {
 			$result = $db->getLink()->prepare($query);
 			if($result->execute()) {
 				$lastid = $db->getLink()->lastInsertId();
-				$query = "INSERT INTO game_has_valoration (Game_ID_Game, Valoration_ID, Registered_ID) VALUES ($gameid, $lastid, $userid)";
+				$query = "INSERT INTO game_has_valoration (Game_ID, Valoration_ID, Registered_ID) VALUES ($gameid, $lastid, $userid)";
 				$result = $db->getLink()->prepare($query);
 				if($result->execute()) {
 					$status['msg'] = "RATED_OK";
