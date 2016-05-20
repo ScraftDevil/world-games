@@ -7,7 +7,7 @@
 }
 
 .footer .brand-img {
-	width: 180px;
+	max-width: 100%;
 }
 
 .footer .social {
