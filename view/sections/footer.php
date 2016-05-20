@@ -44,6 +44,7 @@
 <script type="text/javascript" src="js/js.cookie.js"></script>
 <script type="text/javascript" src="js/jqueryscrollTo.js"></script>
 <script type="text/javascript" src="js/scrollTogeneric.js"></script>
+<script type="text/javascript" src="js/jquery.validate.min.js"></script>
 
 
 <?php
@@ -52,8 +53,75 @@ if (basename($_SERVER['PHP_SELF'])=="detailsProduct.php") {
     echo '<script src="js/rating.js" type="text/javascript" language="javascript"></script>';
 }
 ?>
+
+<script type="text/javascript">
+    
+
+    $( "#login-form" ).validate({
+                                rules: {
+                                    username: {
+                                        required: true,
+                                        maxlength: 45
+
+                                    },
+
+                                    password: {
+                                        required: true,
+                                        maxlength: 45
+                                    }
+                                },
+                                messages: {
+                                    username: {
+                                        required:"El campo username esta vacio",
+                                      maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
+                                       
+                                },
+
+                                password: {
+                            required:"El campo password esta vacio",
+                               maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
+                        }
+                            }
+
+
+                    
+                    
+                });
+
+$( "#profileForm" ).validate({
+                                rules: {
+                                    email: {
+                                        required: true,
+                                        maxlength: 15
+
+                                    },
+
+                                    password: {
+                                        required: true,
+                                        maxlength: 45
+                                    }
+                                },
+                                messages: {
+                                    email: {
+                                        required:"El campo email esta vacio",
+                                      maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
+                                       
+                                },
+
+                                password: {
+                            required:"El campo password esta vacio",
+                               maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
+                        }
+                            }
+
+
+                    
+                    
+                });
+</script>
 <!--[if lt IE 9]><script src="js/html5shiv.js"></script><script src="js/respond.min.js"></script><![endif]-->
 <!--    SEARCH  -->
+
 <script type="text/javascript">
 var delay = (function(){
   var timer = 0;
@@ -114,6 +182,11 @@ function search() {
     });
     $("#login-form").on("submit", function (e) {
         e.preventDefault();
+
+
+
+
+
         var params = {"username" : $("#username").val(), "password" : $("#password").val()};
             $.ajax({
                 data:  params,
@@ -157,6 +230,9 @@ function isEmptyJSON(obj) {
     return true;
 }
 $(document).ready(function() {
+
+
+
     $(".genreFilter").on("click", function(e){
         e.preventDefault();
         $(".genreFilter").each(function() {

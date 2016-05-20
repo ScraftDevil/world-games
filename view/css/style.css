@@ -27,11 +27,37 @@
 .profile {
     width:100%;
 }
+#login-form  .form-control{
+border: 2px solid #E6E6E6;
+width: 70%;
+margin-left: auto;
+margin-right: auto;
+position: relative;
 
+}
+
+input.error,textarea.error{
+    border: 1px solid red !important;
+    background-color: white;
+   
+}
+label.error{
+   
+              color: red;
+    background-color: white;
+    margin-top: -32px;
+    margin-left: 191px;
+    width: 42%;
+    position: absolute;
+}
+input:focus{
+border: 2px solid #4CB9A3;
+
+}
 /* separacion entre los form-groups (label + input) en resolucion de tablet */
 @media only screen and (min-width:768px) and (max-width:1200px) {
     .form-group {
-        margin-bottom: 55px;
+       margin-bottom: 55px;
     }
 }
 
