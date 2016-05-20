@@ -71,7 +71,7 @@ class registeredDAO {
 	public function getAllRegisteredInfo($id) {
 		try {
 
-			$query = ("SELECT Username, Password, Email, BannedTime, BirthDate, PaypalAccount, AvatarURL, Country_ID FROM registered where ID_Registered = '$id'");				
+			$query = ("SELECT Username, Password, Email, BannedTime, BirthDate, PaypalAccount, AvatarURL, r.Country_ID, (SELECT c.ID_Country FROM country c WHERE c.ID_Country=r.Country_ID) AS Country FROM registered r where ID_Registered = '$id'");				
 			$db = unserialize($_SESSION['dbconnection']);
 			$resultat = $db->getLink()->prepare($query);
         	$resultat->execute();
@@ -83,8 +83,9 @@ class registeredDAO {
 				$birthdate = $row['BirthDate'];
 				$paypal = $row['PaypalAccount'];
 				$avatar = $row['AvatarURL'];
-				$country = $row['Country_ID'];
-				$user = array('username'=> $username, 'password'=> $password, 'email'=>$email, 'bannedtime'=> $bannedtime, "birthdate"=> date('d-m-Y', strtotime($birthdate)), "paypal"=> $paypal, "avatar"=>$avatar, "country"=>$country);
+				$country_id = $row['Country_ID'];
+				$country = $row['Country'];
+				$user = array('username'=> $username, 'password'=> $password, 'email'=>$email, 'bannedtime'=> $bannedtime, "birthdate"=> date('d-m-Y', strtotime($birthdate)), "paypal"=> $paypal, "avatar"=>$avatar, "country_id"=>$country_id, "country"=>$country);
 			}
 			$result = $user;
 

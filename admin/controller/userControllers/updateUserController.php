@@ -10,12 +10,26 @@
 	$id = $_GET['user'];
 
 	if ($group == "registered" || $group == "professional" || $group == "administrator") {
-		
+		if ($id != null AND $id != "") {
+			switch($group) {
+				case "registered":
+					updateRegistered();
+				break;
+				
+				case "professional":
+
+				break;
+				
+				case "administrator":
+
+				break;
+			}
+		}
 	} else {
 		header("Location:../../index.php");
 	}
 
-	function deleteRegistered() {
+	function updateRegistered() {
 		$proces = -1;
 		if (isset($_POST['delete']) AND !empty($_POST['delete'])) {
 			$db = unserialize($_SESSION['dbconnection']);

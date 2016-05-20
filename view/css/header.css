@@ -117,8 +117,8 @@
 
 
 #header .brand-img {
-	max-width: 150px;
-	padding: 20px 0;
+	width: 230px;
+    padding: 5px 0;
 }
 
 .headroom {

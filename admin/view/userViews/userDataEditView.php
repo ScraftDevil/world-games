@@ -65,7 +65,7 @@
 						<div class="col-md-12">
 							<div class="panel panel-primary">
 								<div class="panel-heading">
-									<h2 class="panel-title"> Modificar Usuario <?php echo $label." con ID ".$id; ?></h2>
+									<h2 class="panel-title"> Modificar Usuario <span id="user"></span></h2>
 								</div>
 							  	<div class="panel-body">
 								    <form id="registered-user">
