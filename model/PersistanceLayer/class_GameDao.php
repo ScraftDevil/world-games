@@ -1,5 +1,5 @@
 <?php
-require_once("../model/autoload.php");
+require_once($_SESSION["BASE_PATH"]."/model/autoload.php");
 
 class gameDAO {
 
@@ -13,6 +13,21 @@ class gameDAO {
 
         return $resultat;
     }
+
+    public function getAllGames($order) {
+    	$orderSQL = "";
+		if (!empty($order)) {
+			$orderSQL = "ORDER BY ".$order;
+		}
+		$sqlDiscount = ", (SELECT O.Discount FROM Offer O WHERE O.Game_ID = G.ID_Game) as Discount";
+		$sqlPlatform = ", (SELECT P.Name FROM platform P WHERE P.ID_Platform = G.Platform_ID) as Platform";
+		$sql = "SELECT G.ID_Game, G.Title, G.Price, G.Stock ".$sqlDiscount." ".$sqlPlatform." FROM game G $orderSQL";
+		$db = unserialize($_SESSION['dbconnection']);
+		$stmt = $db->getLink()->prepare($sql);
+		$stmt->execute();
+		$result = $stmt->FetchAll();
+		return $result;
+	}
 
 }
  ?>

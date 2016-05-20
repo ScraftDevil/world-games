@@ -6,7 +6,7 @@
 		if (isset($_GET['orderBy'])) {
 			$order = $_GET['orderBy'] . " " . $_GET['direction'];
 		}
-		$game = $db->getGames($order);
+		$game = $db->getAllGames($order);
 		$dg = new Structures_DataGrid();
 		$dg->bind($game, array(), 'Array');
 		$dg->renderer->sortIconASC= "&uarr;";
@@ -38,7 +38,7 @@
 		    <span class=\"sr-only\">Selecciona una opcion</span>
 		  </button>
 		  <ul class=\"dropdown-menu\">
-		    <li><a class=\"drop-grid\" href=\"registeredDataEdit.php?id=$id\">Editar</a></span></li>
+		    <li><a class=\"drop-grid\" href=\"gameDataEdit.php?id=$id\">Editar</a></span></li>
 		     <li><a href=\"#\" onclick=\"deleteGame($id)\">Eliminar</a></li>
 		  </ul>
 		</div>";
@@ -46,13 +46,13 @@
 
 	function PrintUTF8($params){
 		extract($params);
-		$fieldData = $record['Plataform'];
+		$fieldData = $record['Platform'];
 		return utf8_encode($fieldData);
 	}
 
-	function printP($params, $pos) {
+	/*function printP($params, $pos) {
 		extract($params);
 		$fieldData = $record["'".$pos."'"];
 		return "<p>".utf8_encode($fieldData)."</p>";
-	}
+	}*/
 ?>

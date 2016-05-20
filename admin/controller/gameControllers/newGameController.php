@@ -28,8 +28,14 @@
 		$proces = 0;
 		if ($title != "" AND $price != ""  AND $platform != "" ) {
 			
-			$game = new Game($title, $price, $platform);
+			$game = new Game($title, $price);
+			$game->setPlatform($platform);
 			$proces = $game->insertGame();
+			if(!$proces) {
+				$proces = 0;
+			} else {
+				$proces = 1;
+			}
 		}
 		return $proces;
 	}

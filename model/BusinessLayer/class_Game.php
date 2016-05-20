@@ -11,7 +11,7 @@ class Game implements JsonSerializable {
     private $genres = null;
 
     
-    function __construct( $title, $price) {
+    function __construct($title, $price) {
         $this->setTitle($title);
         $this->setPrice($price);
         $this->setStock(0);

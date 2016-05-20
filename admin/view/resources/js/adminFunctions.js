@@ -17,10 +17,8 @@ function load() {
     $("#insert-game").click(function() {
         var title = $("#title").val();
         var price = parseFloat($("#price").val());
-        var stock = parseInt($("#stock").val());
         var platform = document.getElementById("platform").value;
-        // Carles cambiar a partir de aqui, te he dejado ya preparado las funciones para convertir a numeros los valores decimales (precio y stock)
-        //var user = {"username": username, "password": password, "email": email, "birthdate": birthdate, "country": country, "group": group};
+        var game = {"title": title, "price": price, "platform": platform};
         sendGame(game);
     });
 }
@@ -40,7 +38,7 @@ function deleteGame(value) {
     var alert = "<img class=\"alert-img\" src=\"../resources/images/alert.png\"/>";
     var deleteButton = "<button name=\"delete\" value=\"" + id + "\" type=\"submit\" class=\"btn btn-success btn-delete\">Borrar</button>";
     var cancel = "<button onclick=\"cancelDelete()\" type=\"button\" class=\"btn btn-danger btn-cancel\">Cancelar</button>";
-    var form = "<form action=\"../../controller/gameControllers/deleteGameController.php?group=" + group + "\" method=\"POST\">" + deleteButton + " " + cancel + "</form>";
+    var form = "<form action=\"../../controller/gameControllers/deleteGameController.php?id=" + id + "\" method=\"POST\">" + deleteButton + " " + cancel + "</form>";
     var deletegame = "<div class=\"confirm\"><div class=\"confirm-msg\">" + alert + "<p>¿Seguro que deseas eliminar el Juego con ID " + id + "?</p>" + form + "</div></div>";
     $("body").append("<div class=\"delete\">" + deletegame + "</div>");
 }
