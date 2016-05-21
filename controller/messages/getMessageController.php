@@ -20,6 +20,9 @@ for($i = 0; $i < count($result); $i++) {
 		//default avatar = images/avatars/userid/userid.png
 		$imgURL = "images/avatars/".$result[$i]['UserID']."/".$result[$i]['UserID'].".png";
 	}
+	if(!file_exists($_SESSION['BASE_PATH']."/view/".$imgURL)) {
+		$imgURL = "images/avatars/default.png";
+	}
 	echo ' <img class ="img-responsive " src="'.$imgURL.'">';
 	echo '</div >';
 
