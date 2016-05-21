@@ -44,7 +44,9 @@ include("sections/head.php");
                             <i class="fa fa-arrow-left" aria-hidden="true"></i>
                             Volver
                         </a>
-                        <button type="button" id="sendPrivateMessage" class="btn-success pull-right btn form-button">Enviar mensaje</button>
+                        <button type="button" id="sendPrivateMessage" class="btn-success pull-right btn form-button">
+                            <span class="glyphicon glyphicon-send"></span>
+                            Enviar mensaje</button>
                     </div>
 
                     <!-- Lista de opciones del perfil del usuario -->

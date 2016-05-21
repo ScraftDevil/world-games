@@ -91,10 +91,11 @@ function sendMessage(infoMessage) {
 }
 
 function getSendMessageResponse(data) {
-    alert(data);
 
-    if (data != null) {
+    if (data == 0) {
         $("#general-error").html("<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-add\"></span> ¡Tu mensaje ha sido enviado!</strong></div>");
+        $("#emailReceiver").val("");
+        $("#contentMessage").val("");
     } else {
         $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en el envío del mensaje!</strong></div>");
     }

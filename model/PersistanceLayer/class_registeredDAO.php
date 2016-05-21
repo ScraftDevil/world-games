@@ -360,7 +360,7 @@ class registeredDAO {
 	    return $result[0]['ID_Shop'];
 	}
 
-	private function sendPrivateMessage($myMessage, $emailReceiver) {
+	public function sendPrivateMessage($myMessage, $emailReceiver) {
 
 		try {
 
@@ -369,11 +369,23 @@ class registeredDAO {
 			$resultat = $db->getLink()->prepare($query);
         	$idReceiver = $resultat->execute();
 
-        	if($idReceiver) {
+        	if($idReceiver) {        		
 
         		$query = ("INSERT INTO message values('', '".$myMessage->getContent()."', sysdate())");
+        		$resultat = $db->getLink()->prepare($query);
+        		$result = $resultat->execute();
 
-        		$proces = "success";
+        		if($result) {
+
+        			$newIdMessage = $this->getLastID_Message();
+
+        			$query = ("INSERT INTO registered_has_message values('".$myMessage->getSenderUser()."', 
+        				'".$idReceiver."', '".$newIdMessage."')");
+        			$resultat = $db->getLink()->prepare($query);
+        			$result2 = $resultat->execute();
+
+        			$proces = "success";
+        		}     		
 
         	} else {
         		$proces = "email";
@@ -386,6 +398,14 @@ class registeredDAO {
 			return $proces;
 			$_SESSION['dbconnection'] = serialize($db);			
 		}
+	}
+
+	private function getLastID_Message() {
+		$db = unserialize($_SESSION['dbconnection']);
+	    $stmt = $db->getLink()->prepare("SELECT MAX(ID_Message) as total FROM message");
+	    $stmt->execute();
+	    $result = $stmt->FetchAll();
+	    return $result[0]['total'];
 	}
 }
 
