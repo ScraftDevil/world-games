@@ -45,18 +45,14 @@
 <script type="text/javascript" src="js/jqueryscrollTo.js"></script>
 <script type="text/javascript" src="js/scrollTogeneric.js"></script>
 <script type="text/javascript" src="js/jquery.validate.min.js"></script>
-
-
 <?php
 if (basename($_SERVER['PHP_SELF'])=="detailsProduct.php") {
     echo '<script type="text/javascript" src="js/messages.js"></script>';
     echo '<script src="js/rating.js" type="text/javascript" language="javascript"></script>';
 }
 ?>
-
+<!--[if lt IE 9]><script src="js/html5shiv.js"></script><script src="js/respond.min.js"></script><![endif]-->
 <script type="text/javascript">
-    
-
     $( "#login-form" ).validate({
                                 rules: {
                                     username: {
@@ -82,10 +78,6 @@ if (basename($_SERVER['PHP_SELF'])=="detailsProduct.php") {
                                maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
                         }
                             }
-
-
-                    
-                    
                 });
 
 $( "#profileForm" ).validate({
@@ -112,16 +104,10 @@ $( "#profileForm" ).validate({
                             required:"El campo password esta vacio",
                                maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
                         }
-                            }
-
-
-                    
-                    
+                            }               
                 });
 </script>
-<!--[if lt IE 9]><script src="js/html5shiv.js"></script><script src="js/respond.min.js"></script><![endif]-->
 <!--    SEARCH  -->
-
 <script type="text/javascript">
 var delay = (function(){
   var timer = 0;
@@ -182,11 +168,6 @@ function search() {
     });
     $("#login-form").on("submit", function (e) {
         e.preventDefault();
-
-
-
-
-
         var params = {"username" : $("#username").val(), "password" : $("#password").val()};
             $.ajax({
                 data:  params,
@@ -209,7 +190,6 @@ function search() {
             });
             return false;
     });
-
     //Función jQuery - Ajax para hacer Logout
     $("#logout").on("click", function () {
             $.ajax({
@@ -230,9 +210,6 @@ function isEmptyJSON(obj) {
     return true;
 }
 $(document).ready(function() {
-
-
-
     $(".genreFilter").on("click", function(e){
         e.preventDefault();
         $(".genreFilter").each(function() {
@@ -264,10 +241,9 @@ $(document).ready(function() {
                         linesHTML += '</div>';
                         linesHTML += '<div class="gallery-details">';
                         linesHTML += '<div class="editContent">';
-                        if (this.discount==null) {
-                           linesHTML += '<h5>'+this.title+'</h5><h6>'+this.price+' €</h6>';
-                        } else {
-                            linesHTML += '<h5>'+this.title+'</h5><h6><span class="offerOldPrice">60 €</span> Ahora: 24.00 €</h6><h6>60 % de descuento</h6>';
+                        linesHTML += '<h5>'+this.title+'</h5><h6><span id="price">'+this.price+' €</span></h6>';
+                        if (this.discount!=null) {
+                           linesHTML += '<h6>60 % de descuento</h6>';
                         }
                         linesHTML += '</div>';
                         linesHTML += '</div>';
@@ -279,7 +255,6 @@ $(document).ready(function() {
                 }
             }
         });
-
         $(this).append('&nbsp;<i id="selected" class="fa fa-check" aria-hidden="true"></i>');
     });
      $(".platformFilter").on("click", function(e){
@@ -306,17 +281,16 @@ $(document).ready(function() {
                     $.each($.parseJSON(json), function() {
                         linesHTML += '<div class="col-md-3 col-sm-6 col-xs-12 gallery-item-wrapper isotope-item">';
                         linesHTML += '<div class="gallery-item" id="Game_'+this.id+'">';
-                        linesHTML += '<div class="gallery-thumb" title="'+this.title+'"><img src="images/games/'+this.title+'.png" width="800px" height="600px" class="img-responsive" alt="'+this.title+'">';
+                        linesHTML += '<div class="gallery-thumb" title="'+this.title+'"><img src="images/games/'+this.title+'.png" class="img-responsive" alt="'+this.title+'">';
                         linesHTML += '<div class="image-overlay"></div>';
                         linesHTML += '<a href="detailsProduct.php?gameid='+this.id+'" class="gallery-zoom"><i class="fa fa-eye"></i></a>';
                         linesHTML += '<a href="#" class="gallery-link buyItem"><i class="fa fa-shopping-cart"></i></a>';
                         linesHTML += '</div>';
                         linesHTML += '<div class="gallery-details">';
                         linesHTML += '<div class="editContent">';
-                        if (this.discount==null) {
-                           linesHTML += '<h5>'+this.title+'</h5><h6>'+this.price+' €</h6>';
-                        } else {
-                            linesHTML += '<h5>'+this.title+'</h5><h6><span class="offerOldPrice">60 €</span> Ahora: 24.00 €</h6><h6>60 % de descuento</h6>';
+                        linesHTML += '<h5>'+this.title+'</h5><h6><span id="price">'+this.price+' €</span></h6>';
+                        if (this.discount!=null) {
+                           linesHTML += '<h6>60 % de descuento</h6>';
                         }
                         linesHTML += '</div>';
                         linesHTML += '</div>';
@@ -329,7 +303,6 @@ $(document).ready(function() {
                 }
             }
         });
-
         $(this).append('&nbsp;<i id="selected" class="fa fa-check" aria-hidden="true"></i>');
     });
 });
@@ -338,7 +311,7 @@ $(document).ready(function() {
 <script>
 var shoppingCart = typeof Cookies.get('shoppingCart');
 if (shoppingCart == "undefined") {
-    $("#basket").html("No hay productos añadidos al carrito");
+    $("#basket").html("<p style='margin-left: 8px'><font color='white'>Carrito de la compra vacio.</font></p>");
 } else {
     var json = Cookies.getJSON('shoppingCart');
     var nitems = 0;
@@ -348,7 +321,7 @@ if (shoppingCart == "undefined") {
             $("#Product"+item.id).find("#quantity").text("x"+item.quantity);
         } else {
             var buttonRemoveHTML = '<button type="button" class="removeItem btn btn-danger" style="position: absolute;padding: 0px;margin: 0px;margin-left: 145px;width: 19px;">X</button>';
-            $("#basket").append('<span class="item" id="Product'+item.id+'">'+buttonRemoveHTML+'<span onclick="loadDetailGame('+item.id+')" class="item-left"><img src="'+item.image+'" alt="'+item.name+'" width="85px" height="105px"/><span class="item-info"><span>'+item.name+'</span><span id="quantity">x'+item.quantity+'</span><span>'+item.price+'</span></span></span></span>');
+            $("#basket").append('<span class="item" id="Product'+item.id+'">'+buttonRemoveHTML+'<span onclick="loadDetailGame('+item.id+')" class="item-left"><img src="'+item.image+'" alt="'+item.name+'" width="85px" height="105px"/><span class="item-info"><span>'+item.name+'</span><span id="quantity">x'+item.quantity+'</span><span>'+(parseFloat(item.price)*parseFloat(item.quantity))+' €</span></span></span></span><li class="divider"></li>');
             nitems++;
         }
     });
@@ -375,7 +348,7 @@ $(document).on("click", ".buyItem", function (e) {
         this.quantity = quantity;
     }
     var title = $item.find("h5:eq(0)").text();
-    var price = $item.find("h6:eq(0)").text();
+    var price = $item.find("h6:eq(0)").text().replace("€", "");
     var newGame = true;
     if (typeof Cookies.getJSON('shoppingCart') == "undefined") {
         var items = Array();
@@ -384,6 +357,7 @@ $(document).on("click", ".buyItem", function (e) {
         var shoppingCart = JSON.stringify(items);
         Cookies.set('shoppingCart', shoppingCart, { expires: 1 });
         $("#countShoppingCart").text(nitems);
+        updateTotalShopping(Cookies.getJSON('shoppingCart'));
     } else {
         var items = Cookies.getJSON('shoppingCart');
         var game = getGame(items, id);
@@ -394,19 +368,22 @@ $(document).on("click", ".buyItem", function (e) {
             $("#countShoppingCart").text(nitems);
         } else {
             newGame = false;
-            $("#Product"+id).find("#quantity").text("x"+game.quantity);
+            $("#Product"+id).find(".quantity").text("x"+game.quantity);
+            $("#Product"+id).find(".price").text((parseFloat(price)*parseFloat(game.quantity))+" €");
         }
         Cookies.set('shoppingCart', items, { expires: 1 });
+        updateTotalShopping(Cookies.getJSON('shoppingCart'));
     }
     if (newGame) {
         var buttonRemoveHTML = '<button type="button" class="removeItem btn btn-danger" style="position: absolute;padding: 0px;margin: 0px;margin-left: 145px;width: 19px;">X</button>';
         var linesHTML = '<span class="item" id="Product'+id+'">'+buttonRemoveHTML+'<span onclick="loadDetailGame('+id+')" class="item-left">';
         linesHTML += '<img src="'+itemImageURL+'" alt="'+title+'" width="85px" height="105px"/><span class="item-info">';
         linesHTML += '<span>'+title+'</span>';
-        linesHTML += '<span id="quantity">x'+game.quantity+'</span>';
-        linesHTML += '<span>'+price+'</span>';
+        linesHTML += '<span class="quantity">x'+game.quantity+'</span>';
+        linesHTML += '<span class="price">'+(parseFloat(price)*parseFloat(game.quantity))+' €</span>';
         linesHTML += '</span></span></span>';
         $("#basket").append(linesHTML);
+        updateTotalShopping(Cookies.getJSON('shoppingCart'));
     }
 });
 //buy from detailProduct
@@ -431,7 +408,7 @@ $(document).on("click", ".buyGame", function (e) {
         this.quantity = quantity;
     }
     var title = $item.find(".spantitul").text();
-    var price = $item.find(".spanprecio").text();
+    var price = $item.find(".spanprecio").text().replace("€", "");;
     var newGame = true;
     if (typeof Cookies.getJSON('shoppingCart') == "undefined") {
         var items = Array();
@@ -440,6 +417,7 @@ $(document).on("click", ".buyGame", function (e) {
         var shoppingCart = JSON.stringify(items);
         Cookies.set('shoppingCart', shoppingCart, { expires: 1 });
         $("#countShoppingCart").text(nitems);
+        updateTotalShopping(Cookies.getJSON('shoppingCart'));
     } else {
         var items = Cookies.getJSON('shoppingCart');
         var game = getGame(items, id);
@@ -450,17 +428,19 @@ $(document).on("click", ".buyGame", function (e) {
             $("#countShoppingCart").text(nitems);
         } else {
             newGame = false;
-            $("#Product"+id).find("#quantity").text("x"+game.quantity);
+            $("#Product"+id).find(".quantity").text("x"+game.quantity);
+            $("#Product"+id).find(".price").text((parseFloat(price)*parseFloat(game.quantity))+" €");
         }
         Cookies.set('shoppingCart', items, { expires: 1 });
+        updateTotalShopping(Cookies.getJSON('shoppingCart'));
     }
     if (newGame) {
         var buttonRemoveHTML = '<button type="button" class="removeItem btn btn-danger" style="position: absolute;padding: 0px;margin: 0px;margin-left: 145px;width: 19px;">X</button>';
         var linesHTML = '<span class="item" id="Product'+id+'">'+buttonRemoveHTML+'<span onclick="loadDetailGame('+id+')" class="item-left">';
         linesHTML += '<img src="'+itemImageURL+'" alt="'+title+'" width="85px" height="105px"/><span class="item-info">';
         linesHTML += '<span>'+title+'</span>';
-        linesHTML += '<span id="quantity">x'+game.quantity+'</span>';
-        linesHTML += '<span>'+price+'</span>';
+        linesHTML += '<span class="quantity">x'+game.quantity+'</span>';
+        linesHTML += '<span class="price">'+(parseFloat(price)*parseFloat(game.quantity))+' €</span>';
         linesHTML += '</span></span></span>';
         $("#basket").append(linesHTML);
     }
@@ -508,6 +488,16 @@ function loadDetailGame(idgame) {
     window.location.href="detailsProduct.php?gameid="+idgame;
     return false;
 }
+
+function updateTotalShopping(json) {
+    var price = parseFloat(0);
+    $.each(json, function(i, item) {
+        price = parseFloat(price) + (parseFloat(item.price)*parseFloat(item.quantity));
+    });
+    $("#shoppingCartTotal").html("Total: " + price + " €");
+}
+
+
 $(document).ready(function() {
     $(document).on("click", "#clearShop", function() {
         $("#basket").html("");

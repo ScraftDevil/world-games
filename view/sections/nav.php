@@ -22,12 +22,13 @@
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" role="button"> <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Carrito&nbsp;<span class="badge" id="countShoppingCart"></span><span class="caret"></span></a>
                       <ul class="dropdown-menu dropdown-cart" role="menu">
                           <li id="basket"></li>
+                          <li><a class="text-center" id="shoppingCartTotal">Total: 0 €</a></li>
                           <li class="divider"></li>
-                          <li><a class="text-center" href="shoppingCart.php">Finalizar Compra</a></li>
                           <li><a class="text-center" href="#" id="clearShop">Vaciar Carrito</a></li>
+                          <li><a class="text-center" href="shoppingCart.php">Finalizar Compra</a></li>
                       </ul>
                     </li>
-                    <!-- SHOPPING CART -->
+                    <!-- END SHOPPING CART -->
                     <?php
 
                         if (!isset($_SESSION['frontAuth'])) {
