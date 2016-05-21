@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-05-2016 a las 13:54:34
+-- Tiempo de generación: 21-05-2016 a las 17:40:01
 -- Versión del servidor: 10.1.10-MariaDB
 -- Versión de PHP: 5.6.19
 
@@ -377,6 +377,7 @@ CREATE TABLE `registered_has_game` (
 
 CREATE TABLE `registered_has_message` (
   `Registered_ID` int(11) NOT NULL,
+  `Receiver_ID` int(11) NOT NULL,
   `Message_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -493,9 +494,10 @@ ALTER TABLE `game`
 -- Indices de la tabla `game_has_complaint`
 --
 ALTER TABLE `game_has_complaint`
-  ADD PRIMARY KEY (`Game_ID`,`Complaint_ID`),
+  ADD PRIMARY KEY (`Game_ID`,`Complaint_ID`,`Registered_ID`) USING BTREE,
   ADD KEY `fk_Game_has_Complaint_Complaint1_idx` (`Complaint_ID`),
-  ADD KEY `fk_Game_has_Complaint_Game1_idx` (`Game_ID`);
+  ADD KEY `fk_Game_has_Complaint_Game1_idx` (`Game_ID`),
+  ADD KEY `Registered_ID` (`Registered_ID`);
 
 --
 -- Indices de la tabla `game_has_genre`
@@ -593,9 +595,10 @@ ALTER TABLE `registered_has_game`
 -- Indices de la tabla `registered_has_message`
 --
 ALTER TABLE `registered_has_message`
-  ADD PRIMARY KEY (`Registered_ID`,`Message_ID`),
-  ADD KEY `fk_Registered_has_Message_Message1_idx` (`Message_ID`),
-  ADD KEY `fk_Registered_has_Message_Registered1_idx` (`Registered_ID`);
+  ADD PRIMARY KEY (`Registered_ID`,`Message_ID`,`Receiver_ID`) USING BTREE,
+  ADD KEY `fk_Registered_has_Message_Registered1_idx` (`Registered_ID`),
+  ADD KEY `fk_Registered_has_Message_Receiver1_idx` (`Message_ID`) USING BTREE,
+  ADD KEY `Receiver_ID` (`Receiver_ID`);
 
 --
 -- Indices de la tabla `report`
