@@ -43,6 +43,14 @@ function load() {
             $("body").append("<div class=\"delete\">" + deleteAccount + "</div>");
         }
     });
+
+    $('#sendPrivateMessage').click(function() {
+        var emailReceiver = $("#emailReceiver").val();
+        var message = $("#contentMessage").val();
+
+        var infoMessage = {"emailReceiver":emailReceiver, "message":message};
+        sendMessage(infoMessage);
+    });
         
 }
 
@@ -67,6 +75,28 @@ function getUpdateResponseMessage(data) {
         $("#general-error").html("<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-add\"></span> ¡Tus datos se han actualizado satisfactoriamente!</strong></div>");
     } else {
         $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en la validación de datos del usuario!</strong></div>");
+    }
+}
+
+function sendMessage(infoMessage) {
+    var infoMessage = JSON.stringify(infoMessage);
+
+    $.ajax({
+        data: "infoMessage=" + infoMessage,
+        url: '../controller/sendPrivateMessageController.php',
+        type: 'POST',
+        dataType: 'json',
+        success: getSendMessageResponse
+    });
+}
+
+function getSendMessageResponse(data) {
+    alert(data);
+
+    if (data != null) {
+        $("#general-error").html("<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-add\"></span> ¡Tu mensaje ha sido enviado!</strong></div>");
+    } else {
+        $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en el envío del mensaje!</strong></div>");
     }
 }
 

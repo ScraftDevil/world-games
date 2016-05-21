@@ -46,7 +46,8 @@ $_SESSION['registered'] = serialize($registeredObject);?>
                                     Datos Personales
                                 </div>
 
-                                <!-- Error de que no se puede actualizar por falta de datos o datos incorrectos -->
+                                <!-- Mensaje de Error de que no se puede actualizar por falta de datos o datos incorrectos 
+                                    o de que se han actualizado corretamente -->
                                 <div id="general-error"></div>
 
                                 <!-- Formulario para poder editar los datos del usuario (obtiene los datos de la BBDD) -->

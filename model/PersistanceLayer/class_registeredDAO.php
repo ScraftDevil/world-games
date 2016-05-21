@@ -359,6 +359,34 @@ class registeredDAO {
 	    $result = $stmt->FetchAll();
 	    return $result[0]['ID_Shop'];
 	}
+
+	private function sendPrivateMessage($myMessage, $emailReceiver) {
+
+		try {
+
+			$query = ('SELECT ID_Registered FROM registered WHERE Email = "'.$emailReceiver.'"');
+			$db = unserialize($_SESSION['dbconnection']);
+			$resultat = $db->getLink()->prepare($query);
+        	$idReceiver = $resultat->execute();
+
+        	if($idReceiver) {
+
+        		$query = ("INSERT INTO message values('', '".$myMessage->getContent()."', sysdate())");
+
+        		$proces = "success";
+
+        	} else {
+        		$proces = "email";
+        	}
+			
+		} catch (Exception $e) {
+			echo "An Error ocurred!";
+			some_loggging_function($ex->getMessage());
+		} finally {
+			return $proces;
+			$_SESSION['dbconnection'] = serialize($db);			
+		}
+	}
 }
 
 ?>

@@ -199,5 +199,11 @@ class mysqldb {
 		$administrator = new AdministratorDAO();
 		$administrator = $administrator->deleteAdministratorUser($id);		
 	}
+
+	//Función de mensajes privados de los usuarios registrados
+	public function sendPrivateMessage($myMessage,$emailReceiver) {
+		$registered = new RegisteredDAO();
+		$registered->sendPrivateMessage($myMessage, $emailReceiver);
+	}
 }
 ?>
