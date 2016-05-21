@@ -32,7 +32,8 @@ $_SESSION['registered'] = serialize($registeredObject);?>
                         </div>
                         <hr>
                         <div class="editContent">
-                            <h2>Saludos <?php echo $registeredObject->getUsername(); ?>, este es tu espacio personal</h2></div>
+                            <h2>Saludos <?php echo $registeredObject->getUsername(); ?>, este es tu espacio personal</h2>
+                        </div>
                     </div>
 
                     <!-- Lista de opciones del perfil del usuario -->
@@ -51,29 +52,29 @@ $_SESSION['registered'] = serialize($registeredObject);?>
                                 <!-- Formulario para poder editar los datos del usuario (obtiene los datos de la BBDD) -->
                                 <form id="profileForm">
                                     <div class="form-group col-lg-12">
-                                        <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Correo Eletrónico</label>
-                                        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 inputAttribute">
+                                        <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label">Correo Eletrónico</label>
+                                        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
                                             <input id="email" class="form-control" type="text" name="email" placeholder="micorreo@ejemplo.com" value="<?php echo $registeredObject->getEmail();?>">
                                         </div>
                                     </div>
 
                                     <div class="form-group col-lg-12">
-                                        <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Fecha de Nacimiento:</label>
-                                        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 inputAttribute">
+                                        <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label">Fecha de Nacimiento:</label>
+                                        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
                                             <input id="calendar" class="form-control" type="text" name="birthdate" placeholder="AAAA-MM-DD" value="<?php echo $registeredObject->getBirthDate();?>">
                                         </div>
                                     </div>
 
                                     <div class="form-group col-lg-12">
-                                        <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Cuenta PayPal:</label>
-                                        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 inputAttribute">
+                                        <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label">Cuenta PayPal:</label>
+                                        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
                                             <input id="paypal" class="form-control" type="text" name="paypal" placeholder="micorreoPayPal@ejemplo.com" value="<?php echo $registeredObject->getPaypalAccount();?>">
                                         </div>
                                     </div>
 
                                     <div class="form-group col-lg-12">
-                                        <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">País:</label>
-                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-5 inputAttribute">
+                                        <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label">País:</label>
+                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-5">
                                             <select id="country" name="country">
                                                 <?php getCountriesList($registeredObject->getCountry()); ?>
                                             </select>
@@ -81,8 +82,8 @@ $_SESSION['registered'] = serialize($registeredObject);?>
                                     </div>
 
                                     <div class="form-group col-lg-12">
-                                        <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">Imagen de Perfil:</label>
-                                        <div class="col-lg-8 inputAttribute">
+                                        <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label">Imagen de Perfil:</label>
+                                        <div class="col-lg-7">
                                             <input id="image" class="form-control" type="file" name="profileImage">
                                         </div>
                                     </div>
@@ -111,6 +112,11 @@ $_SESSION['registered'] = serialize($registeredObject);?>
                                 </div>
                                 <div class="col-lg-12" id="mensajesUsuario">
                                     Lista de Mensajes
+
+                                <a href="sendPrivateMessageView.php" id="newMessage" class="button-profile pull-right btn form-button" role="button">
+                                    <span class="glyphicon glyphicon-send"></span>
+                                    Nuevo Mensaje
+                                </a>
                                 </div>
                                 
 
@@ -125,7 +131,7 @@ $_SESSION['registered'] = serialize($registeredObject);?>
                                         <p>Marca la siguiente casilla para indicar que quieres eliminar tu cuenta para siempre. Despues, pulsa el boton Eliminar</p>
                                         <input id="checkbox" type="checkbox" name="deleteCheckBox">
                                     Quiero eliminar mi cuenta de usuario
-                                    <button type="button" id="delete-registered" name="delete" class="btn-danger pull-right btn form-button">                                            
+                                    <button type="button" id="delete-registered" name="delete" class="btn-danger pull-right btn form-button">
                                             <span class="glyphicon glyphicon-trash"></span>
                                             Eliminar
                                     </button>

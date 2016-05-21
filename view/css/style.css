@@ -20,7 +20,7 @@
 
 /* texto de la etiqueta de cada atributo. Le aplicamos un margen arriba para centrar el texto junto a su input */
 .control-label {
-    margin-top:12px;
+    margin-top:15px;
 }
 
 /* ancho del div que contiene todos los apartados del perfil de usuario */
@@ -243,3 +243,11 @@ ul.dropdown-cart li .item-right button{
 .item-info span {
     color: white;
 }
+
+/* Formulario de envío de mensajes */
+#send-message-form {
+    width:50%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
