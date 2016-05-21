@@ -1,19 +1,13 @@
 <?php
 
 	include("validateInputNullController.php");
-	include("validateEmailController.php");
 
-	function sendMessageValidation($email, $message) {
+	function sendMessageValidation($receiverName, $message) {
 
 		$errors = 0;
 
 		//Email validation
-		if(nullInputValidate($email)) {
-			if (!validateEmail($email)) {
-				$errors++;
-			}
-		}
-		else {
+		if(!nullInputValidate($receiverName)) {
 			$errors++;
 		}
 

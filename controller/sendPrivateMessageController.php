@@ -9,24 +9,24 @@ $myId = $_SESSION['user_id'];
 
 $infoMessage = json_decode($_REQUEST['infoMessage']);
 
-$emailReceiver = $infoMessage->emailReceiver;
+$receiverName = $infoMessage->receiverName;
 $message = $infoMessage->message;
 
 $errors = 0;
+$response = null;
 
-$errors = sendMessageValidation($emailReceiver, $message);
+$errors = sendMessageValidation($receiverName, $message);
 
 	if ($errors == 0) {
 		$shopDb = unserialize($_SESSION['dbconnection']);
 
 		$myMessage = new Message($message, "", $myId, "");
 		$shopDb = unserialize($_SESSION['dbconnection']);
-		$shopDb->sendPrivateMessage($myMessage, $emailReceiver);
+		$response = $shopDb->sendPrivateMessage($myMessage, $receiverName);		
 
-		$response = 0;
 	}
 	else {
-		$response = 1;		
+		$response = "error";		
 	}
 
 	echo json_encode($response);

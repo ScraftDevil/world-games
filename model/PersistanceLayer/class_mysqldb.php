@@ -201,9 +201,9 @@ class mysqldb {
 	}
 
 	//Función de mensajes privados de los usuarios registrados
-	public function sendPrivateMessage($myMessage,$emailReceiver) {
+	public function sendPrivateMessage($myMessage,$receiverName) {
 		$registered = new RegisteredDAO();
-		$registered->sendPrivateMessage($myMessage, $emailReceiver);
+		return $registered->sendPrivateMessage($myMessage, $receiverName);		
 	}
 }
 ?>

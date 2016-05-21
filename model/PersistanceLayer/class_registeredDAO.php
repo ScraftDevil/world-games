@@ -360,18 +360,25 @@ class registeredDAO {
 	    return $result[0]['ID_Shop'];
 	}
 
-	public function sendPrivateMessage($myMessage, $emailReceiver) {
+	public function sendPrivateMessage($myMessage, $receiverName) {
+
+		$message = utf8_decode($myMessage->getContent());
+		$idReceiver = "";
+		$proces = "";
 
 		try {
 
-			$query = ('SELECT ID_Registered FROM registered WHERE Email = "'.$emailReceiver.'"');
+			$query = ('SELECT ID_Registered FROM Registered WHERE Username = "'.$receiverName.'";');
 			$db = unserialize($_SESSION['dbconnection']);
 			$resultat = $db->getLink()->prepare($query);
-        	$idReceiver = $resultat->execute();
+        	$resultat->execute();
+        	$result = $resultat->fetch(PDO::FETCH_ASSOC);
 
-        	if($idReceiver) {        		
+        	if($result) {
 
-        		$query = ("INSERT INTO message values('', '".$myMessage->getContent()."', sysdate())");
+        		$idReceiver = $result['ID_Registered'];
+
+        		$query = ("INSERT INTO message values('', '".$message."', sysdate())");
         		$resultat = $db->getLink()->prepare($query);
         		$result = $resultat->execute();
 
@@ -382,16 +389,16 @@ class registeredDAO {
         			$query = ("INSERT INTO registered_has_message values('".$myMessage->getSenderUser()."', 
         				'".$idReceiver."', '".$newIdMessage."')");
         			$resultat = $db->getLink()->prepare($query);
-        			$result2 = $resultat->execute();
+        			$result = $resultat->execute();
 
         			$proces = "success";
         		}     		
 
         	} else {
-        		$proces = "email";
+        		$proces = "username";
         	}
 			
-		} catch (Exception $e) {
+		} catch (PDOException $e) {
 			echo "An Error ocurred!";
 			some_loggging_function($ex->getMessage());
 		} finally {

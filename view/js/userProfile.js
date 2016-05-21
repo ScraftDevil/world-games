@@ -45,10 +45,10 @@ function load() {
     });
 
     $('#sendPrivateMessage').click(function() {
-        var emailReceiver = $("#emailReceiver").val();
+        var receiverName = $("#receiverName").val();
         var message = $("#contentMessage").val();
 
-        var infoMessage = {"emailReceiver":emailReceiver, "message":message};
+        var infoMessage = {"receiverName":receiverName, "message":message};
         sendMessage(infoMessage);
     });
         
@@ -92,12 +92,17 @@ function sendMessage(infoMessage) {
 
 function getSendMessageResponse(data) {
 
-    if (data == 0) {
+    if (data == "success") {
         $("#general-error").html("<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-add\"></span> ¡Tu mensaje ha sido enviado!</strong></div>");
-        $("#emailReceiver").val("");
+        $("#receiverName").val("");
         $("#contentMessage").val("");
     } else {
-        $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en el envío del mensaje!</strong></div>");
+        if (data == "username") {
+            $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en el envío del mensaje! El nomrbre de usuario es incorrecto o no se encuentra en nuestra base de datos</strong></div>");
+        }
+        else {
+            $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en el envío del mensaje! Por favor revisa los campos y prueba de nuevo</strong></div>");
+        }
     }
 }
 

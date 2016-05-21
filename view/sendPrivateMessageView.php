@@ -31,8 +31,8 @@ include("sections/head.php");
 
                     <div id="send-message-form" class"send-message-form col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">
                     	<div class="control-label col-xs-12 col-sm-12 col-md-12 col-lg-6">
-                            <label>Correo electrónico</label>
-                            <input id="emailReceiver" class="form-control" type="text" name="emailReceiver" placeholder="correoamigo@ejemplo.com">
+                            <label>Nombre de usuario</label>
+                            <input id="receiverName" class="form-control" type="text" name="receiverName" placeholder="Pepito">
                         </div>
 
                         <div class="control-label col-xs-12 col-sm-12 col-md-12 col-lg-12">
