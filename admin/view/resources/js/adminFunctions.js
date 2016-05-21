@@ -14,7 +14,7 @@ function load() {
     // USER OPTIONS SWITCH START
 
     case "newUserView":
-      group = getterURL("group");
+      var group = getterURL("group");
       $("#insert-user").click(function() {
           var username = $("#username").val();
           var password = $("#password").val();
@@ -27,8 +27,8 @@ function load() {
     break;
 
     case "userDataEditView":
-      group = getterURL("group");
-      group = deleteGetTrash(group);
+      var group = getterURL("group");
+      var group = deleteGetTrash(group);
       var data = {"group": group, "id": id};
       getUser(data);
       $("#update-user").click(function() {
@@ -85,23 +85,23 @@ function sendUser(user) {
 // INSERT USER AJAX RESPONSE
 function getInsertUserProcess(data) {
   switch(data.id) {
-    case "error-null":
+    case "null-error":
             $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en la validación de datos del usuario!</strong></div>");
         break;
 
         case "success":
             var delay = 0;
-            setTimeout(function(){ window.location = "../../view/userViews/userListView.php?group=" + group + "&msg=i-" + data.id; }, delay);
+            setTimeout(function(){ window.location = "../../view/userViews/userListView.php?group=" + data.group + "&msg=i-" + data.id; }, delay);
         break;
 
-        case "error-email":
+        case "email-error":
             var delay = 0;
-            setTimeout(function(){ window.location = "../../view/userViews/userListView.php?group=" + group + "&msg=" + data.id; }, delay);
+            setTimeout(function(){ window.location = "../../view/userViews/userListView.php?group=" + data.group + "&msg=" + data.id; }, delay);
         break;
 
-        case "error-username":
+        case "username-error":
             var delay = 0;
-            setTimeout(function(){ window.location = "../../view/userViews/userListView.php?group=" + group + "&msg=" + data.id; }, delay);
+            setTimeout(function(){ window.location = "../../view/userViews/userListView.php?group=" + data.group + "&msg=" + data.id; }, delay);
         break;
 
         default:
@@ -112,13 +112,14 @@ function getInsertUserProcess(data) {
 
 // DELETE USER FUNCTION
 function deleteUser(value) {
-   var id = value;
-   var alert = "<img class=\"alert-img\" src=\"../resources/images/alert.png\"/>";
-   var deleteButton = "<button name=\"delete\" value=\"" + id + "\" type=\"submit\" class=\"btn btn-success btn-delete\">Borrar</button>";
-   var cancel = "<button onclick=\"cancelDelete()\" type=\"button\" class=\"btn btn-danger btn-cancel\">Cancelar</button>";
-   var form = "<form action=\"../../controller/userControllers/deleteUserController.php?group=" + group + "\" method=\"POST\">" + deleteButton + " " + cancel + "</form>";
-   var deleteUsr = "<div class=\"confirm\"><div class=\"confirm-msg\">" + alert + "<p>¿Seguro que deseas eliminar el Usuario con ID " + id + "?</p>" + form + "</div></div>";
-   $("body").append("<div class=\"delete\">" + deleteUsr + "</div>");
+  var group = getterURL("group");
+  var id = value;
+  var info = "<img class=\"alert-img\" src=\"../resources/images/alert.png\"/>";
+  var deleteButton = "<button name=\"delete\" value=\"" + id + "\" type=\"submit\" class=\"btn btn-success btn-delete\">Borrar</button>";
+  var cancel = "<button onclick=\"cancelDelete()\" type=\"button\" class=\"btn btn-danger btn-cancel\">Cancelar</button>";
+  var form = "<form action=\"../../controller/userControllers/deleteUserController.php?group=" + group + "\" method=\"POST\">" + deleteButton + " " + cancel + "</form>";
+  var deleteUsr = "<div class=\"confirm\"><div class=\"confirm-msg\">" + info + "<p>¿Seguro que deseas eliminar el Usuario con ID " + id + "?</p>" + form + "</div></div>";
+  $("body").append("<div class=\"delete\">" + deleteUsr + "</div>");
 }
 
 // GET USER DATA FROM ID
@@ -135,6 +136,7 @@ function getUser(data) {
 
 function getUserInfo(data) {
    if(data != null) {
+      $("#user").html(data.username);
       $("#username").val(data.username);
       $("#password").val(data.password);
       $("#email").val(data.email);
@@ -162,7 +164,7 @@ function updateUser(user) {
 //
 function getUpdateUserProcess(data) {
   switch(data.id) {
-    case "error-null":
+    case "null-error":
             $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en la validación de datos del usuario!</strong></div>");
         break;
 
@@ -171,12 +173,12 @@ function getUpdateUserProcess(data) {
             setTimeout(function(){ window.location = "../../view/userViews/userListView.php?group=" + group + "&msg=u-" + data.id; }, delay);
         break;
 
-        case "error-email":
+        case "email-error":
             var delay = 0;
             setTimeout(function(){ window.location = "../../view/userViews/userListView.php?group=" + group + "&msg=" + data.id; }, delay);
         break;
 
-        case "error-username":
+        case "username-error":
             var delay = 0;
             setTimeout(function(){ window.location = "../../view/userViews/userListView.php?group=" + group + "&msg=" + data.id; }, delay);
         break;

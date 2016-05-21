@@ -142,15 +142,24 @@ class registeredDAO {
 	public function updateAllRegisteredUser($registered) {
 		$proces = "";
 		try {
-			$username = $registered->getUsername();
-			$email = $registered->getEmail();
 			$db = unserialize($_SESSION['dbconnection']);
 			// USERNAME VALIDATION IN TABLES
-			if($this->usernameInUse($registered, $db) == false) {
+			if($this->usernameInUse($registered, $db, "update") == false) {
 				// EMAIL VALIDATION IN TABLES
-				if($this->emailInUse($registered, $db) == false) {
+				if($this->emailInUse($registered, $db, "update") == false) {
 					// UPDATE ALL COLUMNS IN REGISTERED TABLE
-					$this->updateAllRegistered($registered, $db);
+					$query = ("UPDATE registered SET Username=:username, Password=:password, Email=:email, BannedTime=:bannedtime, BirthDate=:birthdate, PaypalAccount=:paypal, AvatarURL=:avatar, Country_ID=:country WHERE ID_Registered=:id");
+					$stmt = $db->getLink()->prepare($query);
+					$stmt->bindParam(':id', $registered->getID());
+					$stmt->bindParam(':username', $registered->getUsername());
+					$stmt->bindParam(':password', $registered->getPassword());
+					$stmt->bindParam(':email', $registered->getEmail());
+					$stmt->bindParam(':bannedtime', $registered->getBannedTime());
+					$stmt->bindParam(':birthdate', $registered->getBirthDate());
+					$stmt->bindParam(':paypal', $registered->getPaypalAccount());
+					$stmt->bindParam(':avatar', $registered->getAvatarUrl());
+					$stmt->bindParam(':country', $registered->getCountry());
+					$stmt->execute();
 				    $proces = "success";
 				} else {
 					$proces = "email";
@@ -168,7 +177,7 @@ class registeredDAO {
 		}
 	}
 
-	private function emailInUse($registered, $db) {
+	private function emailInUse($registered, $db, $type) {
 		$use = 0;
 
 		$email = $registered->getEmail();
@@ -180,27 +189,38 @@ class registeredDAO {
 		$resultat->execute();
  		$emailInTables = $resultat->fetch(PDO::FETCH_ASSOC);
 
- 		// Select que comprueba si el email es el mismo que esta usando
- 		$query = ("SELECT ID_Registered FROM registered WHERE Email='$email' AND ID_Registered='$id'");
-		$resultat = $db->getLink()->prepare($query);
-		$resultat->execute();
- 		$thisEmail = $resultat->fetch(PDO::FETCH_ASSOC);
+ 		switch($type) {
+ 			case "insert":
+ 				if (!$emailInTables) {
+		 			$use = false;
+		 		} else {
+		 			$use = true;
+		 		}
+ 			break;
 
- 		// Si el email existe en una tabla, esta es la tabla del usuario y su ID coincide o si el email no existe en ninguna tabla devuelve un 0 porque puede usarlo, en caso contrario devuelve un 1 denegando la operacion.
- 		if (!$emailInTables) {
- 			$use = false;
- 		} else {
- 			if (!$thisEmail) {
- 				$use = true;
- 			} else {
- 				$use = false;
- 			}
+ 			case "update":
+ 				// Select que comprueba si el nombre de usuario es el mismo que esta usando
+		 		$query = ("SELECT ID_Registered FROM registered WHERE Email='$email' AND ID_Registered='$id'");
+				$resultat = $db->getLink()->prepare($query);
+				$resultat->execute();
+		 		$thisEmail = $resultat->fetch(PDO::FETCH_ASSOC);
+	 			// Si el nombre de usuario existe en una tabla, esta es la tabla del usuario y su ID coincide o si el nombre de usuario no existe en ninguna tabla devuelve un 0 porque puede usarlo, en caso contrario devuelve un 1 denegando la operacion.
+		 		if (!$emailInTables) {
+		 			$use = false;
+		 		} else {
+		 			if (!$thisEmail) {
+		 				$use = true;
+		 			} else {
+		 				$use = false;
+		 			}
+		 		}
+ 			break;
  		}
 
  		return $use;
 	}
 
-	private function usernameInUse($registered, $db) {
+	private function usernameInUse($registered, $db, $type) {
 		$use = 0;
 
 		$username = $registered->getUsername();
@@ -212,39 +232,35 @@ class registeredDAO {
 		$resultat->execute();
  		$usernameInTables = $resultat->fetch(PDO::FETCH_ASSOC);
 
- 		// Select que comprueba si el nombre de usuario es el mismo que esta usando
- 		$query = ("SELECT ID_Registered FROM registered WHERE Username='$username' AND ID_Registered='$id'");
-		$resultat = $db->getLink()->prepare($query);
-		$resultat->execute();
- 		$thisUsername = $resultat->fetch(PDO::FETCH_ASSOC);
+ 		switch($type) {
+ 			case "insert":
+ 				if (!$usernameInTables) {
+		 			$use = false;
+		 		} else {
+		 			$use = true;
+		 		}
+ 			break;
 
- 		// Si el nombre de usuario existe en una tabla, esta es la tabla del usuario y su ID coincide o si el nombre de usuario no existe en ninguna tabla devuelve un 0 porque puede usarlo, en caso contrario devuelve un 1 denegando la operacion.
- 		if (!$usernameInTables) {
- 			$use = false;
- 		} else {
- 			if (!$thisUsername) {
- 				$use = true;
- 			} else {
- 				$use = false;
- 			}
+ 			case "update":
+ 				// Select que comprueba si el nombre de usuario es el mismo que esta usando
+		 		$query = ("SELECT ID_Registered FROM registered WHERE Username='$username' AND ID_Registered='$id'");
+				$resultat = $db->getLink()->prepare($query);
+				$resultat->execute();
+		 		$thisUsername = $resultat->fetch(PDO::FETCH_ASSOC);
+	 			// Si el nombre de usuario existe en una tabla, esta es la tabla del usuario y su ID coincide o si el nombre de usuario no existe en ninguna tabla devuelve un 0 porque puede usarlo, en caso contrario devuelve un 1 denegando la operacion.
+		 		if (!$usernameInTables) {
+		 			$use = false;
+		 		} else {
+		 			if (!$thisUsername) {
+		 				$use = true;
+		 			} else {
+		 				$use = false;
+		 			}
+		 		}
+ 			break;
  		}
 
  		return $use;
-	}
-
-	private function updateAllRegistered($registered, $db) {
-		$query = ("UPDATE registered SET Username=:username, Password=:password, Email=:email, BannedTime=:bannedtime, BirthDate=:birthdate, PaypalAccount=:paypal, AvatarURL=:avatar, Country_ID=:country WHERE ID_Registered=:id");
-		$stmt = $db->getLink()->prepare($query);
-		$stmt->bindParam(':id', $registered->getID());
-		$stmt->bindParam(':username', $registered->getUsername());
-		$stmt->bindParam(':password', $registered->getPassword());
-		$stmt->bindParam(':email', $registered->getEmail());
-		$stmt->bindParam(':bannedtime', $registered->getBannedTime());
-		$stmt->bindParam(':birthdate', $registered->getBirthDate());
-		$stmt->bindParam(':paypal', $registered->getPaypalAccount());
-		$stmt->bindParam(':avatar', $registered->getAvatarUrl());
-		$stmt->bindParam(':country', $registered->getCountry());
-		$stmt->execute();
 	}
 
 	/* Metodo para eliminar el usuario registrado */
@@ -252,7 +268,7 @@ class registeredDAO {
 
 		try {
 			
-			$query = ("DELETE FROM Registered WHERE ID_Registered = '$id'");
+			$query = ("DELETE FROM registered WHERE ID_Registered = '$id'");
 
 			$db = unserialize($_SESSION['dbconnection']);
 			$resultat = $db->getLink()->prepare($query);
@@ -291,20 +307,14 @@ class registeredDAO {
 	}
 
 	public function insertRegistered($registered) {
+		$proces = "";
 		try {
-			$username = $registered->getUsername();
-			$email = $registered->getEmail();
 			$db = unserialize($_SESSION['dbconnection']);
-			$query = ("SELECT p.Username FROM professional p WHERE p.Username='$username' UNION SELECT a.Username FROM administrator a WHERE a.Username='$username' UNION SELECT r.Username FROM registered r WHERE r.Username='$username'");
-			$resultat = $db->getLink()->prepare($query);
-			$resultat->execute();
- 			$result = $resultat->fetch(PDO::FETCH_ASSOC);
- 			if (!$result) {
- 				$query = ("SELECT p.Username FROM professional p WHERE p.Email='$email' UNION SELECT a.Username FROM administrator a WHERE a.Email='$email' UNION SELECT r.Username FROM registered r WHERE r.Email='$email'");
-				$resultat = $db->getLink()->prepare($query);
-				$resultat->execute();
- 				$result = $resultat->fetch(PDO::FETCH_ASSOC);
-				if (!$result) {
+			// USERNAME VALIDATION IN TABLES
+			if($this->usernameInUse($registered, $db, "insert") == false) {
+				// EMAIL VALIDATION IN TABLES
+				if($this->emailInUse($registered, $db, "insert") == false) {
+					// INSERT ALL COLUMNS IN REGISTERED TABLE
 					$query = ("INSERT INTO registered (ID_Registered, Username, Password, Email, BannedTime, BirthDate, PaypalAccount, AvatarURL, Shop_ID, Country_ID) VALUES (:id, :username, :password, :email, :bannedtime, :birthdate, :paypal, :avatar, :shop_id, :country)");
 					$stmt = $db->getLink()->prepare($query);
 					$stmt->bindParam(':id', $this->getLastID());

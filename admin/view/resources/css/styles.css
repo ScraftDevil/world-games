@@ -27,7 +27,7 @@ a:hover {
     color: white;
 }
 
-    input.error,textarea.error{
+input.error,textarea.error {
     border: 1px solid red !important;
 }
 
@@ -187,9 +187,7 @@ a {
 }
 
 .admin-content {
-    border: solid white 1px;
     padding-right: 0;
-    background-color: white;
 }
 
 #adminView .logo {
@@ -207,6 +205,11 @@ a {
 #logout {
     width: 100%;
     margin-top: 5%;
+}
+
+#logout-button {
+    margin-top: 5%;
+    cursor: pointer;
 }
 
 #header-name {
@@ -375,6 +378,37 @@ a {
 
 #general-error {
     margin-top: 10px;
+}
+
+/* Mailbox styles */
+
+.mailbox {
+    width: 100%;
+    border: solid red 1px;
+    position: relative;
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+    text-align: center;
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    border-radius: 4px;
+}
+
+.mailbox:hover {
+    color: #fff;
+    background-color: #C9302C;
+    border-color: #d43f3a; 
+}
+
+.mail-logo {
+    font-size: 8em;
+    padding-right: 8px !important;
+}
+
+.mail-title {
+    font-size: 1.8em;
 }
 
 

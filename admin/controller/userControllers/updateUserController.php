@@ -35,7 +35,7 @@
 				$registered->setPaypalAccount($paypal);
 				$registered->setAvatarUrl($avatar);
 				$proces = updateRegistered($registered);
-				$response = messages($proces);
+				$response = messages($proces, $group);
 			break;
 
 			case 'professional':
@@ -136,27 +136,27 @@
 		return $correct;
 	}
 
-	function messages($proces) {
+	function messages($proces, $group) {
 		$response = null;
 		switch($proces) {
 			case "success":
-			$response = array("id" => "success");
+			$response = array("id" => "success", "group" => $group);
 			break;
 
 			case "username":
-			$response = array("id" => "error-username");
+			$response = array("id" => "username-error", "group" => $group);
 			break;
 
 			case "email":
-			$response = array("id" => "error-email");
+			$response = array("id" => "email-error", "group" => $group);
 			break;
 
 			case "null":
-			$response = array("id" => "error-null");
+			$response = array("id" => "null-error", "group" => $group);
 			break;
 
 			default:
-			$response = array("id" => "error");
+			$response = array("id" => "error", "group" => $group);
 			break;
 		}
 		return $response;

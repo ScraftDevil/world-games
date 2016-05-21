@@ -126,7 +126,7 @@ class mysqldb {
 	}
 
 	public function deleteRegisteredUser($id) {
-		$registeredDao = new RegisteredDAO();
+		$registeredDao = new registeredDAO();
 		$registered = $registeredDao->deleteRegisteredUser($id);		
 	}
 

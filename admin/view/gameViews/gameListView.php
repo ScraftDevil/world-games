@@ -28,11 +28,11 @@
 				break;
 
 				case "deleteSuccess":
-				$message = "<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-ok\"></span> Juego eliminado satisfactoriamente!</strong></div>";
+				$message = "<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-ok\"></span> ¡Juego eliminado satisfactoriamente!</strong></div>";
 				break;
 
 				case "gameNotSelected":
-				$message = "<div class=\"alert alert-warning\"><strong>Aviso:</strong> No has seleccionado ningun juego para gestionar la seva oferta.</div>";
+				$message = "<div class=\"alert alert-warning\"><strong>Aviso:</strong> No has seleccionado ningún juego para gestionar su oferta.</div>";
 				break;
 
 				default:
@@ -57,20 +57,26 @@
 				<div class="container container-content">
 					<div class="row">
 						<div class="col-md-12">
-							<h2> Lista de  Juegos</h2>
-							<div class="grid">
-								<?php
-									if ($message != null) {
-										echo $message;
-									}
-								?>
-								<div class="new-button">
-									<button type="button" class="btn btn-success"><a href="newGameView.php"><i class="fa fa-user" aria-hidden="true"></i> Nuevo Juego</a></button>
-									<button type="button" id="offerGame" class="btn btn-success"><a href=""><i class="fa fa-cog" aria-hidden="true"></i> Gestionar Oferta</a></button>
+							<div class="panel panel-primary">
+								<div class="panel-heading">
+									<h2 class="panel-title">Lista de Juegos</h2>
 								</div>
-								<?php
-									include("../../controller/gameControllers/showGameController.php");
-								?>
+								<div class="panel-body">
+									<div class="grid">
+										<?php
+											if ($message != null) {
+												echo $message;
+											}
+										?>
+										<div class="new-button">
+											<button type="button" class="btn btn-success"><a href="newGameView.php"><i class="fa fa-user" aria-hidden="true"></i> Nuevo Juego</a></button>
+											<button type="button" id="offerGame" class="btn btn-success"><a href=""><i class="fa fa-cog" aria-hidden="true"></i> Gestionar Oferta</a></button>
+										</div>
+										<?php
+											include("../../controller/gameControllers/showGameController.php");
+										?>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
