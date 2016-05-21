@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.14
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-05-2016 a las 15:09:41
--- Versión del servidor: 5.6.26
--- Versión de PHP: 5.5.28
+-- Tiempo de generación: 21-05-2016 a las 13:54:34
+-- Versión del servidor: 10.1.10-MariaDB
+-- Versión de PHP: 5.6.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `administrator`
 --
 
-CREATE TABLE IF NOT EXISTS `administrator` (
+CREATE TABLE `administrator` (
   `ID_Administrator` int(11) NOT NULL,
   `Username` char(50) DEFAULT NULL,
   `Password` char(45) DEFAULT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `administrator` (
   `BannedTime` float DEFAULT NULL,
   `BirthDate` date DEFAULT NULL,
   `Shop_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `administrator`
@@ -49,7 +49,7 @@ INSERT INTO `administrator` (`ID_Administrator`, `Username`, `Password`, `Email`
 -- Estructura de tabla para la tabla `admistrador_has_report`
 --
 
-CREATE TABLE IF NOT EXISTS `admistrador_has_report` (
+CREATE TABLE `admistrador_has_report` (
   `Report_ID` int(11) NOT NULL,
   `Admistrador_ID` int(11) NOT NULL,
   `Registered_ID` int(11) NOT NULL
@@ -61,12 +61,23 @@ CREATE TABLE IF NOT EXISTS `admistrador_has_report` (
 -- Estructura de tabla para la tabla `comment`
 --
 
-CREATE TABLE IF NOT EXISTS `comment` (
+CREATE TABLE `comment` (
   `ID_Comment` int(11) NOT NULL,
   `Game_ID` int(11) NOT NULL,
   `Text` text,
   `Date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `comment`
+--
+
+INSERT INTO `comment` (`ID_Comment`, `Game_ID`, `Text`, `Date`) VALUES
+(1, 2, 'Este juego esta jevi', '2016-05-21 13:46:19'),
+(2, 1, 'No se si sera igual que el de la playstation 3, pero me arriesgo, yolo!', '2016-05-21 13:47:48'),
+(3, 2, 'Prefiero piratearlo, pero da igual, me lo compro.', '2016-05-21 13:48:24'),
+(4, 2, 'Este juego no es legible... No tiene lÃ³gica pero me da igual!', '2016-05-21 13:53:06'),
+(5, 1, 'En este juego hay perras alemanas como yo, me gusta!', '2016-05-21 13:54:09');
 
 -- --------------------------------------------------------
 
@@ -74,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
 -- Estructura de tabla para la tabla `complaint`
 --
 
-CREATE TABLE IF NOT EXISTS `complaint` (
+CREATE TABLE `complaint` (
   `ID_Complaint` int(11) NOT NULL,
   `Reason` char(45) DEFAULT NULL,
   `Date` date DEFAULT NULL,
@@ -87,10 +98,10 @@ CREATE TABLE IF NOT EXISTS `complaint` (
 -- Estructura de tabla para la tabla `country`
 --
 
-CREATE TABLE IF NOT EXISTS `country` (
+CREATE TABLE `country` (
   `ID_Country` int(11) NOT NULL,
   `Name` char(45) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `country`
@@ -106,13 +117,13 @@ INSERT INTO `country` (`ID_Country`, `Name`) VALUES
 -- Estructura de tabla para la tabla `game`
 --
 
-CREATE TABLE IF NOT EXISTS `game` (
+CREATE TABLE `game` (
   `ID_Game` int(11) NOT NULL,
   `Title` varchar(45) DEFAULT NULL,
   `Price` float DEFAULT NULL,
   `Stock` int(11) DEFAULT NULL,
   `Platform_ID` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `game`
@@ -121,7 +132,8 @@ CREATE TABLE IF NOT EXISTS `game` (
 INSERT INTO `game` (`ID_Game`, `Title`, `Price`, `Stock`, `Platform_ID`) VALUES
 (1, 'Grand Theft Auto V ROCKSTAR CD-KEY GLOBAL', 60, 1, 2),
 (2, 'Rocket League STEAM CD-KEY GLOBAL', 20, 1, 2),
-(3, 'Call of Duty', 50, 0, 2);
+(3, 'Call of Duty', 50, 0, 2),
+(4, 'test', 50, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -129,9 +141,10 @@ INSERT INTO `game` (`ID_Game`, `Title`, `Price`, `Stock`, `Platform_ID`) VALUES
 -- Estructura de tabla para la tabla `game_has_complaint`
 --
 
-CREATE TABLE IF NOT EXISTS `game_has_complaint` (
+CREATE TABLE `game_has_complaint` (
   `Game_ID` int(11) NOT NULL,
-  `Complaint_ID` int(11) NOT NULL
+  `Complaint_ID` int(11) NOT NULL,
+  `Registered_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -140,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `game_has_complaint` (
 -- Estructura de tabla para la tabla `game_has_genre`
 --
 
-CREATE TABLE IF NOT EXISTS `game_has_genre` (
+CREATE TABLE `game_has_genre` (
   `Game_ID` int(11) NOT NULL,
   `Genre_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -160,7 +173,7 @@ INSERT INTO `game_has_genre` (`Game_ID`, `Genre_ID`) VALUES
 -- Estructura de tabla para la tabla `game_has_shopping`
 --
 
-CREATE TABLE IF NOT EXISTS `game_has_shopping` (
+CREATE TABLE `game_has_shopping` (
   `Game_ID` int(11) NOT NULL,
   `Shopping_ID` int(11) NOT NULL,
   `Registered_ID` int(11) NOT NULL
@@ -172,7 +185,7 @@ CREATE TABLE IF NOT EXISTS `game_has_shopping` (
 -- Estructura de tabla para la tabla `game_has_valoration`
 --
 
-CREATE TABLE IF NOT EXISTS `game_has_valoration` (
+CREATE TABLE `game_has_valoration` (
   `Game_ID` int(11) NOT NULL,
   `Valoration_ID` int(11) NOT NULL,
   `Registered_ID` int(11) NOT NULL
@@ -191,10 +204,10 @@ INSERT INTO `game_has_valoration` (`Game_ID`, `Valoration_ID`, `Registered_ID`) 
 -- Estructura de tabla para la tabla `genre`
 --
 
-CREATE TABLE IF NOT EXISTS `genre` (
+CREATE TABLE `genre` (
   `ID_Genre` int(11) NOT NULL,
   `Name` char(45) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `genre`
@@ -212,7 +225,7 @@ INSERT INTO `genre` (`ID_Genre`, `Name`) VALUES
 -- Estructura de tabla para la tabla `message`
 --
 
-CREATE TABLE IF NOT EXISTS `message` (
+CREATE TABLE `message` (
   `ID_Message` int(11) NOT NULL,
   `Content` text,
   `Date` date DEFAULT NULL
@@ -224,11 +237,11 @@ CREATE TABLE IF NOT EXISTS `message` (
 -- Estructura de tabla para la tabla `offer`
 --
 
-CREATE TABLE IF NOT EXISTS `offer` (
+CREATE TABLE `offer` (
   `ID_Offer` int(11) NOT NULL,
   `Discount` float DEFAULT NULL,
   `Game_ID` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `offer`
@@ -243,10 +256,10 @@ INSERT INTO `offer` (`ID_Offer`, `Discount`, `Game_ID`) VALUES
 -- Estructura de tabla para la tabla `platform`
 --
 
-CREATE TABLE IF NOT EXISTS `platform` (
+CREATE TABLE `platform` (
   `ID_Platform` int(11) NOT NULL,
   `Name` char(45) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `platform`
@@ -264,7 +277,7 @@ INSERT INTO `platform` (`ID_Platform`, `Name`) VALUES
 -- Estructura de tabla para la tabla `professional`
 --
 
-CREATE TABLE IF NOT EXISTS `professional` (
+CREATE TABLE `professional` (
   `ID_Professional` int(11) NOT NULL,
   `Username` char(45) DEFAULT NULL,
   `Password` char(45) DEFAULT NULL,
@@ -273,7 +286,7 @@ CREATE TABLE IF NOT EXISTS `professional` (
   `BirthDate` date DEFAULT NULL,
   `Telephone` varchar(45) DEFAULT NULL,
   `Shop_ID` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `professional`
@@ -288,7 +301,7 @@ INSERT INTO `professional` (`ID_Professional`, `Username`, `Password`, `Email`, 
 -- Estructura de tabla para la tabla `professional_has_report`
 --
 
-CREATE TABLE IF NOT EXISTS `professional_has_report` (
+CREATE TABLE `professional_has_report` (
   `Professional_ID` int(11) NOT NULL,
   `Report_ID` int(11) NOT NULL,
   `Registered_ID` int(11) NOT NULL
@@ -300,7 +313,7 @@ CREATE TABLE IF NOT EXISTS `professional_has_report` (
 -- Estructura de tabla para la tabla `registered`
 --
 
-CREATE TABLE IF NOT EXISTS `registered` (
+CREATE TABLE `registered` (
   `ID_Registered` int(11) NOT NULL,
   `Username` char(45) DEFAULT NULL,
   `Password` char(45) DEFAULT NULL,
@@ -311,14 +324,16 @@ CREATE TABLE IF NOT EXISTS `registered` (
   `AvatarURL` char(70) DEFAULT NULL,
   `Shop_ID` int(11) NOT NULL,
   `Country_ID` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `registered`
 --
 
 INSERT INTO `registered` (`ID_Registered`, `Username`, `Password`, `Email`, `BannedTime`, `BirthDate`, `PaypalAccount`, `AvatarURL`, `Shop_ID`, `Country_ID`) VALUES
-(1, 'registered', 'registered', 'registered@registered.com', NULL, '1985-01-01', NULL, NULL, 1, 1);
+(1, 'registered', 'registered', 'registered@registered.com', NULL, '1985-01-01', NULL, NULL, 1, 1),
+(2, 'carlos', 'carlos', 'carlos@carlos.com', NULL, '1995-05-04', NULL, NULL, 1, 1),
+(3, 'olga', 'olga', 'olga@olga.com', NULL, '2016-05-04', NULL, NULL, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -326,11 +341,22 @@ INSERT INTO `registered` (`ID_Registered`, `Username`, `Password`, `Email`, `Ban
 -- Estructura de tabla para la tabla `registered_has_comment`
 --
 
-CREATE TABLE IF NOT EXISTS `registered_has_comment` (
+CREATE TABLE `registered_has_comment` (
   `Registered_ID` int(11) NOT NULL,
   `Comment_ID` int(11) NOT NULL,
   `Game_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `registered_has_comment`
+--
+
+INSERT INTO `registered_has_comment` (`Registered_ID`, `Comment_ID`, `Game_ID`) VALUES
+(1, 1, 2),
+(2, 2, 1),
+(2, 3, 2),
+(3, 4, 2),
+(3, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -338,7 +364,7 @@ CREATE TABLE IF NOT EXISTS `registered_has_comment` (
 -- Estructura de tabla para la tabla `registered_has_game`
 --
 
-CREATE TABLE IF NOT EXISTS `registered_has_game` (
+CREATE TABLE `registered_has_game` (
   `Registered_ID` int(11) NOT NULL,
   `Game_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -349,7 +375,7 @@ CREATE TABLE IF NOT EXISTS `registered_has_game` (
 -- Estructura de tabla para la tabla `registered_has_message`
 --
 
-CREATE TABLE IF NOT EXISTS `registered_has_message` (
+CREATE TABLE `registered_has_message` (
   `Registered_ID` int(11) NOT NULL,
   `Message_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -360,7 +386,7 @@ CREATE TABLE IF NOT EXISTS `registered_has_message` (
 -- Estructura de tabla para la tabla `report`
 --
 
-CREATE TABLE IF NOT EXISTS `report` (
+CREATE TABLE `report` (
   `ID_Report` int(11) NOT NULL,
   `Status` char(50) DEFAULT NULL,
   `Date` date DEFAULT NULL,
@@ -374,10 +400,10 @@ CREATE TABLE IF NOT EXISTS `report` (
 -- Estructura de tabla para la tabla `shop`
 --
 
-CREATE TABLE IF NOT EXISTS `shop` (
+CREATE TABLE `shop` (
   `ID_Shop` int(11) NOT NULL,
   `Name` char(45) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `shop`
@@ -392,7 +418,7 @@ INSERT INTO `shop` (`ID_Shop`, `Name`) VALUES
 -- Estructura de tabla para la tabla `shopping`
 --
 
-CREATE TABLE IF NOT EXISTS `shopping` (
+CREATE TABLE `shopping` (
   `ID_Shopping` int(11) NOT NULL,
   `Quantity` int(11) DEFAULT NULL,
   `TotalPrice` float DEFAULT NULL,
@@ -405,10 +431,10 @@ CREATE TABLE IF NOT EXISTS `shopping` (
 -- Estructura de tabla para la tabla `valoration`
 --
 
-CREATE TABLE IF NOT EXISTS `valoration` (
+CREATE TABLE `valoration` (
   `ID_Valoration` int(11) NOT NULL,
   `Valoration` char(45) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `valoration`
@@ -604,7 +630,7 @@ ALTER TABLE `valoration`
 -- AUTO_INCREMENT de la tabla `administrator`
 --
 ALTER TABLE `administrator`
-  MODIFY `ID_Administrator` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `ID_Administrator` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `admistrador_has_report`
 --
@@ -614,7 +640,7 @@ ALTER TABLE `admistrador_has_report`
 -- AUTO_INCREMENT de la tabla `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `ID_Comment` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `complaint`
 --
@@ -624,17 +650,17 @@ ALTER TABLE `complaint`
 -- AUTO_INCREMENT de la tabla `country`
 --
 ALTER TABLE `country`
-  MODIFY `ID_Country` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `ID_Country` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `game`
 --
 ALTER TABLE `game`
-  MODIFY `ID_Game` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `ID_Game` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `genre`
 --
 ALTER TABLE `genre`
-  MODIFY `ID_Genre` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `ID_Genre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `message`
 --
@@ -644,22 +670,22 @@ ALTER TABLE `message`
 -- AUTO_INCREMENT de la tabla `offer`
 --
 ALTER TABLE `offer`
-  MODIFY `ID_Offer` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `ID_Offer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `platform`
 --
 ALTER TABLE `platform`
-  MODIFY `ID_Platform` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `ID_Platform` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `professional`
 --
 ALTER TABLE `professional`
-  MODIFY `ID_Professional` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `ID_Professional` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `registered`
 --
 ALTER TABLE `registered`
-  MODIFY `ID_Registered` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `ID_Registered` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `report`
 --
@@ -669,7 +695,7 @@ ALTER TABLE `report`
 -- AUTO_INCREMENT de la tabla `shop`
 --
 ALTER TABLE `shop`
-  MODIFY `ID_Shop` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `ID_Shop` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `shopping`
 --
@@ -679,7 +705,7 @@ ALTER TABLE `shopping`
 -- AUTO_INCREMENT de la tabla `valoration`
 --
 ALTER TABLE `valoration`
-  MODIFY `ID_Valoration` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `ID_Valoration` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Restricciones para tablas volcadas
 --
