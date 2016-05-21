@@ -7,22 +7,20 @@ include_once("../controller/controllerCalculateDiscount.php");
 include_once("../controller/controllerShowGameDetails.php");
 function printGame($game) {
   ?>
-  <?php
-    //echo $_GET['gameid'];
-  ?>
-
   <div class="col-lg-8 col-md-offset-2 col-md-offset-2 col-md-8 col-sm-12 col-xs-12 " >
     <div class="divspan" id="Product_<?php echo $game->getId();?>">
       <?php
       $price = $game->getPrice();
       $offer = $game->getOffer()->getDiscount();
       ?>
-      <div class="imgDetail col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
+      <div class="imgDetail col-md-5">
        <img class="img-responsive imageGame" src="images/games/<?php echo $game->getTitle();?>.png">
-       <div>
-       <span id="rating" title="Votar el juego!" class="pull-left"></span>
-       <span><button type="button" class="buttonCustom" id="rateBtn">Rate</button></span>
+       <div class="col-md-8" style="padding-left:0px">
+       <span id="rating" class="pull-left"></span>
        </div>
+       <!--<div class="col-md-4">
+         <span><button type="button" class="buttonCustom" id="rateBtn" data-toggle="tooltip" title="Puntuar el juego!">Rate</button></span>
+       </div>-->
      </div>
      <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 " >
        <div class="pull-right">
@@ -74,17 +72,10 @@ function printGame($game) {
     <div class="gameForm">
       <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
         <center class="bottom">
-          <!--<select id="rating">
-            <option value="5">Excelent</option>
-            <option value="4">Very Good</option>
-            <option value="3">Good</option>
-            <option value="2">Bad</option>
-            <option value="1">Very Bad</option>
-          </select>-->
           <div id="msgRate"></div>
         </center>
       </div>
-      <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 " >
+      <div class="col-md-7" >
         <div class="width100">
           <form action="" method="post" class="login">
             <textarea id="comentari" class="form-control" type="text" rows="6" name="comentari" value="" placeholder="Escriu al teu comentari aqui:"></textarea>

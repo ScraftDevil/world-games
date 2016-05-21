@@ -1,7 +1,6 @@
 $(document).ready(function() {
 setInterval(ajaxCall, 2000);
 function ajaxCall() {
-
     $.ajax({
       type: "POST",
       url: "../controller/messages/getMessageController.php",
@@ -10,16 +9,10 @@ function ajaxCall() {
       "gameid":getterURL('gameid')
       },
       success: function(data) {
-
         $("#comentariosusers").html(data);
-      
-
     }
   });
-
 }
-
- 
 
 /*$('#enviar').click(function(){
 var i = 0;
@@ -45,12 +38,10 @@ function getterURL(variable) {
   } 
   return variable;
 }
-
 $("#enviar").click(function (){
     var comentari = $("#comentari ").val();
       $.ajax({
         type: "POST",
-
         url: "../controller/messages/insertMessageController.php",
         data:         
         {
@@ -58,12 +49,10 @@ $("#enviar").click(function (){
           "gameid":getterURL('gameid')
         },
         success: function(data) {
-
           $("#comentari").val("");
           $(".ocultar").show();
           $("#message").html("Se ha enviado el mensaje con exito.");
           $(".ocultar").delay(2000).hide(100);
-
         }
       });
     });
