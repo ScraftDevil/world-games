@@ -36,6 +36,5 @@ for($i = 0; $i < count($result); $i++) {
 	echo '</div >';
 	echo '</div >';
 }
-/*glyphicon glyphicon-pushpin*/
 ?>
 

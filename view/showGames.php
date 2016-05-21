@@ -2,15 +2,22 @@
 include_once("../controller/controllerCalculateDiscount.php");
 include_once("../controller/controllerShowGames.php");
 function showGames($list, $onlyOffers) {
+    $n = 0;
     for ($i = 0; $i < count($list); $i++) {
         $offer = $list[$i]->getOffer()->getDiscount();
         if ($onlyOffers) {
             if (!empty($offer)) {
                 printGame($list[$i]);
+                $n++;
             }
         } else {
             printGame($list[$i]);
         }
+    }
+    if($onlyOffers && $n==0) {
+        echo '<div class="col-md-12 gallery-item-wrapper"><div class="alert alert-info">
+  <strong>No hay ofertas disponibles.<strong>
+</div></div>';
     }
 }
 

@@ -3,7 +3,8 @@ session_start();
 require_once("../../model/autoload.php");
 $comentari = $_POST["comentari"];
 $gameid = $_POST["gameid"];
-if (isset($_SESSION['user_id'])) {
+if (!empty($comentari)) {
+	if (isset($_SESSION['user_id'])) {
 	$userid = $_SESSION['user_id'];
 	$db = unserialize($_SESSION['dbconnection']);
 	$query = "INSERT INTO comment VALUES('', '$gameid', '$comentari', now())";
@@ -14,7 +15,10 @@ if (isset($_SESSION['user_id'])) {
 		$result = $db->getLink()->prepare($query);
 		echo $result->execute();
 	}
+	} else {
+		echo "LOGIN_ERROR";
+	}
 } else {
-	echo "LOGIN_ERROR";
+	echo "EMPTY_INPUT";
 }
 ?>

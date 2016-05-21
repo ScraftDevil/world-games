@@ -19,6 +19,9 @@ session_start();
     <link href="css/header.css" rel="stylesheet">
     <link href="css/footer.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/detailGame.css"/>
-    <link href='css/jquery.rating.css' type="text/css" rel="stylesheet"/>
+    <?php
+    if (basename($_SERVER['PHP_SELF'])=="detailsProduct.php") {
+        echo '<link rel="stylesheet" href="css/detailGame.css"/>';
+    }
+    ?>
 </head>

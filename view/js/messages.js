@@ -51,8 +51,29 @@ $("#enviar").click(function (){
         success: function(data) {
           $("#comentari").val("");
           $(".ocultar").show();
-          $("#message").html("Se ha enviado el mensaje con exito.");
-          $(".ocultar").delay(2000).hide(100);
+          if (data=="LOGIN_ERROR") {
+            $("#message").removeClass("alert-success");
+            $("#message").addClass("alert-info");
+            $("#message").html("Entra a tu cuenta para poder comentar.");
+          }
+          else {
+            if (data=="EMPTY_INPUT") {
+              $("#message").removeClass("alert-success");
+              $("#message").addClass("alert-info");
+              $("#message").html("No has introducido mensaje.");
+              $("#comentari").each(function () {
+                this.style.setProperty( 'border', '3px solid red', 'important' );
+              });
+            } else {
+              $("#message").removeClass("alert-info");
+              $("#message").addClass("alert-success");
+              $("#message").html("Se ha enviado el mensaje con exito.");
+              $(".ocultar").delay(2000).hide(100);
+              $("#comentari").each(function () {
+                this.style.setProperty( 'border', '3px solid green', 'important' );
+              });
+            }
+          }
         }
       });
     });

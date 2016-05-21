@@ -314,6 +314,7 @@ if (shoppingCart == "undefined") {
     $("#basket").html("<p style='margin-left: 8px'><font color='white'>Carrito de la compra vacio.</font></p>");
 } else {
     var json = Cookies.getJSON('shoppingCart');
+    updateTotalShopping(json);
     var nitems = 0;
     $.each(json, function(i, item) {
         $product = $("#Product"+item.id);
@@ -503,6 +504,7 @@ $(document).ready(function() {
         $("#basket").html("");
         $("#countShoppingCart").html("");
         Cookies.remove('shoppingCart');
+        $("#shoppingCartTotal").text("Total: 0 €");
     });
     $(document).on("click", ".removeItem", function (e) {
         e.preventDefault();
@@ -522,6 +524,7 @@ $(document).ready(function() {
             $obj.find(".item-info #quantity").text("x"+(quantitygame-1));
         }
         $("#countShoppingCart").text(getNumItems(games));
+        updateTotalShopping(games);
     });
 
 });

@@ -49,8 +49,6 @@ function printGame($game) {
           }
           ?>
         </span>
-
-
         <?php
         $priceWithDiscount = calculateDiscount($price, $offer);
         if (!empty($game->getOffer()->getDiscount())) {
@@ -60,15 +58,10 @@ function printGame($game) {
           echo '<span class="bigSpan spanprecio">'.$price.' €</span>';
         }
         ?>
-
-
         <div class="enviarcarrito buyGame"><span class="spanenviar">Añadir al carrito</span></div>
         <div class="espai"></div>
-
       </div>
-
     </div>
-
     <div class="gameForm">
       <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
         <center class="bottom">
@@ -78,18 +71,14 @@ function printGame($game) {
       <div class="col-md-7" >
         <div class="width100">
           <form action="" method="post" class="login">
-            <textarea id="comentari" class="form-control" type="text" rows="6" name="comentari" value="" placeholder="Escriu al teu comentari aqui:"></textarea>
-            <div class="alert alert-success ocultar">
-              <div id="message"></div>
-            </div>
+            <textarea id="comentari" class="form-control" type="text" rows="6" name="comentari" value="" placeholder="Escribe tu comentario aquí:"></textarea>
+              <div id="message" class="alert alert-success ocultar"></div>
             <input id="enviar" class="buttonCustom" type="button" name="enviar" value="ENVIAR"/>
           </form>
         </div>
       </div>
       <div class="clear"></div>
     </div>
-
-
   </div>
 </div>
 
