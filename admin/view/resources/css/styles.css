@@ -411,6 +411,24 @@ a {
     font-size: 1.8em;
 }
 
+/* Report & Complaint Styles */
+
+.noRead {
+    color: #B45F04;
+}
+
+.read {
+    color: #0489B1;
+}
+
+.deny {
+    color: #B40404;
+}
+
+.accept {
+    color: #31B404;
+}
+
 
 /* Mobile */
 @media only screen and (min-width: 320px) {

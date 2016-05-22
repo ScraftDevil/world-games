@@ -55,9 +55,4 @@
 		return utf8_encode($fieldData);
 	}
 
-	function printP($params, $pos) {
-		extract($params);
-		$fieldData = $record["'".$pos."'"];
-		return "<p>".utf8_encode($fieldData)."</p>";
-	}
 ?>

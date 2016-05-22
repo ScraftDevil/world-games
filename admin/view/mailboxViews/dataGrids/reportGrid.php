@@ -19,7 +19,7 @@
 		$dg->renderer->sortIconDESC = "&darr;";
 		$column = new Structures_DataGrid_Column('ID de<br>Queja', 'ID_Report', 'ID_Report', array('class'=>'grid-cel'));
 		$dg->addColumn($column);
-		$column = new Structures_DataGrid_Column('Estado', 'Status', 'Status', array('class'=>'grid-cel'));
+		$column = new Structures_DataGrid_Column('Estado', 'Status', 'Status', array('class'=>'grid-cel'), null, 'PrintStatus()');
 		$dg->addColumn($column);
 		$column = new Structures_DataGrid_Column('Fecha', 'Date', 'Date', array('class'=>'grid-cel'));
 		$dg->addColumn($column);
@@ -43,7 +43,7 @@
 		    <span class=\"sr-only\"><a class=\"drop-grid\" href=\"#\">Selecciona una operación</a></span>
 		  </button>
 		  <ul class=\"dropdown-menu\">
-		  	<li><a href=\"userDataEditView.php?group=registered&id=$id\">Modificar</a></li>
+		  	<li><a href=\"reportView.php?id=$id\">Modificar</a></li>
 		    <li><a href=\"#\" onclick=\"deleteUser($id)\">Eliminar</a></li>
 		  </ul>
 		</div>";
@@ -55,15 +55,29 @@
 		return utf8_encode($fieldData);
 	}
 
-	function textUTF8($params) {
+	function PrintStatus($params){
 		extract($params);
-		$fieldData = $record['Text'];
-		return utf8_encode($fieldData);
+		$fieldData = $record['Status'];
+		$fieldData = utf8_encode($fieldData);
+		switch($fieldData) {
+			case "No leído":
+				$fieldData = "<p class=\"noRead\">".$fieldData."</p>";
+			break;
+
+			case "Leído":
+				$fieldData = "<p class=\"read\">".$fieldData."</p>";
+			break;
+
+			case "Denegado":
+				$fieldData = "<p class=\"deny\">".$fieldData."</p>";
+			break;
+
+			case "Aceptado":
+				$fieldData = "<p class=\"accept\">".$fieldData."</p>";
+			break;
+		}
+		return $fieldData;
 	}
 
-	function printP($params, $pos) {
-		extract($params);
-		$fieldData = $record["'".$pos."'"];
-		return "<p>".utf8_encode($fieldData)."</p>";
-	}
+
 ?>
