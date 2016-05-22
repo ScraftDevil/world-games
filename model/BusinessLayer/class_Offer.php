@@ -1,8 +1,9 @@
 <?php
 
 class Offer {
-    private $id = null;
+    private $id;
     private $discount = null;
+    private $game;
     
     function __construct($discount) {
         $this->setDiscount($discount);
@@ -17,6 +18,10 @@ class Offer {
         return $this->discount;
     }
 
+    function getGame() {
+        return $this->game;
+    }
+
     function setId($id) {
         $this->id = $id;
     }
@@ -25,6 +30,13 @@ class Offer {
         $this->discount = $discount;
     }
 
+    function setGame($game) {
+        $this->game = $game;
+    }
 
+    public function insertOffer() {
+        $offerDAO = new offerDAO();
+        return  $offerDAO->insertOffer($this); 
+    }
    
 }

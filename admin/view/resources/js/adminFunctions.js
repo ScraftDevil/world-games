@@ -60,6 +60,15 @@ function load() {
       });
     break;
 
+    //INSERT OFFER
+    case "newOfferView":
+      $("#insert-offer").click(function() {
+          var discount = $("#discount").val();
+          var game = $("#game").val();
+          var offer = {"discount": discount, "game": game};
+          sendOffer(offer);
+      });
+    break;
   }
 }
 
@@ -192,6 +201,35 @@ function getUpdateUserProcess(data) {
 
 /// USER ACTIONS FINISH
 
+/// OFFERS ACTIONS START
+function sendOffer(offer) {
+    var offer = JSON.stringify(offer);
+    $.ajax({
+        data:  "offer=" + offer,
+        url:   '../../controller/offerControllers/newOfferController.php',
+        type:  'POST',
+        dataType: 'json',
+        success: getInsertOfferProcess
+    });
+}
+function getInsertOfferProcess(data) {
+    switch(data.id) {
+        case "error":
+            $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en la validación de datos de la oferta!</strong></div>");
+        break;
+
+        case "success":
+            var delay = 0;
+            setTimeout(function(){ window.location = "../../view/offerViews/offerListView.php?msg=" + data.id; }, delay);
+        break;
+
+        default:
+            $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error inesperado!</strong></div>");
+        break;
+    }
+}
+/// OFFERS ACTIONS FINISH
+
 
 /// GAME ACTIONS START
 
@@ -316,13 +354,6 @@ function getPageName() {
 
 
 /// OTHER FUNCTIONS FINISH
-
-
-
-
-
-
-
 function gameFiledsValidator() {
   $("#gameinsert").validate({
     rules: {

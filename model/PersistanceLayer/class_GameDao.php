@@ -19,7 +19,7 @@ class gameDAO {
 		if (!empty($order)) {
 			$orderSQL = "ORDER BY ".$order;
 		}
-		$sqlDiscount = ", (SELECT O.Discount FROM Offer O WHERE O.Game_ID = G.ID_Game) as Discount";
+		$sqlDiscount = ", (SELECT O.Discount FROM Offer O WHERE O.ID_Offer = G.Offer_ID) as Discount";
 		$sqlPlatform = ", (SELECT P.Name FROM platform P WHERE P.ID_Platform = G.Platform_ID) as Platform";
 		$sql = "SELECT G.ID_Game, G.Title, G.Price, G.Stock ".$sqlDiscount." ".$sqlPlatform." FROM game G $orderSQL";
 		$db = unserialize($_SESSION['dbconnection']);
@@ -30,4 +30,4 @@ class gameDAO {
 	}
 
 }
- ?>
+?>

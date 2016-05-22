@@ -58,7 +58,7 @@ class mysqldb {
 	}
 
 	public function getGames() {
-		$sqlDiscount = ", (SELECT O.Discount FROM Offer O WHERE O.Game_ID = G.ID_Game) as Discount";
+		$sqlDiscount = ", (SELECT O.Discount FROM Offer O WHERE O.ID_Offer = G.Offer_ID) as Discount";
 		$sqlPlatform = ", (SELECT P.Name FROM platform P WHERE P.ID_Platform = G.Platform_ID) as Platform";
 		$sql = "SELECT G.ID_Game, G.Title, G.Price, G.Stock ".$sqlDiscount." ".$sqlPlatform." FROM game G WHERE G.Stock>0";
 		$stmt = $this->getLink()->prepare($sql);
@@ -73,7 +73,7 @@ class mysqldb {
 	}
 
 	public function getOfferGame($gameid) {
-		$sql = "SELECT O.ID_Offer, O.Discount, (SELECT G.Title FROM game G WHERE G.ID_Game=O.Game_ID) as Game FROM offer O WHERE O.Game_ID = $gameid";
+		$sql = "SELECT O.ID_Offer, O.Discount, (SELECT G.Title FROM game G WHERE G.Offer_ID = $gameid) as Game FROM offer O";
 		$stmt = $this->getLink()->prepare($sql); 
 		$stmt->execute();
 		$result = $stmt->FetchAll();

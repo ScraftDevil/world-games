@@ -103,7 +103,7 @@
 				$(this).removeClass("selected");
 			});
 			idgame = $(this).parent().parent().parent().find("td:eq(0)").text();
-			$("#offerGame a").attr("href", "../offersViews/manageOffersView.php?gameid="+idgame);
+			$("#offerGame a").attr("href", "../offerViews/manageOffersView.php?gameid="+idgame);
 			$(this).parent().parent().parent().attr("class", "selected");
 		});
 		</script>

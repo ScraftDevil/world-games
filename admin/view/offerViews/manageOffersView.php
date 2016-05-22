@@ -67,9 +67,6 @@
 												echo $message;
 											}
 										?>
-										<div class="new-button">
-											<button type="button" class="btn btn-success"><a href="newOfferView.php"><i class="fa fa-user" aria-hidden="true"></i> Nueva Oferta</a></button>
-										</div>
 										<?php
 											include("../../controller/offerControllers/showOfferController.php");
 										?>
