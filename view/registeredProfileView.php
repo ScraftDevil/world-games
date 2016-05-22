@@ -9,7 +9,6 @@ include("sections/head.php");
 
 // controladores del perfil de usuario registrado
 include("../controller/getRegisteredInfoController.php");
-//include("../controller/updateRegisteredController.php");
 
  //array que contiene los datos del usuario segun el id obtenido después de hacer login
 $registered = getRegisteredInfo($_SESSION['user_id']);
@@ -75,7 +74,7 @@ $_SESSION['registered'] = serialize($registeredObject);?>
 
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label">País:</label>
-                                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-5">
+                                        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
                                             <select id="country" name="country">
                                                 <?php getCountriesList($registeredObject->getCountry()); ?>
                                             </select>
@@ -106,20 +105,17 @@ $_SESSION['registered'] = serialize($registeredObject);?>
                                 </div>
                                 
 
-                                <!-- Mis Mensajes -->                                
+                                <!-- Mis Mensajes -->
                                 <div id="mensajes" class="desplegableProfile col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                     <span class="glyphicon glyphicon-envelope"></span>
-                                    Mis Mensajes
+                                    Mis Mensajes recibidos
                                 </div>
-                                <div class="col-lg-12" id="mensajesUsuario">
-                                    Lista de Mensajes
-
-                                <a href="sendPrivateMessageView.php" id="newMessage" class="button-profile pull-right btn form-button" role="button">
+                                <a href="sendPrivateMessageView.php" id="newMessage" class="button-profile pull-right btn form-button col-xs-12 col-sm-3 col-md-3 col-lg-3" role="button">
                                     <span class="glyphicon glyphicon-send"></span>
                                     Nuevo Mensaje
                                 </a>
-                                </div>
-                                
+                                <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9" id="privateMessages">
+                                </div>                                
 
                                 <!-- Configuración de la Cuenta del usuario -->
                                 <div id="configuracion" class="desplegableProfile col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -143,6 +139,7 @@ $_SESSION['registered'] = serialize($registeredObject);?>
                     </div>
                 </div>
             </section>
-            <?php include("sections/footer.php"); ?>
+            <?php include("sections/footer.php"); 
+        ?>
     </body>
 </html>

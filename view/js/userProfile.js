@@ -44,6 +44,30 @@ function load() {
         }
     });
 
+    setInterval(getPrivateMessages, 2000);
+    function getPrivateMessages() {
+        var user_id = "";
+        $.ajax ({
+            data: {"user_id":user_id},
+            url: "../controller/getPrivateMessagesController.php",
+            type: "POST",
+            success: function(messages) {
+                $("#privateMessages").html(messages);
+            }
+        });
+    }
+    /*function ajaxCall() {
+        $.ajax({
+            type: "POST",
+            url: "../controller/messages/getMessageController.php",
+            data: {"gameid":getterURL('gameid')},
+            success: function(data) {
+                $("#comentariosusers").html(data);
+            }
+        });
+    }*/
+
+    /* Evento del botón de envío de mensaje privado */
     $('#sendPrivateMessage').click(function() {
         var receiverName = $("#receiverName").val();
         var message = $("#contentMessage").val();
@@ -69,6 +93,7 @@ function updateUser(registered) {
     });
 }
 
+/* Mensajes de actualización del perfil de usuario */
 function getUpdateResponseMessage(data) {
 
     if (data == 0) {
@@ -78,6 +103,7 @@ function getUpdateResponseMessage(data) {
     }
 }
 
+/* Envío de mensaje privado */
 function sendMessage(infoMessage) {
     var infoMessage = JSON.stringify(infoMessage);
 
@@ -90,6 +116,7 @@ function sendMessage(infoMessage) {
     });
 }
 
+/* Mensajes de envío de mensaje privad */
 function getSendMessageResponse(data) {
 
     if (data == "success") {
@@ -98,7 +125,7 @@ function getSendMessageResponse(data) {
         $("#contentMessage").val("");
     } else {
         if (data == "username") {
-            $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en el envío del mensaje! El nomrbre de usuario es incorrecto o no se encuentra en nuestra base de datos</strong></div>");
+            $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en el envío del mensaje! El nombre de usuario es incorrecto o no se encuentra en nuestra base de datos</strong></div>");
         }
         else {
             $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en el envío del mensaje! Por favor revisa los campos y prueba de nuevo</strong></div>");

@@ -4,7 +4,6 @@
 <?php
 
 /* codigo php */
-
 include("sections/head.php");
 
 ?>
@@ -57,6 +56,7 @@ include("sections/head.php");
                     </div>
                 </div>
             </section>
-            <?php include("sections/footer.php"); ?>
+            <?php include("sections/footer.php"); 
+        ?>
     </body>
 </html>

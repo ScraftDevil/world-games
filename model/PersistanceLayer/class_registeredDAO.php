@@ -97,6 +97,28 @@ class registeredDAO {
 		}
 
 	}
+
+	public function getPrivateMessages($id) {
+
+		try {
+
+			/* Obtener mensajes del usuario y el nombre del usuario que envió el mensaje */
+			$query = ("SELECT ID_Message, Username, Content, Date FROM message INNER JOIN registered_has_message ON ID_Message = Message_ID 
+					INNER JOIN registered ON Registered_ID = ID_Registered WHERE Receiver_ID = '".$id."' ORDER BY Date ASC");
+			$db = unserialize($_SESSION['dbconnection']);
+			$resultat = $db->getLink()->prepare($query);
+        	$resultat->execute();
+        	$result = $resultat->FetchAll();
+        	//$result = $resultat->fetch(PDO::FETCH_ASSOC);
+			
+		} catch (PDOException $e) {
+			echo "An Error ocurred!";
+			some_loggging_function($ex->getMessage());
+		} finally {
+			return $result;
+			$_SESSION['dbconnection'] = serialize($db);			
+		}
+	}	
  	
  	/* Metodo para actualizar los datos del usuario registrado */
 	public function updateRegisteredUser($registered) {
