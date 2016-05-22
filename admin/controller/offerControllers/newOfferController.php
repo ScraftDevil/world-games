@@ -18,9 +18,9 @@
 	$game = $offer->game;
 	$proces = addOffer($discount, $game);
 	if ($proces != 0) {
-		$response = array("id" => "success");
+		$response = array("id" => "successOffer");
 	} else if ($proces == 0) {
-		$response = array("id" => "error");
+		$response = array("id" => "errorOffer");
 	}
 
 	function addOffer($discount, $game) {

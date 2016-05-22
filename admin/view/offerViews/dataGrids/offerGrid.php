@@ -7,20 +7,26 @@
 			$order = $_GET['orderBy'] . " " . $_GET['direction'];
 		}
 		$game = $db->getOfferGame($gameid);
-		$dg = new Structures_DataGrid();
-		$dg->bind($game, array(), 'Array');
-		$dg->renderer->sortIconASC= "&uarr;";
-		$dg->renderer->sortIconDESC = "&darr;";
-		$column = new Structures_DataGrid_Column('ID Oferta', 'ID_Offer', 'ID_Offer', array('class'=>'grid-cel'), "null");
-		$dg->addColumn($column);
-		$column = new Structures_DataGrid_Column('Descuento', 'Discount', 'Discount', array('class'=>'grid-cel'));
-		$dg->addColumn($column);
-		$column = new Structures_DataGrid_Column('Juego', 'Game', 'Game', array('class'=>'grid-cel'), null, 'PrintUTF8()');
-		$dg->addColumn($column);
-		
-		$column = new Structures_DataGrid_Column("<a href='#'>Opciones</a>", null, null, array('class'=>'grid-cel'), null, 'PrintOption()');
-		$dg->addColumn($column);
-		$dg->render();
+		if (!empty($game)) {
+			echo '
+			<script>
+			document.getElementById("newOffer").setAttribute(\'disabled\', \'true\');
+			document.getElementById("newOfferRef").setAttribute(\'href\', \'#\');
+			</script>';
+			$dg = new Structures_DataGrid();
+			$dg->bind($game, array(), 'Array');
+			$dg->renderer->sortIconASC= "&uarr;";
+			$dg->renderer->sortIconDESC = "&darr;";
+			$column = new Structures_DataGrid_Column('ID Oferta', 'ID_Offer', 'ID_Offer', array('class'=>'grid-cel'), "null");
+			$dg->addColumn($column);
+			$column = new Structures_DataGrid_Column('Descuento', 'Discount', 'Discount', array('class'=>'grid-cel'));
+			$dg->addColumn($column);
+			$column = new Structures_DataGrid_Column('Juego', 'Game', 'Game', array('class'=>'grid-cel'), null, 'PrintUTF8()');
+			$dg->addColumn($column);
+			$column = new Structures_DataGrid_Column("<a href='#'>Opciones</a>", null, null, array('class'=>'grid-cel'), null, 'PrintOption()');
+			$dg->addColumn($column);
+			$dg->render();
+		}
 	}
 
 	function PrintOption($params){

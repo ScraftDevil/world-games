@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-05-2016 a las 18:10:58
+-- Tiempo de generación: 22-05-2016 a las 18:30:24
 -- Versión del servidor: 10.1.10-MariaDB
 -- Versión de PHP: 5.6.19
 
@@ -146,7 +146,7 @@ CREATE TABLE `game` (
 --
 
 INSERT INTO `game` (`ID_Game`, `Title`, `Price`, `Stock`, `Platform_ID`, `Offer_ID`) VALUES
-(1, 'Grand Theft Auto V ROCKSTAR CD-KEY GLOBAL', 60, 1, 2, 0),
+(1, 'Grand Theft Auto V ROCKSTAR CD-KEY GLOBAL', 60, 1, 2, 1),
 (2, 'Rocket League STEAM CD-KEY GLOBAL', 20, 1, 2, 0),
 (3, 'Call of Duty', 50, 0, 2, 0),
 (4, 'test', 50, 0, 1, 0),
@@ -273,6 +273,13 @@ CREATE TABLE `offer` (
   `ID_Offer` int(11) NOT NULL,
   `Discount` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `offer`
+--
+
+INSERT INTO `offer` (`ID_Offer`, `Discount`) VALUES
+(1, 60);
 
 -- --------------------------------------------------------
 
@@ -705,7 +712,7 @@ ALTER TABLE `message`
 -- AUTO_INCREMENT de la tabla `offer`
 --
 ALTER TABLE `offer`
-  MODIFY `ID_Offer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID_Offer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `platform`
 --

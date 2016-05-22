@@ -214,13 +214,13 @@ function sendOffer(offer) {
 }
 function getInsertOfferProcess(data) {
     switch(data.id) {
-        case "error":
+        case "errorOffer":
             $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en la validación de datos de la oferta!</strong></div>");
         break;
 
-        case "success":
+        case "successOffer":
             var delay = 0;
-            setTimeout(function(){ window.location = "../../view/offerViews/offerListView.php?msg=" + data.id; }, delay);
+            setTimeout(function(){ window.location = "../../view/gameViews/gameListView.php?msg=" + data.id; }, delay);
         break;
 
         default:

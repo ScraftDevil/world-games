@@ -35,6 +35,14 @@
 				$message = "<div class=\"alert alert-warning\"><strong>Aviso:</strong> No has seleccionado ningún juego para gestionar su oferta.</div>";
 				break;
 
+				case "successOffer":
+				$message = "<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-ok\"></span> ¡Se ha creado la oferta del juego con exito!</strong></div>";
+				break;
+
+				case "errorOffer":
+				$message = "<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡No se ha podido añadir la oferta en el juego!</strong></div>";
+				break;
+
 				default:
 					$message = null;
 				break;
@@ -103,7 +111,7 @@
 				$(this).removeClass("selected");
 			});
 			idgame = $(this).parent().parent().parent().find("td:eq(0)").text();
-			$("#offerGame a").attr("href", "../offerViews/manageOffersView.php?gameid="+idgame);
+			$("#offerGame a").attr("href", "../offerViews/manageOfferView.php?gameid="+idgame);
 			$(this).parent().parent().parent().attr("class", "selected");
 		});
 		</script>

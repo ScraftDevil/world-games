@@ -73,7 +73,7 @@ class mysqldb {
 	}
 
 	public function getOfferGame($gameid) {
-		$sql = "SELECT O.ID_Offer, O.Discount, (SELECT G.Title FROM game G WHERE G.Offer_ID = $gameid) as Game FROM offer O";
+		$sql = "SELECT G.Title as Game, O.ID_Offer, O.Discount FROM game G INNER JOIN offer O WHERE O.ID_Offer=G.Offer_ID AND G.ID_Game=$gameid";
 		$stmt = $this->getLink()->prepare($sql); 
 		$stmt->execute();
 		$result = $stmt->FetchAll();
