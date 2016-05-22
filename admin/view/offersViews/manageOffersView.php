@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
 	<?php
-
+		$gameid = 0;
+		if (isset($_GET['gameid'])) {
+			$gameid = $_GET['gameid'];
+		}
 		include("../../controller/adminAuthControllers/authController.php");
 		if (!checkAuth()) {
 			header("Location:../adminLoginView.php");
@@ -10,8 +13,6 @@
 			header("Location:../index.php");
 		}
 		include("../sections/head.php"); 
-
-
 		if(isset($_GET['msg']) AND !empty($_GET['msg'])) {
 			$msg = $_GET['msg'];
 			switch($msg) {
@@ -57,7 +58,7 @@
 						<div class="col-md-12">
 							<div class="panel panel-primary">
 								<div class="panel-heading">
-									<h2 class="panel-title">Lista de Juegos</h2>
+									<h2 class="panel-title">Lista de Ofertas</h2>
 								</div>
 								<div class="panel-body">
 									<div class="grid">
@@ -67,11 +68,10 @@
 											}
 										?>
 										<div class="new-button">
-											<button type="button" class="btn btn-success"><a href="newGameView.php"><i class="fa fa-user" aria-hidden="true"></i> Nuevo Juego</a></button>
-											<button type="button" id="offerGame" class="btn btn-success"><a href=""><i class="fa fa-cog" aria-hidden="true"></i> Gestionar Oferta</a></button>
+											<button type="button" class="btn btn-success"><a href="newOfferView.php"><i class="fa fa-user" aria-hidden="true"></i> Nueva Oferta</a></button>
 										</div>
 										<?php
-											include("../../controller/gameControllers/showGameController.php");
+											include("../../controller/offerControllers/showOfferController.php");
 										?>
 									</div>
 								</div>
@@ -84,29 +84,6 @@
 	</div>
 	<footer>
 		<?php include("../sections/footer.php"); ?>	
-		<script>
-		var idgame = 0;
-		$("#offerGame").click(function () {
-			var anySelected = false;
-			$('.grid tr').each(function() {
-				if ($(this).hasClass("selected")) {
-					anySelected = true;
-				}
-			});
-			if (!anySelected) {
-				window.location.href = 'gameListView.php?msg=gameNotSelected';
-				return false;
-			}
-		});
-		$(".selectGame").click(function () {
-			$('.grid tr').each(function() {
-				$(this).removeClass("selected");
-			});
-			idgame = $(this).parent().parent().parent().find("td:eq(0)").text();
-			$("#offerGame a").attr("href", "../offersViews/manageOffersView.php?gameid="+idgame);
-			$(this).parent().parent().parent().attr("class", "selected");
-		});
-		</script>
 	</footer>
 </body>
 </html>

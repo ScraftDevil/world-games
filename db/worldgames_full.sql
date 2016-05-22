@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-05-2016 a las 13:59:54
--- Versión del servidor: 10.1.13-MariaDB
--- Versión de PHP: 5.5.34
+-- Tiempo de generación: 22-05-2016 a las 16:30:13
+-- Versión del servidor: 10.1.10-MariaDB
+-- Versión de PHP: 5.6.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -55,6 +55,13 @@ CREATE TABLE `administrator_has_report` (
   `Registered_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `administrator_has_report`
+--
+
+INSERT INTO `administrator_has_report` (`Report_ID`, `Administrator_ID`, `Registered_ID`) VALUES
+(2, 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -92,6 +99,13 @@ CREATE TABLE `complaint` (
   `Date` datetime DEFAULT NULL,
   `Status` char(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `complaint`
+--
+
+INSERT INTO `complaint` (`ID_Complaint`, `Reason`, `Text`, `Date`, `Status`) VALUES
+(1, 'me han timado', 'me han timado al comprar el juego, no es lo que esperava', '2016-05-22 00:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -147,6 +161,13 @@ CREATE TABLE `game_has_complaint` (
   `Complaint_ID` int(11) NOT NULL,
   `Registered_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `game_has_complaint`
+--
+
+INSERT INTO `game_has_complaint` (`Game_ID`, `Complaint_ID`, `Registered_ID`) VALUES
+(1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -378,7 +399,8 @@ CREATE TABLE `registered_has_game` (
 
 CREATE TABLE `registered_has_message` (
   `Registered_ID` int(11) NOT NULL,
-  `Message_ID` int(11) NOT NULL
+  `Message_ID` int(11) NOT NULL,
+  `Receiver_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -395,6 +417,13 @@ CREATE TABLE `report` (
   `Text` text,
   `Registered_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `report`
+--
+
+INSERT INTO `report` (`ID_Report`, `Status`, `Date`, `Reason`, `Text`, `Registered_ID`) VALUES
+(2, 'Leido', '2016-05-09 00:00:00', 'spam!', 'spam!spam!spam!spam!spam!', 1);
 
 -- --------------------------------------------------------
 
@@ -595,7 +624,8 @@ ALTER TABLE `registered_has_game`
 -- Indices de la tabla `registered_has_message`
 --
 ALTER TABLE `registered_has_message`
-  ADD PRIMARY KEY (`Registered_ID`,`Message_ID`),
+  ADD PRIMARY KEY (`Registered_ID`,`Message_ID`,`Receiver_ID`) USING BTREE,
+  ADD UNIQUE KEY `fk_Registered_has_Message_Receiver1` (`Receiver_ID`),
   ADD KEY `fk_Registered_has_Message_Message1_idx` (`Message_ID`),
   ADD KEY `fk_Registered_has_Message_Registered1_idx` (`Registered_ID`);
 
@@ -637,7 +667,7 @@ ALTER TABLE `administrator`
 -- AUTO_INCREMENT de la tabla `administrator_has_report`
 --
 ALTER TABLE `administrator_has_report`
-  MODIFY `Report_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Report_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `comment`
 --
@@ -647,7 +677,7 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT de la tabla `complaint`
 --
 ALTER TABLE `complaint`
-  MODIFY `ID_Complaint` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Complaint` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `country`
 --
@@ -692,7 +722,7 @@ ALTER TABLE `registered`
 -- AUTO_INCREMENT de la tabla `report`
 --
 ALTER TABLE `report`
-  MODIFY `ID_Report` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Report` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `shop`
 --

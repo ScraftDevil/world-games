@@ -72,6 +72,14 @@ class mysqldb {
 		return $gameDAO->getAllGames($order);
 	}
 
+	public function getOfferGame($gameid) {
+		$sql = "SELECT O.ID_Offer, O.Discount, (SELECT G.Title FROM game G WHERE G.ID_Game=O.Game_ID) as Game FROM offer O WHERE O.Game_ID = $gameid";
+		$stmt = $this->getLink()->prepare($sql); 
+		$stmt->execute();
+		$result = $stmt->FetchAll();
+		return $result;
+	}
+
 	public function getGenresGame($gameid) {
 		$sql = "SELECT GE.ID_Genre, GE.Name FROM game_has_genre GG INNER JOIN Genre GE
 		WHERE GE.ID_Genre = GG.Genre_ID AND GG.Game_ID = $gameid";
