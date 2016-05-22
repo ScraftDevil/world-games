@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-05-2016 a las 16:30:13
+-- Tiempo de generación: 22-05-2016 a las 16:37:49
 -- Versión del servidor: 10.1.10-MariaDB
 -- Versión de PHP: 5.6.19
 
@@ -524,7 +524,8 @@ ALTER TABLE `game`
 -- Indices de la tabla `game_has_complaint`
 --
 ALTER TABLE `game_has_complaint`
-  ADD PRIMARY KEY (`Game_ID`,`Complaint_ID`),
+  ADD PRIMARY KEY (`Game_ID`,`Complaint_ID`,`Registered_ID`) USING BTREE,
+  ADD UNIQUE KEY `fk_Game_has_Complaint_Registered1_idx` (`Registered_ID`) USING BTREE,
   ADD KEY `fk_Game_has_Complaint_Complaint1_idx` (`Complaint_ID`),
   ADD KEY `fk_Game_has_Complaint_Game1_idx` (`Game_ID`);
 
