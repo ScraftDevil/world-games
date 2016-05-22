@@ -26,7 +26,7 @@ include("sections/head.php");
 
                     <!-- Mensaje de Error de que no se puede actualizar por falta de datos o datos incorrectos 
                          o de que se han actualizado corretamente -->
-                    <div id="general-error"></div>
+                    <div id="general-error" class="col-lg-offset-2 col-xs-12 col-sm-6 col-md-6 col-lg-9"></div>
 
                     <div id="send-message-form" class"send-message-form col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">
                     	<div class="control-label col-xs-12 col-sm-12 col-md-12 col-lg-6">
@@ -36,14 +36,14 @@ include("sections/head.php");
 
                         <div class="control-label col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <label>Contenido del Mensaje</label>
-                            <textarea id="contentMessage" class="form-control" type="text" name="contentMessage"  rows="10" placeholder="Escribe tu mensaje aquí"></textarea>
+                            <textarea maxlength="1000" class="form-control contentMessage" type="text" name="contentMessage"  rows="10" placeholder="Escribe tu mensaje aquí"></textarea>
                         </div>
 
-                        <a href="registeredProfileView.php" class="btn-info pull-left btn form-button" role="button">
+                        <a href="registeredProfileView.php" class="button-profile pull-left btn form-button" role="button">
                             <i class="fa fa-arrow-left" aria-hidden="true"></i>
                             Volver
                         </a>
-                        <button type="button" id="sendPrivateMessage" class="btn-success pull-right btn form-button">
+                        <button type="button" id="sendPrivateMessage" class="button-green pull-right btn form-button">
                             <span class="glyphicon glyphicon-send"></span>
                             Enviar mensaje</button>
                     </div>

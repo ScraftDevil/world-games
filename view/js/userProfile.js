@@ -6,12 +6,12 @@ function load() {
         $('#profileForm').toggle(500);
     });
 
-    $('#compras').click(function () {
-        $('#comprasUsuario').toggle(500);
+    $('#shoppings').click(function () {
+        $('#userShoppings').toggle(500);
     });
 
-    $('#mensajes').click(function () {
-        $('#mensajesUsuario').toggle(500);
+    $('#messages').click(function () {
+        $('#messagesList').toggle(500);
     });
     
     $('#configuracion').click(function () {
@@ -56,21 +56,11 @@ function load() {
             }
         });
     }
-    /*function ajaxCall() {
-        $.ajax({
-            type: "POST",
-            url: "../controller/messages/getMessageController.php",
-            data: {"gameid":getterURL('gameid')},
-            success: function(data) {
-                $("#comentariosusers").html(data);
-            }
-        });
-    }*/
 
     /* Evento del botón de envío de mensaje privado */
     $('#sendPrivateMessage').click(function() {
         var receiverName = $("#receiverName").val();
-        var message = $("#contentMessage").val();
+        var message = $(".contentMessage").val();
 
         var infoMessage = {"receiverName":receiverName, "message":message};
         sendMessage(infoMessage);
@@ -122,7 +112,7 @@ function getSendMessageResponse(data) {
     if (data == "success") {
         $("#general-error").html("<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-add\"></span> ¡Tu mensaje ha sido enviado!</strong></div>");
         $("#receiverName").val("");
-        $("#contentMessage").val("");
+        $(".contentMessage").val("");
     } else {
         if (data == "username") {
             $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en el envío del mensaje! El nombre de usuario es incorrecto o no se encuentra en nuestra base de datos</strong></div>");
