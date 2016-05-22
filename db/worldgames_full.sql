@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-05-2016 a las 17:40:01
--- Versión del servidor: 10.1.10-MariaDB
--- Versión de PHP: 5.6.19
+-- Tiempo de generación: 22-05-2016 a las 13:55:17
+-- Versión del servidor: 10.1.13-MariaDB
+-- Versión de PHP: 5.5.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -46,12 +46,12 @@ INSERT INTO `administrator` (`ID_Administrator`, `Username`, `Password`, `Email`
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `admistrador_has_report`
+-- Estructura de tabla para la tabla `administrator_has_report`
 --
 
-CREATE TABLE `admistrador_has_report` (
+CREATE TABLE `administrator_has_report` (
   `Report_ID` int(11) NOT NULL,
-  `Admistrador_ID` int(11) NOT NULL,
+  `Administrator_ID` int(11) NOT NULL,
   `Registered_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -88,6 +88,7 @@ INSERT INTO `comment` (`ID_Comment`, `Game_ID`, `Text`, `Date`) VALUES
 CREATE TABLE `complaint` (
   `ID_Complaint` int(11) NOT NULL,
   `Reason` char(45) DEFAULT NULL,
+  `Text` text,
   `Date` date DEFAULT NULL,
   `Status` char(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -332,7 +333,7 @@ CREATE TABLE `registered` (
 
 INSERT INTO `registered` (`ID_Registered`, `Username`, `Password`, `Email`, `BannedTime`, `BirthDate`, `PaypalAccount`, `AvatarURL`, `Shop_ID`, `Country_ID`) VALUES
 (1, 'registered', 'registered', 'registered@registered.com', NULL, '1985-01-01', NULL, NULL, 1, 1),
-(2, 'carlos', 'carlos', 'carlos@carlos.com', NULL, '1995-05-04', NULL, NULL, 1, 1),
+(2, 'carlos2', 'carlos', 'carlos@carlos.com', 0, '1995-07-10', '', NULL, 1, 1),
 (3, 'olga', 'olga', 'olga@olga.com', NULL, '2016-05-04', NULL, NULL, 1, 1);
 
 -- --------------------------------------------------------
@@ -377,7 +378,6 @@ CREATE TABLE `registered_has_game` (
 
 CREATE TABLE `registered_has_message` (
   `Registered_ID` int(11) NOT NULL,
-  `Receiver_ID` int(11) NOT NULL,
   `Message_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -456,12 +456,12 @@ ALTER TABLE `administrator`
   ADD KEY `fk_Admistrador_Shop1_idx` (`Shop_id`);
 
 --
--- Indices de la tabla `admistrador_has_report`
+-- Indices de la tabla `administrator_has_report`
 --
-ALTER TABLE `admistrador_has_report`
-  ADD PRIMARY KEY (`Report_ID`,`Admistrador_ID`,`Registered_ID`),
+ALTER TABLE `administrator_has_report`
+  ADD PRIMARY KEY (`Report_ID`,`Administrator_ID`,`Registered_ID`),
   ADD KEY `fk_Admistrador_has_Report_Report1_idx` (`Report_ID`),
-  ADD KEY `fk_Admistrador_has_Report_Admistrador1_idx` (`Admistrador_ID`),
+  ADD KEY `fk_Admistrador_has_Report_Admistrador1_idx` (`Administrator_ID`),
   ADD KEY `fk_Admistrador_has_Report_Registered1_idx` (`Registered_ID`);
 
 --
@@ -494,10 +494,9 @@ ALTER TABLE `game`
 -- Indices de la tabla `game_has_complaint`
 --
 ALTER TABLE `game_has_complaint`
-  ADD PRIMARY KEY (`Game_ID`,`Complaint_ID`,`Registered_ID`) USING BTREE,
+  ADD PRIMARY KEY (`Game_ID`,`Complaint_ID`),
   ADD KEY `fk_Game_has_Complaint_Complaint1_idx` (`Complaint_ID`),
-  ADD KEY `fk_Game_has_Complaint_Game1_idx` (`Game_ID`),
-  ADD KEY `Registered_ID` (`Registered_ID`);
+  ADD KEY `fk_Game_has_Complaint_Game1_idx` (`Game_ID`);
 
 --
 -- Indices de la tabla `game_has_genre`
@@ -595,10 +594,9 @@ ALTER TABLE `registered_has_game`
 -- Indices de la tabla `registered_has_message`
 --
 ALTER TABLE `registered_has_message`
-  ADD PRIMARY KEY (`Registered_ID`,`Message_ID`,`Receiver_ID`) USING BTREE,
-  ADD KEY `fk_Registered_has_Message_Registered1_idx` (`Registered_ID`),
-  ADD KEY `fk_Registered_has_Message_Receiver1_idx` (`Message_ID`) USING BTREE,
-  ADD KEY `Receiver_ID` (`Receiver_ID`);
+  ADD PRIMARY KEY (`Registered_ID`,`Message_ID`),
+  ADD KEY `fk_Registered_has_Message_Message1_idx` (`Message_ID`),
+  ADD KEY `fk_Registered_has_Message_Registered1_idx` (`Registered_ID`);
 
 --
 -- Indices de la tabla `report`
@@ -635,9 +633,9 @@ ALTER TABLE `valoration`
 ALTER TABLE `administrator`
   MODIFY `ID_Administrator` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT de la tabla `admistrador_has_report`
+-- AUTO_INCREMENT de la tabla `administrator_has_report`
 --
-ALTER TABLE `admistrador_has_report`
+ALTER TABLE `administrator_has_report`
   MODIFY `Report_ID` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `comment`
@@ -720,10 +718,10 @@ ALTER TABLE `administrator`
   ADD CONSTRAINT `fk_Admistrador_Shop1` FOREIGN KEY (`Shop_id`) REFERENCES `shop` (`ID_Shop`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `admistrador_has_report`
+-- Filtros para la tabla `administrator_has_report`
 --
-ALTER TABLE `admistrador_has_report`
-  ADD CONSTRAINT `fk_Admistrador_has_Report_Admistrador1` FOREIGN KEY (`Admistrador_ID`) REFERENCES `administrator` (`ID_Administrator`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+ALTER TABLE `administrator_has_report`
+  ADD CONSTRAINT `fk_Admistrador_has_Report_Admistrador1` FOREIGN KEY (`Administrator_ID`) REFERENCES `administrator` (`ID_Administrator`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Admistrador_has_Report_Registered1` FOREIGN KEY (`Registered_ID`) REFERENCES `registered` (`ID_Registered`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Admistrador_has_Report_Report1` FOREIGN KEY (`Report_ID`) REFERENCES `report` (`ID_Report`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 

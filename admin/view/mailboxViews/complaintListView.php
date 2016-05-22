@@ -30,7 +30,7 @@
 									<div class="grid">
 										<div class="row">
 											<div class="col-md-offset-1 col-md-5">
-												<a href="reportListView.php">
+												<a href="#">
 													<div class="col-md-12 mailbox">
 														<div class="mail-logo">
 															<i class="fa fa-envelope" aria-hidden="true"></i>
@@ -42,7 +42,7 @@
 												</a>
 											</div>
 											<div class="col-md-5">
-												<a href="complaintListView.php">
+												<a href="#">
 													<div class="col-md-12 mailbox">
 														<div class="mail-logo">
 															<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
