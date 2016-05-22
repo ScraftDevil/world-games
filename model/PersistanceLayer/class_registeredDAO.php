@@ -382,6 +382,7 @@ class registeredDAO {
 	    return $result[0]['ID_Shop'];
 	}
 
+	/* Insert Message on DB */
 	public function sendPrivateMessage($myMessage, $receiverName) {
 
 		$message = utf8_decode($myMessage->getContent());
@@ -398,6 +399,7 @@ class registeredDAO {
 
         	if($result) {
 
+        		//id of receiver user
         		$idReceiver = $result['ID_Registered'];
 
         		$query = ("INSERT INTO message values('', '".$message."', sysdate())");
@@ -406,6 +408,7 @@ class registeredDAO {
 
         		if($result) {
 
+        			//id of new message
         			$newIdMessage = $this->getLastID_Message();
 
         			$query = ("INSERT INTO registered_has_message values('".$myMessage->getSenderUser()."', 

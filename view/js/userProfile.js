@@ -46,9 +46,7 @@ function load() {
 
     setInterval(getPrivateMessages, 2000);
     function getPrivateMessages() {
-        var user_id = "";
         $.ajax ({
-            data: {"user_id":user_id},
             url: "../controller/getPrivateMessagesController.php",
             type: "POST",
             success: function(messages) {

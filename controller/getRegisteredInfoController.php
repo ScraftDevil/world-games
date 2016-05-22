@@ -1,8 +1,6 @@
 <?php
 
 	require_once("../model/autoload.php");
-	//include("registeredValidationProfileController.php");
-
 
 	function createObjectRegistered($registered) {
 
@@ -44,20 +42,5 @@
         	}
     	}
 	}
-
-	/*function deleteRegisteredUser($id) {
-		$shopDb = unserialize($_SESSION['dbconnection']);
-		$shopDb->deleteRegisteredUser($id);
-		//metodo de logout
-		//esto es provisional
-		//Pendiente hacer un logout de sesion con un redirect bien hecho
-		header ("Location: ../index.php");
-	}
-
-	if (isset($_REQUEST['delete'])) {
-		if (isset($_REQUEST['deleteCheckBox'])) {
-			deleteRegisteredUser($_SESSION['user_id']);
-		}	
-	}*/
 
 ?>
