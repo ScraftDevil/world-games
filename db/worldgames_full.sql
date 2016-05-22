@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-05-2016 a las 13:55:17
+-- Tiempo de generación: 22-05-2016 a las 13:59:54
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 5.5.34
 
@@ -89,7 +89,7 @@ CREATE TABLE `complaint` (
   `ID_Complaint` int(11) NOT NULL,
   `Reason` char(45) DEFAULT NULL,
   `Text` text,
-  `Date` date DEFAULT NULL,
+  `Date` datetime DEFAULT NULL,
   `Status` char(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -229,7 +229,7 @@ INSERT INTO `genre` (`ID_Genre`, `Name`) VALUES
 CREATE TABLE `message` (
   `ID_Message` int(11) NOT NULL,
   `Content` text,
-  `Date` date DEFAULT NULL
+  `Date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -390,7 +390,8 @@ CREATE TABLE `registered_has_message` (
 CREATE TABLE `report` (
   `ID_Report` int(11) NOT NULL,
   `Status` char(50) DEFAULT NULL,
-  `Date` date DEFAULT NULL,
+  `Date` datetime DEFAULT NULL,
+  `Reason` text,
   `Text` text,
   `Registered_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
