@@ -210,5 +210,10 @@ class mysqldb {
 		$registered = new RegisteredDAO();
 		return $registered->sendPrivateMessage($myMessage, $receiverName);		
 	}
+
+	public function getAdministratorReports($id, $order) {
+		$reportDAO = new reportDAO();
+		return $reportDAO->getAdministratorReports($id, $order);
+	}
 }
 ?>

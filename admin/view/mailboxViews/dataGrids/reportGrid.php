@@ -1,31 +1,31 @@
 <?php
 	require_once 'Structures/DataGrid.php';
-	function showUsers() {
+	function showReports() {
 		$db = unserialize($_SESSION['dbconnection']);
 		$order = "";
 		if (isset($_GET['orderBy'])) {
 			$order = $_GET['orderBy'] . " " . $_GET['direction'];
 		}
-		$registered = $db->getRegisteredUsers($order);
+		$id = $_SESSION['userid'];
+		$group = $_SESSION['usertype'];
+		if ($group == "Administrator") {
+			$reports = $db->getAdministratorReports($id, $order);
+		} else if ($group == "Professional") {
+			$reports = $db->getProfessionalReports($id, $order);
+		}
 		$dg = new Structures_DataGrid();
-		$dg->bind($registered, array(), 'Array');
+		$dg->bind($reports, array(), 'Array');
 		$dg->renderer->sortIconASC= "&uarr;";
 		$dg->renderer->sortIconDESC = "&darr;";
-		$column = new Structures_DataGrid_Column('ID de<br>Usuario', 'ID_Registered', 'ID_Registered', array('class'=>'grid-cel'), "null");
+		$column = new Structures_DataGrid_Column('ID de<br>Queja', 'ID_Report', 'ID_Report', array('class'=>'grid-cel'));
 		$dg->addColumn($column);
-		$column = new Structures_DataGrid_Column('Nombre<br>de Usuario', 'Username', 'Username', array('class'=>'grid-cel'));
+		$column = new Structures_DataGrid_Column('Estado', 'Status', 'Status', array('class'=>'grid-cel'));
 		$dg->addColumn($column);
-		$column = new Structures_DataGrid_Column('Dirección de Email', 'Email', 'Email', array('class'=>'grid-cel'));
+		$column = new Structures_DataGrid_Column('Fecha', 'Date', 'Date', array('class'=>'grid-cel'));
 		$dg->addColumn($column);
-		$column = new Structures_DataGrid_Column('Tiempo<br>de Baneo', 'BannedTime', 'Banned Time', array('class'=>'grid-cel'));
+		$column = new Structures_DataGrid_Column('Razón', 'Reason', 'Reason', array('class'=>'grid-cel'));
 		$dg->addColumn($column);
-		$column = new Structures_DataGrid_Column('Fecha de<br>Nacimiento', 'BirthDate', 'BirthDate', array('class'=>'grid-cel'));
-		$dg->addColumn($column);
-		$column = new Structures_DataGrid_Column('Cuenta de PayPal', 'PaypalAccount', 'PaypalAccount', array('class'=>'grid-cel'));
-		$dg->addColumn($column);
-		$column = new Structures_DataGrid_Column('Avatar', 'AvatarURL', 'AvatarURL', array('class'=>'grid-cel'));
-		$dg->addColumn($column);
-		$column = new Structures_DataGrid_Column('País', 'Country', 'Country', array('class'=>'grid-cel'), null, 'PrintUTF8()');
+		$column = new Structures_DataGrid_Column('Usuario<br>Denunciado', 'User', 'User', array('class'=>'grid-cel'));
 		$dg->addColumn($column);
 		$column = new Structures_DataGrid_Column("<a href='#'>Opciones</a>", null, null, array('class'=>'grid-cel'), null, 'PrintOption()');
 		$dg->addColumn($column);
@@ -34,7 +34,7 @@
 
 	function PrintOption($params){
 		extract($params);
-		$id = $record['ID_Registered'];
+		$id = $record['ID_Report'];
 		return "
 		<div class=\"btn-group\">
 		  <button type=\"button\" class=\"btn btn-danger\"><a class=\"drop-grid\" href=\"#\">Selecciona una operación</a></button>
@@ -52,6 +52,12 @@
 	function PrintUTF8($params){
 		extract($params);
 		$fieldData = $record['Country'];
+		return utf8_encode($fieldData);
+	}
+
+	function textUTF8($params) {
+		extract($params);
+		$fieldData = $record['Text'];
 		return utf8_encode($fieldData);
 	}
 

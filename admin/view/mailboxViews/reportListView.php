@@ -28,7 +28,8 @@
 								</div>
 								<div class="panel-body">
 									<div class="grid">
-										
+										<?php 
+										include("../../controller/mailboxControllers/showReportsController.php"); ?>
 									</div>
 								</div>
 							</div>
