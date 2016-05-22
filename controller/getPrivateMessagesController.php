@@ -10,11 +10,14 @@
 
 	$privateMessages = $shopDb->getPrivateMessages($id);
 
-	if ($privateMessages == null) {
-		echo "<span>No dispones de ningún mensaje actualmente<span>";
-	} else {
+	/*if ($privateMessages == null) {
+		echo "<div class='no-message'>Actualmente tu bandeja de entrada está vacía.
+			<i class='fa fa-frown-o' aria-hidden='true'></i>
+		<div>
+		<p class='no-message'>¿Y si pruebas enviándole un mensaje a alguien?</p>";
+	} else {*/
 
 		showPrivateMessagesView($privateMessages);
-	}
+	//}
 
 ?>

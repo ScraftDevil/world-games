@@ -264,6 +264,7 @@ ul.dropdown-cart li .item-right button{
     border-radius: 7px;
 }
 
+/* Elementos dentro del contenedor del mensaje de bandeja de entrada, para hacerle padding */
 #elementsMessageContainer {
     padding-top: 10px;
     padding-bottom: 10px;
@@ -271,21 +272,30 @@ ul.dropdown-cart li .item-right button{
     text-align: justify;
 }
 
+/* Informació del encabezado del mensaje (usuario emisor y fecha y hora del envío) */
 #infoMessage {
     background-color: #E6E6E6;
     position: absolute;
 }
 
+/* Nombre del emisor del mensaje para poderlo resaltar */
 #senderName {
     display: inline;
     font-weight: bold;
 }
 
+/* texto del mensaje escrito por el usuario emisor */
 .contentMessage {
     background-color: #F1F1F1;
     margin-top: 6%;
     padding: 7px;
     position: relative;
+}
+
+/* Mensajes de la bandeja de entrada que aparecen si no hay mensajes */
+.no-message {
+    margin-top: 5%;
+    font-size: 20px;
 }
 
 /* Formulario de envío de mensajes */

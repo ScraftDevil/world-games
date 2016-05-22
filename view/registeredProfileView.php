@@ -108,14 +108,22 @@ $_SESSION['registered'] = serialize($registeredObject);?>
                                 <!-- Mis Mensajes -->
                                 <div id="messages" class="desplegableProfile col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                     <span class="glyphicon glyphicon-envelope"></span>
-                                    Mis Mensajes recibidos
+                                    Gestión de Mensajes Privados
                                 </div>
-                                <a href="sendPrivateMessageView.php" id="newMessage" class="button-profile pull-right btn form-button col-xs-12 col-sm-3 col-md-3 col-lg-3" role="button">
-                                    <span class="glyphicon glyphicon-send"></span>
-                                    Nuevo Mensaje
-                                </a>
-                                <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9" id="privateMessages">
-                                </div>                                
+                                <div id="messagesList" class="col-lg-offset-1 col-xs-12 col-sm-12 col-md-12 col-lg-10">
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                        <a href="showInboxMessagesView.php" id="showInbox" class="button-profile pull-left btn form-button" role="button">
+                                            <i class="fa fa-inbox" aria-hidden="true"></i>
+                                            Ver mis Mensajes
+                                        </a>
+                                    </div>
+                                    <div class="pull-right col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                        <a href="sendPrivateMessageView.php" id="newMessage" class="button-profile pull-right btn form-button" role="button">
+                                            <span class="glyphicon glyphicon-send"></span>
+                                            Nuevo Mensaje
+                                        </a>
+                                    </div>
+                                </div>
 
                                 <!-- Configuración de la Cuenta del usuario -->
                                 <div id="configuracion" class="desplegableProfile col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -125,7 +133,7 @@ $_SESSION['registered'] = serialize($registeredObject);?>
 
                                 <form id="profileFormDelete" action="../controller/deleteRegisteredController.php" method="POST">
                                     <div class="col-lg-12" id="configuracionUsuario">
-                                        <p>Marca la siguiente casilla para indicar que quieres eliminar tu cuenta para siempre. Despues, pulsa el boton Eliminar</p>
+                                        <p>Marca la siguiente casilla para indicar que quieres eliminar tu cuenta para siempre. Después, pulsa el boton Eliminar</p>
                                         <input id="checkbox" type="checkbox" name="deleteCheckBox">
                                     Quiero eliminar mi cuenta de usuario
                                     <button type="button" id="delete-registered" name="delete" class="btn-danger pull-right btn form-button">
