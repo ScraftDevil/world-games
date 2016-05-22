@@ -409,7 +409,7 @@ class registeredDAO {
         			$newIdMessage = $this->getLastID_Message();
 
         			$query = ("INSERT INTO registered_has_message values('".$myMessage->getSenderUser()."', 
-        				'".$newIdMessage."', '".$idReceiver."')");
+        				'".$idReceiver."', '".$newIdMessage."')");
         			$resultat = $db->getLink()->prepare($query);
         			$result = $resultat->execute();
 

@@ -53,7 +53,7 @@ $_SESSION['registered'] = serialize($registeredObject);?>
                                 </a>
                             </div>
 
-                            <div class="col-sm-offset-1 col-md-offset-1 col-lg-offset-2 col-xs-12 col-sm-11 col-md-11 col-lg-11" id="privateMessages">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="privateMessages">
                         </div>
                     </div>
                 </div>

@@ -6,6 +6,13 @@
 /* codigo php */
 include("sections/head.php");
 
+if (isset($_GET['receiverName']) && $_GET['receiverName'] != "") {
+    $receiverName = $_GET['receiverName'];
+}
+else {
+    $receiverName = "";
+}
+
 ?>
     <body>
         <div id="page" class="page">
@@ -31,7 +38,7 @@ include("sections/head.php");
                     <div id="send-message-form" class"send-message-form col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label attributeText">
                     	<div class="control-label col-xs-12 col-sm-12 col-md-12 col-lg-6">
                             <label>Nombre de usuario</label>
-                            <input id="receiverName" class="form-control" type="text" name="receiverName" placeholder="Pepito">
+                            <input id="receiverName" class="form-control" type="text" name="receiverName" value="<?php echo $receiverName?>" placeholder="Pepito">
                         </div>
 
                         <div class="control-label col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -41,18 +48,12 @@ include("sections/head.php");
 
                         <a href="registeredProfileView.php" class="button-profile pull-left btn form-button" role="button">
                             <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                            Volver
+                            Volver al Perfil
                         </a>
                         <button type="button" id="sendPrivateMessage" class="button-green pull-right btn form-button">
                             <span class="glyphicon glyphicon-send"></span>
-                            Enviar mensaje</button>
-                    </div>
-
-                    <!-- Lista de opciones del perfil del usuario -->
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
-
-                        </div>
+                            Enviar mensaje
+                        </button>
                     </div>
                 </div>
             </section>

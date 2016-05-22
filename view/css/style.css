@@ -268,7 +268,8 @@ ul.dropdown-cart li .item-right button{
 #elementsMessageContainer {
     padding-top: 10px;
     padding-bottom: 10px;
-    padding-right: 15px;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
     text-align: justify;
 }
 
@@ -292,10 +293,24 @@ ul.dropdown-cart li .item-right button{
     position: relative;
 }
 
+.content-message-error {
+    margin-top: 5px !important;
+    margin-bottom: 5px;
+}
+
+/* Bot´´o de responder mensaje  */
+#answerMessageButton {
+    padding-left:5px;
+    padding-right: 5px;
+    margin-top:34px;
+}
+
 /* Mensajes de la bandeja de entrada que aparecen si no hay mensajes */
 .no-message {
-    margin-top: 5%;
-    font-size: 20px;
+    margin-top: 3%;
+    font-size: 1.6em;
+    font-weight: bold;
+    text-align: center;
 }
 
 /* Formulario de envío de mensajes */
