@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once("../../model/autoload.php");
-include_once("../../view/messagesViews/showMessagesView.php");
+include_once("../../view/showOpinionsView.php");
 $db = unserialize($_SESSION['dbconnection']);
 $gameid = $_POST["gameid"];
 $sqlUser = "(SELECT R.Username FROM registered R WHERE R.ID_Registered=RC.Registered_ID) as Usuario";

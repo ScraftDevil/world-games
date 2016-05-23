@@ -49,7 +49,7 @@
 <script type="text/javascript" src="js/loginuserFunction.js"></script>
 <?php
 if (basename($_SERVER['PHP_SELF'])=="detailsProduct.php") {
-    echo '<script type="text/javascript" src="js/messages.js"></script>';
+    echo '<script type="text/javascript" src="js/opinions.js"></script>';
     echo '<script src="js/rating.js" type="text/javascript" language="javascript"></script>';
 }
 ?>
