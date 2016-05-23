@@ -54,6 +54,8 @@
 											</div>
 										</div>
 									</form>
+									<div id="report-text">
+									</div>
 							  	</div>
 							</div>
 						</div>
@@ -64,6 +66,7 @@
 	</div>
 	<footer>
 		<?php include("../sections/footer.php"); ?>
+		<script type="text/javascript" src="../resources/js/reportsManage.js"></script>
 	</footer>
 </body>
 </html>

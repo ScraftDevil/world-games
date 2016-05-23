@@ -271,5 +271,19 @@ class mysqldb {
 			return $result;		
 		}
 	}
+
+	public function getReport($id_user, $id_report, $group) {
+		$reportDAO = new reportDAO();
+		switch($group) {
+			case "administrator":
+				$result = $reportDAO->getAdminReport($id_user, $id_report);
+			break;
+
+			case "professional":
+				$result = $reportDAO->getProfessionalReport($id_user, $id_report);
+			break;
+		}
+		return $result;
+	}
 }
 ?>
