@@ -80,6 +80,15 @@ class mysqldb {
 		return $result;
 	}
 
+
+	
+
+public function getAllMessages($order) {
+		$messageDAO = new messageDAO();
+		return $messageDAO->getAllMessages($order);
+	}
+
+	
 	public function getGenresGame($gameid) {
 		$sql = "SELECT GE.ID_Genre, GE.Name FROM game_has_genre GG INNER JOIN Genre GE
 		WHERE GE.ID_Genre = GG.Genre_ID AND GG.Game_ID = $gameid";
@@ -105,6 +114,14 @@ class mysqldb {
 
 	public function getPlatform() {
 		$sql = "SELECT ID_Platform, Name FROM platform";
+		$stmt = $this->getLink()->prepare($sql); 
+		$stmt->execute();
+		$result = $stmt->FetchAll();
+		return $result;
+	}
+
+	public function getGenre() {
+		$sql = "SELECT ID_Genre, Name FROM genre";
 		$stmt = $this->getLink()->prepare($sql); 
 		$stmt->execute();
 		$result = $stmt->FetchAll();
