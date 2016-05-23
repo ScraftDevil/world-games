@@ -42,20 +42,14 @@ function load() {
 
             $("body").append("<div class=\"delete\">" + deleteAccount + "</div>");
         }
-    });
+    });   
 
-    setInterval(getPrivateMessages, 2000);
+    /* Obtener mensajes privados */
+    var url = "showInboxMessagesView";
+    var page = getPageName();
 
-    //if (getterURL("InboxMessagesView")) {
-
-    function getPrivateMessages() {
-        $.ajax ({
-            url: "../controller/getPrivateMessagesController.php",
-            type: "POST",
-            success: function(messages) {
-                $("#privateMessages").html(messages);                
-            }
-        });
+    if (url == page) {
+        setInterval(getPrivateMessages(), 2000);
     }
 
     /* Evento del botón de envío de mensaje privado */
@@ -65,7 +59,6 @@ function load() {
         var infoMessage = {"receiverName":receiverName, "message":message};
         sendMessage(infoMessage);
     });
-//}
         
 }
 
@@ -124,17 +117,33 @@ function getSendMessageResponse(data) {
     }
 }
 
-//obtener url view
-function getterURL(variable) {
-    var bool = false;
-    window.location.search = variable;
-    var query = window.location.search;
-    var vars = query.split("show");
-    for (x = 0; x < vars.length; x++) {
-        var name = vars[x].spliy(".");
-        if (name[0] == variable)
-            bool = true;
-    }
-    return bool;
+/* Get private messages jquery / ajax function */
+function getPrivateMessages() {
+    $.ajax ({
+        url: "../controller/getPrivateMessagesController.php",
+        type: "POST",
+        success: function(messages) {
+            $("#privateMessages").html(messages);
+        }
+    });
+}
+
+
+// GET PAGE FILE NAME WITHOUT EXTENSION
+function getPageName() {
+  var result = "";
+  var pageName = (function () {
+    var a = window.location.href,
+    b = a.lastIndexOf("/");
+    return a.substr(b + 1);
+  }());
+  for (var i = 0; i < pageName.length; i++) {
+      if(pageName[i] == ".") {
+        i = pageName.length;
+      } else {
+        result = result + pageName[i];
+      }
+  }
+  return result;
 }
 
