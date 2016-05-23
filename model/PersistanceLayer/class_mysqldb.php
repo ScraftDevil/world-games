@@ -260,7 +260,7 @@ class mysqldb {
 	public function countGameForPlatform() {
 
 		try {
-			$query = ("SELECT COUNT(*) AS 'Total' FROM game g INNER JOIN platform p ON g.Platform_ID = p.ID_Platform GROUP BY p.Name;");
+			$query = ("SELECT p.Name, COUNT(*) AS 'Total' FROM game g INNER JOIN platform p ON g.Platform_ID = p.ID_Platform GROUP BY p.Name;");
 			$resultat = $this->getLink()->prepare($query);
 			$resultat->execute();
 			$result = $resultat->FetchAll();
