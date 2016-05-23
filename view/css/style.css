@@ -26,6 +26,13 @@
 /* ancho del div que contiene todos los apartados del perfil de usuario */
 .profile {
     width:100%;
+    background-color: #e8e8e8:;
+}
+
+.btn.btn-default {
+    background: #eeeeee;
+box-shadow: 0 2px #bdc3c7;
+color: #747474;
 }
 #login-form  .form-control{
 border: 2px solid #E6E6E6;
@@ -33,6 +40,34 @@ width: 70%;
 margin-left: auto;
 margin-right: auto;
 position: relative;
+
+}
+#register-form .form-control{
+border: 2px solid #E6E6E6;
+width: 100%;
+margin-left: auto;
+margin-right: auto;
+
+}
+#register-form label.error{
+ color: red;
+ float: right;
+background-color: white;
+
+text-align: center;
+width: 100%;
+
+}
+.posicionarizquierda{
+    text-align: left;
+}
+#login-form label.error{
+ color: red;
+ float: right;
+background-color: white;
+
+text-align: center;
+width: 100%;
 
 }
 
@@ -43,12 +78,12 @@ input.error,textarea.error{
 }
 label.error{
    
-              color: red;
+             /* color: red;
     background-color: white;
     margin-top: -32px;
     margin-left: 191px;
     width: 42%;
-    position: absolute;
+    position: absolute;*/
 }
 input:focus{
 border: 2px solid #4CB9A3;

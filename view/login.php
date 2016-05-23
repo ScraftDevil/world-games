@@ -33,15 +33,20 @@ include("sections/head.php");
 
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                 <form id="login-form" style="display: block;">
                                     <div class="form-group">
                                         <input type="username" name="username" id="username" tabindex="1" class="form-control" placeholder="Usuario" value="">
                                        
                                     </div>
+                                    
                                     <div class="form-group">
+                                   
                                         <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Contraseña">
+                                         
+                                         
                                     </div>
+
                                     <div class="form-group text-center ">
                                         <div class="row">
                                             <div class="col-sm-10 col-sm-offset-1">
@@ -64,32 +69,31 @@ include("sections/head.php");
                             </form>
                             <form id="register-form" action="" method="post"  style="display: none;">
                                 <div class="form-group">
-                                    <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Usuario" value="">
+                                    <input type="username" name="username" id="username" tabindex="1" class="form-control" placeholder="Usuario" value="">
+
                                 </div>
                                 <div class="form-group">
+                                 
                                     <input type="email" name="email" id="email" tabindex="2" class="form-control" placeholder="Correo electronico" value="">
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" name="password" id="password" tabindex="3" class="form-control" placeholder="Contraseña">
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" name="confirm-password" id="confirm-password" tabindex="4" class="form-control" placeholder="Confirmar Contraseña">
-                                </div>
-                                <div class="form-group">
-                                    <input type="telephone" name="telephone" id="telephone" tabindex="5" class="form-control" placeholder="Telefono">
-                                </div>
 
-                                <div class="form-group">
-                                    <input type="date" name="birthday" id="birthday" tabindex="5" class="form-control" placeholder="Fecha Nacimiento">
                                 </div>
+                                <div class="form-group">
+                                    <input type="passwordregister" name="passwordregister" id="passwordregister" tabindex="3" class="form-control" placeholder="Contraseña2">
+                                </div>
+                                <div class="form-group">
+                                    <input type="confirmpassword" name="confirmpassword" id="confirmpassword" tabindex="4" class="form-control" placeholder="Confirmar Contraseña">
+                                </div>
+                               <div class="form-group">
+                                                   
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="calendar" name="birthdate" placeholder="Birthdate" required />
+                                                    </div>
+                                                </div>
 
-                                <div class="form-group">
-                                    <input type="text" name="country" id="country" tabindex="6" class="form-control" placeholder="Pais">
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="text" name="address" id="address" tabindex="7" class="form-control" placeholder="Direccion">
-                                </div>
+                               <div class="form-group">
+                                                    
+                                                    <?php include("../view/sections/countryList2.php"); ?>
+                                                </div>
 
                                 <div class="form-group">
                                     <input type="text" name="paypal" id="paypal" tabindex="8" class="form-control" placeholder="Cuenta PayPal">
@@ -103,6 +107,7 @@ include("sections/head.php");
                                     </div>
                                 </div>
                             </form>
+
                         </div>
                     </div>
                 </div>

@@ -46,6 +46,7 @@
 <script type="text/javascript" src="js/scrollTogeneric.js"></script>
 <script type="text/javascript" src="js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="js/canvasjs.min.js"></script>
+<script type="text/javascript" src="js/loginuserFunction.js"></script>
 <?php
 if (basename($_SERVER['PHP_SELF'])=="detailsProduct.php") {
     echo '<script type="text/javascript" src="js/messages.js"></script>';
@@ -55,67 +56,116 @@ if (basename($_SERVER['PHP_SELF'])=="detailsProduct.php") {
 <!--[if lt IE 9]><script src="js/html5shiv.js"></script><script src="js/respond.min.js"></script><![endif]-->
 <script type="text/javascript">
     $( "#login-form" ).validate({
-                                rules: {
-                                    username: {
-                                        required: true,
-                                        maxlength: 45
+        rules: {
+            username: {
+                required: true,
+                maxlength: 45
 
-                                    },
+            },
 
-                                    password: {
-                                        required: true,
-                                        maxlength: 45
-                                    }
-                                },
-                                messages: {
-                                    username: {
-                                        required:"El campo username esta vacio",
-                                      maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
-                                       
-                                },
+            password: {
+                required: true,
+                maxlength: 45
+            }
+        },
+        messages: {
+            username: {
+                required:"El campo username esta vacio",
+                maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
 
-                                password: {
-                            required:"El campo password esta vacio",
-                               maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
-                        }
-                            }
-                });
+            },
 
-$( "#profileForm" ).validate({
-                                rules: {
-                                    email: {
-                                        required: true,
-                                        maxlength: 15
+            password: {
+                required:"El campo password esta vacio",
+                maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
+            }
+        }
+    });
 
-                                    },
+    $( "#register-form" ).validate({
+        rules: {
+            username: {
+                required: true,
+                maxlength: 15
 
-                                    password: {
-                                        required: true,
-                                        maxlength: 45
-                                    }
-                                },
-                                messages: {
-                                    email: {
-                                        required:"El campo email esta vacio",
-                                      maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
-                                       
-                                },
+            },
 
-                                password: {
-                            required:"El campo password esta vacio",
-                               maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
-                        }
-                            }               
-                });
+            email: {
+                required: true,
+                email: true,
+                maxlength: 45
+            },
+            passwordregister: {
+                required: true,
+                maxlength: 15
+
+            },
+
+            confirmpassword: {
+                required: true,
+                maxlength: 45
+            },
+          
+
+            calendar: {
+                required: true,
+                maxlength: 45
+            },
+            country: {
+              required: true,
+                maxlength: 15
+
+            }
+
+            
+         },
+        messages: {
+            username: {
+                required:"El campo username esta vacio",
+                maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
+
+            },
+
+            email: {
+                required:"El campo email esta vacio",
+                email:"Formato de email incorrecto",
+                maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
+            },
+
+            passwordregister: {
+                required:"El campo password esta vacio",
+                maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
+
+            },
+
+            confirmpassword: {
+                required:"El campo confirmpassword esta vacio",
+                maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
+            },
+
+           
+            calendar: {
+                required:"La fecha de nacimiento esta vacio",
+                maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
+            },
+
+            country: {
+                required:"El campo pais esta vacio",
+                maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
+
+            }
+
+        }               
+    });
 </script>
 <!--    SEARCH  -->
 <script type="text/javascript">
-var delay = (function(){
-  var timer = 0;
-  return function(callback, ms){
-    clearTimeout (timer);
-    timer = setTimeout(callback, ms);
-  };
+    var delay = (function(){
+      var timer = 0;
+      return function(callback, ms){
+        clearTimeout (timer);
+        timer = setTimeout(callback, ms);
+    };
 })();
 $("#search").on("keyup", function(e) {
     e.preventDefault();
@@ -133,16 +183,16 @@ function search() {
         url:   '../controller/controllerSearch.php',
         type:  'POST',
         beforeSend: function () {
-                $("#result").html("Procesando, espere por favor...");
+            $("#result").html("Procesando, espere por favor...");
         },
         success:  function (response) {
-                if(response=="") {
-                    $("#result").slideUp();
-                } else {
-                    $("#result").slideDown();
-                    $("#result").html(response);
+            if(response=="") {
+                $("#result").slideUp();
+            } else {
+                $("#result").slideDown();
+                $("#result").html(response);
 
-                }
+            }
         }
     });
 }
@@ -152,24 +202,24 @@ function search() {
     $(window).load(function() {
         $("#msg").css("display", "none");
         $('#login-form-link').click(function(e) {
-        $("#login-form").delay(100).fadeIn(100);
-        $("#register-form").fadeOut(100);
-        $('.title').html("ENTRAR");
-        $('#register-form-link').removeClass('active');
-        $(this).addClass('active');
-        e.preventDefault();
-    });
-       $('#register-form-link').click(function(e) {
-        $("#register-form").delay(100).fadeIn(100);
-        $("#login-form").fadeOut(100);
-        $('.title').html("REGISTRO");
-        $('#login-form-link').removeClass('active');
-        $(this).addClass('active');
-        e.preventDefault();
-    });
-    $("#login-form").on("submit", function (e) {
-        e.preventDefault();
-        var params = {"username" : $("#username").val(), "password" : $("#password").val()};
+            $("#login-form").delay(100).fadeIn(100);
+            $("#register-form").fadeOut(100);
+            $('.title').html("ENTRAR");
+            $('#register-form-link').removeClass('active');
+            $(this).addClass('active');
+            e.preventDefault();
+        });
+        $('#register-form-link').click(function(e) {
+            $("#register-form").delay(100).fadeIn(100);
+            $("#login-form").fadeOut(100);
+            $('.title').html("REGISTRO");
+            $('#login-form-link').removeClass('active');
+            $(this).addClass('active');
+            e.preventDefault();
+        });
+        $("#login-form").on("submit", function (e) {
+            e.preventDefault();
+            var params = {"username" : $("#username").val(), "password" : $("#password").val()};
             $.ajax({
                 data:  params,
                 url:   '../controller/controllerLogin.php',
@@ -189,90 +239,90 @@ function search() {
                     }
                 }
             });
-            return false;
-    });
+return false;
+});
     //Función jQuery - Ajax para hacer Logout
     $("#logout").on("click", function () {
-            $.ajax({
-                url:   '../controller/controllerLogout.php',
-                type:  'POST',
-                success:  function (response) {
+        $.ajax({
+            url:   '../controller/controllerLogout.php',
+            type:  'POST',
+            success:  function (response) {
                     //Pendiente: Añadir mensaje cuando haga logout
                     window.location = "../index.php";
                 }
             });
     });
-   });
+});
 </script>
 <!--    FILTER  -->
 <script type="text/javascript">
-function isEmptyJSON(obj) {
-    for(var i in obj) { return false; }
-    return true;
-}
-$(document).ready(function() {
-    $(".genreFilter").on("click", function(e){
-        e.preventDefault();
-        $(".genreFilter").each(function() {
-            $(this).find("#selected").remove();
-        });
-        $(".platformFilter").each(function() {
-            $(this).find("#selected").remove();
-        });
-        var params = {"genre" : $(this).attr("id")};
-        $.ajax({
-            data: params,
-            url:   '../controller/controllerFilterGames.php',
-            type:  'POST',
-            typeData: 'json',
-            success:  function (json) {
+    function isEmptyJSON(obj) {
+        for(var i in obj) { return false; }
+            return true;
+    }
+    $(document).ready(function() {
+        $(".genreFilter").on("click", function(e){
+            e.preventDefault();
+            $(".genreFilter").each(function() {
+                $(this).find("#selected").remove();
+            });
+            $(".platformFilter").each(function() {
+                $(this).find("#selected").remove();
+            });
+            var params = {"genre" : $(this).attr("id")};
+            $.ajax({
+                data: params,
+                url:   '../controller/controllerFilterGames.php',
+                type:  'POST',
+                typeData: 'json',
+                success:  function (json) {
                 //
                 if (isEmptyJSON(json)) {
                     $("#isotope-gallery-container").html("No games to show!");
                 } else {
                     $.each($.parseJSON(json), function() {
-                         var linesHTML = "";
-                        linesHTML += '<style>.offerOldPrice {text-decoration:line-through;}</style>';
-                        linesHTML += '<div class="col-md-3 col-sm-6 col-xs-12 gallery-item-wrapper isotope-item" style="position: absolute; left: 0px; top: 0px; transform: translate3d(0px, 0px, 0px);">';
-                        linesHTML += '<div class="gallery-item" id="Game_'+this.id+'">';
-                        linesHTML += '<div class="gallery-thumb" title="'+this.title+'"><img src="images/games/'+this.title+'.png" width="800px" height="600px" class="img-responsive" alt="'+this.title+'">';
-                        linesHTML += '<div class="image-overlay"></div>';
-                        linesHTML += '<a href="detailsProduct.php?gameid='+this.id+'" class="gallery-zoom"><i class="fa fa-eye"></i></a>';
-                        linesHTML += '<a href="#" class="gallery-link buyItem"><i class="fa fa-shopping-cart"></i></a>';
-                        linesHTML += '</div>';
-                        linesHTML += '<div class="gallery-details">';
-                        linesHTML += '<div class="editContent">';
-                        linesHTML += '<h5>'+this.title+'</h5><h6><span id="price">'+this.price+' €</span></h6>';
-                        if (this.discount!=null) {
-                           linesHTML += '<h6>60 % de descuento</h6>';
-                        }
-                        linesHTML += '</div>';
-                        linesHTML += '</div>';
-                        linesHTML += '</div>'; 
-                        linesHTML += '</div>';
-                        $("#isotope-gallery-container").html(linesHTML);
-                    });
+                       var linesHTML = "";
+                       linesHTML += '<style>.offerOldPrice {text-decoration:line-through;}</style>';
+                       linesHTML += '<div class="col-md-3 col-sm-6 col-xs-12 gallery-item-wrapper isotope-item" style="position: absolute; left: 0px; top: 0px; transform: translate3d(0px, 0px, 0px);">';
+                       linesHTML += '<div class="gallery-item" id="Game_'+this.id+'">';
+                       linesHTML += '<div class="gallery-thumb" title="'+this.title+'"><img src="images/games/'+this.title+'.png" width="800px" height="600px" class="img-responsive" alt="'+this.title+'">';
+                       linesHTML += '<div class="image-overlay"></div>';
+                       linesHTML += '<a href="detailsProduct.php?gameid='+this.id+'" class="gallery-zoom"><i class="fa fa-eye"></i></a>';
+                       linesHTML += '<a href="#" class="gallery-link buyItem"><i class="fa fa-shopping-cart"></i></a>';
+                       linesHTML += '</div>';
+                       linesHTML += '<div class="gallery-details">';
+                       linesHTML += '<div class="editContent">';
+                       linesHTML += '<h5>'+this.title+'</h5><h6><span id="price">'+this.price+' €</span></h6>';
+                       if (this.discount!=null) {
+                         linesHTML += '<h6>60 % de descuento</h6>';
+                     }
+                     linesHTML += '</div>';
+                     linesHTML += '</div>';
+                     linesHTML += '</div>'; 
+                     linesHTML += '</div>';
+                     $("#isotope-gallery-container").html(linesHTML);
+                 });
                     //
                 }
             }
         });
-        $(this).append('&nbsp;<i id="selected" class="fa fa-check" aria-hidden="true"></i>');
+$(this).append('&nbsp;<i id="selected" class="fa fa-check" aria-hidden="true"></i>');
+});
+$(".platformFilter").on("click", function(e){
+    e.preventDefault();
+    $(".genreFilter").each(function() {
+        $(this).find("#selected").remove();
     });
-     $(".platformFilter").on("click", function(e){
-        e.preventDefault();
-        $(".genreFilter").each(function() {
-            $(this).find("#selected").remove();
-        });
-        $(".platformFilter").each(function() {
-            $(this).find("#selected").remove();
-        });
-        var params = {"platform" : $(this).attr("id")};
-        $.ajax({
-            data: params,
-            url:   '../controller/controllerFilterGames.php',
-            type:  'POST',
-            typeData: 'json',
-            success:  function (json) {
+    $(".platformFilter").each(function() {
+        $(this).find("#selected").remove();
+    });
+    var params = {"platform" : $(this).attr("id")};
+    $.ajax({
+        data: params,
+        url:   '../controller/controllerFilterGames.php',
+        type:  'POST',
+        typeData: 'json',
+        success:  function (json) {
                 //
                 if (isEmptyJSON(json)) {
                     $("#isotope-gallery-container").html("No games to show!");
@@ -291,103 +341,103 @@ $(document).ready(function() {
                         linesHTML += '<div class="editContent">';
                         linesHTML += '<h5>'+this.title+'</h5><h6><span id="price">'+this.price+' €</span></h6>';
                         if (this.discount!=null) {
-                           linesHTML += '<h6>60 % de descuento</h6>';
-                        }
-                        linesHTML += '</div>';
-                        linesHTML += '</div>';
-                        linesHTML += '</div>';
-                        linesHTML += '</div>'; 
-                    });
-                        linesHTML += '';
-                        $("#isotope-gallery-container").html(linesHTML);
+                         linesHTML += '<h6>60 % de descuento</h6>';
+                     }
+                     linesHTML += '</div>';
+                     linesHTML += '</div>';
+                     linesHTML += '</div>';
+                     linesHTML += '</div>'; 
+                 });
+linesHTML += '';
+$("#isotope-gallery-container").html(linesHTML);
                     //
                 }
             }
         });
-        $(this).append('&nbsp;<i id="selected" class="fa fa-check" aria-hidden="true"></i>');
-    });
+$(this).append('&nbsp;<i id="selected" class="fa fa-check" aria-hidden="true"></i>');
+});
 });
 </script>
 <!-- SHOPPING CART -->
 <script>
-var shoppingCart = typeof Cookies.get('shoppingCart');
-if (shoppingCart == "undefined") {
-    $("#basket").html("<p style='margin-left: 8px'><font color='white'>Carrito de la compra vacio.</font></p>");
-} else {
-    var json = Cookies.getJSON('shoppingCart');
-    updateTotalShopping(json);
-    var nitems = 0;
-    $.each(json, function(i, item) {
-        $product = $("#Product"+item.id);
-        if($product.length > 0) {
-            $("#Product"+item.id).find("#quantity").text("x"+item.quantity);
+    var shoppingCart = typeof Cookies.get('shoppingCart');
+    if (shoppingCart == "undefined") {
+        $("#basket").html("<p style='margin-left: 8px'><font color='white'>Carrito de la compra vacio.</font></p>");
+    } else {
+        var json = Cookies.getJSON('shoppingCart');
+        updateTotalShopping(json);
+        var nitems = 0;
+        $.each(json, function(i, item) {
+            $product = $("#Product"+item.id);
+            if($product.length > 0) {
+                $("#Product"+item.id).find("#quantity").text("x"+item.quantity);
+            } else {
+                var buttonRemoveHTML = '<button type="button" class="removeItem btn btn-danger" style="position: absolute;padding: 0px;margin: 0px;margin-left: 145px;width: 19px;">X</button>';
+                $("#basket").append('<span class="item" id="Product'+item.id+'">'+buttonRemoveHTML+'<span onclick="loadDetailGame('+item.id+')" class="item-left"><img src="'+item.image+'" alt="'+item.name+'" width="85px" height="105px"/><span class="item-info"><span>'+item.name+'</span><span id="quantity">x'+item.quantity+'</span><span>'+(parseFloat(item.price)*parseFloat(item.quantity))+' €</span></span></span></span><li class="divider"></li>');
+                nitems++;
+            }
+        });
+        $("#countShoppingCart").text(nitems);
+    }
+    $(document).on("click", ".buyItem", function (e) {
+        e.preventDefault();
+        var nitemsOld = 0;
+        if ($("#countShoppingCart").text()!="") {
+            nitemsOld = $("#countShoppingCart").text();
         } else {
+            $("#basket").html("");
+        }
+        var nitems = parseInt(nitemsOld)+parseInt(1);
+        $item = $(this).parent().parent().find(".gallery-details");
+        var itemImageURL = $(this).parent().find("img:eq(0)").attr("src");
+        var id = $(this).parent().parent().attr("id");
+        id = id.split("_")[1];
+        function Game(id, name, price, image, quantity) {
+            this.id = id;
+            this.name = name;
+            this.price = price;
+            this.image = image;
+            this.quantity = quantity;
+        }
+        var title = $item.find("h5:eq(0)").text();
+        var price = $item.find("h6:eq(0)").text().replace("€", "");
+        var newGame = true;
+        if (typeof Cookies.getJSON('shoppingCart') == "undefined") {
+            var items = Array();
+            var game = new Game(id, title, price, itemImageURL, 1);
+            items.push(game);
+            var shoppingCart = JSON.stringify(items);
+            Cookies.set('shoppingCart', shoppingCart, { expires: 1 });
+            $("#countShoppingCart").text(nitems);
+            updateTotalShopping(Cookies.getJSON('shoppingCart'));
+        } else {
+            var items = Cookies.getJSON('shoppingCart');
+            var game = getGame(items, id);
+            if(game==null) {
+                newGame = true;
+                game = new Game(id, title, price, itemImageURL, 1);
+                items.push(game);
+                $("#countShoppingCart").text(nitems);
+            } else {
+                newGame = false;
+                $("#Product"+id).find(".quantity").text("x"+game.quantity);
+                $("#Product"+id).find(".price").text((parseFloat(price)*parseFloat(game.quantity))+" €");
+            }
+            Cookies.set('shoppingCart', items, { expires: 1 });
+            updateTotalShopping(Cookies.getJSON('shoppingCart'));
+        }
+        if (newGame) {
             var buttonRemoveHTML = '<button type="button" class="removeItem btn btn-danger" style="position: absolute;padding: 0px;margin: 0px;margin-left: 145px;width: 19px;">X</button>';
-            $("#basket").append('<span class="item" id="Product'+item.id+'">'+buttonRemoveHTML+'<span onclick="loadDetailGame('+item.id+')" class="item-left"><img src="'+item.image+'" alt="'+item.name+'" width="85px" height="105px"/><span class="item-info"><span>'+item.name+'</span><span id="quantity">x'+item.quantity+'</span><span>'+(parseFloat(item.price)*parseFloat(item.quantity))+' €</span></span></span></span><li class="divider"></li>');
-            nitems++;
+            var linesHTML = '<span class="item" id="Product'+id+'">'+buttonRemoveHTML+'<span onclick="loadDetailGame('+id+')" class="item-left">';
+            linesHTML += '<img src="'+itemImageURL+'" alt="'+title+'" width="85px" height="105px"/><span class="item-info">';
+            linesHTML += '<span>'+title+'</span>';
+            linesHTML += '<span class="quantity">x'+game.quantity+'</span>';
+            linesHTML += '<span class="price">'+(parseFloat(price)*parseFloat(game.quantity))+' €</span>';
+            linesHTML += '</span></span></span>';
+            $("#basket").append(linesHTML);
+            updateTotalShopping(Cookies.getJSON('shoppingCart'));
         }
     });
-    $("#countShoppingCart").text(nitems);
-}
-$(document).on("click", ".buyItem", function (e) {
-    e.preventDefault();
-    var nitemsOld = 0;
-    if ($("#countShoppingCart").text()!="") {
-        nitemsOld = $("#countShoppingCart").text();
-    } else {
-        $("#basket").html("");
-    }
-    var nitems = parseInt(nitemsOld)+parseInt(1);
-    $item = $(this).parent().parent().find(".gallery-details");
-    var itemImageURL = $(this).parent().find("img:eq(0)").attr("src");
-    var id = $(this).parent().parent().attr("id");
-    id = id.split("_")[1];
-    function Game(id, name, price, image, quantity) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.image = image;
-        this.quantity = quantity;
-    }
-    var title = $item.find("h5:eq(0)").text();
-    var price = $item.find("h6:eq(0)").text().replace("€", "");
-    var newGame = true;
-    if (typeof Cookies.getJSON('shoppingCart') == "undefined") {
-        var items = Array();
-        var game = new Game(id, title, price, itemImageURL, 1);
-        items.push(game);
-        var shoppingCart = JSON.stringify(items);
-        Cookies.set('shoppingCart', shoppingCart, { expires: 1 });
-        $("#countShoppingCart").text(nitems);
-        updateTotalShopping(Cookies.getJSON('shoppingCart'));
-    } else {
-        var items = Cookies.getJSON('shoppingCart');
-        var game = getGame(items, id);
-        if(game==null) {
-            newGame = true;
-            game = new Game(id, title, price, itemImageURL, 1);
-            items.push(game);
-            $("#countShoppingCart").text(nitems);
-        } else {
-            newGame = false;
-            $("#Product"+id).find(".quantity").text("x"+game.quantity);
-            $("#Product"+id).find(".price").text((parseFloat(price)*parseFloat(game.quantity))+" €");
-        }
-        Cookies.set('shoppingCart', items, { expires: 1 });
-        updateTotalShopping(Cookies.getJSON('shoppingCart'));
-    }
-    if (newGame) {
-        var buttonRemoveHTML = '<button type="button" class="removeItem btn btn-danger" style="position: absolute;padding: 0px;margin: 0px;margin-left: 145px;width: 19px;">X</button>';
-        var linesHTML = '<span class="item" id="Product'+id+'">'+buttonRemoveHTML+'<span onclick="loadDetailGame('+id+')" class="item-left">';
-        linesHTML += '<img src="'+itemImageURL+'" alt="'+title+'" width="85px" height="105px"/><span class="item-info">';
-        linesHTML += '<span>'+title+'</span>';
-        linesHTML += '<span class="quantity">x'+game.quantity+'</span>';
-        linesHTML += '<span class="price">'+(parseFloat(price)*parseFloat(game.quantity))+' €</span>';
-        linesHTML += '</span></span></span>';
-        $("#basket").append(linesHTML);
-        updateTotalShopping(Cookies.getJSON('shoppingCart'));
-    }
-});
 //buy from detailProduct
 $(document).on("click", ".buyGame", function (e) {
     e.preventDefault();
@@ -533,14 +583,14 @@ $(document).ready(function() {
 </script>
 <!--  GET FROM URL -->
 <script>
-function getterURL(variable) {
-  var query = window.location.search.substring(1);
-  var vars = query.split("?");
-  for (var i=0; i < vars.length; i++) {
-    var pair = vars[i].split("=");
-    if (pair[0] == variable) {
-      return pair[1];
-    }
+    function getterURL(variable) {
+      var query = window.location.search.substring(1);
+      var vars = query.split("?");
+      for (var i=0; i < vars.length; i++) {
+        var pair = vars[i].split("=");
+        if (pair[0] == variable) {
+          return pair[1];
+      }
   } 
   return variable;
 }
@@ -549,41 +599,41 @@ function getterURL(variable) {
 <!-- ESTADÍSTICAS -->
 <script type="text/javascript">
 
-/* Obtener estadísticas de cantidad de juegos por plataforma */
-$(document).ready(function() {
-    $.ajax({
-        method: "GET",
-        url: "../controller/countGameForPlatform.php",
-        dataType: "json",
-        success: function (array_json) {
-            var Origin = array_json.numOrigin[0];
-            var Steam = array_json.numSteam[0];
-            var Xbox = array_json.numXbox[0];
-            var PSN = array_json.numPSN[0];
-            printDades(Origin, Steam, Xbox, PSN);
-        }
+    /* Obtener estadísticas de cantidad de juegos por plataforma */
+    $(document).ready(function() {
+        $.ajax({
+            method: "GET",
+            url: "../controller/countGameForPlatform.php",
+            dataType: "json",
+            success: function (array_json) {
+                var Origin = array_json.numOrigin[0];
+                var Steam = array_json.numSteam[0];
+                var Xbox = array_json.numXbox[0];
+                var PSN = array_json.numPSN[0];
+                printDades(Origin, Steam, Xbox, PSN);
+            }
+        });
     });
-});
 
-/* Funcion de respuesta de obtener estadísticas de cantidad de juegos por plataforma */
-function printDades(Origin, Steam, Xbox, PSN) {
+    /* Funcion de respuesta de obtener estadísticas de cantidad de juegos por plataforma */
+    function printDades(Origin, Steam, Xbox, PSN) {
 
-    var chart = new CanvasJS.Chart("chartContainer", {
+        var chart = new CanvasJS.Chart("chartContainer", {
         theme: "theme2", //theme1
         title: {
             text: "Games for Platform"},
         animationEnabled: true, // change to true
         data: [{
         // Change type to "bar", "area", "spline", "pie",etc.
-            type: "pie",
-            dataPoints: [
-                {label: "Origin", y: parseInt(Origin)},
-                {label: "Steam", y: parseInt(Steam)},
-                {label: "Xbox", y: parseInt(Xbox)},
-                {label: "PSN", y: parseInt(PSN)}
-            ]
-        }]
-    });
-    chart.render();
-}
+        type: "pie",
+        dataPoints: [
+        {label: "Origin", y: parseInt(Origin)},
+        {label: "Steam", y: parseInt(Steam)},
+        {label: "Xbox", y: parseInt(Xbox)},
+        {label: "PSN", y: parseInt(PSN)}
+        ]
+    }]
+});
+        chart.render();
+    }
 </script>
