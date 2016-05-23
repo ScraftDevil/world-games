@@ -7,26 +7,27 @@ include_once("../controller/controllerCalculateDiscount.php");
 include_once("../controller/controllerShowGameDetails.php");
 function printGame($game) {
   ?>
-  <div class="col-lg-8 col-md-offset-2 col-md-offset-2 col-md-8 col-sm-12 col-xs-12 " >
+   <div class="col-lg-8 col-md-offset-2 col-md-offset-2 col-md-8 col-sm-12 col-xs-12 " >
     <div class="divspan" id="Product_<?php echo $game->getId();?>">
       <?php
       $price = $game->getPrice();
       $offer = $game->getOffer()->getDiscount();
       ?>
-      <div class="imgDetail col-md-5">
-       <img class="img-responsive imageGame" src="images/games/<?php echo $game->getTitle();?>.png">
-       <div class="col-md-8" style="padding-left:0px">
-       <span id="rating" class="pull-left"></span>
-       </div>
+      <div class="imgDetail col-lg-5 col-md-5 col-sm-5 col-xs-12">
+       <img class="img-responsive imggrandaria" src="images/games/<?php echo $game->getTitle();?>.png">
+     
+       <span id="rating" ></span><p id="msgRate"></p>
+       
        <!--<div class="col-md-4">
          <span><button type="button" class="buttonCustom" id="rateBtn" data-toggle="tooltip" title="Puntuar el juego!">Rate</button></span>
        </div>-->
      </div>
      <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 " >
-       <div class="pull-right">
-        <span class="bigSpan spantitul"><?php echo $game->getTitle();?></span>
-        <span class="bigSpan spanprecio2">Genero producto:</span>
-        <span class="bigSpan spangenero">
+       <div class="pull-right widthparragraf">
+        <span class="span1 spantitul"><?php echo $game->getTitle();?></span>
+        <div class="divcontenidor">
+        <span class="span3 spanprecio2">Genero:</span>
+        <span class="span3 spangenero">
           <?php
           if (!empty($game->getGenres())) {
             $genres = $game->getGenres();
@@ -41,44 +42,56 @@ function printGame($game) {
           }
           ?>
         </span>
-        <span class="bigSpan spanprecio2">Plataforma producto:</span>
-        <span class="bigSpan spanplataforma">
+        </div>
+         <div class="divcontenidor">
+        <span class="span3 spanprecio2">Plataforma:</span>
+        <span class="span3 spanplataforma">
           <?php
           if (!empty($game->getPlatform())) {
             echo $game->getPlatform()->getName();
           }
           ?>
         </span>
+      </div>
         <?php
         $priceWithDiscount = calculateDiscount($price, $offer);
         if (!empty($game->getOffer()->getDiscount())) {
-          echo '  <span class="bigSpan spandescuento">'.$game->getOffer()->getDiscount().'% de descuento</span>';
-          echo '<span class="bigSpan spanprecio">'.$priceWithDiscount.' €</span>';
+          echo '   <div class="divcontenidor">';
+          echo '  <span class="span3   spandescuento ">Descuento:</span>';
+         
+           echo '  <span class="span3  margenes spandescuento ">'.$game->getOffer()->getDiscount().'% </span>';
+            echo '</div>';
+          echo '<span class="span1 spanprecio">'.$priceWithDiscount.' €</span>';
         } else {
-          echo '<span class="bigSpan spanprecio">'.$price.' €</span>';
+          echo '<span class="span1 spanprecio">'.$price.' €</span>';
         }
         ?>
-        <div class="enviarcarrito buyGame"><span class="spanenviar">Añadir al carrito</span></div>
-        <div class="espai"></div>
+        
+          <div class="enviarcarrito buyGame">
+               <span class="glyphicon glyphicon-shopping-cart spanenviar"></span>Enviar al carrito
+            </div>
+        
+     <div class="width100">
+    <form action="" method="post" class="login">
+      <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 " >
+       <div id="message " class="ocultar"></div>
+            <textarea id="comentari" class="form-control" type="text" rows="1" name="comentari" value="" placeholder="Escriu al teu comentari aqui:"></textarea>
+
+          </div>
+      
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 " >
+          <div class="boto">
+           <span id="enviar" class="glyphicon glyphicon-send spanenviar2"></span>ENVIAR
+           </div>
+             
       </div>
+    </form>
+
+</div>
+      </div>
+
     </div>
-    <div class="gameForm">
-      <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-        <center class="bottom">
-          <div id="msgRate"></div>
-        </center>
-      </div>
-      <div class="col-md-7" >
-        <div class="width100">
-          <form action="" method="post" class="login">
-            <textarea id="comentari" class="form-control" type="text" rows="6" name="comentari" value="" placeholder="Escribe tu comentario aquí:"></textarea>
-              <div id="message" class="alert alert-success ocultar"></div>
-            <input id="enviar" class="buttonCustom" type="button" name="enviar" value="ENVIAR"/>
-          </form>
-        </div>
-      </div>
-      <div class="clear"></div>
-    </div>
+   <div class="clear"></div>
   </div>
 </div>
 
