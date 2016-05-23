@@ -45,12 +45,15 @@ function load() {
     });
 
     setInterval(getPrivateMessages, 2000);
+
+    //if (getterURL("InboxMessagesView")) {
+
     function getPrivateMessages() {
         $.ajax ({
             url: "../controller/getPrivateMessagesController.php",
             type: "POST",
             success: function(messages) {
-                $("#privateMessages").html(messages);
+                $("#privateMessages").html(messages);                
             }
         });
     }
@@ -59,10 +62,10 @@ function load() {
     $('#sendPrivateMessage').click(function() {
         var receiverName = $("#receiverName").val();
         var message = $(".contentMessage").val();
-
         var infoMessage = {"receiverName":receiverName, "message":message};
         sendMessage(infoMessage);
     });
+//}
         
 }
 
@@ -119,5 +122,19 @@ function getSendMessageResponse(data) {
             $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en el envío del mensaje! Por favor revisa los campos y prueba de nuevo</strong></div>");
         }
     }
+}
+
+//obtener url view
+function getterURL(variable) {
+    var bool = false;
+    window.location.search = variable;
+    var query = window.location.search;
+    var vars = query.split("show");
+    for (x = 0; x < vars.length; x++) {
+        var name = vars[x].spliy(".");
+        if (name[0] == variable)
+            bool = true;
+    }
+    return bool;
 }
 

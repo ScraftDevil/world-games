@@ -7,17 +7,7 @@
 
 include("sections/head.php");
 
-// controladores del perfil de usuario registrado
-include("../controller/getRegisteredInfoController.php");
-
- //array que contiene los datos del usuario segun el id obtenido después de hacer login
-$registered = getRegisteredInfo($_SESSION['user_id']);
-
-//Objeto usuario con los datos de la base de datos obtenidos a partir del id del usuario tras hacer login
-$registeredObject = createObjectRegistered($registered);
-
-$_SESSION['registered'] = serialize($registeredObject);?>    
-
+?>
     <body>
         <div id="page" class="page">
             <?php include("sections/nav.php"); ?>

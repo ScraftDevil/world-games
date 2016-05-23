@@ -239,5 +239,23 @@ class mysqldb {
 		$reportDAO = new reportDAO();
 		return $reportDAO->getAdministratorReports($id, $order);
 	}
+
+	//Consulta para obtener la cantidad de juegos por plataforma
+	public function countGameForPlatform() {
+
+		try {
+
+			$query = ("SELECT COUNT(*) FROM game g INNER JOIN platform p ON g.Platform_ID = p.ID_Platform GROUP BY p.Name;");
+			$resultat = $this->getLink()->prepare($query);
+			$resultat->execute();
+			$result = $resultat->FetchAll();
+
+		} catch(PDOException $ex) {
+			echo "An Error ocurred!";
+			some_loggging_function($ex->getMessage());
+		} finally {
+			return $result;		
+		}
+	}
 }
 ?>
