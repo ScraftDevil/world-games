@@ -3,7 +3,7 @@ setInterval(ajaxCall, 2000);
 function ajaxCall() {
     $.ajax({
       type: "POST",
-      url: "../controller/messages/getMessageController.php",
+      url: "../controller/opinions/getOpinionsController.php",
       data:         
       {
       "gameid":getterURL('gameid')
@@ -13,19 +13,6 @@ function ajaxCall() {
     }
   });
 }
-
-/*$('#enviar').click(function(){
-var i = 0;
-
-  var n = $( ".divcomentari" ).size();*/
-  //  alert("total divs creats: "+n);
-//$('.divcomentari').each(function () { 
-   
-  //$('body').scrollTo(".divcomentari",{duration:2000, offsetTop : '50'});
-//});
-
-     
-  //  });
 
 function getterURL(variable) {
   var query = window.location.search.substring(1);
@@ -42,7 +29,7 @@ $("#enviar").click(function (){
     var comentari = $("#comentari ").val();
       $.ajax({
         type: "POST",
-        url: "../controller/messages/insertMessageController.php",
+        url: "../controller/opinions/insertOpinionController.php",
         data:         
         {
           "comentari":comentari,
