@@ -122,6 +122,7 @@
 	</div>
 	<footer>
 		<?php include("../sections/footer.php"); ?>
+		<script type="text/javascript" src="../resources/js/usersManage.js"></script>
 	</footer>
 </body>
 </html>

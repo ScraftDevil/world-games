@@ -96,6 +96,7 @@
 	</div>
 	<footer>
 		<?php include("../sections/footer.php"); ?>	
+		<script type="text/javascript" src="../resources/js/gamesManage.js"></script>
 		<script>
 		var idgame = 0;
 		$("#offerGame").click(function () {

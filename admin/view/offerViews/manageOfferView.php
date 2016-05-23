@@ -47,7 +47,8 @@
 		</div>
 	</div>
 	<footer>
-		<?php include("../sections/footer.php"); ?>	
+		<?php include("../sections/footer.php"); ?>
+		<script type="text/javascript" src="../resources/js/offersManage.js"></script>
 	</footer>
 </body>
 </html>

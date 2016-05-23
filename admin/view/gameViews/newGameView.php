@@ -65,6 +65,7 @@
 	</div>
 	<footer>
 		<?php include("../sections/footer.php"); ?>
+		<script type="text/javascript" src="../resources/js/gamesManage.js"></script>
 	</footer>
 </body>
 </html>

@@ -138,7 +138,7 @@
 			group = "<?php echo $group ?>";
 			id = "<?php echo $_GET['id']; ?>";
 		</script>
-		
+		<script type="text/javascript" src="../resources/js/usersManage.js"></script>
 	</footer>
 </body>
 </html>
