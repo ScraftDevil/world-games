@@ -111,6 +111,22 @@ class mysqldb {
 		return $result;
 	}
 
+	//OFFER GET DATA
+	public function getAllOfferInfo($idoffer) {
+		$sql = "SELECT ID_Offer, Discount FROM offer";
+		$stmt = $this->getLink()->prepare($sql);
+		$stmt->execute();
+		$result = $stmt->FetchAll();
+		return $result;
+	}
+
+	//OFFER UPDATE DATA
+	public function updateAllOffer($offer) {
+		$sql = "UPDATE offer SET Discount = '".$offer->getDiscount()."' WHERE ID_Offer='".$offer->getId()."'";
+		$stmt = $this->getLink()->prepare($sql);
+		return $stmt->execute();
+	}
+
 	public function getRegisteredInfo($id) {
 		$registeredDao = new RegisteredDAO();
 		$registered = $registeredDao->getRegisteredInfo($id);

@@ -40,7 +40,7 @@
 		    <span class=\"sr-only\">Selecciona una opcion</span>
 		  </button>
 		  <ul class=\"dropdown-menu\">
-		    <li><a class=\"drop-grid\" href=\"offerDataEdit.php?id=$id\">Editar</a></span></li>
+		    <li><a class=\"drop-grid\" href=\"editOfferView.php?id=$id\">Editar</a></span></li>
 		     <li><a href=\"#\" onclick=\"deleteOffer($id)\">Eliminar</a></li>
 		  </ul>
 		</div>";

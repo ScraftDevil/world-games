@@ -43,6 +43,10 @@
 				$message = "<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡No se ha podido añadir la oferta en el juego!</strong></div>";
 				break;
 
+				case "successEditOffer":
+				$message = "<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-ok\"></span> ¡Se ha editado la oferta del juego con exito!</strong></div>";
+				break;
+
 				default:
 					$message = null;
 				break;

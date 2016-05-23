@@ -134,7 +134,6 @@
 	</div>
 	<footer>
 		<?php include("../sections/footer.php"); ?>
-		<script type="text/javascript" src="../resources/js/userActions.js"></script>
 		<script type="text/javascript">
 			group = "<?php echo $group ?>";
 			id = "<?php echo $_GET['id']; ?>";

@@ -10,9 +10,7 @@ group = null;
 function load() {
   var page = getPageName();
   switch(page) {
-
     // USER OPTIONS SWITCH START
-
     case "newUserView":
       var group = getterURL("group");
       $("#insert-user").click(function() {
@@ -25,7 +23,6 @@ function load() {
           sendUser(user);
       });
     break;
-
     case "userDataEditView":
       var group = getterURL("group");
       var group = deleteGetTrash(group);
@@ -44,12 +41,8 @@ function load() {
           updateUser(user);
       });
     break;
-
     // USER OPTIONS SWITCH FINISH
-
-
     // GAME OPTIONS SWITCH START
-
     case "newGameView":
       $("#insert-game").click(function() {
           var title = $("#title").val();
@@ -59,7 +52,6 @@ function load() {
           sendGame(game);
       });
     break;
-
     //INSERT OFFER
     case "newOfferView":
       $("#insert-offer").click(function() {
@@ -67,6 +59,18 @@ function load() {
           var game = $("#game").val();
           var offer = {"discount": discount, "game": game};
           sendOffer(offer);
+      });
+    break;
+    //UPDATE OFFER
+    case "editOfferView":
+      var offerid = getterURL("id");
+      var data = {"id": offerid};
+      getOffer(data);
+      $("#update-offer").click(function() {
+          var id = offerid;
+          var discount = $("#discount").val();
+          var offer = {"id": id, "discount": discount};
+          updateOffer(offer);
       });
     break;
   }
@@ -202,6 +206,23 @@ function getUpdateUserProcess(data) {
 /// USER ACTIONS FINISH
 
 /// OFFERS ACTIONS START
+function getOffer(data) {
+   var data = JSON.stringify(data);
+   $.ajax({
+      data:  "data=" + data,
+      url:   '../../controller/offerControllers/getOfferInfoController.php',
+      type:  'POST',
+      dataType: 'json',
+      success: getOfferInfo
+  });
+}
+
+function getOfferInfo(data) {
+   if(data != null) {
+      $("#discount").val(data[0].Discount);
+   }
+}
+
 function sendOffer(offer) {
     var offer = JSON.stringify(offer);
     $.ajax({
@@ -227,6 +248,32 @@ function getInsertOfferProcess(data) {
             $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error inesperado!</strong></div>");
         break;
     }
+}
+function updateOffer(offer) {
+   var offer = JSON.stringify(offer);
+   $.ajax({
+      data:  "offer=" + offer,
+      url:   '../../controller/offerControllers/updateOfferController.php',
+      type:  'POST',
+      dataType: 'json',
+      success: getUpdateOfferProcess
+  });
+}
+function getUpdateOfferProcess(data) {
+  switch(data.id) {
+    case "null-error":
+            $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en la validación de datos del usuario!</strong></div>");
+        break;
+
+        case "success":
+            var delay = 0;
+            setTimeout(function(){ window.location = "../../view/gameViews/gameListView.php?msg=successEditOffer"; }, delay);
+        break;
+
+        default:
+            $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error inesperado!</strong></div>");
+        break;
+  }
 }
 /// OFFERS ACTIONS FINISH
 
@@ -277,7 +324,6 @@ function deleteGame(value) {
 
 
 /// GAME ACTIONS FINISH
-
 
 /// BOOTSTRAP DROPDOWN CONTENTS START
 
