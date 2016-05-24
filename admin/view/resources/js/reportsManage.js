@@ -1,4 +1,4 @@
-/// USER ACTIONS START
+/// REPORTS ACTIONS START
 
 $(document).ready(load);
 
@@ -34,7 +34,7 @@ function load() {
 
 }
 
-// USER INSERT AJAX FUNCTION
+// AJAX GET REPORT
 function getReport(id) {
    $.ajax({
       data:  "id=" + id,
@@ -45,12 +45,13 @@ function getReport(id) {
   });
 }
 
-// INSERT USER AJAX RESPONSE
+// GET REPORT INFO
 function getReportProcess(data) {
   switch(data.id) {
     case "success":
             $(".panel-title").html("Razón: " + data.reason);
-            $("#username").val(data.user);
+            $("#username-reported").val(data.userreported);
+            $("#username-reclaim").val(data.userreclaim);
             $("#date").val(data.date);
             $("#hour").val(data.hour);
             $("#text").val(data.text);
@@ -65,12 +66,14 @@ function getReportProcess(data) {
   }
 }
 
-// USER's COUNTRIES DROP DOWN
+// CHANGE REPORT STATUS
 function changeStatus(elem) {
    var value = elem.getAttribute("value");
    document.getElementById("status").value = value;
-   $("#status-name").html(elem.text + " <span class=\"caret\"></span>");
+   $("#status-name").html(elem.text);
+   var controller = "../../controller/mailboxControllers/changeReportStatusController.php?status=";
+   $('#report').get(0).setAttribute('action', controller+value);
 }
 
 
-/// USER ACTIONS FINISH
+/// REPORTS ACTIONS FINISH

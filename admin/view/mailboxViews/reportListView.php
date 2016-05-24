@@ -12,7 +12,31 @@
 <body>
 	<?php
 
-		include("../sections/header.php"); 
+		include("../sections/header.php");
+
+		if(isset($_GET['msg']) AND !empty($_GET['msg'])) {
+			$msg = $_GET['msg'];
+			switch($msg) {
+
+				case "success":
+				$message = "<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-ok\"></span> ¡Queja actualizada!</strong></div>";
+				break;
+
+				case "u-success":
+				$message = "<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-ok\"></span> ¡Usuario actualizado satisfactoriamente!</strong></div>";
+				break;
+				
+				case "username-error":
+				$message = "<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Ese nombre de Usuario ya existe!</strong></div>";
+				break;
+
+				default:
+					$message = null;
+				break;
+			}
+		} else {
+			$message = null;
+		}
 
 	?>
 	<div class="container-fluid">
@@ -27,6 +51,11 @@
 									<h2 class="panel-title"> Buzón de Quejas de <?php echo $_SESSION["username"];?></h2>
 								</div>
 								<div class="panel-body">
+									<?php
+										if ($message != null) {
+											echo $message;
+										}
+									?>
 									<div class="grid">
 										<?php 
 										include("../../controller/mailboxControllers/showReportsController.php"); ?>

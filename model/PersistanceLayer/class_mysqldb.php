@@ -307,5 +307,24 @@ public function getAllMessages($order) {
 		}
 		return $result;
 	}
+
+	public function changeReportStatus($id_user, $id_report, $group, $status) {
+		$reportDAO = new reportDAO();
+		switch($group) {
+			case "administrator":
+				$result = $reportDAO->changeAdminReportStatus($id_user, $id_report, $status);
+			break;
+
+			case "professional":
+				$result = $reportDAO->changeProfessionalReportStatus($id_user, $id_report, $status);
+			break;
+		}
+		return $result;
+	}
+
+	public function setReportRead($id, $read) {
+		$reportDAO = new reportDAO();
+		$reportDAO->setReportRead($id, $read);
+	}
 }
 ?>
