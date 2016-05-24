@@ -6,28 +6,24 @@
 		if (isset($_GET['orderBy'])) {
 			$order = $_GET['orderBy'] . " " . $_GET['direction'];
 		}
-		$id = $_SESSION['userid'];
-		$group = $_SESSION['usertype'];
-		if ($group == "Administrator") {
-			$reports = $db->getAdministratorReports($id, $order);
-		} else if ($group == "Professional") {
-			$reports = $db->getProfessionalReports($id, $order);
-		}
+		$complaints = $db->getAllComplaints($order);
 		$dg = new Structures_DataGrid();
-		$dg->bind($reports, array(), 'Array');
+		$dg->bind($complaints, array(), 'Array');
 		$dg->renderer->sortIconASC= "&uarr;";
 		$dg->renderer->sortIconDESC = "&darr;";
-		$column = new Structures_DataGrid_Column('ID de<br>Queja', 'ID_Report', 'ID_Report', array('class'=>'grid-cel'));
+		$column = new Structures_DataGrid_Column('ID de<br>Denuncia', 'ID_Complaint', 'ID_Complaint', array('class'=>'grid-cel'));
 		$dg->addColumn($column);
 		$column = new Structures_DataGrid_Column('Estado', 'Status', 'Status', array('class'=>'grid-cel'), null, 'PrintStatus()');
 		$dg->addColumn($column);
 		$column = new Structures_DataGrid_Column('Fecha', 'Date', 'Date', array('class'=>'grid-cel'), null, 'setDateFormat()');
 		$dg->addColumn($column);
-		$column = new Structures_DataGrid_Column('Razón', 'Reason', 'Reason', array('class'=>'grid-cel'));
+		$column = new Structures_DataGrid_Column('Razón', 'Reason', 'Reason', array('class'=>'grid-cel'), null, 'PrintUTF8()');
 		$dg->addColumn($column);
-		$column = new Structures_DataGrid_Column('Usuario<br>Reportado', 'UserReported', 'UserReported', array('class'=>'grid-cel'));
+		$column = new Structures_DataGrid_Column('Juego<br>Denunciado', 'GameComplainted', 'GameComplainted', array('class'=>'grid-cel'));
 		$dg->addColumn($column);
-		$column = new Structures_DataGrid_Column('Usuario<br>Reclamando', 'UserReclaim', 'UserReclaim', array('class'=>'grid-cel'));
+		$column = new Structures_DataGrid_Column('Plataforma', 'Platform', 'Platform', array('class'=>'grid-cel'));
+		$dg->addColumn($column);
+		$column = new Structures_DataGrid_Column('Usuario<br>Denunciante', 'User', 'User', array('class'=>'grid-cel'));
 		$dg->addColumn($column);
 		$column = new Structures_DataGrid_Column("<a href='#'>Opciones</a>", null, null, array('class'=>'grid-cel'), null, 'PrintOption()');
 		$dg->addColumn($column);
@@ -36,7 +32,7 @@
 
 	function PrintOption($params){
 		extract($params);
-		$id = $record['ID_Report'];
+		$id = $record['ID_Complaint'];
 		return "
 		<div class=\"btn-group\">
 		  <button type=\"button\" class=\"btn btn-danger\"><a class=\"drop-grid\" href=\"#\">Selecciona una operación</a></button>
@@ -45,15 +41,15 @@
 		    <span class=\"sr-only\"><a class=\"drop-grid\" href=\"#\">Selecciona una operación</a></span>
 		  </button>
 		  <ul class=\"dropdown-menu\">
-		  	<li><a href=\"reportView.php?id=$id\">Ver</a></li>
-		    <li><a href=\"#\" onclick=\"deleteUser($id)\">Eliminar</a></li>
+		  	<li><a href=\"complaintView.php?id=$id\">Ver</a></li>
+		    <li><a href=\"#\" onclick=\"deleteComplaint($id)\">Eliminar</a></li>
 		  </ul>
 		</div>";
 	}
 
 	function PrintUTF8($params){
 		extract($params);
-		$fieldData = $record['Country'];
+		$fieldData = $record['Reason'];
 		return utf8_encode($fieldData);
 	}
 

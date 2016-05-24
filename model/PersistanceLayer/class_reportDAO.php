@@ -14,7 +14,7 @@ class reportDAO {
 				$orderSQL = "ORDER BY 3, 2";
 			}
 
-			$query = ("SELECT ID_Report, Status, Date, Reason, Text, (SELECT Username FROM registered WHERE ID_Registered=Registered_ID) AS User FROM report WHERE ID_Report IN (SELECT Report_ID FROM administrator_has_report WHERE Administrator_ID='$id') $orderSQL");
+			$query = ("SELECT ID_Report, Status, Date, Reason, Text, (SELECT Username FROM registered WHERE ID_Registered=Registered_ID) AS UserReported, (SELECT r.Username FROM registered r INNER JOIN administrator_has_report ar ON r.ID_Registered=ar.Registered_ID) AS UserReclaim FROM report WHERE ID_Report IN (SELECT Report_ID FROM administrator_has_report WHERE Administrator_ID='$id') $orderSQL");
 
 			$db = unserialize($_SESSION['dbconnection']);
 			$resultat = $db->getLink()->prepare($query);

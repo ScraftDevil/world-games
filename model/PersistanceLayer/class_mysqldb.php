@@ -326,5 +326,28 @@ public function getAllMessages($order) {
 		$reportDAO = new reportDAO();
 		$reportDAO->setReportRead($id, $read);
 	}
+
+	public function getAllComplaints($order) {
+		$complaintDAO = new complaintDAO();
+		$result = $complaintDAO->getAllComplaints($order);
+		return $result;
+	}
+
+	public function getComplaint($id) {
+		$complaintDAO = new complaintDAO();
+		$result = $complaintDAO->getComplaint($id);
+		return $result;
+	}
+
+	public function changeComplaintStatus($id, $status) {
+		$complaintDAO = new complaintDAO();
+		$result = $complaintDAO->changeComplaintReportStatus($id, $status);
+		return $result;
+	}
+
+	public function setComplaintRead($id, $read) {
+		$complaintDAO = new complaintDAO();
+		$complaintDAO->setComplaintRead($id, $read);
+	}
 }
 ?>

@@ -22,12 +22,16 @@
 				$message = "<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-ok\"></span> ¡Queja actualizada!</strong></div>";
 				break;
 
-				case "u-success":
-				$message = "<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-ok\"></span> ¡Usuario actualizado satisfactoriamente!</strong></div>";
+				case "access-error":
+				$message = "<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-ok\"></span> ¡Error al actualizar el estado de la queja!</strong></div>";
 				break;
 				
-				case "username-error":
-				$message = "<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Ese nombre de Usuario ya existe!</strong></div>";
+				case "status-error":
+				$message = "<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡El estado seleccionado no existe!</strong></div>";
+				break;
+
+				case "data-error":
+				$message = "<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡No tienes acceso a ese ID de Queja!</strong></div>";
 				break;
 
 				default:
