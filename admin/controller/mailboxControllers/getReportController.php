@@ -18,7 +18,10 @@
 		if ($group == "professional" || $group == "administrator") {
 			switch($group) {
 				case "administrator":
-				getAdministratorReport($_SESSION[''], $id, $group);
+					$report = getAdministratorReport($_SESSION['userid'], $id, $group);
+					$dateANDhour = explode(" ", $report[0][2]);
+					$dateANDhour[0] = date("d-m-Y", strtotime($dateANDhour[0]));
+					$response = array("id" => "success", "id_report" => $report[0][0], "status" => utf8_encode($report[0][1]), "date" => $dateANDhour[0], "hour" => $dateANDhour[1], "reason" => $report[0][3], "text" => $report[0][4], "user" => $report[0][5]);
 				break;
 			}
 		} else {

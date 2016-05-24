@@ -8,7 +8,8 @@
 		}
 		if (isset($_GET['id'])) {
 			$id = $_GET['id'];
-
+		} else {
+			header("Location:../index.php");
 		}
 		include("../sections/head.php"); 
 
@@ -36,20 +37,44 @@
 											<div class="col-md-12">
 												<div id="general-error"></div>
 												<div class="form-group">
-													<label for="country">Estado</label><label for="country-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
+													<label for="user">Usuario Reportado</label>
+													<div class="input-group input-radius">
+														<input type="text" class="form-control" name="username" id="username" placeholder="Username" readonly>
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="date">Fecha</label>
+													<div class="input-group input-radius">
+														<input type="text" class="form-control" name="date" id="date" placeholder="Date" readonly>
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="hour">Hora</label>
+													<div class="input-group input-radius">
+														<input type="text" class="form-control" name="hour" id="hour" placeholder="Hour" readonly>
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="user">Mensaje</label>
+													<div class="input-group input-radius">
+														<textarea type="text" class="form-control" name="text" id="text" placeholder="text" readonly></textarea>
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="status">Estado</label>
 													<div class="dropdown">
   														<button class="btn btn-default dropdown-toggle" type="button" name="status" id="status" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" value="">
     														<span id="status-name"></span>
     														<span class="caret"></span>
   														</button>
 														<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-															<li class="dropdown-header"><a value="No Leído" href="#" class="country" onclick="changeCountry(this)">No leído</a></li>
-															<li class="dropdown-header"><a value="Leído" href="#" class="country" onclick="changeCountry(this)">Leído</a></li>
-															<li class="dropdown-header"><a value="Denegado" href="#" class="country" onclick="changeCountry(this)">Denegado</a></li>
-															<li class="dropdown-header"><a value="Aceptado" href="#" class="country" onclick="changeCountry(this)">Aceptado</a></li>
+															<li class="dropdown-header"><a value="No leído" href="#" class="country" onclick="changeStatus(this)">No leído</a></li>
+															<li class="dropdown-header"><a value="Leído" href="#" class="country" onclick="changeStatus(this)">Leído</a></li>
+															<li class="dropdown-header"><a value="Denegado" href="#" class="country" onclick="changeStatus(this)">Denegado</a></li>
+															<li class="dropdown-header"><a value="Aceptado" href="#" class="country" onclick="changeStatus(this)">Aceptado</a></li>
 														</ul>
-														<button type="button" name="insert-user" id="change-status" class="btn btn-info pull-left">Cambiar Estado</button>
 													</div>
+													<button type="button" name="change-status" id="change-status" class="btn btn-info pull-left">Cambiar Estado</button>
 												</div>
 											</div>
 										</div>
