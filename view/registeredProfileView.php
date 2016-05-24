@@ -8,7 +8,7 @@
 include("sections/head.php");
 
 // controladores del perfil de usuario registrado
-include("../controller/getRegisteredInfoController.php");
+include("../controller/profileControllers/getRegisteredInfoController.php");
 
  //array que contiene los datos del usuario segun el id obtenido después de hacer login
 $registered = getRegisteredInfo($_SESSION['user_id']);

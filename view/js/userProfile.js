@@ -37,7 +37,7 @@ function load() {
             var alert ="<img class=\"alert-img\" src=\"images/alert.png\"/>";
             var deleteButton = "<button id=\"delete\" name=\"delete\" type=\"submit\" class=\"btn btn-success btn-delete\">Borrar</button>";
             var cancelButton = "<button onclick=\"cancelDelete()\" type=\"button\" class=\"btn btn-danger btn-cancel\">Cancelar</button>";
-            var form = "<form action=\"../controller/deleteRegisteredController.php\">" + deleteButton + " " + cancelButton + "</form>";
+            var form = "<form action=\"../controller/profileControllers/deleteRegisteredController.php\">" + deleteButton + " " + cancelButton + "</form>";
             var deleteAccount = "<div class=\"confirm\"><div class=\"confirm-msg\">" + alert + "<p>¿Realmente deseas eliminar definitivamente tu cuenta?</p>" + form + "</div></div>";
 
             $("body").append("<div class=\"delete\">" + deleteAccount + "</div>");
@@ -70,7 +70,7 @@ function updateUser(registered) {
     var registered = JSON.stringify(registered);
     $.ajax({
         data: "registered=" + registered,
-        url: '../controller/updateRegisteredController.php',   
+        url: '../controller/profileControllers/updateRegisteredController.php',   
         type: 'POST',
         dataType: 'json',
         success: getUpdateResponseMessage
@@ -93,7 +93,7 @@ function sendMessage(infoMessage) {
 
     $.ajax({
         data: "infoMessage=" + infoMessage,
-        url: '../controller/sendPrivateMessageController.php',
+        url: '../controller/privateMessageControllers/sendPrivateMessageController.php',
         type: 'POST',
         dataType: 'json',
         success: getSendMessageResponse
@@ -120,7 +120,7 @@ function getSendMessageResponse(data) {
 /* Get private messages jquery / ajax function */
 function getPrivateMessages() {
     $.ajax ({
-        url: "../controller/getPrivateMessagesController.php",
+        url: "../controller/privateMessageControllers/getPrivateMessagesController.php",
         type: "POST",
         success: function(messages) {
             $("#privateMessages").html(messages);

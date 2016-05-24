@@ -1,7 +1,7 @@
 <?php
 
-require_once("../model/autoload.php");
-include("sendMessageValidationController.php");
+require_once("../../model/autoload.php");
+include("../validationControllers/sendMessageValidationController.php");
 
 $myId = $_SESSION['user_id'];
 

@@ -9,9 +9,7 @@ include("sections/head.php");
 
 // controlador que obtiene el número de juegos según la plataforma
 include("../controller/countGameForPlatform.php");
-
 ?>
-
     <body>
         <div id="page" class="page">
             <?php include("sections/nav.php"); ?>
