@@ -176,6 +176,11 @@ public function getAllMessages($order) {
 		$registered = $registeredDao->deleteRegisteredUser($id);		
 	}
 
+	public function deleteGame($id){
+	$gameDAO = new gameDAO();
+		$game = $gameDAO->deleteGame($id);
+}
+
 	public function searchGame($value) {
     	$sql = "SELECT G.ID_Game, G.Title, G.Price FROM game G WHERE G.Title LIKE '%".$value."%'";
 		$stmt = $this->getLink()->prepare($sql);
