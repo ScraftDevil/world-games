@@ -28,10 +28,17 @@ function printGame($game) {
             text-decoration:line-through;
         }
     </style>
-    <div class="col-md-3 col-sm-6 col-xs-12 gallery-item-wrapper">
+    <?php
+    //Validate if image exist
+    $imgURL = "images/games/".$game->getId().".png";
+    if (!file_exists($imgURL)) {
+        $imgURL = "images/games/noimage.png";
+    }
+    ?>
+    <div class="col-md-3 col-sm-6 col-xs-12 gallery-item-wrapper" stye="height:450px">
         <div class="gallery-item" id="Game_<?php echo $game->getID() ?>">
             <div class="gallery-thumb" title="<?php echo $game->getTitle() ?>">
-                <img src="images/games/<?php echo $game->getTitle() ?>.png" width="800px" height="600px" class="img-responsive" alt="<?php echo $game->getTitle() ?>">
+                <img src="<?php echo $imgURL; ?>" width="800px" height="600px" class="img-responsive" alt="<?php echo $game->getTitle() ?>">
                 <div class="image-overlay"></div>
                 <a href="detailsProduct.php?gameid=<?php echo $game->getID();?>" class="gallery-zoom"><i class="fa fa-eye"></i></a>
                 <a href="#" class="gallery-link buyItem"><i class="fa fa-shopping-cart"></i></a>
@@ -53,7 +60,7 @@ function printGame($game) {
                     if (!empty($game->getOffer()->getDiscount())) {
                         echo $game->getOffer()->getDiscount() . " % de descuento";
                     }
-                    echo '</h6>';
+                    /*echo '</h6>';
                     echo '<h5>';
                     if (!empty($game->getGenres())) {
                         $genres = $game->getGenres();
@@ -66,7 +73,7 @@ function printGame($game) {
                     if (!empty($game->getPlatform())) {
                         echo $game->getPlatform()->getName();
                     }
-                    echo '</h6>';
+                    echo '</h6>';*/
                     ?>
 
                 </div>
