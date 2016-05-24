@@ -17,19 +17,29 @@
 	$title = $game->title;
 	$price = $game->price;
 	$platform = $game->platform;
-	$proces = addGame($title, $price, $platform);
+	$genres = $game->genres;
+	$proces = addGame($title, $price, $platform, $genres);
 	if ($proces != 0) {
 		$response = array("id" => "success");
 	} else if ($proces == 0) {
 		$response = array("id" => "error");
 	}
 
-	function addGame($title, $price, $platform) {
+	function addGame($title, $price, $platform, $genres) {
 		$proces = 0;
 		if ($title != "" AND $price != ""  AND $platform != "" ) {
 			
 			$game = new Game($title, $price);
 			$game->setPlatform($platform);
+			$arrObjGenres = array();
+			for ($i=0; $i < count($genres); $i++) {
+				$genrefromdb = $game->getGenres($genres[$i]);
+				$objGenre = new Genre($genrefromdb[$i][1]);
+				$objGenre->setId($genrefromdb[$i][0]);
+				$arrObjGenres[] = $objGenre;
+			}
+			$game->setGenres($arrObjGenres);
+
 			$proces = $game->insertGame();
 			if(!$proces) {
 				$proces = 0;

@@ -7,7 +7,20 @@ class gameDAO {
         $query = "insert into game values('', '" . $games->getTitle() . "', '" . $games->getPrice() . "', '" . 0 ."','".$games->getPlatform()."', 0)";
         $db = unserialize($_SESSION['dbconnection']);
         $resultat = $db->getLink()->prepare($query);
-        $resultat->execute();
+        
+
+        if($resultat->execute()) {
+
+		$lastid = $db->getLink()->lastInsertId();
+
+		for ($i=0; $i < count($games->getGenres()); $i++) { 
+			$idgenre = $games->getGenres()[$i]->getId();
+		$query2 = "INSERT INTO game_has_genre (Game_ID , Genre_ID) VALUES ($lastid, $idgenre";
+		$result = $db->getLink()->prepare($query2);
+		 $result->execute();
+		}
+		
+			}
         return $resultat;
     }
 

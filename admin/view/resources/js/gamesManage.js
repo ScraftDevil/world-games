@@ -2,11 +2,31 @@ $(document).ready(load);
 
 function load() {
 
+  $("#sumar").click(function() {
+    var stock = $("#stock").val();
+
+    stock++;
+
+    $("#stock").val(stock);
+
+  });
+
+  $("#restar").click(function() {
+    var stock = $("#stock").val();
+    if(stock >= 1){
+    stock--;
+
+    $("#stock").val(stock);
+  }
+  });
+
   $("#insert-game").click(function() {
       var title = $("#title").val();
       var price = parseFloat($("#price").val());
       var platform = document.getElementById("platform").value;
-      var game = {"title": title, "price": price, "platform": platform};
+        var genres = $("#genres").val();
+     
+     var game = {"title": title, "price": price, "platform": platform, "genres": genres};
       sendGame(game);
   });
 
