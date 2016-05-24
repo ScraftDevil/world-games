@@ -9,7 +9,7 @@ function ajaxCall() {
       "gameid":getterURL('gameid')
       },
       success: function(data) {
-        $("#comentariosusers").html(data);
+        $("#commentsList").html(data);
     }
   });
 }
@@ -25,18 +25,18 @@ function getterURL(variable) {
   } 
   return variable;
 }
-$("#enviar").click(function (){
-    var comentari = $("#comentari ").val();
+$("#sendOpinion").click(function (){
+    var comment = $("#comment").val();
       $.ajax({
         type: "POST",
         url: "../controller/opinions/insertOpinionController.php",
         data:         
         {
-          "comentari":comentari,
+          "comment":comment,
           "gameid":getterURL('gameid')
         },
         success: function(data) {
-          $("#comentari").val("");
+          $("#comment").val("");
           $(".ocultar").show();
           if (data=="LOGIN_ERROR") {
             $("#message").removeClass("alert-success");

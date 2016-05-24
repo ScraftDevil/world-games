@@ -1,13 +1,13 @@
 <?php
 session_start();
 require_once("../../model/autoload.php");
-$comentari = $_POST["comentari"];
+$comment = $_POST["comment"];
 $gameid = $_POST["gameid"];
-if (!empty($comentari)) {
+if (!empty($comment)) {
 	if (isset($_SESSION['user_id'])) {
 	$userid = $_SESSION['user_id'];
 	$db = unserialize($_SESSION['dbconnection']);
-	$query = "INSERT INTO comment VALUES('', '$gameid', '$comentari', now())";
+	$query = "INSERT INTO comment VALUES('', '$gameid', '$comment', now())";
 	$result = $db->getLink()->prepare($query);
 	if($result->execute()) {
 		$lastid = $db->getLink()->lastInsertId();
