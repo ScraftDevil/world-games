@@ -32,12 +32,12 @@ include("../controller/countGameForPlatform.php");
                     <!-- Lista de opciones del perfil del usuario -->
                     <div class="row">
                         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
-
-                        	
-
+                            <div id="chartContainer"></div>
+                        </div>
                     </div>
                 </div>
             </section>
+        </div>
             <?php include("sections/footer.php"); 
         ?>
     </body>

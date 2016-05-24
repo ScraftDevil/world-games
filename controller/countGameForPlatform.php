@@ -35,39 +35,10 @@
 			$json = array("platform" => $platforms[$x][0], "quantity" => 0);
 
 		}
-		array_push($platforms_json, json_encode($json));
+		array_push($platforms_json, $json);
 	}
-	
+
 
 echo json_encode($platforms_json);
-	/*$numOrigin = 0;
-	$numSteam = 0;
-	$numXbox = 0;
-	$numPSN = 0;
-
-if ($numGames[0] == "") {
-	$numOrigin = 0;
-}
-
-if ($numGames[1] == "") {
-	$numSteam = 0;
-}
-
-if ($numGames[2] == "" OR $numGames[2] == null) {
-	$numXbox = 0;
-}
-
-if ($numGames[3] == "") {
-	$numPSN = 0;
-}
-
-	$numOrigin = $numGames[0][0];
-	$numSteam = $numGames[1][0];
-	$numXbox = $numGames[2][0];
-	$numPSN = $numGames[3][0];
-
-	$estadistica = ['numOrigin' => $numOrigin, 'numSteam' => $numSteam, 'numXbox' => $numXbox, 'numPSN' => $numPSN];
-
-	echo json_encode($estadistica);*/
 
 ?>

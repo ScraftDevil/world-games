@@ -608,12 +608,11 @@ $(document).ready(function() {
             url: "../controller/countGameForPlatform.php",
             dataType: "json",
             success: function (array_json) {
-                var Origin = array_json.quantity;
-                var Steam = array_json[1][1].quantity;
-                var Xbox = array_json[2][1].quantity;
-                var PSN = array_json[3][1].quantity;
-                //alert(Origin + Steam + Xbox + PSN);
-                alert(Origin);
+                var Origin = array_json[0].quantity;
+                var Steam = array_json[1].quantity;
+                var Xbox = array_json[2].quantity;
+                var PSN = array_json[3].quantity;
+                printDades(Origin, Steam, Xbox, PSN);
             }
         });
     });
@@ -624,7 +623,7 @@ $(document).ready(function() {
         var chart = new CanvasJS.Chart("chartContainer", {
         theme: "theme2", //theme1
         title: {
-            text: "Games for Platform"},
+            text: "Número de Juegos"},
         animationEnabled: true, // change to true
         data: [{
         // Change type to "bar", "area", "spline", "pie",etc.
