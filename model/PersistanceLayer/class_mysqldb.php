@@ -88,6 +88,11 @@ public function getAllMessages($order) {
 		return $messageDAO->getAllMessages($order);
 	}
 
+	public function getAllComment($order) {
+		$commentDAO = new commentDAO();
+		return $commentDAO->getAllComment($order);
+	}
+
 	
 	public function getGenresGame($gameid) {
 		$sql = "SELECT GE.ID_Genre, GE.Name FROM game_has_genre GG INNER JOIN Genre GE
