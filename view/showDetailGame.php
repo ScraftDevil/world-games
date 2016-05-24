@@ -6,6 +6,11 @@ if (isset($_SESSION['user_id'])) {
 include_once("../controller/controllerCalculateDiscount.php");
 include_once("../controller/controllerShowGameDetails.php");
 function printGame($game) {
+    //Validate if image exist
+  $imgURL = "images/games/".$game->getId().".png";
+  if (!file_exists($imgURL)) {
+    $imgURL = "images/games/noimage.png";
+  }
   ?>
   <div class="col-lg-8 col-md-offset-2 col-md-offset-2 col-md-8 col-sm-12 col-xs-12 " >
     <div class="divspan" id="Product_<?php echo $game->getId();?>">
@@ -14,7 +19,7 @@ function printGame($game) {
       $offer = $game->getOffer()->getDiscount();
       ?>
       <div class="imgDetail col-lg-5 col-md-5 col-sm-5 col-xs-12">
-       <img class="img-responsive imggrandaria" src="images/games/<?php echo $game->getTitle();?>.png">
+      <img class="img-responsive imggrandaria" src="<?php echo $imgURL;?>">
        <span id="rating" ></span><p id="msgRate"></p>
      </div>
      <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 " >

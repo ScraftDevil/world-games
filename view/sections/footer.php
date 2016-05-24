@@ -33,12 +33,6 @@
 <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/headroom.js"></script>
-<script type="text/javascript" src="js/jquery.headroom.js"></script>
-<script type="text/javascript" src="js/owl.carousel.min.js"></script>
-<script type="text/javascript" src="js/jquery.counterup.min.js"></script>
-<script type="text/javascript" src="js/jquery.isotope.min.js"></script>
-<script type="text/javascript" src="js/bskit-scripts.js"></script>
 <script type="text/javascript" src="js/userProfile.js"></script>
 <script type="text/javascript" src="js/calendar.js"></script>
 <script type="text/javascript" src="js/js.cookie.js"></script>
@@ -448,8 +442,8 @@ $(document).on("click", ".buyGame", function (e) {
         $("#basket").html("");
     }
     var nitems = parseInt(nitemsOld)+parseInt(1);
-    $item = $(this).parent().parent().parent(".divspan");
-    var itemImageURL = $item.find(".imageGame").attr("src");
+    $item = $(".divspan");
+    var itemImageURL = $item.find(".imgDetail > img").attr("src");
     var id = $item.attr("id");
     id = id.split("_")[1];
     function Game(id, name, price, image, quantity) {
@@ -508,6 +502,15 @@ function getGame(json, idgame) {
     });
     return game;
 }
+function getGameObj(json, idgame) {
+    var game = null;
+    $.each(json, function(i, item) {
+        if (item.id==idgame) {
+            game = item;
+        }
+    });
+    return game;
+}
 function getGameDecr(json, idgame) {
     var game = null;
     $.each(json, function(i, item) {
@@ -560,9 +563,9 @@ $(document).ready(function() {
     $(document).on("click", ".removeItem", function (e) {
         e.preventDefault();
         $obj = $(this).parent();
-        var quantitygame = parseInt($obj.find(".item-info #quantity").text().replace("x", ""));
         var idgame = $obj.attr("id").replace("Product", "");
         var games = Cookies.getJSON('shoppingCart');
+        var quantitygame = getGameObj(games, idgame).quantity;
         if (quantitygame<=1) {
             $obj.remove();
             games.splice(getPositionGame(games, idgame), 1);
@@ -572,7 +575,8 @@ $(document).ready(function() {
             var game = getGameDecr(games, idgame);
             var shoppingCart = JSON.stringify(games);
             Cookies.set('shoppingCart', shoppingCart, { expires: 1 });
-            $obj.find(".item-info #quantity").text("x"+(quantitygame-1));
+            quantitygame = parseInt(game.quantity);
+            $obj.find(".item-info span:eq(1)").text("x"+(quantitygame));
         }
         $("#countShoppingCart").text(getNumItems(games));
         updateTotalShopping(games);

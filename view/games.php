@@ -24,12 +24,10 @@
                             </div>
                         </div>
                         <div class="col-md-12 col-xs-12">
-                            <div id="isotope-gallery-container">
-                                <?php
-                                $onlyOffers = false;
-                                include("../view/ShowGames.php");
-                                ?>
-                            </div>
+                            <?php
+                            $onlyOffers = false;
+                            include("../view/ShowGames.php");
+                            ?>
                         </div>
                     </div>
                 </div>

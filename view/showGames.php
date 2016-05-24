@@ -15,7 +15,7 @@ function showGames($list, $onlyOffers) {
         }
     }
     if($onlyOffers && $n==0) {
-        echo '<div class="col-md-12 gallery-item-wrapper"><div class="alert alert-info">
+        echo '<div class="col-md-12"><div class="alert alert-info">
   <strong>No hay ofertas disponibles.<strong>
 </div></div>';
     }
@@ -35,7 +35,7 @@ function printGame($game) {
         $imgURL = "images/games/noimage.png";
     }
     ?>
-    <div class="col-md-3 col-sm-6 col-xs-12 gallery-item-wrapper" stye="height:450px">
+    <div class="col-md-3 col-sm-6 col-xs-12">
         <div class="gallery-item" id="Game_<?php echo $game->getID() ?>">
             <div class="gallery-thumb" title="<?php echo $game->getTitle() ?>">
                 <img src="<?php echo $imgURL; ?>" width="800px" height="600px" class="img-responsive" alt="<?php echo $game->getTitle() ?>">
@@ -52,14 +52,16 @@ function printGame($game) {
                     echo '<h5>' . $game->getTitle() . '</h5>';
                     echo '<h6>';
                     if ($priceWithDiscount == $price) {
-                        echo '<span>' . $game->getPrice() . ' €</span>';
+                        echo '<span id="price"><font color=\'red\'><strong>' . $game->getPrice() . ' €</strong></font>';
                     } else {
-                        echo '<span id="price">'.$priceWithDiscount.' €</span>';
+                        echo '<span id="price"><font color=\'red\'><strong>'.$priceWithDiscount.' €</strong></font>
+                        ';
+                         if (!empty($game->getOffer()->getDiscount())) {
+                        echo "(<font color='green'><strong>".$game->getOffer()->getDiscount() . " % dto.</strong></font>)";
+                    }
+                        echo '</span>';
                     }
                     echo '<h6>';
-                    if (!empty($game->getOffer()->getDiscount())) {
-                        echo $game->getOffer()->getDiscount() . " % de descuento";
-                    }
                     /*echo '</h6>';
                     echo '<h5>';
                     if (!empty($game->getGenres())) {
