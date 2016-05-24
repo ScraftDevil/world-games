@@ -8,6 +8,9 @@ if (isset($_POST['genre'])) {
 } else if (isset($_POST['platform'])) {
 	$games = $shop->filterGames($_POST['platform'], "platform");
 }
+//check image exists and add to response json with object games
+//to do
+//
 if (!empty($games)) {
 	echo json_encode($games);
 }

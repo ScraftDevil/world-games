@@ -99,7 +99,7 @@ if (basename($_SERVER['PHP_SELF'])=="detailsProduct.php") {
                 required: true,
                 maxlength: 45
             },
-          
+
 
             calendar: {
                 required: true,
@@ -107,50 +107,50 @@ if (basename($_SERVER['PHP_SELF'])=="detailsProduct.php") {
             },
             country: {
               required: true,
-                maxlength: 15
+              maxlength: 15
 
-            }
+          }
 
-            
-         },
-        messages: {
-            username: {
-                required:"El campo username esta vacio",
-                maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
 
-            },
+      },
+      messages: {
+        username: {
+            required:"El campo username esta vacio",
+            maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
 
-            email: {
-                required:"El campo email esta vacio",
-                email:"Formato de email incorrecto",
-                maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
-            },
+        },
 
-            passwordregister: {
-                required:"El campo password esta vacio",
-                maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
+        email: {
+            required:"El campo email esta vacio",
+            email:"Formato de email incorrecto",
+            maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
+        },
 
-            },
+        passwordregister: {
+            required:"El campo password esta vacio",
+            maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
 
-            confirmpassword: {
-                required:"El campo confirmpassword esta vacio",
-                maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
-            },
+        },
 
-           
-            calendar: {
-                required:"La fecha de nacimiento esta vacio",
-                maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
-            },
+        confirmpassword: {
+            required:"El campo confirmpassword esta vacio",
+            maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
+        },
 
-            country: {
-                required:"El campo pais esta vacio",
-                maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
 
-            }
+        calendar: {
+            required:"La fecha de nacimiento esta vacio",
+            maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
+        },
 
-        }               
-    });
+        country: {
+            required:"El campo pais esta vacio",
+            maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
+
+        }
+
+    }               
+});
 </script>
 <!--    SEARCH  -->
 <script type="text/javascript">
@@ -233,8 +233,8 @@ function search() {
                     }
                 }
             });
-return false;
-});
+            return false;
+        });
     //Función jQuery - Ajax para hacer Logout
     $("#logout").on("click", function () {
         $.ajax({
@@ -270,63 +270,61 @@ return false;
                 type:  'POST',
                 typeData: 'json',
                 success:  function (json) {
-                //
-                if (isEmptyJSON(json)) {
-                    $("#isotope-gallery-container").html("No games to show!");
-                } else {
-                    $.each($.parseJSON(json), function() {
-                       var linesHTML = "";
-                       linesHTML += '<style>.offerOldPrice {text-decoration:line-through;}</style>';
-                       linesHTML += '<div class="col-md-3 col-sm-6 col-xs-12 gallery-item-wrapper isotope-item" style="position: absolute; left: 0px; top: 0px; transform: translate3d(0px, 0px, 0px);">';
-                       linesHTML += '<div class="gallery-item" id="Game_'+this.id+'">';
-                       linesHTML += '<div class="gallery-thumb" title="'+this.title+'"><img src="images/games/'+this.title+'.png" width="800px" height="600px" class="img-responsive" alt="'+this.title+'">';
-                       linesHTML += '<div class="image-overlay"></div>';
-                       linesHTML += '<a href="detailsProduct.php?gameid='+this.id+'" class="gallery-zoom"><i class="fa fa-eye"></i></a>';
-                       linesHTML += '<a href="#" class="gallery-link buyItem"><i class="fa fa-shopping-cart"></i></a>';
+                    if (isEmptyJSON(json)) {
+                        $("#contentGames").html("No games to show!");
+                    } else {
+                        $.each($.parseJSON(json), function() {
+                         var linesHTML = "";
+                         linesHTML += '<style>.offerOldPrice {text-decoration:line-through;}</style>';
+                         linesHTML += '<div class="col-md-3 col-sm-6 col-xs-12">';
+                         linesHTML += '<div class="gallery-item" id="Game_'+this.id+'">';
+                         linesHTML += '<div class="gallery-thumb" title="'+this.title+'"><img src="images/games/'+this.id+'.png" width="800px" height="600px" class="img-responsive" alt="'+this.title+'">';
+                         linesHTML += '<div class="image-overlay"></div>';
+                         linesHTML += '<a href="detailsProduct.php?gameid='+this.id+'" class="gallery-zoom"><i class="fa fa-eye"></i></a>';
+                         linesHTML += '<a href="#" class="gallery-link buyItem"><i class="fa fa-shopping-cart"></i></a>';
+                         linesHTML += '</div>';
+                         linesHTML += '<div class="gallery-details">';
+                         linesHTML += '<div class="editContent">';
+                         linesHTML += '<h5>'+this.title+'</h5><h6><span id="price">'+this.price+' €</span></h6>';
+                         if (this.discount!=null) {
+                           linesHTML += '<h6>60 % de descuento</h6>';
+                       }
                        linesHTML += '</div>';
-                       linesHTML += '<div class="gallery-details">';
-                       linesHTML += '<div class="editContent">';
-                       linesHTML += '<h5>'+this.title+'</h5><h6><span id="price">'+this.price+' €</span></h6>';
-                       if (this.discount!=null) {
-                         linesHTML += '<h6>60 % de descuento</h6>';
-                     }
-                     linesHTML += '</div>';
-                     linesHTML += '</div>';
-                     linesHTML += '</div>'; 
-                     linesHTML += '</div>';
-                     $("#isotope-gallery-container").html(linesHTML);
-                 });
-                    //
+                       linesHTML += '</div>';
+                       linesHTML += '</div>'; 
+                       linesHTML += '</div>';
+                       $("#contentGames").html(linesHTML);
+                   });
+                    }
                 }
-            }
+            });
+            $(this).append('&nbsp;<i id="selected" class="fa fa-check" aria-hidden="true"></i>');
         });
-$(this).append('&nbsp;<i id="selected" class="fa fa-check" aria-hidden="true"></i>');
-});
-$(".platformFilter").on("click", function(e){
-    e.preventDefault();
-    $(".genreFilter").each(function() {
-        $(this).find("#selected").remove();
-    });
-    $(".platformFilter").each(function() {
-        $(this).find("#selected").remove();
-    });
-    var params = {"platform" : $(this).attr("id")};
-    $.ajax({
-        data: params,
-        url:   '../controller/controllerFilterGames.php',
-        type:  'POST',
-        typeData: 'json',
-        success:  function (json) {
+        $(".platformFilter").on("click", function(e){
+            e.preventDefault();
+            $(".genreFilter").each(function() {
+                $(this).find("#selected").remove();
+            });
+            $(".platformFilter").each(function() {
+                $(this).find("#selected").remove();
+            });
+            var params = {"platform" : $(this).attr("id")};
+            $.ajax({
+                data: params,
+                url:   '../controller/controllerFilterGames.php',
+                type:  'POST',
+                typeData: 'json',
+                success:  function (json) {
                 //
                 if (isEmptyJSON(json)) {
-                    $("#isotope-gallery-container").html("No games to show!");
+                    $("#contentGames").html("No games to show!");
                 } else {
                     var linesHTML = '';
                     linesHTML += '<style>.offerOldPrice {text-decoration:line-through;}</style>';
                     $.each($.parseJSON(json), function() {
                         linesHTML += '<div class="col-md-3 col-sm-6 col-xs-12 gallery-item-wrapper isotope-item">';
                         linesHTML += '<div class="gallery-item" id="Game_'+this.id+'">';
-                        linesHTML += '<div class="gallery-thumb" title="'+this.title+'"><img src="images/games/'+this.title+'.png" class="img-responsive" alt="'+this.title+'">';
+                        linesHTML += '<div class="gallery-thumb" title="'+this.title+'"><img src="images/games/'+this.id+'.png" class="img-responsive" alt="'+this.title+'">';
                         linesHTML += '<div class="image-overlay"></div>';
                         linesHTML += '<a href="detailsProduct.php?gameid='+this.id+'" class="gallery-zoom"><i class="fa fa-eye"></i></a>';
                         linesHTML += '<a href="#" class="gallery-link buyItem"><i class="fa fa-shopping-cart"></i></a>';
@@ -335,22 +333,22 @@ $(".platformFilter").on("click", function(e){
                         linesHTML += '<div class="editContent">';
                         linesHTML += '<h5>'+this.title+'</h5><h6><span id="price">'+this.price+' €</span></h6>';
                         if (this.discount!=null) {
-                         linesHTML += '<h6>60 % de descuento</h6>';
-                     }
-                     linesHTML += '</div>';
-                     linesHTML += '</div>';
-                     linesHTML += '</div>';
-                     linesHTML += '</div>'; 
-                 });
-linesHTML += '';
-$("#isotope-gallery-container").html(linesHTML);
+                           linesHTML += '<h6>60 % de descuento</h6>';
+                       }
+                       linesHTML += '</div>';
+                       linesHTML += '</div>';
+                       linesHTML += '</div>';
+                       linesHTML += '</div>'; 
+                   });
+                    linesHTML += '';
+                    $("#contentGames").html(linesHTML);
                     //
                 }
             }
         });
-$(this).append('&nbsp;<i id="selected" class="fa fa-check" aria-hidden="true"></i>');
-});
-});
+            $(this).append('&nbsp;<i id="selected" class="fa fa-check" aria-hidden="true"></i>');
+        });
+    });
 </script>
 <!-- SHOPPING CART -->
 <script>

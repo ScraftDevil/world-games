@@ -23,7 +23,7 @@
                                 <?php include("sections/filter.php"); ?>
                             </div>
                         </div>
-                        <div class="col-md-12 col-xs-12">
+                        <div class="col-md-12 col-xs-12" id="contentGames">
                             <?php
                             $onlyOffers = false;
                             include("../view/ShowGames.php");
