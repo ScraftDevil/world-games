@@ -608,11 +608,12 @@ $(document).ready(function() {
             url: "../controller/countGameForPlatform.php",
             dataType: "json",
             success: function (array_json) {
-                var Origin = array_json.numOrigin[0];
-                var Steam = array_json.numSteam[0];
-                var Xbox = array_json.numXbox[0];
-                var PSN = array_json.numPSN[0];
-                printDades(Origin, Steam, Xbox, PSN);
+                var Origin = array_json.quantity;
+                var Steam = array_json[1][1].quantity;
+                var Xbox = array_json[2][1].quantity;
+                var PSN = array_json[3][1].quantity;
+                //alert(Origin + Steam + Xbox + PSN);
+                alert(Origin);
             }
         });
     });
