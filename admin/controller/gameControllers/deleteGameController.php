@@ -7,20 +7,23 @@ if (session_id() == '') {
 
 	
 
-	if (isset($_GET['group']) AND !empty($_GET['group'])) {
-		$group = $_GET['group'];
+	
 		if (isset($_POST['delete']) AND !empty($_POST['delete'])) {
 			$id = $_POST['delete'];
+			$result = deleteGame($id);
+			if($result != -1) {
+				header("Location:../../view/gameViews/gameListView.php?msg=deleteSuccess");
+			} else {
+				header("Location:../../view/gameViews/gameListView.php?msg=deleteFail");
+			}
 		} else {
-			header("Location:../../view/userViews/newUserView.php?group=".$group."&msg=deleteFail");
+			header("Location:../../view/gameViews/gameListView.php?msg=deleteFail");
 		}
-	} else {
-		header("Location:../../index.php");
-	}
+	
 
 	
 
-	function deleteRegistered($id) {
+	function deleteGame($id) {
 		$proces = -1;
 		$db = unserialize($_SESSION['dbconnection']);
 		$proces = $db->deleteGame($id);

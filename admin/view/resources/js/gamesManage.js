@@ -2,6 +2,7 @@ $(document).ready(load);
 
 function load() {
 
+ 
   $("#sumar").click(function() {
     var stock = $("#stock").val();
 
@@ -90,30 +91,8 @@ function changePlatform(elem) {
 
 /// GAMES FORM VALIDATOR
 
+$( document ).ready(function() {
 
-function gameFiledsValidator() {
-  $("#gameinsert").validate({
-    rules: {
-      title: {
-        required: true,
-        maxlength: 25
+ 
 
-      },
-      precio: {
-        required: true,
-        digit: true
-      }
-    },
-    messages: {
-      title: {
-        required: "Pon un titulo porfiii",
-        maxlength: jQuery.validator.format("Tienes que poner menos {0} que noooo")
-
-      },
-      precio: {
-        required: "Los juegos no son gratis ;)",
-        digit: "El precio no son letras -_- "
-      }
-    }
-  });
-}
+});

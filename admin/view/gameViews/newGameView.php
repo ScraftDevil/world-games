@@ -33,15 +33,15 @@
 											<div class="col-md-4">
 												<div id="general-error"></div>
 												<div class="form-group">
-													<label for="Title">Titulo</label><label for="user-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
-													<div class="input-group input-radius">
-													<input type="text" class="form-control" name="title" id="title" placeholder="Titulo" required />
-													</div>
+													<span for="Title">Titulo</span><span > (<span class="glyphicon glyphicon-asterisk"></span>)</span>
+													
+													<input type="text" class="form-control" name="title" id="title" placeholder="Titulo"  />
+													<label class="error">l</label>
 												</div>
 												<div class="form-group">
 													<label for="Precio">Precio</label><label for="password-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
 													<div class="input-group input-radius">
-														<input type="text" class="form-control" id="price" name="precio" placeholder="Precio" required />
+														<input type="text" class="form-control" id="price" name="precio" placeholder="Precio"  />
 													</div>
 												</div>
 

@@ -33,13 +33,14 @@
 			$game->setPlatform($platform);
 			$arrObjGenres = array();
 			for ($i=0; $i < count($genres); $i++) {
-				$genrefromdb = $game->getGenres($genres[$i]);
-				$objGenre = new Genre($genrefromdb[$i][1]);
-				$objGenre->setId($genrefromdb[$i][0]);
+				$genrefromdb = $game->getGenreByID($genres[$i]);
+				foreach ($genrefromdb as $g) {
+					$objGenre = new Genre($g['Name']);
+					$objGenre->setId($g['ID_Genre']);
+				}
 				$arrObjGenres[] = $objGenre;
 			}
 			$game->setGenres($arrObjGenres);
-
 			$proces = $game->insertGame();
 			if(!$proces) {
 				$proces = 0;

@@ -8,20 +8,18 @@ class gameDAO {
         $db = unserialize($_SESSION['dbconnection']);
         $resultat = $db->getLink()->prepare($query);
         
-
-        if($resultat->execute()) {
-
-		$lastid = $db->getLink()->lastInsertId();
-
-		for ($i=0; $i < count($games->getGenres()); $i++) { 
-			$idgenre = $games->getGenres()[$i]->getId();
-		$query2 = "INSERT INTO game_has_genre (Game_ID , Genre_ID) VALUES ($lastid, $idgenre";
-		$result = $db->getLink()->prepare($query2);
-		 $result->execute();
-		}
-		
+        $status = null;
+        $status = $resultat->execute();
+        if($status) {
+			$lastid = $db->getLink()->lastInsertId();
+			for ($i=0; $i < count($games->getGenres()); $i++) {
+				$idgenre = $games->getGenres()[$i]->getId();
+				$query2 = "INSERT INTO game_has_genre (Game_ID , Genre_ID) VALUES ($lastid, $idgenre)";
+				$result = $db->getLink()->prepare($query2);
+				$status = $result->execute();
 			}
-        return $resultat;
+		}
+        return $status;
     }
 
     public function getAllGames($order) {
@@ -55,6 +53,15 @@ public function deleteGame($id) {
 			return $resultat;
 			$_SESSION['dbconnection'] = serialize($shopDb);			
 		}
+	}
+
+	function getGenreByID($idgenre) {
+		$db = unserialize($_SESSION['dbconnection']);
+		$sql = "SELECT ID_Genre, Name FROM genre WHERE ID_Genre = '".$idgenre."'";
+        $stmt = $db->getLink()->prepare($sql); 
+        $stmt->execute();
+        $result = $stmt->FetchAll();
+        return $result;
 	}
 }
 ?>

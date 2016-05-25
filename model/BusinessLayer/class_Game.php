@@ -78,17 +78,14 @@ class Game implements JsonSerializable {
         $GameDao->addGame($title,$price);
     }*/
 
-    public function insertGame() {
+    function insertGame() {
         $GameDao = new gameDAO();
         return  $GameDao->insertGame($this); 
     }
 
-public function getGenre($idgenre) {
-        $sql = "SELECT ID_Genre, Name FROM genre WHERE ID_Genre = $idgenre";
-        $stmt = $this->getLink()->prepare($sql); 
-        $stmt->execute();
-        $result = $stmt->FetchAll();
-        return $result;
+    function getGenreByID($idgenre) {
+        $GameDao = new gameDAO();
+        return  $GameDao->getGenreByID($idgenre);
     }
 
     /*public function addGenre($title,$price) {
