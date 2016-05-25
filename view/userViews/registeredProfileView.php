@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html>
 
-<?php
+    <?php
+    /* codigo php */
 
-/* codigo php */
+    include("../sections/head.php");
 
-include("../sections/head.php");
+    // controladores del perfil de usuario registrado
+    include("../../controller/profileControllers/getRegisteredInfoController.php");
 
-// controladores del perfil de usuario registrado
-include("../../controller/profileControllers/getRegisteredInfoController.php");
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: ../mainViews/home.php");
+    }
 
- //array que contiene los datos del usuario segun el id obtenido después de hacer login
-$registered = getRegisteredInfo($_SESSION['user_id']);
+    //array que contiene los datos del usuario segun el id obtenido después de hacer login
+    $registered = getRegisteredInfo($_SESSION['user_id']);
 
 //Objeto usuario con los datos de la base de datos obtenidos a partir del id del usuario tras hacer login
-$registeredObject = createObjectRegistered($registered);
+    $registeredObject = createObjectRegistered($registered);
 
-$_SESSION['registered'] = serialize($registeredObject);?>    
+    $_SESSION['registered'] = serialize($registeredObject);
+    ?>    
 
     <body>
         <div id="page" class="page">
@@ -54,21 +58,21 @@ $_SESSION['registered'] = serialize($registeredObject);?>
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label">Correo Eletrónico</label>
                                         <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
-                                            <input id="email" class="form-control" type="text" name="email" placeholder="micorreo@ejemplo.com" value="<?php echo $registeredObject->getEmail();?>">
+                                            <input id="email" class="form-control" type="text" name="email" placeholder="micorreo@ejemplo.com" value="<?php echo $registeredObject->getEmail(); ?>">
                                         </div>
                                     </div>
 
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label">Fecha de Nacimiento:</label>
                                         <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
-                                            <input id="calendar" class="form-control" type="text" name="birthdate" placeholder="AAAA-MM-DD" value="<?php echo $registeredObject->getBirthDate();?>">
+                                            <input id="calendar" class="form-control" type="text" name="birthdate" placeholder="AAAA-MM-DD" value="<?php echo $registeredObject->getBirthDate(); ?>">
                                         </div>
                                     </div>
 
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label">Cuenta PayPal:</label>
                                         <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
-                                            <input id="paypal" class="form-control" type="text" name="paypal" placeholder="micorreoPayPal@ejemplo.com" value="<?php echo $registeredObject->getPaypalAccount();?>">
+                                            <input id="paypal" class="form-control" type="text" name="paypal" placeholder="micorreoPayPal@ejemplo.com" value="<?php echo $registeredObject->getPaypalAccount(); ?>">
                                         </div>
                                     </div>
 
@@ -103,7 +107,7 @@ $_SESSION['registered'] = serialize($registeredObject);?>
                                 <div class="col-lg-12" id="userShoppings">
                                     Lista de compras
                                 </div>
-                                
+
 
                                 <!-- Mis Mensajes -->
                                 <div id="messages" class="desplegableProfile col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -135,11 +139,11 @@ $_SESSION['registered'] = serialize($registeredObject);?>
                                     <div class="col-lg-12" id="configuracionUsuario">
                                         <p>Marca la siguiente casilla para indicar que quieres eliminar tu cuenta para siempre. Después, pulsa el boton Eliminar</p>
                                         <input id="checkbox" type="checkbox" name="deleteCheckBox">
-                                    Quiero eliminar mi cuenta de usuario
-                                    <button type="button" id="delete-registered" name="delete" class="btn-danger pull-right btn form-button">
+                                        Quiero eliminar mi cuenta de usuario
+                                        <button type="button" id="delete-registered" name="delete" class="btn-danger pull-right btn form-button">
                                             <span class="glyphicon glyphicon-trash"></span>
                                             Eliminar
-                                    </button>
+                                        </button>
                                     </div>
                                 </form>
                             </div>
@@ -147,7 +151,9 @@ $_SESSION['registered'] = serialize($registeredObject);?>
                     </div>
                 </div>
             </section>
-            <?php include("../sections/footer.php"); 
-        ?>
+            <footer>
+                <?php include("../sections/footer.php"); ?>
+                <script type="text/javascript" src="../resources/js/userProfile.js"></script>
+            </footer>
     </body>
 </html>

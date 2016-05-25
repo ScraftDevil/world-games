@@ -70,7 +70,7 @@ function updateUser(registered) {
     var registered = JSON.stringify(registered);
     $.ajax({
         data: "registered=" + registered,
-        url: '../controller/profileControllers/updateRegisteredController.php',   
+        url: '../../controller/profileControllers/updateRegisteredController.php',   
         type: 'POST',
         dataType: 'json',
         success: getUpdateResponseMessage
@@ -93,7 +93,7 @@ function sendMessage(infoMessage) {
 
     $.ajax({
         data: "infoMessage=" + infoMessage,
-        url: '../controller/privateMessageControllers/sendPrivateMessageController.php',
+        url: '../../controller/privateMessageControllers/sendPrivateMessageController.php',
         type: 'POST',
         dataType: 'json',
         success: getSendMessageResponse
@@ -120,7 +120,7 @@ function getSendMessageResponse(data) {
 /* Get private messages jquery / ajax function */
 function getPrivateMessages() {
     $.ajax ({
-        url: "../controller/privateMessageControllers/getPrivateMessagesController.php",
+        url: "../../controller/privateMessageControllers/getPrivateMessagesController.php",
         type: "POST",
         success: function(messages) {
             $("#privateMessages").html(messages);

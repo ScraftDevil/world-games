@@ -4,7 +4,7 @@
 <?php
 
 /* codigo php */
-include("sections/head.php");
+include("../sections/head.php");
 
 if (isset($_GET['receiverName']) && $_GET['receiverName'] != "") {
     $receiverName = $_GET['receiverName'];
@@ -16,7 +16,7 @@ else {
 ?>
     <body>
         <div id="page" class="page">
-            <?php include("sections/nav.php"); ?>
+            <?php include("../sections/nav.php"); ?>
             <section class="content-block gallery-1">
                 <div class="container">
                     <div class="underlined-title">
@@ -57,7 +57,9 @@ else {
                     </div>
                 </div>
             </section>
-            <?php include("sections/footer.php"); 
-        ?>
+            <footer>
+                <?php include("../sections/footer.php"); ?>
+                <script type="text/javascript" src="../resources/js/userProfile.js"></script>
+            </footer>
     </body>
 </html>

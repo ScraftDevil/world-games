@@ -3,16 +3,16 @@
 
 <?php
 
-if (isset($_SESSION['user_id'])) {
+    include("../sections/head.php");
 
-/* codigo php */
-
-include("sections/head.php");
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: ../mainViews/home.php");
+    }
 
 ?>
     <body>
         <div id="page" class="page">
-            <?php include("sections/nav.php"); ?>
+            <?php include("../sections/nav.php"); ?>
             <section class="content-block gallery-1">
                 <div class="container">
                     <div class="underlined-title">
@@ -50,14 +50,9 @@ include("sections/head.php");
                     </div>
                 </div>
             </section>
-            <?php include("sections/footer.php"); 
-        ?>
+            <footer>
+                <?php include("../sections/footer.php"); ?>
+                <script type="text/javascript" src="../resources/js/userProfile.js"></script>
+            </footer>
     </body>
-
-    <?php 
-
-} else {
-    header("Location: home.php");
-} ?>
-
 </html>

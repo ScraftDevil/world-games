@@ -33,7 +33,6 @@
 <script type="text/javascript" src="../resources/js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="../resources/js/jquery-ui.js"></script>
 <script type="text/javascript" src="../resources/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../resources/js/userProfile.js"></script>
 <script type="text/javascript" src="../resources/js/calendar.js"></script>
 <script type="text/javascript" src="../resources/js/js.cookie.js"></script>
 <script type="text/javascript" src="../resources/js/jqueryscrollTo.js"></script>

@@ -20,8 +20,7 @@ $errors = sendMessageValidation($receiverName, $message);
 
 		$myMessage = new Message($message, "", $myId, "");
 		$shopDb = unserialize($_SESSION['dbconnection']);
-		$response = $shopDb->sendPrivateMessage($myMessage, $receiverName);		
-
+		$response = $shopDb->sendPrivateMessage($myMessage, $receiverName);
 	}
 	else {
 		$response = "error";		
