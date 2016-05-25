@@ -3,13 +3,13 @@ $gameid = $_GET['gameid'];
 if (isset($_SESSION['user_id'])) {
   $userid = $_SESSION['user_id'];
 }
-include_once("../controller/controllerCalculateDiscount.php");
-include_once("../controller/controllerShowGameDetails.php");
+include_once("../../controller/gameControllers/calculateDiscountController.php");
+include_once("../../controller/gameControllers/showGameDetailsController.php");
 function printGame($game) {
     //Validate if image exist
-  $imgURL = "images/games/".$game->getId().".png";
+  $imgURL = "../resources/images/games/".$game->getId().".png";
   if (!file_exists($imgURL)) {
-    $imgURL = "images/games/noimage.png";
+    $imgURL = "../resources/images/games/noimage.png";
   }
   ?>
   <div class="col-lg-8 col-md-offset-2 col-md-offset-2 col-md-8 col-sm-12 col-xs-12 " >

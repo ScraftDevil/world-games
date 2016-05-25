@@ -371,5 +371,10 @@ public function getAllMessages($order) {
 		$complaintDAO = new complaintDAO();
 		$complaintDAO->setComplaintRead($id, $read);
 	}
+
+	public function getGameComments($id) {
+		$commentDAO = new commentDAO();
+		return $commentDAO->getGameComments($id);
+	}
 }
 ?>

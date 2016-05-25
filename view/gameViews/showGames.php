@@ -1,6 +1,6 @@
 ﻿<?php
-include_once("../controller/controllerCalculateDiscount.php");
-include_once("../controller/controllerShowGames.php");
+include_once("../../controller/gameControllers/calculateDiscountController.php");
+include_once("../../controller/gameControllers/showGamesController.php");
 function showGames($list, $onlyOffers) {
     $n = 0;
     for ($i = 0; $i < count($list); $i++) {
@@ -30,9 +30,9 @@ function printGame($game) {
     </style>
     <?php
     //Validate if image exist
-    $imgURL = "images/games/".$game->getId().".png";
+    $imgURL = "../resources/images/games/".$game->getId().".png";
     if (!file_exists($imgURL)) {
-        $imgURL = "images/games/noimage.png";
+        $imgURL = "../resources/images/games/noimage.png";
     }
     ?>
     <div class="col-md-3 col-sm-6 col-xs-12">
@@ -40,7 +40,7 @@ function printGame($game) {
             <div class="gallery-thumb" title="<?php echo $game->getTitle() ?>">
                 <img src="<?php echo $imgURL; ?>" width="800px" height="600px" class="img-responsive" alt="<?php echo $game->getTitle() ?>">
                 <div class="image-overlay"></div>
-                <a href="detailsProduct.php?gameid=<?php echo $game->getID();?>" class="gallery-zoom"><i class="fa fa-eye"></i></a>
+                <a href="../gameViews/gameDetailsView.php?gameid=<?php echo $game->getID();?>" class="gallery-zoom"><i class="fa fa-eye"></i></a>
                 <a href="#" class="gallery-link buyItem"><i class="fa fa-shopping-cart"></i></a>
             </div>
             <div class="gallery-details">

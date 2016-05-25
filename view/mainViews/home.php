@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
     <?php
-    include("sections/head.php");
+    include("../sections/head.php");
     ?>
     <body>
         <div id="page" class="page">
             <?php
-            include("sections/nav.php");
+            include("../sections/nav.php");
 
             if (isset($_GET['msg']) && $_GET['msg']=="ACCOUNT_DELETED") {
                 ?>
-                <script type="text/javascript" src="js/redirection.js"></script>
+                <script type="text/javascript" src="../resources/js/redirection.js"></script>
                 <div class="delete-success">¡Tu usuario ha sido eliminado correctamente!<br>
                     Serás redirigido a la página principal en <span id="contenedor"><?php "<script>tiempo()</script>" ?></span> segundos.</div> <?php
             }
@@ -33,7 +33,7 @@
                         <div id="isotope-gallery-container">
                             <?php
                             $onlyOffers = true;
-                            include("../view/ShowGames.php");
+                            include("../gameViews/showGames.php");
                             ?>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
             </section>
             <?php
         }
-            include("sections/footer.php");
+            include("../sections/footer.php");
             ?>
         </div>
     </body>

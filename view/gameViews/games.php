@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
     <?php
-    include("sections/head.php");
+    include("../sections/head.php");
     ?>
     <body>
         <div id="page" class="page">
             <?php
-            include("sections/nav.php");
+            include("../sections/nav.php");
             ?>
             <section>
                 <div class="container">
@@ -20,20 +20,20 @@
                             <hr>
                             <div>
                                 <h2>Filtra por Genero o Plataforma si lo deseas</h2>
-                                <?php include("sections/filter.php"); ?>
+                                <?php include("../sections/filter.php"); ?>
                             </div>
                         </div>
                         <div class="col-md-12 col-xs-12" id="contentGames">
                             <?php
                             $onlyOffers = false;
-                            include("../view/ShowGames.php");
+                            include("showGames.php");
                             ?>
                         </div>
                     </div>
                 </div>
             </section>
             <?php
-            include("sections/footer.php");
+            include("../sections/footer.php");
             ?>
         </div>
     </body>

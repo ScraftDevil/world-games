@@ -5,13 +5,13 @@ function printMessages($list) {
 		echo '<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">';
 		if (!empty($list[$i]['AvatarURL'])) {
 			//exist avatar = images/avatars/userid/avatarurl
-			$imgURL = "images/avatars/".$list[$i]['UserID']."/".$list[$i]['AvatarURL'];
+			$imgURL = "../resources/images/avatars/".$list[$i]['UserID']."/".$list[$i]['AvatarURL'];
 		} else {
 			//default avatar = images/avatars/userid/userid.png
-			$imgURL = "images/avatars/".$list[$i]['UserID']."/".$list[$i]['UserID'].".png";
+			$imgURL = "../resources/images/avatars/".$list[$i]['UserID']."/".$list[$i]['UserID'].".png";
 		}
 		if(!file_exists($_SESSION['BASE_PATH']."/view/".$imgURL)) {
-			$imgURL = "images/avatars/default.png";
+			$imgURL = "../resources/images/avatars/default.png";
 		}
 		echo ' <img class ="img-responsive " src="'.$imgURL.'">';
 		echo '</div >';

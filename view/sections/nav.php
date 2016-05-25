@@ -8,15 +8,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="../"><img src="images/logo.png" class="brand-img img-responsive"></a>
+                <a href="../mainViews/home.php"><img src="../resources/images/logo.png" class="brand-img img-responsive"></a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <?php
                     $page = str_replace(".php", "", basename($_SERVER['PHP_SELF']));
                     ?>
-                    <li class="<?php if ($page=="home") { echo 'active ';}?>nav-item"><a href="home.php"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;Inicio</a></li>
-                    <li class="<?php if ($page=="games") { echo 'active ';}?>nav-item"><a href="games.php"><i class="fa fa-gamepad" aria-hidden="true"></i>&nbsp;Juegos</a></li>
+                    <li class="<?php if ($page=="home") { echo 'active ';}?>nav-item"><a href="../mainViews/home.php"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;Inicio</a></li>
+                    <li class="<?php if ($page=="games") { echo 'active ';}?>nav-item"><a href="../gameViews/games.php"><i class="fa fa-gamepad" aria-hidden="true"></i>&nbsp;Juegos</a></li>
                     <!-- SHOPPING CART -->
                     <li class="nav-item dropdown" id="shoppingCartBtn">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" role="button"> <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Carrito&nbsp;<span class="badge" id="countShoppingCart"></span><span class="caret"></span></a>
@@ -33,14 +33,14 @@
 
                         if (!isset($_SESSION['frontAuth'])) {
                             ?>
-                            <li class="<?php if ($page=="login") { echo 'active ';}?>nav-item"><a href="login.php"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;Entrar</a></li>
+                            <li class="<?php if ($page=="login") { echo 'active ';}?>nav-item"><a href="../userViews/login.php"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;Entrar</a></li>
                             <?php
                         } else {
                             ?>
                             <li class="nav-item dropdown">
 		                        <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" href="#">Mi Cuenta <i class="fa fa-angle-down"></i></a>
 		                        <ul class="dropdown-menu">
-		                            <li><a href="registeredProfileView.php">Mi Perfil</a></li>
+		                            <li><a href="../userViews/registeredProfileView.php">Mi Perfil</a></li>
 		                            <li><a id="logout" href="#">Salir</a></li>
 		                        </ul>
 		                    </li>

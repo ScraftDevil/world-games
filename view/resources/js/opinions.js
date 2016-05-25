@@ -3,7 +3,7 @@ setInterval(ajaxCall, 2000);
 function ajaxCall() {
     $.ajax({
       type: "POST",
-      url: "../controller/opinions/getOpinionsController.php",
+      url: "../../controller/gameControllers/getOpinionsController.php",
       data:         
       {
       "gameid":getterURL('gameid')
@@ -29,7 +29,7 @@ $("#sendOpinion").click(function (){
     var comment = $("#comment").val();
       $.ajax({
         type: "POST",
-        url: "../controller/opinions/insertOpinionController.php",
+        url: "../../controller/gameControllers/insertOpinionController.php",
         data:         
         {
           "comment":comment,

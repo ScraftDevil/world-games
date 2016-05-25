@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("../model/autoload.php");
+require_once("../../model/autoload.php");
 $shop = unserialize($_SESSION['shop']);
 $shop->populateShop();
 if (isset($_POST['genre'])) {

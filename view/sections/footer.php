@@ -1,7 +1,7 @@
 <section class="content-block-nopad bg-deepocean">
     <div class="container footer">
         <div class="col-md-4 pull-left">
-            <img src="images/logoFooter.png" class="brand-img img-responsive">
+            <img src="../resources/images/logoFooter.png" class="brand-img img-responsive">
             <ul class="social social-light">
                 <li><a href="#"><i class="fa fa-2x fa-facebook"></i></a></li>
                 <li><a href="#"><i class="fa fa-2x fa-twitter"></i></a></li>
@@ -30,20 +30,20 @@
         </div>
     </div>
 </section>
-<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="js/jquery-ui.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/userProfile.js"></script>
-<script type="text/javascript" src="js/calendar.js"></script>
-<script type="text/javascript" src="js/js.cookie.js"></script>
-<script type="text/javascript" src="js/jqueryscrollTo.js"></script>
-<script type="text/javascript" src="js/scrollTogeneric.js"></script>
-<script type="text/javascript" src="js/jquery.validate.min.js"></script>
-<script type="text/javascript" src="js/loginuserFunction.js"></script>
+<script type="text/javascript" src="../resources/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../resources/js/jquery-ui.js"></script>
+<script type="text/javascript" src="../resources/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../resources/js/userProfile.js"></script>
+<script type="text/javascript" src="../resources/js/calendar.js"></script>
+<script type="text/javascript" src="../resources/js/js.cookie.js"></script>
+<script type="text/javascript" src="../resources/js/jqueryscrollTo.js"></script>
+<script type="text/javascript" src="../resources/js/scrollTogeneric.js"></script>
+<script type="text/javascript" src="../resources/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="../resources/js/loginuserFunction.js"></script>
 <?php
-if (basename($_SERVER['PHP_SELF'])=="detailsProduct.php") {
-    echo '<script type="text/javascript" src="js/opinions.js"></script>';
-    echo '<script src="js/rating.js" type="text/javascript" language="javascript"></script>';
+if (basename($_SERVER['PHP_SELF'])=="gameDetailsView.php") {
+    echo '<script type="text/javascript" src="../resources/js/opinions.js"></script>';
+    echo '<script src="../resources/js/rating.js" type="text/javascript" language="javascript"></script>';
 }
 ?>
 <!--[if lt IE 9]><script src="js/html5shiv.js"></script><script src="js/respond.min.js"></script><![endif]-->
@@ -173,7 +173,7 @@ function search() {
     };
     $.ajax({
         data:  params,
-        url:   '../controller/controllerSearch.php',
+        url:   '../../controller/gameControllers/searchGameController.php',
         type:  'POST',
         beforeSend: function () {
             $("#result").html("Procesando, espere por favor...");
@@ -215,7 +215,7 @@ function search() {
             var params = {"username" : $("#username").val(), "password" : $("#password").val()};
             $.ajax({
                 data:  params,
-                url:   '../controller/controllerLogin.php',
+                url:   '../../controller/userControllers/loginController.php',
                 type:  'POST',
                 dataType: 'json',
                 success:  function (data) {
@@ -237,7 +237,7 @@ function search() {
     //Función jQuery - Ajax para hacer Logout
     $("#logout").on("click", function () {
         $.ajax({
-            url:   '../controller/controllerLogout.php',
+            url:   '../../controller/userControllers/logoutController.php',
             type:  'POST',
             success:  function (response) {
                     //Pendiente: Añadir mensaje cuando haga logout
@@ -265,7 +265,7 @@ function search() {
             var params = {"genre" : $(this).attr("id")};
             $.ajax({
                 data: params,
-                url:   '../controller/controllerFilterGames.php',
+                url:   '../../controller/gameControllers/filterGamesController.php',
                 type:  'POST',
                 typeData: 'json',
                 success:  function (json) {
@@ -310,7 +310,7 @@ function search() {
             var params = {"platform" : $(this).attr("id")};
             $.ajax({
                 data: params,
-                url:   '../controller/controllerFilterGames.php',
+                url:   '../../controller/gameControllers/filterGamesController.php',
                 type:  'POST',
                 typeData: 'json',
                 success:  function (json) {
@@ -595,46 +595,4 @@ $(document).ready(function() {
   } 
   return variable;
 }
-</script>
-
-<!-- ESTADÍSTICAS -->
-<script type="text/javascript">
-
-    /* Obtener estadísticas de cantidad de juegos por plataforma */
-    $(document).ready(function() {
-        $.ajax({
-            method: "GET",
-            url: "../controller/countGameForPlatform.php",
-            dataType: "json",
-            success: function (array_json) {
-                var Origin = array_json[0].quantity;
-                var Steam = array_json[1].quantity;
-                var Xbox = array_json[2].quantity;
-                var PSN = array_json[3].quantity;
-                printDades(Origin, Steam, Xbox, PSN);
-            }
-        });
-    });
-
-    /* Funcion de respuesta de obtener estadísticas de cantidad de juegos por plataforma */
-    function printDades(Origin, Steam, Xbox, PSN) {
-
-        var chart = new CanvasJS.Chart("chartContainer", {
-        theme: "theme2", //theme1
-        title: {
-            text: "Número de Juegos"},
-        animationEnabled: true, // change to true
-        data: [{
-        // Change type to "bar", "area", "spline", "pie",etc.
-        type: "pie",
-        dataPoints: [
-        {label: "Origin", y: parseInt(Origin)},
-        {label: "Steam", y: parseInt(Steam)},
-        {label: "Xbox", y: parseInt(Xbox)},
-        {label: "PSN", y: parseInt(PSN)}
-        ]
-    }]
-});
-        chart.render();
-    }
 </script>

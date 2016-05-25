@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <?php
-include("sections/head.php");
+include("../sections/head.php");
 ?>
 <body>
 	<div id="page" class="page">
 		<?php
-		include("sections/nav.php");
+		include("../sections/nav.php");
 		?>
 		<section>
 			<div class="container">
@@ -20,14 +20,14 @@ include("sections/head.php");
 						<hr>
 					</div>
 					<?php
-					include("../view/showDetailGame.php");
+					include("showGameDetails.php");
 					?>
 
 				</div>
 			</div>
 		</section>
 		<?php
-		include("sections/footer.php");
+		include("../sections/footer.php");
 		?>
 	</div>
 </body>
