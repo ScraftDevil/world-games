@@ -31,8 +31,13 @@ Gestion de comentarios de juegos => SEGURAMENTE NO HAY TIEMPO
 Como usar el UPLOADER BY DARKFOX [CristianO]
 Se debe incluir en el formulario PHP lo siguiente:
 ##################################################################
+
 $uploadText['text'] = "Subir Imagen de Juego"; //Texto a mostrar como label antes del boton
+
 $uploadText['textUploadBtn'] = "Elegir imagen"; //Texto a mostrar en el boton
+
 $pathUpload = "../../../view/resources/images/avatars/".$id."/"; //ruta relativa a la ruta del uploader para guardar la imagen
+
 include("../../../view/sections/uploader/showUploadView.php");//Ruta para incluir el form uploader
+
 ##################################################################
