@@ -13,5 +13,5 @@ if (!isset($_SESSION['shop'])) {
 	$shop = unserialize($_SESSION['shop']);
 }
 
-header("Location:view/home.php");
+header("Location:view/mainViews/home.php");
 ?>
