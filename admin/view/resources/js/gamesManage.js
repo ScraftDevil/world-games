@@ -2,6 +2,7 @@ $(document).ready(load);
 
 function load() {
 
+
  
   $("#sumar").click(function() {
     var stock = $("#stock").val();
@@ -91,8 +92,3 @@ function changePlatform(elem) {
 
 /// GAMES FORM VALIDATOR
 
-$( document ).ready(function() {
-
- 
-
-});
