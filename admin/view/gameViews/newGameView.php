@@ -1,20 +1,15 @@
 <!DOCTYPE html>
 <html>
 	<?php
-
 		include("../../controller/adminAuthControllers/authController.php");
 		if (!checkAuth()) {
 			header("Location:../mainViews/adminLoginView.php");
 		}
-
-		include("../sections/head.php"); 
-
+		include("../sections/head.php");
 	?>
 <body>
 	<?php
-
-		include("../sections/header.php"); 
-
+		include("../sections/header.php");
 	?>
 	<div class="container-fluid">
 		<div class="row row-admin">
@@ -44,27 +39,17 @@
 														<input type="text" class="form-control" id="price" name="precio" placeholder="Precio"  />
 													</div>
 												</div>
-
 												<div class="form-group  ">
 												<label for="plataform">Stock</label>
-													
-														
 														<input disabled type="number" class="form-control stockgame" id="stock" name="stock" value="0" />
 														<button type="button" name="sumar" id="sumar" class="btn btn-info pull-left marginstock">Incrementar Stock</button>
 														<button type="button" name="restar" id="restar" class="btn btn-info  marginstock">Decrementar Stock</button>
-													
-												
 												</div>
 
 												<div class="form-group widthselect">
 												<label for="plataform">Genero</label><label for="country-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
-													
-														
 														<?php include("../sections/genreList.php"); ?><span class="server-error"></span>
-													
-												
-												</div>
-																							
+												</div>									
 												<div class="form-group">
 													<label for="plataform">Plataforma</label><label for="country-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
 													<?php include("../sections/platformList.php"); ?><span class="server-error"></span>
