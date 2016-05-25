@@ -354,11 +354,3 @@ ul.dropdown-cart li .item-right button{
     margin-right: auto;
     margin-left: auto;
 }
-
-/* Gráfico de estadísticas */
-#chartContainer {
-    width: 650px;
-    height: 300px;
-    margin: 0 auto;
-}
-
