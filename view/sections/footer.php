@@ -39,7 +39,6 @@
 <script type="text/javascript" src="js/jqueryscrollTo.js"></script>
 <script type="text/javascript" src="js/scrollTogeneric.js"></script>
 <script type="text/javascript" src="js/jquery.validate.min.js"></script>
-<script type="text/javascript" src="js/canvasjs.min.js"></script>
 <script type="text/javascript" src="js/loginuserFunction.js"></script>
 <?php
 if (basename($_SERVER['PHP_SELF'])=="detailsProduct.php") {

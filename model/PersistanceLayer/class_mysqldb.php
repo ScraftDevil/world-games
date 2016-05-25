@@ -299,6 +299,23 @@ public function getAllMessages($order) {
 		}
 	}
 
+	//Consulta para obtener la cantidad de usuarios administrator, professional y registered
+	public function countUsersForType() {
+
+		try {
+			$query = ("SELECT count(*) AS 'Admin', (SELECT count(*) FROM professional) AS 'Professional', 
+				(SELECT count(*) FROM registered) AS 'Registered' FROM administrator;");
+			$resultat = $this->getLink()->prepare($query);
+			$resultat->execute();
+			$result = $resultat->FetchAll();
+		} catch(PDOException $ex) {
+			echo "An Error ocurred!";
+			some_loggging_function($ex->getMessage());
+		} finally {
+			return $result;		
+		}
+	}
+
 	public function getReport($id_user, $id_report, $group) {
 		$reportDAO = new reportDAO();
 		switch($group) {

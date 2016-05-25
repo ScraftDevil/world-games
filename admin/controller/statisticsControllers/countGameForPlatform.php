@@ -6,7 +6,7 @@
 
 	$shopDb = unserialize($_SESSION['dbconnection']);
 
-	//
+	//Lista de las plataformas
 	$platforms = $shopDb->getPlatformNames();
 
 	//Consulta para obtener la cantidad de juegos por plataforma
