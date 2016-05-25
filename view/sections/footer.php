@@ -411,8 +411,9 @@ function search() {
                 $("#countShoppingCart").text(nitems);
             } else {
                 newGame = false;
-                $("#Product"+id).find(".quantity").text("x"+game.quantity);
-                $("#Product"+id).find(".price").text((parseFloat(price)*parseFloat(game.quantity))+" €");
+                quantitygame = parseInt(game.quantity);
+                $("#Product"+id).find(".item-info span:eq(1)").text("x"+(quantitygame));
+                $("#Product"+id).find(".item-info span:eq(2)").text((parseFloat(price)*parseFloat(game.quantity))+" €");
             }
             Cookies.set('shoppingCart', items, { expires: 1 });
             updateTotalShopping(Cookies.getJSON('shoppingCart'));
