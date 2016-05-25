@@ -3,6 +3,8 @@
 
 <?php
 
+if (isset($_SESSION['user_id'])) {
+
 /* codigo php */
 
 include("sections/head.php");
@@ -51,4 +53,11 @@ include("sections/head.php");
             <?php include("sections/footer.php"); 
         ?>
     </body>
+
+    <?php 
+
+} else {
+    header("Location: home.php");
+} ?>
+
 </html>
