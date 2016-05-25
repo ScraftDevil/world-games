@@ -92,7 +92,7 @@
 
                                                         <div class="form-group">
 
-                                                            <?php include("../view/sections/countryList2.php"); ?>
+                                                            <?php include("../sections/countryList2.php"); ?>
                                                         </div>
 
                                                         <div class="form-group">

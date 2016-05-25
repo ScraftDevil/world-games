@@ -36,8 +36,8 @@ input.error,textarea.error {
 }
 
 label.error{
-    
-    margin-left: 10px;
+    display: block;
+   color: blue;
     
 }
 
