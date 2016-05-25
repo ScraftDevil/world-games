@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-05-2016 a las 14:36:00
+-- Tiempo de generación: 25-05-2016 a las 16:41:00
 -- Versión del servidor: 5.6.26
 -- Versión de PHP: 5.5.28
 
@@ -73,18 +73,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `Game_ID` int(11) NOT NULL,
   `Text` text,
   `Date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `comment`
---
-
-INSERT INTO `comment` (`ID_Comment`, `Game_ID`, `Text`, `Date`) VALUES
-(1, 2, 'Este juego esta jevi', '2016-05-21 13:46:19'),
-(2, 1, 'No se si sera igual que el de la playstation 3, pero me arriesgo, yolo!', '2016-05-21 13:47:48'),
-(3, 2, 'Prefiero piratearlo, pero da igual, me lo compro.', '2016-05-21 13:48:24'),
-(4, 2, 'Este juego no es legible... No tiene lÃ³gica pero me da igual!', '2016-05-21 13:53:06'),
-(5, 1, 'En este juego hay perras alemanas como yo, me gusta!', '2016-05-21 13:54:09');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -253,15 +242,7 @@ CREATE TABLE IF NOT EXISTS `message` (
   `ID_Message` int(11) NOT NULL,
   `Content` text,
   `Date` datetime DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `message`
---
-
-INSERT INTO `message` (`ID_Message`, `Content`, `Date`) VALUES
-(1, 'abcd', '2016-05-22 00:00:00'),
-(2, 'efgh', '2016-05-22 00:00:00');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -377,17 +358,6 @@ CREATE TABLE IF NOT EXISTS `registered_has_comment` (
   `Comment_ID` int(11) NOT NULL,
   `Game_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `registered_has_comment`
---
-
-INSERT INTO `registered_has_comment` (`Registered_ID`, `Comment_ID`, `Game_ID`) VALUES
-(1, 1, 2),
-(2, 2, 1),
-(2, 3, 2),
-(3, 4, 2),
-(3, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -682,7 +652,7 @@ ALTER TABLE `administrator_has_report`
 -- AUTO_INCREMENT de la tabla `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `ID_Comment` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `ID_Comment` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `complaint`
 --
@@ -707,7 +677,7 @@ ALTER TABLE `genre`
 -- AUTO_INCREMENT de la tabla `message`
 --
 ALTER TABLE `message`
-  MODIFY `ID_Message` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `ID_Message` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `offer`
 --
@@ -833,7 +803,7 @@ ALTER TABLE `registered`
 -- Filtros para la tabla `registered_has_comment`
 --
 ALTER TABLE `registered_has_comment`
-  ADD CONSTRAINT `fk_Registered_has_Comment_Comment1` FOREIGN KEY (`Comment_ID`) REFERENCES `comment` (`ID_Comment`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Registered_has_Comment_Comment1` FOREIGN KEY (`Comment_ID`) REFERENCES `comment` (`ID_Comment`) ON DELETE CASCADE ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Registered_has_Comment_Game1` FOREIGN KEY (`Game_ID`) REFERENCES `game` (`ID_Game`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Registered_has_Comment_Registered1` FOREIGN KEY (`Registered_ID`) REFERENCES `registered` (`ID_Registered`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
