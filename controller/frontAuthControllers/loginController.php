@@ -1,6 +1,6 @@
 <?php
 
-	require_once("../model/autoload.php");
+	require_once("../../model/autoload.php");
 
 	if (session_id() == '') {
 	    session_start();

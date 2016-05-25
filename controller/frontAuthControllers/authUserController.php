@@ -1,6 +1,6 @@
 <?php
 
-	require_once("../model/autoload.php");
+	require_once("../../model/autoload.php");
 
 	if (session_id() == '') {
 	    session_start();
@@ -16,7 +16,7 @@
 			$_SESSION['frontAuth'] = json_encode($user);
 			header("Location: ../index.php");
 		} else {
-			header("Location: ../view/login.php?MSGCODE=invalid_pass");
+			header("Location: ../../view/frontAuthViews/login.php?MSGCODE=invalid_pass");
 		}		
 	}
 

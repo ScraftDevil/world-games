@@ -5,10 +5,10 @@
 
 /* codigo php */
 
-include("sections/head.php");
+include("../sections/head.php");
 
 // controladores del perfil de usuario registrado
-include("../controller/profileControllers/getRegisteredInfoController.php");
+include("../../controller/profileControllers/getRegisteredInfoController.php");
 
  //array que contiene los datos del usuario segun el id obtenido después de hacer login
 $registered = getRegisteredInfo($_SESSION['user_id']);
@@ -20,7 +20,7 @@ $_SESSION['registered'] = serialize($registeredObject);?>
 
     <body>
         <div id="page" class="page">
-            <?php include("sections/nav.php"); ?>
+            <?php include("../sections/nav.php"); ?>
             <section class="content-block gallery-1">
                 <div class="container">
                     <div class="underlined-title">
@@ -147,7 +147,7 @@ $_SESSION['registered'] = serialize($registeredObject);?>
                     </div>
                 </div>
             </section>
-            <?php include("sections/footer.php"); 
+            <?php include("../sections/footer.php"); 
         ?>
     </body>
 </html>

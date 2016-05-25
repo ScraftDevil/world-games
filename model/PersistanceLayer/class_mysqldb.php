@@ -376,5 +376,15 @@ public function getAllMessages($order) {
 		$commentDAO = new commentDAO();
 		return $commentDAO->getGameComments($id);
 	}
+
+	public function getGameValoration($id) {
+		$valorationDAO = new valorationDAO();
+		return $valorationDAO->getGameValoration($id);
+	}
+
+	public function userInsertValoration($userid, $gameid, $rate) {
+		$valorationDAO = new valorationDAO();
+		return $valorationDAO->userInsertValoration($userid, $gameid, $rate);
+	}
 }
 ?>
