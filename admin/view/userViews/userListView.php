@@ -11,27 +11,29 @@
 		}
 		include("../sections/head.php"); 
 
-		$group = null;
+		$users = null;
 		$label = null;
 
 		if(isset($_GET['group'])) {
 			switch ($_GET['group'])  {
 				case "administrator": {
 					$label = 'Administradores';
-					$group = 'administrator';
+					$users = 'administrator';
 					break;
 				}
 				case "professional": {
 					$label ='Profesionales';
-					$group = 'professional';
+					$users = 'professional';
 					break;
 				}
 				case "registered": {
 					$label = 'Registrados';
-					$group = 'registered';
+					$users = 'registered';
 					break;
 				}
 			}
+		} else {
+			header("Location:../index.php");
 		}
 
 		if(isset($_GET['msg']) AND !empty($_GET['msg'])) {
@@ -106,7 +108,7 @@
 											    <li><a href="userListView.php?group=administrator">Administradores</a></li>
 											  </ul>
 											</div>
-											<button type="button" class="btn btn-success"><a href="newUserView.php?group=<?php echo $group; ?>"><i class="fa fa-user" aria-hidden="true"></i> Nuevo Usuario</a></button>
+											<button type="button" class="btn btn-success"><a href="newUserView.php?group=<?php echo $users; ?>"><i class="fa fa-user" aria-hidden="true"></i> Nuevo Usuario</a></button>
 										</div>
 										<?php
 											include("../../controller/userControllers/showUsersController.php");

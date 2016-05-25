@@ -57,8 +57,12 @@ function sendUser(user) {
 // INSERT USER AJAX RESPONSE
 function getInsertUserProcess(data) {
   switch(data.id) {
-    case "null-error":
+        case "null-error":
             $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en la validación de datos del usuario!</strong></div>");
+        break;
+
+        case "invalid-fields":
+          $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Uno o más de los campos tienen un formato incorrecto!</strong></div>");
         break;
 
         case "success":

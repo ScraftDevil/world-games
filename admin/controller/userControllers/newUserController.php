@@ -59,7 +59,12 @@
 		if ($username != "" AND $password != "" AND $email != "" AND $birthdate != "" AND $country != "") {
 				$birthdate = date('Y-m-d', strtotime($birthdate));
 				$registered = new Registered($username, $password, $email, $birthdate, $country);
-				$proces = $registered->insertRegistered();
+				$errors = validateEmail($email);
+				if ($errors == true) {
+					$proces = $registered->insertRegistered();
+				} else {
+					$proces = "invalid-fields";
+				}
 		} else {
 			$proces = "null";
 		}
@@ -98,6 +103,14 @@
 		return $proces;
 	}
 
+	function validateRegisteredFields($registered) {
+		$errors = 0;
+		if (validateEmail($registered->getEmail() == false)) {
+			$errors = $errors + 1;
+		}
+		return $errors;
+	}
+
 	function validateDateFormat($date) {
 
 		$correct = false;
@@ -106,7 +119,7 @@
 		$dateSintax = '/[0-9]{2}\-[0-9]{2}\-[0-9]{4}/';
 
 
-		if (preg_match($dateSintax, $date)) {
+		if (preg_match($dateSintax, $date) == 1) {
 			$correct = true;
 		}
 
@@ -118,9 +131,9 @@
 		$correct = false;
 
 		/* Email regular expression */
-		$emailSintax = '/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/';
+		$emailSintax = '/@.+\./';
 
-		if (preg_match($emailSintax, $email)) {
+		if (preg_match($emailSintax, $email) == 1) {
 			$correct = true;
 		}
 
@@ -144,6 +157,10 @@
 
 			case "null":
 			$response = array("id" => "null-error", "group" => $group);
+			break;
+
+			case "invalid-fields":
+			$response = array("id" => "invalid-fields", "group" => $group);
 			break;
 
 			default:
