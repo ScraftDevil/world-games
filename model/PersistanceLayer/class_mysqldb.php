@@ -176,6 +176,12 @@ public function getAllMessages($order) {
 		$registered = $registeredDao->deleteRegisteredUser($id);		
 	}
 
+public function deleteGenre($id) {
+		$GenreDAO = new GenreDAO();
+		$genre = $GenreDAO->deleteGenre($id);		
+	}
+	
+
 	public function deleteGame($id){
 	$gameDAO = new gameDAO();
 		$game = $gameDAO->deleteGame($id);

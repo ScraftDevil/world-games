@@ -18,6 +18,7 @@ function load() {
         $('#configuracionUsuario').toggle(500);
     });
 
+
     $('#update-registered').click(function() {
         var email = $("#email").val();
         var birthdate = $("#calendar").val();
@@ -27,6 +28,21 @@ function load() {
 
         var registered = {"email":email, "birthdate":birthdate, "paypal":paypal, "country":country, "image":image};
         updateUser(registered);
+    });
+
+$('#register-submit').click(function() {
+    alert("hola");
+        var username = $("#username").val();
+        var passwordregister = $("#passwordregister").val();
+        var email = $("#email").val();
+        var birthdate = $("#calendar").val();
+        var paypal = $("#paypal").val();
+         var country = document.getElementById("country").value;     
+       // var image = $("#image").val();
+
+        var registered = {"username":username,"passwordregister":passwordregister,"email":email, "birthdate":birthdate, "paypal":paypal, "country":country};
+
+        registerUser(registered);
     });
 
     $('#delete-registered').click(function() {
@@ -66,6 +82,18 @@ function cancelDelete() {
    $(".delete").remove();
 }
 
+function registerUser(registered){
+ var registered = JSON.stringify(registered);
+    $.ajax({
+        data: "registered=" + registered,
+        url: '../../controller/frontAuthControllers/insertUserController.php',   
+        type: 'POST',
+        dataType: 'json',
+        success: getInsertResponseMessage
+    });
+
+}
+
 function updateUser(registered) { 
     var registered = JSON.stringify(registered);
     $.ajax({
@@ -75,6 +103,17 @@ function updateUser(registered) {
         dataType: 'json',
         success: getUpdateResponseMessage
     });
+}
+
+
+
+function getInsertResponseMessage(data) {
+
+    if (data == 0) {
+        alert("hola");
+    } else {
+       alert("adeu");
+    }
 }
 
 /* Mensajes de actualización del perfil de usuario */
