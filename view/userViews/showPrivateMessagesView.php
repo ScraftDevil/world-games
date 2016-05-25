@@ -34,7 +34,7 @@
 
 							<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 								<span class="glyphicon glyphicon-time"></span>
-								<?php echo date('d-m-Y H:m:s', strtotime($privateMessages[$x]['Date'])); ?>
+								<?php echo ($privateMessages[$x]['Date']); ?>
 							</div>
 						</div>
 						<div class="contentMessage col-xs-9 col-sm-9 col-md-9 col-lg-9">
