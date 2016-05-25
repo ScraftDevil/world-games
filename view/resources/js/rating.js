@@ -40,7 +40,7 @@ $(document).ready(function() {
     };
     $.ajax({
       data:  params,
-      url:   '../controller/rateGameController.php',
+      url:   '../../controller/gameControllers/rateGameController.php',
       type:  'POST',
       dataType: 'json',
       beforeSend: function () {
@@ -95,7 +95,7 @@ $(document).ready(function() {
     var params = {"gameid" : getterURL('gameid')};
     $.ajax({
       data: params,
-      url:   '../controller/getRatingGame.php',
+      url:   '../../controller/gameControllers/getRatingGameController.php',
       type:  'POST',
       success:  function (response) {
         if (response == "") {

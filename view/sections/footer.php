@@ -277,9 +277,9 @@ function search() {
                          linesHTML += '<style>.offerOldPrice {text-decoration:line-through;}</style>';
                          linesHTML += '<div class="col-md-3 col-sm-6 col-xs-12">';
                          linesHTML += '<div class="gallery-item" id="Game_'+this.id+'">';
-                         linesHTML += '<div class="gallery-thumb" title="'+this.title+'"><img src="images/games/'+this.id+'.png" width="800px" height="600px" class="img-responsive" alt="'+this.title+'">';
+                         linesHTML += '<div class="gallery-thumb" title="'+this.title+'"><img src="../resources/images/games/'+this.id+'.png" width="800px" height="600px" class="img-responsive" alt="'+this.title+'">';
                          linesHTML += '<div class="image-overlay"></div>';
-                         linesHTML += '<a href="detailsProduct.php?gameid='+this.id+'" class="gallery-zoom"><i class="fa fa-eye"></i></a>';
+                         linesHTML += '<a href="gameDetailsView.php?gameid='+this.id+'" class="gallery-zoom"><i class="fa fa-eye"></i></a>';
                          linesHTML += '<a href="#" class="gallery-link buyItem"><i class="fa fa-shopping-cart"></i></a>';
                          linesHTML += '</div>';
                          linesHTML += '<div class="gallery-details">';
