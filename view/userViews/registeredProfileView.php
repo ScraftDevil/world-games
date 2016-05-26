@@ -65,7 +65,7 @@
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label">Fecha de Nacimiento:</label>
                                         <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
-                                            <input id="calendar" class="form-control" type="text" name="birthdate" placeholder="AAAA-MM-DD" value="<?php echo $registeredObject->getBirthDate(); ?>">
+                                            <input id="calendar" id="birthdate" class="form-control" type="text" name="birthdate" placeholder="AAAA-MM-DD" value="<?php echo $registeredObject->getBirthDate(); ?>">
                                         </div>
                                     </div>
 

@@ -149,3 +149,55 @@ function getPageName() {
 return result;
 }
 
+$("#profileForm").validate({  
+oonkeyup: true,  
+    rules: {
+        email: {
+            required: true,
+            email: true           
+        },
+        birthdate: {
+            required: true,
+            date:true,
+             maxlength: 1
+        },
+        paypal: {
+            required: false,
+            email: true,
+            maxlength: 45
+        },
+        country: {
+            required: true
+        }
+        
+    },
+    messages: {
+        email: {
+            required: "El campo email esta vacio",
+            email: "Formato de email incorrecto",
+          //  maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
+        },
+        birthdate: {
+            required: "La fecha de nacimiento esta vacio",
+            date:"La fecha es invalida"
+        },
+        paypal: {
+            email: "Formato de email incorrecto",
+            //maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
+        },        
+        country: {
+            required: "El campo pais esta vacio"
+        }        
+    }
+    //submitHandler: function() {
+        /*var username = $("#username_register").val();
+        var passwordregister = $("#passwordregister").val();
+        var email = $("#email").val();
+        var birthdate = $("#calendar").val();
+        var paypal = $("#paypal").val();
+        var country = document.getElementById("country").value;     
+       // var image = $("#image").val();
+       var registered = {"username":username,"passwordregister":passwordregister,"email":email, "birthdate":birthdate, "paypal":paypal, "country":country};
+       registerUser(registered);*/
+  //  }
+});
