@@ -51,15 +51,16 @@ function changeCountry(elem) {
 }
 
 // LOGIN AND REGISTER FORM VALIDATIONS
+
 $("#login-form").validate({
     rules: {
         username: {
             required: true,
-            maxlength: 45
+            maxlength: 20
         },
         password: {
             required: true,
-            maxlength: 45
+            maxlength: 20
         }
     },
     messages: {
@@ -74,11 +75,13 @@ $("#login-form").validate({
     }
 });
 
+$( "#register-form .form-control").keyup(function() {
+
 $("#register-form").validate({
     rules: {
         username: {
             required: true,
-            maxlength: 15
+            maxlength: 20
         },
         email: {
             required: true,
@@ -87,19 +90,19 @@ $("#register-form").validate({
         },
         passwordregister: {
             required: true,
-            maxlength: 15
+            maxlength: 20
         },
         confirmpassword: {
             required: true,
-            maxlength: 45
+            maxlength: 20
         },
         calendar: {
             required: true,
-            maxlength: 45
+            date:true
         },
         country: {
-            required: true,
-            maxlength: 15
+            required: true
+           
         }
     },
     messages: {
@@ -122,12 +125,14 @@ $("#register-form").validate({
         },
         calendar: {
             required: "La fecha de nacimiento esta vacio",
-            maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
+            date:"La fecha es invalida"
         },
         country: {
-            required: "El campo pais esta vacio",
-            maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
+            required: "El campo pais esta vacio"
+           
 
         }
     }
+});
+
 });
