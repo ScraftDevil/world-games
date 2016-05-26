@@ -163,7 +163,7 @@ function registerUser(registered) {
     type: 'POST',
     dataType: 'json',
     success: function () {
-        alert("success register");
+        
     }
     });
 }

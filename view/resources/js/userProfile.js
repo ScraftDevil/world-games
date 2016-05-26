@@ -79,17 +79,6 @@ function updateUser(registered) {
     });
 }
 
-
-
-function getInsertResponseMessage(data) {
-
-    if (data == 0) {
-        alert("hola");
-    } else {
-     alert("adeu");
- }
-}
-
 /* Mensajes de actualización del perfil de usuario */
 function getUpdateResponseMessage(data) {
 
