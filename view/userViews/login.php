@@ -69,7 +69,7 @@
                                                     </form>
                                                     <form id="register-form" action="" method="post"  style="display: none;">
                                                         <div class="form-group">
-                                                            <input type="username" name="username" id="username" tabindex="1" class="form-control" placeholder="Usuario" value="">
+                                                            <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Usuario" value="">
 
                                                         </div>
                                                         <div class="form-group">
@@ -78,21 +78,21 @@
 
                                                         </div>
                                                         <div class="form-group">
-                                                            <input type="passwordregister" name="passwordregister" id="passwordregister" tabindex="3" class="form-control" placeholder="Contraseña2">
+                                                            <input type="password" name="passwordregister" id="passwordregister" tabindex="3" class="form-control" placeholder="Contraseña">
                                                         </div>
                                                         <div class="form-group">
-                                                            <input type="confirmpassword" name="confirmpassword" id="confirmpassword" tabindex="4" class="form-control" placeholder="Confirmar Contraseña">
+                                                            <input type="password" name="confirmpassword" id="confirmpassword" tabindex="4" class="form-control" placeholder="Confirmar Contraseña">
                                                         </div>
                                                         <div class="form-group">
 
                                                             <div class="">
-                                                                <input type="text" class="form-control" id="calendar" name="birthdate" placeholder="Birthdate" required />
+                                                                <input type="text" class="form-control" id="calendar" name="birthdate" placeholder="Birthdate"/>
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
 
-                                                            <?php include("../sections/countryList2.php"); ?>
+                                                            <?php include("../userViews/countryList.php"); ?>
                                                         </div>
 
                                                         <div class="form-group">
