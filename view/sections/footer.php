@@ -113,7 +113,6 @@ function search() {
                 type:  'POST',
                 typeData: 'json',
                 success:  function (json) {
-                    console.log(json.length);
                     if (json.length>=3) {
                         $.each($.parseJSON(json), function() {
                             var existFilePath = "../resources/images/games/"+this.id+".png";
@@ -129,11 +128,12 @@ function search() {
                             linesHTML += '<a href="#" class="gallery-link buyItem"><i class="fa fa-shopping-cart"></i></a>';
                             linesHTML += '</div>';
                             linesHTML += '<div class="gallery-details">';
-                            linesHTML += '<div class="editContent">';
-                            linesHTML += '<h5>'+this.title+'</h5><h6><span id="price">'+this.price+' €</span></h6>';
                             if (this.discount!=null) {
-                             linesHTML += '<h6>60 % de descuento</h6>';
-                         }
+	                        	var priceDiscount = parseFloat(this.price)-(parseFloat(this.price)*parseFloat(this.discount)/parseFloat(100));
+	                        	linesHTML += '<h5>'+this.title+'</h5><h6><span class="price"><font color="red"><strong>'+priceDiscount+' €</strong></font></span> (<span class="discount"><font color="green"><strong>'+this.discount+' % dto.</strong></font></span>)</h6>';
+	                     	} else {
+	                     		linesHTML += '<h5>'+this.title+'</h5><h6><span class="price"><font color="red"><strong>'+this.price+' €</strong></font></span></h6>';
+	                     	}
                          linesHTML += '</div>';
                          linesHTML += '</div>';
                          linesHTML += '</div>'; 
@@ -162,46 +162,54 @@ function search() {
                 type:  'POST',
                 typeData: 'json',
                 success:  function (json) {
-                //
-                if (isEmptyJSON(json)) {
-                    $("#contentGames").html("No games to show!");
-                } else {
-                    var linesHTML = '<style>.offerOldPrice {text-decoration:line-through;}</style>';
-                    $.each($.parseJSON(json), function() {
-                        var existFilePath = "../resources/images/games/"+this.id+".png";
-                        if (!existFilePath.fileExists()) {
-                            existFilePath = "../resources/images/games/noimage.png";
-                        }
-                        linesHTML += '<div class="col-md-3 col-sm-6 col-xs-12 gallery-item-wrapper isotope-item">';
-                        linesHTML += '<div class="gallery-item" id="Game_'+this.id+'">';
-                        linesHTML += '<div class="gallery-thumb" title="'+this.title+'"><img src="'+existFilePath+'" class="img-responsive" alt="'+this.title+'">';
-                        linesHTML += '<div class="image-overlay"></div>';
-                        linesHTML += '<a href="detailsProduct.php?gameid='+this.id+'" class="gallery-zoom"><i class="fa fa-eye"></i></a>';
-                        linesHTML += '<a href="#" class="gallery-link buyItem"><i class="fa fa-shopping-cart"></i></a>';
-                        linesHTML += '</div>';
-                        linesHTML += '<div class="gallery-details">';
-                        linesHTML += '<div class="editContent">';
-                        linesHTML += '<h5>'+this.title+'</h5><h6><span id="price">'+this.price+' €</span></h6>';
-                        if (this.discount!=null) {
-                         linesHTML += '<h6>60 % de descuento</h6>';
-                     }
-                     linesHTML += '</div>';
-                     linesHTML += '</div>';
-                     linesHTML += '</div>';
-                     linesHTML += '</div>'; 
-                 });
-                    linesHTML += '';
-                    $("#contentGames").html(linesHTML);
-                    //
-                }
-            }
-        });
+	               if (json.length>=3) {
+		                    var linesHTML = '<style>.offerOldPrice {text-decoration:line-through;}</style>';
+		                    $.each($.parseJSON(json), function() {
+		                        var existFilePath = "../resources/images/games/"+this.id+".png";
+		                        if (!existFilePath.fileExists()) {
+		                            existFilePath = "../resources/images/games/noimage.png";
+		                        }
+		                        linesHTML += '<div class="col-md-3 col-sm-6 col-xs-12 gallery-item-wrapper isotope-item">';
+		                        linesHTML += '<div class="gallery-item" id="Game_'+this.id+'">';
+		                        linesHTML += '<div class="gallery-thumb" title="'+this.title+'"><img src="'+existFilePath+'" class="img-responsive" alt="'+this.title+'">';
+		                        linesHTML += '<div class="image-overlay"></div>';
+		                        linesHTML += '<a href="detailsProduct.php?gameid='+this.id+'" class="gallery-zoom"><i class="fa fa-eye"></i></a>';
+		                        linesHTML += '<a href="#" class="gallery-link buyItem"><i class="fa fa-shopping-cart"></i></a>';
+		                        linesHTML += '</div>';
+		                        linesHTML += '<div class="gallery-details">';
+		                        linesHTML += '<div class="editContent">';
+		                        if (this.discount!=null) {
+		                        	var priceDiscount = parseFloat(this.price)-(parseFloat(this.price)*parseFloat(this.discount)/parseFloat(100));
+		                        	linesHTML += '<h5>'+this.title+'</h5><h6><span class="price"><font color="red"><strong>'+priceDiscount+' €</strong></font></span> (<span class="discount"><font color="green"><strong>'+this.discount+' % dto.</strong></font></span>)</h6>';
+		                     	} else {
+		                     		linesHTML += '<h5>'+this.title+'</h5><h6><span class="price"><font color="red"><strong>'+this.price+' €</strong></font></span></h6>';
+		                     	}
+		                     linesHTML += '</div>';
+		                     linesHTML += '</div>';
+		                     linesHTML += '</div>';
+		                     linesHTML += '</div>'; 
+		                 });
+		                    linesHTML += '';
+		                    $("#contentGames").html(linesHTML);
+		            } else {
+		                	$("#contentGames").html("<div class='col-md-3 col-sm-6 col-xs-12'>No games for show");
+		            	}
+           			}
+        		});
             $(this).append('&nbsp;<i id="selected" class="fa fa-check" aria-hidden="true"></i>');
         });
     });
 </script>
 <!-- SHOPPING CART -->
 <script>
+	function Game(id, name, price, image, quantity, discount) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.image = image;
+        this.quantity = quantity;
+        this.discount = discount;
+    }
     var shoppingCart = typeof Cookies.get('shoppingCart');
     if (shoppingCart == "undefined") {
         $("#basket").html("<p style='margin-left: 8px'><font color='white'>Carrito de la compra vacio.</font></p>");
@@ -221,6 +229,7 @@ function search() {
         });
         $("#countShoppingCart").text(nitems);
     }
+    //buy from index and games.php
     $(document).on("click", ".buyItem", function (e) {
         e.preventDefault();
         var nitemsOld = 0;
@@ -234,19 +243,13 @@ function search() {
         var itemImageURL = $(this).parent().find("img:eq(0)").attr("src");
         var id = $(this).parent().parent().attr("id");
         id = id.split("_")[1];
-        function Game(id, name, price, image, quantity) {
-            this.id = id;
-            this.name = name;
-            this.price = price;
-            this.image = image;
-            this.quantity = quantity;
-        }
         var title = $item.find("h5:eq(0)").text();
-        var price = $item.find("h6:eq(0)").text().replace("€", "");
+        var price = $item.find(".price strong:eq(0)").text().replace("€", "");
+        var discount = $item.find(".discount").text().replace(" % dto.", "");
         var newGame = true;
         if (typeof Cookies.getJSON('shoppingCart') == "undefined") {
             var items = Array();
-            var game = new Game(id, title, price, itemImageURL, 1);
+            var game = new Game(id, title, price, itemImageURL, 1, discount);
             items.push(game);
             var shoppingCart = JSON.stringify(items);
             Cookies.set('shoppingCart', shoppingCart, { expires: 1 });
@@ -257,7 +260,7 @@ function search() {
             var game = getGame(items, id);
             if(game==null) {
                 newGame = true;
-                game = new Game(id, title, price, itemImageURL, 1);
+                game = new Game(id, title, price, itemImageURL, 1, discount);
                 items.push(game);
                 $("#countShoppingCart").text(nitems);
             } else {
@@ -295,13 +298,6 @@ $(document).on("click", ".buyGame", function (e) {
     var itemImageURL = $item.find(".imgDetail > img").attr("src");
     var id = $item.attr("id");
     id = id.split("_")[1];
-    function Game(id, name, price, image, quantity) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.image = image;
-        this.quantity = quantity;
-    }
     var title = $item.find(".spantitul").text();
     var price = $item.find(".spanprecio").text().replace("€", "");;
     var newGame = true;
@@ -389,7 +385,7 @@ function getNumItems(json) {
 }
 
 function loadDetailGame(idgame) {
-    window.location.href="detailsProduct.php?gameid="+idgame;
+    window.location.href="../gameViews/gameDetailsView.php?gameid="+idgame;
     return false;
 }
 
@@ -426,6 +422,7 @@ $(document).ready(function() {
             Cookies.set('shoppingCart', shoppingCart, { expires: 1 });
             quantitygame = parseInt(game.quantity);
             $obj.find(".item-info span:eq(1)").text("x"+(quantitygame));
+            $obj.find(".item-info span:eq(2)").text((parseFloat(game.price)*parseFloat(game.quantity))+" €");
         }
         $("#countShoppingCart").text(getNumItems(games));
         updateTotalShopping(games);
