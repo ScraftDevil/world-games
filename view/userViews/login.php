@@ -74,7 +74,7 @@
                                                         </div>
                                                         <div class="form-group">
 
-                                                            <input type="email" name="email" id="email" tabindex="2" class="form-control" placeholder="Correo electronico" value="">
+                                                            <input type="text" name="email" id="email" tabindex="2" class="form-control" placeholder="Correo electronico" value="">
 
                                                         </div>
                                                         <div class="form-group">
