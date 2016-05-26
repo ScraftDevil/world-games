@@ -13,6 +13,10 @@ header {
     color: white;
 }
 
+.divestadisticas{
+    width: 100%;
+    overflow: auto;
+}
 button {
     cursor: pointer !important;
 }

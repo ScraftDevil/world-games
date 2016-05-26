@@ -21,6 +21,7 @@ function printMessages($list) {
 		echo '<p >';
 		echo ' <span class=" glyphicon glyphicon-calendar margin-left ">'.$list[$i]['Date'].'</span>';
 		echo ' <span class=" glyphicon glyphicon-exclamation-sign "><a class="linkreport" href="../view/formNew">REPORT</a></span>'; 
+		echo ' <span class=" glyphicon glyphicon-exclamation-sign "><a class="linkmessage" href="../view/formNew">ENVIAR MENSAJE</a></span>'; 
 		echo '</p >';
 		echo '<span id="comentariojuego">'.$list[$i]['Text'].'</span>';
 		echo '</div >';
