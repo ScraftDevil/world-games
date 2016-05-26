@@ -61,5 +61,8 @@ FALTA:
 -Cargar dinamicamente filtros plataformas y generos disponbibles
 -Arreglar estadisticas y agregar al index administrator panel
 -JS de footer aparte
--Detalles de compra (No hace falta hacer el sistema de la compra)
+-Detalles de compra (Compra incluida paypal)
+-Aviso al hacer el redirect con problema de permisos
+-Aviso si no hay session shop en home
+-Aviso al añadir algo al carro
 ##############################################################
