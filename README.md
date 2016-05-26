@@ -65,4 +65,5 @@ FALTA:
 -Aviso al hacer el redirect con problema de permisos
 -Aviso si no hay session shop en home
 -Aviso al añadir algo al carro
+-Subir imagen en editar juego y en perfil [Importante]
 ##############################################################
