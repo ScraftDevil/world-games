@@ -51,37 +51,32 @@ $(document).ready(function() {
         switch(json.msg) {
           case "LOGIN_ERROR":
           {
-            $("#msgRate").show();
             $("#msgRate").html('<div class="alert alert-info">No has hecho login, no puedes puntuar.</div>');
-            $("#msgRate").delay(3000).hide();
+            $("#msgRate").show(0).delay(5000).hide(0);
             break;
           }
           case "NO_RATE_INPUT":
           {
-            $("#msgRate").show();
             $("#msgRate").html('<div class="alert alert-info">No se ha escogido un valor valido.</div>');
-            $("#msgRate").delay(3000).hide();
+            $("#msgRate").show(0).delay(5000).hide(0);
             break;
           }
           case "ALREADY_RATED_GAME":
           {
-            $("#msgRate").show();
             $("#msgRate").html('<div class="alert alert-warning">Ya has votado este juego.</div>');
-            $("#msgRate").delay(3000).hide();
+            $("#msgRate").show(0).delay(5000).hide(0);
             break;
           }
           case "RATED_FAIL":
           {
-            $("#msgRate").show();
             $("#msgRate").html('<div class="alert alert-danger">Error al votar. Intenta mas tarde.</div>');
-            $("#msgRate").delay(3000).hide();
+            $("#msgRate").show(0).delay(5000).hide(0);
             break;
           }
           case "RATED_OK":
           {
-            $("#msgRate").show();
             $("#msgRate").html('<div class="alert alert-success">Has votado el juego con exito.</div>');
-            $("#msgRate").delay(3000).hide();
+            $("#msgRate").show(0).delay(5000).hide(0);
             getRating();
             break;
           }

@@ -51,3 +51,8 @@ virtual host -> david
 connexions segures -> david
 documentacio (sistema de php doc) -> ignacio
 sistema control de versions -> ignacio
+
+
+FALTA:
+RECAPCHA en Login y MD5 (Administracion y Parte Usuario)
+Arreglar Buscador (referencias a pagina detalle juego)
