@@ -30,68 +30,42 @@ function load() {
         updateUser(registered);
     });
 
-$('#register-submit').click(function() {
-    alert("hola");
-        var username = $("#username").val();
-        var passwordregister = $("#passwordregister").val();
-        var email = $("#email").val();
-        var birthdate = $("#calendar").val();
-        var paypal = $("#paypal").val();
-         var country = document.getElementById("country").value;     
-       // var image = $("#image").val();
 
-        var registered = {"username":username,"passwordregister":passwordregister,"email":email, "birthdate":birthdate, "paypal":paypal, "country":country};
+   $('#delete-registered').click(function() {
+    var checkbox = $('input:checkbox[name=deleteCheckBox]:checked').val();
 
-        registerUser(registered);
-    });
+    if (checkbox == 'on') {
 
-    $('#delete-registered').click(function() {
-        var checkbox = $('input:checkbox[name=deleteCheckBox]:checked').val();
+        var alert ="<img class=\"alert-img\" src=\"images/alert.png\"/>";
+        var deleteButton = "<button id=\"delete\" name=\"delete\" type=\"submit\" class=\"btn btn-success btn-delete\">Borrar</button>";
+        var cancelButton = "<button onclick=\"cancelDelete()\" type=\"button\" class=\"btn btn-danger btn-cancel\">Cancelar</button>";
+        var form = "<form action=\"../controller/profileControllers/deleteRegisteredController.php\">" + deleteButton + " " + cancelButton + "</form>";
+        var deleteAccount = "<div class=\"confirm\"><div class=\"confirm-msg\">" + alert + "<p>¿Realmente deseas eliminar definitivamente tu cuenta?</p>" + form + "</div></div>";
 
-        if (checkbox == 'on') {
-
-            var alert ="<img class=\"alert-img\" src=\"images/alert.png\"/>";
-            var deleteButton = "<button id=\"delete\" name=\"delete\" type=\"submit\" class=\"btn btn-success btn-delete\">Borrar</button>";
-            var cancelButton = "<button onclick=\"cancelDelete()\" type=\"button\" class=\"btn btn-danger btn-cancel\">Cancelar</button>";
-            var form = "<form action=\"../controller/profileControllers/deleteRegisteredController.php\">" + deleteButton + " " + cancelButton + "</form>";
-            var deleteAccount = "<div class=\"confirm\"><div class=\"confirm-msg\">" + alert + "<p>¿Realmente deseas eliminar definitivamente tu cuenta?</p>" + form + "</div></div>";
-
-            $("body").append("<div class=\"delete\">" + deleteAccount + "</div>");
-        }
-    });   
-
-    /* Obtener mensajes privados */
-    var url = "showInboxMessagesView";
-    var page = getPageName();
-
-    if (url == page) {
-        setInterval(getPrivateMessages(), 2000);
+        $("body").append("<div class=\"delete\">" + deleteAccount + "</div>");
     }
+});   
 
-    /* Evento del botón de envío de mensaje privado */
-    $('#sendPrivateMessage').click(function() {
-        var receiverName = $("#receiverName").val();
-        var message = $(".contentMessage").val();
-        var infoMessage = {"receiverName":receiverName, "message":message};
-        sendMessage(infoMessage);
-    });
-        
+   /* Obtener mensajes privados */
+   var url = "showInboxMessagesView";
+   var page = getPageName();
+
+   if (url == page) {
+    setInterval(getPrivateMessages(), 2000);
+}
+
+/* Evento del botón de envío de mensaje privado */
+$('#sendPrivateMessage').click(function() {
+    var receiverName = $("#receiverName").val();
+    var message = $(".contentMessage").val();
+    var infoMessage = {"receiverName":receiverName, "message":message};
+    sendMessage(infoMessage);
+});
+
 }
 
 function cancelDelete() {
-   $(".delete").remove();
-}
-
-function registerUser(registered){
- var registered = JSON.stringify(registered);
-    $.ajax({
-        data: "registered=" + registered,
-        url: '../../controller/frontAuthControllers/insertUserController.php',   
-        type: 'POST',
-        dataType: 'json',
-        success: getInsertResponseMessage
-    });
-
+ $(".delete").remove();
 }
 
 function updateUser(registered) { 
@@ -112,8 +86,8 @@ function getInsertResponseMessage(data) {
     if (data == 0) {
         alert("hola");
     } else {
-       alert("adeu");
-    }
+     alert("adeu");
+ }
 }
 
 /* Mensajes de actualización del perfil de usuario */
@@ -175,14 +149,14 @@ function getPageName() {
     var a = window.location.href,
     b = a.lastIndexOf("/");
     return a.substr(b + 1);
-  }());
+}());
   for (var i = 0; i < pageName.length; i++) {
       if(pageName[i] == ".") {
         i = pageName.length;
-      } else {
+    } else {
         result = result + pageName[i];
-      }
-  }
-  return result;
+    }
+}
+return result;
 }
 

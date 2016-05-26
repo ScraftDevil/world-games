@@ -56,10 +56,12 @@ $("#login-form").validate({
     rules: {
         username: {
             required: true,
+            minlength: 3,
             maxlength: 20
         },
         password: {
             required: true,
+            minlength: 3,
             maxlength: 20
         }
     },
@@ -79,8 +81,9 @@ $("#login-form").validate({
 $("#register-form").validate({
     oonkeyup: true,
     rules: {
-        username: {
+        username_register: {
             required: true,
+            minlength: 3,
             maxlength: 20
         },
         email: {
@@ -90,10 +93,12 @@ $("#register-form").validate({
         },
         passwordregister: {
             required: true,
+            minlength: 6,
             maxlength: 20
         },
         confirmpassword: {
             required: true,
+            minlength: 6,
             maxlength: 20,
             equalTo: "#passwordregister"
         },
@@ -103,13 +108,13 @@ $("#register-form").validate({
         },
         country: {
             required: true
-           
         }
     },
     messages: {
-        username: {
+        username_register: {
             required: "El campo username esta vacio",
-            maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
+            maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres"),
+            minlength: jQuery.validator.format("No puedes poner menos de  {0} caracteres")
         },
         email: {
             required: "El campo email esta vacio",
@@ -118,11 +123,13 @@ $("#register-form").validate({
         },
         passwordregister: {
             required: "El campo password esta vacio",
-            maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
+            maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres"),
+            minlength: jQuery.validator.format("No puedes poner menos de  {0} caracteres")
         },
         confirmpassword: {
             required: "El campo confirmpassword esta vacio",
             maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres"),
+            minlength: jQuery.validator.format("No puedes poner menos de  {0} caracteres"),
             equalTo: "La contraseña no corresponde con la primera"
         },
         calendar: {
@@ -134,5 +141,29 @@ $("#register-form").validate({
            
 
         }
+    },
+    submitHandler: function() {
+        var username = $("#username_register").val();
+        var passwordregister = $("#passwordregister").val();
+        var email = $("#email").val();
+        var birthdate = $("#calendar").val();
+        var paypal = $("#paypal").val();
+        var country = document.getElementById("country").value;     
+       // var image = $("#image").val();
+       var registered = {"username":username,"passwordregister":passwordregister,"email":email, "birthdate":birthdate, "paypal":paypal, "country":country};
+       registerUser(registered);
     }
 });
+
+function registerUser(registered) {
+   var registered = JSON.stringify(registered);
+   $.ajax({
+    data: "registered=" + registered,
+    url: '../../controller/frontAuthControllers/insertUserController.php',   
+    type: 'POST',
+    dataType: 'json',
+    success: function () {
+        alert("success register");
+    }
+    });
+}

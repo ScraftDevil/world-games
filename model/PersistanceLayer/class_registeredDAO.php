@@ -337,9 +337,8 @@ class registeredDAO {
 				// EMAIL VALIDATION IN TABLES
 				if($this->emailInUse($registered, $db, "insert") == false) {
 					// INSERT ALL COLUMNS IN REGISTERED TABLE
-					$query = ("INSERT INTO registered (ID_Registered, Username, Password, Email, BannedTime, BirthDate, PaypalAccount, AvatarURL, Shop_ID, Country_ID) VALUES (:id, :username, :password, :email, :bannedtime, :birthdate, :paypal, :avatar, :shop_id, :country)");
+					$query = ("INSERT INTO registered (ID_Registered, Username, Password, Email, BannedTime, BirthDate, PaypalAccount, AvatarURL, Shop_ID, Country_ID) VALUES ('', :username, :password, :email, :bannedtime, :birthdate, :paypal, :avatar, :shopid, :country)");
 					$stmt = $db->getLink()->prepare($query);
-					$stmt->bindParam(':id', $this->getLastID());
 				    $stmt->bindParam(':username', $registered->getUsername());
 				    $stmt->bindParam(':password', $registered->getPassword());
 				    $stmt->bindParam(':email', $registered->getEmail());
@@ -347,7 +346,7 @@ class registeredDAO {
 				    $stmt->bindParam(':birthdate', $registered->getBirthDate());
 				    $stmt->bindParam(':paypal', $registered->getPaypalAccount());
 				    $stmt->bindParam(':avatar', $registered->getAvatarUrl());
-				    $stmt->bindParam(':shop_id', $this->getShopID());
+				    $stmt->bindParam(':shopid', $this->getShopID());
 				    $stmt->bindParam(':country', $registered->getCountry());
 				    $stmt->execute();
 				    $proces = "success";
