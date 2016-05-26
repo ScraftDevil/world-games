@@ -24,11 +24,19 @@
 						<div class="col-md-12">
 							<div class="panel panel-primary">
 								<div class="panel-heading">
-									<h2 class="panel-title">Inicio</h2>
+									<h2 class="panel-title">Estadísticas</h2>
 								</div>
 								<div class="panel-body">
 									<div class="grid">
-
+										<div class="col-lg-4">
+											<div id="chartContainerGamesPlatforms" class="statisticsGraphics"></div>
+										</div>
+										<div class="col-lg-4">
+                                        	<div id="chartContainerUsers" class="statisticsGraphics"></div>
+                                    	</div>
+                                    	<div class="col-lg-4">
+                                      		<div id="chartContainerGamesgenres" class="statisticsGraphics"></div>
+                                    	</div>
 									</div>
 								</div>
 							</div>
@@ -38,5 +46,8 @@
 			</div>
 		</div>
 	</div>
+    <?php include("../sections/footer.php"); ?>
+    <script type="text/javascript" src="../resources/js/statisticsFunctions/statistics.js"></script>
+
 </body>
 </html>

@@ -1,6 +1,8 @@
 <?php
 
-	session_start();
+	if (session_id() == '') {
+	    session_start();
+	}
 
 	require_once($_SESSION["BASE_PATH"]."/model/autoload.php");
 
@@ -37,7 +39,6 @@
 		}
 		array_push($platforms_json, $json);
 	}
-
 echo json_encode($platforms_json);
 
 ?>

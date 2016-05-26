@@ -484,9 +484,10 @@ a {
 }
 
 /* Gráfico de estadísticas */
-#chartContainer {
-    width: 650px;
+.statisticsGraphics {
+    width: 100%;
     height: 300px;
     margin: 0 auto;
     margin-top: 20px;
+    float: left !important;
 }

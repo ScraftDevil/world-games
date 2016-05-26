@@ -337,6 +337,39 @@ public function deleteGenre($id) {
 		}
 	}
 
+	/* Consulta para obtener una lista con los nombres de los géneros */
+	public function getGenreNames() {
+
+		try {
+			$query = ("SELECT Name FROM genre;");
+			$resultat = $this->getLink()->prepare($query);
+			$resultat->execute();
+			$result = $resultat->FetchAll();
+		} catch(PDOException $ex) {
+			echo "An Error ocurred!";
+			some_loggging_function($ex->getMessage());
+		} finally {
+			return $result;		
+		}
+	}
+
+	//Consulta para obtener la cantidad de juegos por género
+	public function countGameForGenre() {
+
+		try {
+			$query = ("SELECT gen.Name, COUNT(*) AS 'Total' FROM genre gen INNER JOIN game_has_genre rel ON gen.ID_Genre = rel.Genre_ID 
+				INNER JOIN game g ON rel.Game_ID = g.ID_Game GROUP BY gen.Name;");
+			$resultat = $this->getLink()->prepare($query);
+			$resultat->execute();
+			$result = $resultat->FetchAll();
+		} catch(PDOException $ex) {
+			echo "An Error ocurred!";
+			some_loggging_function($ex->getMessage());
+		} finally {
+			return $result;		
+		}
+	}
+
 	public function getReport($id_user, $id_report, $group) {
 		$reportDAO = new reportDAO();
 		switch($group) {
