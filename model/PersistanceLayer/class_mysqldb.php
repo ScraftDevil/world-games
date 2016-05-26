@@ -211,12 +211,12 @@ public function deleteGenre($id) {
 
     public function staffLogin($username, $password) {
     	$info = array();
-    	$sql = "SELECT ID_Administrator, Username FROM Administrator WHERE Username='$username' AND Password='$password' LIMIT 1;";
+    	$sql = "SELECT ID_Administrator, Username FROM Administrator WHERE Username='$username' AND Password='".md5($password)."' LIMIT 1;";
 		$stmt = $this->getLink()->prepare($sql);
 		$stmt->execute();
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
 		if (!$result) {
-			$sql = "SELECT ID_Professional, Username FROM Professional WHERE Username='$username' AND Password='$password' LIMIT 1;";
+			$sql = "SELECT ID_Professional, Username FROM Professional WHERE Username='$username' AND Password='".md5($password)."' LIMIT 1;";
 			$stmt = $this->getLink()->prepare($sql);
 			$stmt->execute();
 			$result2 = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -234,7 +234,8 @@ public function deleteGenre($id) {
     }
 
     public function registeredLogin($username, $password) {
-    	$sql = "SELECT ID_Registered FROM Registered WHERE Username='$username' AND Password='$password';";
+    	die(md5($password));
+    	$sql = "SELECT ID_Registered FROM Registered WHERE Username='$username' AND Password='".md5($password)."';";
 		$stmt = $this->getLink()->prepare($sql);
 		$stmt->execute();
 		$result = $stmt->FetchAll();

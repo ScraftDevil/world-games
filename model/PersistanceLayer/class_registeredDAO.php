@@ -9,7 +9,7 @@ class registeredDAO {
       $userid = -1;
       try {
         $db = unserialize($_SESSION['dbconnection']);
-        $stmt = $db->getLink()->prepare("SELECT ID_Registered FROM registered WHERE Username='$username' AND Password='$password' LIMIT 1;");
+        $stmt = $db->getLink()->prepare("SELECT ID_Registered FROM registered WHERE Username='$username' AND Password='".md5($password)."' LIMIT 1;");
         $stmt->execute();
         $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
         if($stmt->rowCount() > 0) {

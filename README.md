@@ -52,7 +52,14 @@ connexions segures -> david
 documentacio (sistema de php doc) -> ignacio
 sistema control de versions -> ignacio
 
-
+##############################################################
 FALTA:
-RECAPCHA en Login y MD5 (Administracion y Parte Usuario)
-Arreglar Buscador (referencias a pagina detalle juego)
+-Editar Juego
+-Eliminar ofertas
+-Gestion comentarios juego, plataformas, generos
+-Recapcha en Login Registrado
+-Cargar dinamicamente filtros plataformas y generos disponbibles
+-Arreglar estadisticas y agregar al index administrator panel
+-JS de footer aparte
+-Detalles de compra (No hace falta hacer el sistema de la compra)
+##############################################################
