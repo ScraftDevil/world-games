@@ -1,4 +1,4 @@
-$(window).load(function () {
+$(document).ready(function () {
     $("#msg").css("display", "none");
     $('#login-form-link').click(function (e) {
         $("#login-form").delay(100).fadeIn(100);
@@ -75,9 +75,9 @@ $("#login-form").validate({
     }
 });
 
-$( "#register-form .form-control").keyup(function() {
 
 $("#register-form").validate({
+    oonkeyup: true,
     rules: {
         username: {
             required: true,
@@ -94,7 +94,8 @@ $("#register-form").validate({
         },
         confirmpassword: {
             required: true,
-            maxlength: 20
+            maxlength: 20,
+            equalTo: "#passwordregister"
         },
         calendar: {
             required: true,
@@ -121,7 +122,8 @@ $("#register-form").validate({
         },
         confirmpassword: {
             required: "El campo confirmpassword esta vacio",
-            maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
+            maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres"),
+            equalTo: "La contraseña no corresponde con la primera"
         },
         calendar: {
             required: "La fecha de nacimiento esta vacio",
@@ -133,6 +135,4 @@ $("#register-form").validate({
 
         }
     }
-});
-
 });
