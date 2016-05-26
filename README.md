@@ -41,3 +41,13 @@ $pathUpload = "../../../view/resources/images/avatars/".$id."/"; //ruta relativa
 include("../../../view/sections/uploader/showUploadView.php");//Ruta para incluir el form uploader
 
 ##################################################################
+
+
+Tareas de documentacion
+
+infraestructura web amb maquina virtual -> david
+administracio remota -> david
+virtual host -> david
+connexions segures -> david
+documentacio (sistema de php doc) -> ignacio
+sistema control de versions -> ignacio

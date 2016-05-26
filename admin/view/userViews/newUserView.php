@@ -11,24 +11,24 @@
 		}
 		include("../sections/head.php"); 
 
-		$group = null;
+		$users = null;
 		$label = null;
 
 		if(isset($_GET['group'])) {
 			switch ($_GET['group'])  {
 				case "administrator": {
 					$label = 'Administrador';
-					$group = 'administrator';
+					$users = 'administrator';
 					break;
 				}
 				case "professional": {
 					$label ='Profesional';
-					$group = 'professional';
+					$users = 'professional';
 					break;
 				}
 				case "registered": {
 					$label = 'Registrado';
-					$group = 'registered';
+					$users = 'registered';
 					break;
 				}
 			}
@@ -53,14 +53,14 @@
 									<h2 class="panel-title"> Nuevo Usuario <?php echo $label; ?></h2>
 								</div>
 							  	<div class="panel-body">
-								    <form id="registered-user">
+								    <form id="insert-user">
 										<div class="row">
 											<div class="col-md-12">
 												<div id="general-error"></div>
 												<div class="form-group">
 													<label for="username">Nombre de Usuario</label><label for="user-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
 													<div class="input-group input-radius">
-													<input type="text" class="form-control" name="username" id="username" placeholder="Username" required><span id="user-error" class="server-error"></span>
+														<input type="text" class="form-control" name="username" id="username" placeholder="Username" required><span id="user-error" class="server-error"></span>
 													</div>
 												</div>
 												<div class="form-group">
@@ -86,7 +86,7 @@
 													<?php include("../sections/countryList.php"); ?><span class="server-error"></span>
 												</div>
 												<div class="form-group">
-												<button type="button" name="insert-user" id="insert-user" class="btn btn-info pull-left">Enviar</button>
+													<button type="button" name="insert-user" id="insert-user" class="btn btn-info pull-left">Enviar</button>
 												</div>
 											</div>
 										</div>

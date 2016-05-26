@@ -23,6 +23,7 @@
 		$birthdate = $user->birthdate;
 		switch ($group) {
 			case 'registered':
+				include("addRegisteredController.php");
 				$country = $user->country;
 				$proces = addRegistered($username, $password, $email, $birthdate, $country);
 				$response = messages($proces, $group);
@@ -55,21 +56,7 @@
 	}
 
 
-	function addRegistered($username, $password, $email, $birthdate, $country) {
-		if ($username != "" AND $password != "" AND $email != "" AND $birthdate != "" AND $country != "") {
-				$errors = validateRegisteredFields($username, $password, $email, $birthdate, $country);	
-				if ($errors == 0) {
-					$birthdate = date('Y-m-d', strtotime($birthdate));
-					$registered = new Registered($username, $password, $email, $birthdate, $country);
-					$proces = $registered->insertRegistered();
-				} else {
-					$proces = "invalid-fields";
-				}
-		} else {
-			$proces = "null";
-		}
-		return $proces;
-	}
+	
 
 	function addProfessional() {
 		$proces = 0;
@@ -109,50 +96,6 @@
 			$errors = $errors + 1;
 		}
 		return $errors;
-	}
-
-	function validateDate($date) {
-
-		$db = unserialize($_SESSION['dbconnection']);
-		$thisDate = $db->getThisDate();
-
-		$correct = false;
-
-		/* Date regular expression */
-		$dateSintax = '/[0-9]{2}\-[0-9]{2}\-[0-9]{4}/';
-
-
-		if (preg_match($dateSintax, $date) == 1 AND $date < $thisDate) {
-			$correct = true;
-		}
-
-		return $correct;
-
-	}
-
-	function validateEmail($email) {
-		$correct = false;
-
-		/* Email regular expression */
-		$emailSintax = '/@.+\./';
-
-		if (preg_match($emailSintax, $email) == 1) {
-			$correct = true;
-		}
-
-		return $correct;
-	}
-
-	function validateUsername($username) {
-		$correct = false;
-
-		$usernameRegex = '/[~_@#$^*()+=[\]{}|\\,.?¿¡!;:<>´`^ áàäÁÀÄéèëÉÈËíìïÍÌÏóòöÓÒÖúùüÚÙÜ]/';
-
-		if (preg_match($usernameRegex, $username) == 0) {
-			$correct = true;
-		}
-
-		return $correct;
 	}
 
 	function messages($proces, $group) {
