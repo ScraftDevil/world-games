@@ -52,12 +52,12 @@ function printGame($game) {
                     echo '<h5>' . $game->getTitle() . '</h5>';
                     echo '<h6>';
                     if ($priceWithDiscount == $price) {
-                        echo '<span id="price"><font color=\'red\'><strong>' . $game->getPrice() . ' €</strong></font>';
+                        echo '<span class="price"><font color=\'red\'><strong>' . $game->getPrice() . ' €</strong></font>';
                     } else {
-                        echo '<span id="price"><font color=\'red\'><strong>'.$priceWithDiscount.' €</strong></font>
+                        echo '<span class="price"><font color=\'red\'><strong>'.$priceWithDiscount.' €</strong></font>
                         ';
                          if (!empty($game->getOffer()->getDiscount())) {
-                        echo "(<font color='green'><strong>".$game->getOffer()->getDiscount() . " % dto.</strong></font>)";
+                        echo "(<span class='discount'><font color='green'><strong>".$game->getOffer()->getDiscount() . " % dto.</strong></font></span>)";
                     }
                         echo '</span>';
                     }
