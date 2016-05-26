@@ -4,8 +4,6 @@
 	    session_start();
 	}
 
-	require_once($_SESSION["BASE_PATH"]."/model/autoload.php");
-
 	// Variable de respuesta para json
 
 	$response = "";
@@ -88,14 +86,6 @@
 			}
 		}
 		return $proces;
-	}
-
-	function validateRegisteredFields($username, $password, $email, $birthdate, $country) {
-		$errors = 0;
-		if (validateUsername($username) == false || validateEmail($email) == false || validateDate($birthdate) == false) {
-			$errors = $errors + 1;
-		}
-		return $errors;
 	}
 
 	function messages($proces, $group) {

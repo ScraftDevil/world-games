@@ -117,6 +117,20 @@ public function getAllMessages($order) {
 		return $result;
 	}
 
+	public function existCountry($id) {
+		$sql = "SELECT ID_Country FROM Country WHERE ID_Country='$id'";
+		$stmt = $this->getLink()->prepare($sql); 
+		$stmt->execute();
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+		if($result) {
+			$result = true;
+		} else {
+			$result = false;
+		}
+		return $result;
+	}
+
+
 	public function getPlatform() {
 		$sql = "SELECT ID_Platform, Name FROM platform";
 		$stmt = $this->getLink()->prepare($sql); 
@@ -392,28 +406,6 @@ public function deleteGenre($id) {
 		$valorationDAO = new valorationDAO();
 		return $valorationDAO->userInsertValoration($userid, $gameid, $rate);
 	}
-
-	public function getThisDate() {
-		try {
-			$query = ("SELECT SYSDATE() as date");
-			$resultat = $this->getLink()->prepare($query);
-			$resultat->execute();
-			$result = $resultat->FetchAll();
-			$date = $result[0][0];
-		} catch(PDOException $ex) {
-			echo "An Error ocurred!";
-			some_loggging_function($ex->getMessage());
-			die();
-		} finally {
-			$result = "";
-			for ($i = 0; $i < 10; $i++) { 
-				$result = $result.$date[$i];
-			}
-			$result = date("d-m-Y", strtotime($result));
-			return $result;
-		}
-	}
-
 
 }
 ?>

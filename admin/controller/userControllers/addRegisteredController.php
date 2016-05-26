@@ -1,10 +1,13 @@
 <?php
 
-	include_once("userValidations.php");
+	require_once($_SESSION["BASE_PATH"]."/model/autoload.php");
+	
+	include("userValidations.php");
 
 	function addRegistered($username, $password, $email, $birthdate, $country) {
-		if ($username != "" AND $password != "" AND $email != "" AND $birthdate != "" AND $country != "") {
-				$errors = validateRegisteredFields($username, $password, $email, $birthdate, $country);	
+		$errors = null;
+		if ($username != "" && $password != "" && $email != "" && $birthdate != "" && $country != "") {
+				$errors = validateRegisteredFields($username, $password, $email, $birthdate, $country);
 				if ($errors == 0) {
 					$birthdate = date('Y-m-d', strtotime($birthdate));
 					$registered = new Registered($username, $password, $email, $birthdate, $country);
