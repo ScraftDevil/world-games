@@ -1,16 +1,65 @@
 <!DOCTYPE html>
 <html>
 
-    <?php
-    /* codigo php */
+<?php
+/* codigo php */
 
-    include("../sections/head.php");
+include("../sections/head.php");
 
     // controladores del perfil de usuario registrado
-    include("../../controller/profileControllers/getRegisteredInfoController.php");
+include("../../controller/profileControllers/getRegisteredInfoController.php");
 
+    /**
+    * This function redirects to a specified page (current page by default), but
+    * passes along a message in the users SESSION.  It passes a GET var that tells
+    * where that message is.  Used properly, this will avoid giving the user a
+    * duplicate message on page refresh.
+    *
+    * @param string $message - Message to pass along via session
+    * @param string[optional] $page - page to redirect to (with leading /)
+    */
+    function redirect($message, $page=FALSE) {
+        $my_get = array();
+        $_GET['message'] = set_session_message($message);
+        foreach ($_GET as $n=>$v) {
+            $my_get[] = "{$n}={$v}";
+        }
+        if (count($my_get) > 0) {
+            $my_get = '?'.implode('&',$my_get);
+        } else {
+            $my_get = '';
+        }
+
+        if (is_string($page)) {
+            $location = $page;
+        } else {
+            $location = $_SERVER['SCRIPT_NAME'];
+        }
+
+        $http = (!isset($_SERVER['HTTPS']) || strtolower($_SERVER['HTTPS'])!='on')?'http':'https';
+
+        header("Location: {$http}://{$_SERVER['HTTP_HOST']}{$location}{$my_get}");
+        exit;
+    }
+
+    /**
+     * Set a session message
+     *
+     * @param string $message Message to set
+     *
+     * @return string - Message ID which is the $_SESSION index that holds the message
+     */
+    function set_session_message($message) {
+        $message_id = sha1(microtime(true));
+        $_SESSION[$message_id] = $message;
+        return $message_id;
+    }
+    if (isset($_GET['message']) && isset($_SESSION[$_GET['message']])) {
+        echo $_SESSION[$_GET['message']];
+        unset($_SESSION[$_GET['message']]);
+    }
     if (!isset($_SESSION['user_id'])) {
-        header("Location: ../mainViews/home.php");
+        redirect('No has hecho login', '/world-games/view/mainViews/home.php');
     }
 
     //array que contiene los datos del usuario segun el id obtenido después de hacer login
@@ -30,7 +79,7 @@
                     <div class="underlined-title">
                         <div class="editContent">
                             <p>
-                            <h1>Perfil de Usuario</h1>
+                                <h1>Perfil de Usuario</h1>
                             </p>
                         </div>
                         <hr>
@@ -50,7 +99,7 @@
                                 </div>
 
                                 <!-- Mensaje de Error de que no se puede actualizar por falta de datos o datos incorrectos 
-                                    o de que se han actualizado corretamente -->
+                                o de que se han actualizado corretamente -->
                                 <div id="general-error"></div>
 
                                 <!-- Formulario para poder editar los datos del usuario (obtiene los datos de la BBDD) -->
@@ -155,5 +204,5 @@
                 <?php include("../sections/footer.php"); ?>
                 <script type="text/javascript" src="../resources/js/userProfile.js"></script>
             </footer>
-    </body>
-</html>
+        </body>
+        </html>
