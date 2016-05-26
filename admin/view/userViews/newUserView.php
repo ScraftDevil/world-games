@@ -53,7 +53,7 @@
 									<h2 class="panel-title"> Nuevo Usuario <?php echo $label; ?></h2>
 								</div>
 							  	<div class="panel-body">
-								    <form id="insert-user">
+								    <form id="new-user">
 										<div class="row">
 											<div class="col-md-12">
 												<div id="general-error"></div>
