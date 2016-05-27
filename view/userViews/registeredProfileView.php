@@ -79,7 +79,7 @@ include("../sections/head.php");
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label">País:</label>
                                         <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
-                                            <select id="country" name="country">
+                                            <select id="country" name="country" class="form-control ">
                                                 <?php getCountriesList($registeredObject->getCountry()); ?>
                                             </select>
                                         </div>
@@ -88,7 +88,14 @@ include("../sections/head.php");
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label">Imagen de Perfil:</label>
                                         <div class="col-lg-7">
-                                            <input id="image" class="form-control" type="file" name="profileImage">
+                                        <?php
+                                        $pathUploaderPHP = "../../view/sections/uploader/";
+                                        $uploadText['text'] = "Subir Avatar";
+                                        $uploadText['textUploadBtn'] = "Elegir imagen";
+                                        $uploadText['textUploadBtnRetry'] = "Elegir otra imagen";
+                                        $pathUpload = "../../resources/images/avatars/".$registeredObject->getId()."/";
+                                        include("../../view/sections/uploader/showUploadView.php");
+                                        ?>
                                         </div>
                                     </div>
 

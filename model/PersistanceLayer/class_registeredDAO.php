@@ -50,7 +50,7 @@ class registeredDAO {
 
 		try {
 
-			$query = ("SELECT r.Username, r.Email, r.BannedTime, r.BirthDate, r.PaypalAccount, r.AvatarURL, c.Name as 'Pais'
+			$query = ("SELECT r.ID_Registered, r.Username, r.Password, r.Email, r.BannedTime, r.BirthDate, r.PaypalAccount, r.AvatarURL, c.Name as 'Pais'
 			FROM registered r INNER JOIN country c ON r.Country_ID = c.ID_Country where r.ID_Registered = '$id';");			
 
 			$db = unserialize($_SESSION['dbconnection']);

@@ -24,8 +24,7 @@ function load() {
         var birthdate = $("#calendar").val();
         var paypal = $("#paypal").val();
         var country = $("#country").val();        
-        var image = $("#image").val();
-
+        var image = "avatar.png";
         var registered = {"email":email, "birthdate":birthdate, "paypal":paypal, "country":country, "image":image};
         updateUser(registered);
     });
