@@ -1,6 +1,6 @@
 <?php
 
-	include("validateInputNullController.php");
+	include("../../utilities/inputNullValidate.php");
 
 	function sendMessageValidation($receiverName, $message) {
 

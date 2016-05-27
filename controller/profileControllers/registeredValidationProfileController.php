@@ -1,8 +1,8 @@
 <?php
 
-	include("validateInputNullController.php");
-	include("validateEmailController.php");
-	include("validateDateController.php");
+	include("../../utilities/inputNullValidate.php");
+	include("../../utilities/emailValidate.php");
+	include("../../utilities/dateValidate.php");
 
 	function validateInputs($email, $birthdate, $paypal, $image, $country) {
 

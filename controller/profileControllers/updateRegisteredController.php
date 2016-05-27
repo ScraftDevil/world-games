@@ -1,7 +1,7 @@
 <?php
 
 	require_once("../../model/autoload.php");
-	include("../validationControllers/registeredValidationProfileController.php");
+	include("registeredValidationProfileController.php");
 
 	$id = $_SESSION['user_id'];
 	
