@@ -40,9 +40,9 @@
     	// version estandar valida solo para usuarios ya registrados, ya que selecciona el pais con el que se registró
     	for ($x = 0; $x < count($countries); $x++) {
         	if ($countries[$x][0] == $myCountry) {
-        		?><option selected><?php echo utf8_encode($myCountry) ?></option><?php
+        		?><option selected><?php echo $myCountry ?></option><?php
         	} else {
-        		?><option><?php echo utf8_encode($countries[$x][0]) ?></option><?php
+        		?><option><?php echo $countries[$x][0] ?></option><?php
         	}
     	}
 	}
