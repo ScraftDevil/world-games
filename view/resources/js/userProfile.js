@@ -35,14 +35,17 @@ function load() {
     var checkbox = $('input:checkbox[name=deleteCheckBox]:checked').val();
 
     if (checkbox == 'on') {
-
-        var alert ="<img class=\"alert-img\" src=\"images/alert.png\"/>";
+        $("#delete-confirm").css({'color':'black', 'font-weight':'normal'});
+        var alert ="<img class=\"alert-img\" src=\"../resources/images/alert.png\"/>";
         var deleteButton = "<button id=\"delete\" name=\"delete\" type=\"submit\" class=\"btn btn-success btn-delete\">Borrar</button>";
         var cancelButton = "<button onclick=\"cancelDelete()\" type=\"button\" class=\"btn btn-danger btn-cancel\">Cancelar</button>";
-        var form = "<form action=\"../controller/profileControllers/deleteRegisteredController.php\">" + deleteButton + " " + cancelButton + "</form>";
+        var form = "<form action=\"../../controller/profileControllers/deleteRegisteredController.php\">" + deleteButton + " " + cancelButton + "</form>";
         var deleteAccount = "<div class=\"confirm\"><div class=\"confirm-msg\">" + alert + "<p>¿Realmente deseas eliminar definitivamente tu cuenta?</p>" + form + "</div></div>";
 
         $("body").append("<div class=\"delete\">" + deleteAccount + "</div>");
+    }
+    else {
+        $("#delete-confirm").css({'color':'red', 'font-weight':'bold'});
     }
 });   
 
@@ -189,15 +192,4 @@ oonkeyup: true,
             required: "El campo pais esta vacio"
         }        
     }
-    //submitHandler: function() {
-        /*var username = $("#username_register").val();
-        var passwordregister = $("#passwordregister").val();
-        var email = $("#email").val();
-        var birthdate = $("#calendar").val();
-        var paypal = $("#paypal").val();
-        var country = document.getElementById("country").value;     
-       // var image = $("#image").val();
-       var registered = {"username":username,"passwordregister":passwordregister,"email":email, "birthdate":birthdate, "paypal":paypal, "country":country};
-       registerUser(registered);*/
-  //  }
 });

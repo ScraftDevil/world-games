@@ -11,12 +11,12 @@
 		$shopDb = unserialize($_SESSION['dbconnection']);
 
 		//Logout del usuario
-		include("../../controller/controllerLogout.php");
+		include("../frontAuthControllers/logoutController.php");
 
 		$shopDb->deleteRegisteredUser($id);
 		
 		//redirecciona tras borrar la sesion y el usuario
-		header ("Location: ../../view/home.php?msg=ACCOUNT_DELETED");
+		header ("Location: ../../view/mainViews/home.php?msg=ACCOUNT_DELETED");
 
 	}
 	

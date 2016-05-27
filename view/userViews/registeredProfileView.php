@@ -137,7 +137,7 @@ include("../sections/head.php");
 
                                 <form id="profileFormDelete" action="../controller/deleteRegisteredController.php" method="POST">
                                     <div class="col-lg-12" id="configuracionUsuario">
-                                        <p>Marca la siguiente casilla para indicar que quieres eliminar tu cuenta para siempre. Después, pulsa el boton Eliminar</p>
+                                        <p id="delete-confirm">Marca la siguiente casilla para indicar que quieres eliminar tu cuenta para siempre. Después, pulsa el boton Eliminar</p>
                                         <input id="checkbox" type="checkbox" name="deleteCheckBox">
                                         Quiero eliminar mi cuenta de usuario
                                         <button type="button" id="delete-registered" name="delete" class="btn-danger pull-right btn form-button">
