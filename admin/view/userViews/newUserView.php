@@ -13,8 +13,8 @@
 		$users = null;
 		$label = null;
 
-		if(isset($_GET['group'])) {
-			switch ($_GET['group'])  {
+		if(isset($_SESSION['userDataGrid'])) {
+			switch ($_SESSION['userDataGrid'])  {
 				case "administrator": {
 					$label = 'Administrador';
 					$users = 'administrator';

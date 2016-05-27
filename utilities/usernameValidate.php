@@ -10,13 +10,13 @@
 				if (strlen($username) >= 3 && strlen($username) <= 20) {
 					$correct = true;
 				} else {
-					array_push($_SESSION['msg'], "username" => "¡El nombre de usuario debe tener una longitud entre 3 y 20 carácteres!");
+					array_push($_SESSION['msg'], "¡El nombre de usuario debe tener una longitud entre 3 y 20 carácteres!");
 				}
 			} else {
-				array_push($_SESSION['msg'], "username" => "¡El nombre de usuario contiene carácteres especiales!");
+				array_push($_SESSION['msg'], "¡El nombre de usuario no puede contener carácteres especiales!");
 			}
 		} else {
-			array_push($_SESSION['msg'], "username" => "¡El nombre de usuario esta vacío!");
+			array_push($_SESSION['msg'], "¡El nombre de usuario no puede estar vacío!");
 		}
 
 		return $correct;

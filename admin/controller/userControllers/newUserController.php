@@ -1,10 +1,9 @@
 <?php
 
-	include("../backAuthController/authController.php");
+	include("../backAuthControllers/authController.php");
 
 	include("validateRegisteredFieldsController.php");
 	include("addRegisteredController.php");
-	// Variable de respuesta para json
 
 	$response = "";
 
@@ -14,7 +13,7 @@
 
 	$group = $_SESSION['userDataGrid'];
 
-	$_SESSION['msg'] = array("id" => null);
+	$_SESSION['msg'] = array();
 
 	if ($group == "registered" || $group == "professional" || $group == "administrator") {
 		$username = $user->username;
@@ -29,7 +28,7 @@
 					$proces = addRegistered($username, $password, $email, $birthdate, $country);
 					$response = messages($proces, $group);
 				} else {
-
+					$response = messages("invalid-fields", "registered");
 				}
 				
 				
@@ -65,8 +64,8 @@
 	function messages($proces, $group) {
 		$response = null;
 		switch($proces) {
-			case "success":
 
+			case "success":
 			$response = array("id" => "success", "group" => $group);
 			break;
 
@@ -78,12 +77,8 @@
 			$response = array("id" => "email-error", "group" => $group);
 			break;
 
-			case "null":
-			$response = array("id" => "null-error", "group" => $group);
-			break;
-
 			case "invalid-fields":
-			$response = array("id" => "invalid-fields", "group" => $group);
+			$response = array("id" => "invalid-fields", "errors" => $_SESSION['msg']);
 			break;
 
 			default:

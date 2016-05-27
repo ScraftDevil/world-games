@@ -62,7 +62,16 @@ function getInsertUserProcess(data) {
         break;
 
         case "invalid-fields":
-          $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Uno o más de los campos tienen un formato incorrecto!</strong></div>");
+          var max = 0;
+          for(error in data.errors) {
+            max++;
+          }
+          var errors = "<div class=\"alert error\">";
+          for (var i = 0; i < max; i++) {
+            errors = errors + "<strong><span class=\"glyphicon glyphicon-remove\"></span> " + data.errors[i] + "</strong><br>";
+          }
+          errors = errors + "</div>";
+          $("#general-error").html(errors);
         break;
 
         case "success":

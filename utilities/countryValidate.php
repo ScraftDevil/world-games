@@ -7,6 +7,10 @@
 
 		$correct = $db->existCountry($country);
 
+		if ($correct == 0) {
+			array_push($_SESSION['msg'], "¡El país seleccionado no existe!");
+		}
+
 		return $correct;
 	}
 

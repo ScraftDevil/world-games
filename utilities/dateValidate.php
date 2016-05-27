@@ -1,13 +1,30 @@
 <?php
 
-	// controlador de conversion de fecha. Convierte de "y/m/d" a "d/m/y"
-	include("dateConversion.php");
+	function validateDate($date) {
+		$correct = false;
+		if ($date != null && $date != "") {
+			if (validateDateFormat($date) == true) {
+				if (validateFutureDate($date) == true) {
+					$correct = true;
+				} else {
+					array_push($_SESSION['msg'], "¡La fecha es una fecha futura!");
+				}
+			} else {
+				array_push($_SESSION['msg'], "¡Fecha con formato incorrecto!");
+			}
+		} else {
+			array_push($_SESSION['msg'], "¡La fecha de cumpleaños no puede estar vacía!");
+		}
+		return $correct;
+	}
+
 
 	/* Date validation (returns if a date is future or not) */
-	function validateDate($date) {
+	function validateFutureDate($date) {
 
-		$dateSelected = dateConversion($date);
-		$actualDate = dateConversion(date('Y-m-d'));
+
+		$actualDate = date("Y-m-d");
+		$dateSelected = date("Y-m-d", strtotime($date));
 
 		$valid = false;
 
