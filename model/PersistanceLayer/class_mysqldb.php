@@ -200,10 +200,25 @@ public function deletePlatform($id) {
 		$platform = $PlatformDAO->deletePlatform($id);		
 	}
 
+public function deleteComment($id) {
+		$CommentDAO = new CommentDAO();
+		$comment = $CommentDAO->deleteComment($id);		
+	}
+
+public function deleteMessage($id) {
+		$MessageDAO = new MessageDAO();
+		$message = $MessageDAO->deleteMessage($id);		
+	}
+
 
 	public function deleteGame($id){
 	$gameDAO = new gameDAO();
 		$game = $gameDAO->deleteGame($id);
+}
+
+	public function deleteOffer($id){
+	$offerDAO = new offerDAO();
+		$offer = $offerDAO->deleteOffer($id);
 }
 
 	public function searchGame($value) {

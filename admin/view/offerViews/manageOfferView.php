@@ -30,6 +30,8 @@
 										<div class="new-button">
 											<button id="newOffer" type="button" class="btn btn-success"><a href="newOfferView.php?gameid=<?php echo $_GET['gameid'];?>" id="newOfferRef"><i class="fa fa-gift" aria-hidden="true"></i> Nueva Oferta</a></button>
 										</div>
+
+										
 										<?php
 											include("../../controller/offerControllers/showOfferController.php");
 										?>

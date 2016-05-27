@@ -33,7 +33,7 @@
 												</div>
 												
 												<div class="form-group">
-												<button type="button" name="insert-game" id="insert-game" class="btn btn-info pull-left">Enviar</button>
+												<button type="button" name="insert-platform" id="insert-platform" class="btn btn-info pull-left">Enviar</button>
 												</div>
 											</div>
 										</div>
@@ -48,7 +48,7 @@
 	</div>
 	<footer>
 		<?php include("../sections/footer.php"); ?>
-		<script type="text/javascript" src="../resources/js/gamesManage.js"></script>
+		<script type="text/javascript" src="../resources/js/platformManage.js"></script>
 	</footer>
 </body>
 </html>

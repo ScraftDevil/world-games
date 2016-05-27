@@ -3,7 +3,15 @@ require_once($_SESSION["BASE_PATH"]."/model/autoload.php");
 
 class platformDAO {
 
-   
+     public function insertPlatform($platform) {
+       // $statusResult = 0;
+        $db = unserialize($_SESSION['dbconnection']);
+        $query = "insert into platform values('', '" . $platform->getName() . "')";
+        $resultat = $db->getLink()->prepare($query);
+        $resultat->execute();
+        	        
+        return $resultat;
+    }
 
     
 public function deletePlatform($id) {
