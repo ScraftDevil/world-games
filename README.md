@@ -62,8 +62,8 @@ FALTA:
 -Arreglar estadisticas y agregar al index administrator panel
 -JS de footer aparte
 -Detalles de compra (Compra incluida paypal)
--Aviso al hacer el redirect con problema de permisos
--Aviso si no hay session shop en home
+-Aviso al hacer el redirect con problema de permisos <-- [Hecho]
+-Aviso si no hay session shop en home <-- [Hecho]
 -Aviso al añadir algo al carro
 -Subir imagen en editar juego y en perfil [Importante]
 -Reparar cascade eliminar mensajes de juego <-- [Hecho]

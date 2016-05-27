@@ -45,9 +45,27 @@
                 </div>
             </section>
             <?php
-        }
             include("../sections/footer.php");
-            ?>
+        } else {
+            echo
+            '
+             <section class="content-block gallery-1">
+                <div class="container">
+                    <div class="underlined-title">
+                        <div class="editContent">
+                            <p>
+                            <script type="text/javascript" src="../resources/js/redirection.js"></script>
+                            <div class="message-redirect">¡No puedes acceder directamente a esta pagina!<br>
+                            Serás redirigido a la página principal en <span id="contenedor"><script>tiempo()</script></span> segundos.</div>
+                            </p>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </section>
+            ';
+        }
+        ?>
         </div>
     </body>
 </html>
