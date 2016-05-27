@@ -1,5 +1,5 @@
 <div class="col-md-2 admin-menu">
-	<a href="../mainViews/adminView.php"><i class="fa fa-home" aria-hidden="true"></i> Inicio</a>
+	<a href="../mainViews/mainView.php"><i class="fa fa-home" aria-hidden="true"></i> Inicio</a>
 	<a href="../gameViews/gameListView.php"><i class="fa fa-gamepad" aria-hidden="true"></i> Juegos</a>
 	<a href="../platformViews/platformListView.php"><i class="fa fa-mobile" aria-hidden="true"></i> Plataformas</a>
 	<a href="../genreViews/genreListView.php"><i class="fa fa-diamond" aria-hidden="true"></i> Géneros</a>

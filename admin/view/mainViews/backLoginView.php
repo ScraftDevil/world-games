@@ -2,12 +2,6 @@
 <html>
 	<?php
 
-	include("../../controller/adminAuthControllers/authController.php");
-
-	if (checkAuth()) {
-		header("Location:adminView.php");
-	}
-
 	include("../sections/head.php");
 
 	?>

@@ -12,6 +12,6 @@ require_once("../model/autoload.php");
 } else {
 	$shop = unserialize($_SESSION['shop']);
 }*/
+header("Location:view/mainViews/mainView.php");
 
-header("Location:view/mainViews/adminLoginView.php");
 ?>

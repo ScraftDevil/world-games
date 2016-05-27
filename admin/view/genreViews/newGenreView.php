@@ -1,15 +1,8 @@
 <!DOCTYPE html>
 <html>
-	<?php
 
-		include("../../controller/adminAuthControllers/authController.php");
-		if (!checkAuth()) {
-			header("Location:../mainViews/adminLoginView.php");
-		}
-
-		include("../sections/head.php"); 
-
-	?>
+	<?php include("../sections/head.php"); ?>
+	
 <body>
 	<?php
 

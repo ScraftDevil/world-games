@@ -4,7 +4,7 @@ $(document).ready(function() {
         var params = {"username" : $("#username").val(), "password" : $("#password").val()};
             $.ajax({
                 data:  params,
-                url:   '../../controller/adminAuthControllers/adminLoginController.php',
+                url:   '../../controller/backAuthControllers/backLoginController.php',
                 type:  'POST',
                 dataType: 'json',
                 success:  function (data) {

@@ -1,18 +1,14 @@
 <!DOCTYPE html>
 <html>
 	<?php
+
+		include("../sections/head.php");
+
 		$gameid = 0;
 		if (isset($_GET['gameid'])) {
 			$gameid = $_GET['gameid'];
 		}
-		include("../../controller/adminAuthControllers/authController.php");
-		if (!checkAuth()) {
-			header("Location:../adminLoginView.php");
-		}
-		if ($_SESSION['usertype'] == "Professional") {
-			header("Location:../index.php");
-		}
-		include("../sections/head.php");
+
 	?>
 <body>
 	<?php

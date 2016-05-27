@@ -1,20 +1,12 @@
 <!DOCTYPE html>
 <html>
-	<?php
-
-		include("../../controller/adminAuthControllers/authController.php");
-		if (!checkAuth()) {
-			header("Location:adminLoginView.php");
-		}
-		include("../sections/head.php"); 
-
-	?>
+	
+	<?php include("../sections/head.php");	?>
+	
 <body>
-	<?php
 
-		include("../sections/header.php"); 
+	<?php include("../sections/header.php"); ?>
 
-	?>
 	<div class="container-fluid">
 		<div class="row row-admin">
 			<?php include ("../sections/menu.php"); ?>
@@ -47,7 +39,7 @@
 		</div>
 	</div>
     <?php include("../sections/footer.php"); ?>
-    <script type="text/javascript" src="../resources/js/statisticsFunctions/statistics.js"></script>
-
+    <script type="text/javascript" src="../resources/js/statisticsFunctions/canvasjs.js"></script>
+    <script type="text/javascript" src="../resources/js/statisticsFunctions/statistics.js"></script> 
 </body>
 </html>

@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 <html>
-<?php
-include("../../controller/adminAuthControllers/authController.php");
-if (!checkAuth()) {
-	header("Location:../mainViews/adminLoginView.php");
-}
-include("../sections/head.php"); 
-?>
+
+<?php include("../sections/head.php"); ?>
+
 <body>
-	<?php
-	include("../sections/header.php"); 
-	?>
+
+	<?php include("../sections/header.php"); ?>
+	
 	<div class="container-fluid">
 		<div class="row row-admin">
 			<?php include ("../sections/menu.php"); ?>
