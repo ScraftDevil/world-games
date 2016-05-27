@@ -22,5 +22,9 @@ class Genre {
 
     function setName($name) {
         $this->name = $name;
-    }   
+    }
+    function insertGenre() {
+        $GenreDAO = new genreDAO();
+        return  $GenreDAO->insertGenre($this); 
+    }
 }
