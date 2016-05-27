@@ -7,6 +7,8 @@
 		if ($_SESSION['usertype'] == "Professional") {
 			header("Location:../index.php");
 		}
+
+		
 		
 		$users = null;
 		$label = null;

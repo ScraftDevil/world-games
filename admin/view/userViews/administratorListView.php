@@ -8,13 +8,15 @@
 			header("Location:../index.php");
 		}
 
-		$_SESSION['userDataGrid'] = "registered";
+		if (!isset($_SESSION['dataGird']) || isset($_SESSION['dataGird'])) {
+			$_SESSION['dataGrid'] = "administrator";
+		}
 		
 		$users = null;
 		$label = null;
 
-		if(isset($_SESION['msg']) AND !empty($_SESSION['msg'])) {
-			$msg = $_SESSION['msg'];
+		if(isset($_GET['msg']) AND !empty($_GET['msg'])) {
+			$msg = $_GET['msg'];
 			switch($msg) {
 				case "i-success":
 				$message = "<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-ok\"></span> ¡Usuario creado satisfactoriamente!</strong></div>";
@@ -44,7 +46,6 @@
 					$message = null;
 				break;
 			}
-			unset($_SESSION['msg']);
 		} else {
 			$message = null;
 		}
@@ -65,7 +66,7 @@
 						<div class="col-md-12">
 							<div class="panel panel-primary">
 								<div class="panel-heading">
-									<h2 class="panel-title"> Lista de usuarios Registrados</h2>
+									<h2 class="panel-title"> Lista de usuarios Administradores</h2>
 								</div>
 							  	<div class="panel-body">
 									<div class="grid">
@@ -77,7 +78,7 @@
 										<div class="new-button">
 											<div class="btn-group">
 											  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											    Registrados
+											    Administradores
 												<span class="caret"></span>
 											  </button>
 											  <ul class="dropdown-menu">
@@ -89,7 +90,7 @@
 											<button type="button" class="btn btn-success"><a href="newUserView.php"><i class="fa fa-user" aria-hidden="true"></i> Nuevo Usuario</a></button>
 										</div>
 										<?php
-											include("../../controller/userControllers/showRegisteredController.php");
+											include("../../controller/userControllers/showAdministratorController.php");
 										?>
 									</div>
 								</div>

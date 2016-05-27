@@ -1,9 +1,9 @@
 <?php
 
-	if (session_id() == '') {
-	    session_start();
-	}
+	include("../backAuthController/authController.php");
 
+	include("validateRegisteredFieldsController.php");
+	include("addRegisteredController.php");
 	// Variable de respuesta para json
 
 	$response = "";
@@ -12,7 +12,9 @@
 
 	$user = json_decode($post);
 
-	$group = $user->group;
+	$group = $_SESSION['userDataGrid'];
+
+	$_SESSION['msg'] = array("id" => null);
 
 	if ($group == "registered" || $group == "professional" || $group == "administrator") {
 		$username = $user->username;
@@ -21,10 +23,16 @@
 		$birthdate = $user->birthdate;
 		switch ($group) {
 			case 'registered':
-				include("addRegisteredController.php");
 				$country = $user->country;
-				$proces = addRegistered($username, $password, $email, $birthdate, $country);
-				$response = messages($proces, $group);
+				$errors = validateRegisteredFields($username, $password, $email, $birthdate, $country);
+				if ($errors == 0) {
+					$proces = addRegistered($username, $password, $email, $birthdate, $country);
+					$response = messages($proces, $group);
+				} else {
+
+				}
+				
+				
 			break;
 
 			case 'professional':
@@ -54,30 +62,11 @@
 	}
 
 
-	
-
-	
-
-	function addAdministrator() {
-		$proces = 0;
-		if (isset($_POST['username']) AND isset($_POST['password']) AND isset($_POST['email']) AND isset($_POST['birthdate'])) {
-			if (!empty($_POST['username']) AND !empty($_POST['password']) AND !empty($_POST['email']) AND !empty($_POST['birthdate'])) {
-				$username = $_POST['username'];
-				$password = $_POST['password'];
-				$email = $_POST['email'];
-				$birthdate = $_POST['birthdate'];
-				$birthdate = date('Y-m-d', strtotime($birthdate));
-				$administrator = new Administrator($username, $password, $email, $birthdate);
-				$proces = $administrator->insertAdministrator();
-			}
-		}
-		return $proces;
-	}
-
 	function messages($proces, $group) {
 		$response = null;
 		switch($proces) {
 			case "success":
+
 			$response = array("id" => "success", "group" => $group);
 			break;
 

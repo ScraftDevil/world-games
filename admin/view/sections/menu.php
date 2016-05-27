@@ -8,7 +8,7 @@
 	<?php
 		if ($_SESSION['usertype'] == "Administrator") {
 			?>
-				<a href="../userViews/userListView.php?group=registered"><i class="fa fa-users" aria-hidden="true"></i> Usuarios</a>
+				<a href="../userViews/registeredListView.php"><i class="fa fa-users" aria-hidden="true"></i> Usuarios</a>
 			<?php
 		}
 	?>		
