@@ -1,5 +1,6 @@
 <?php
 session_start();
+include("../../controller/mainControllers/messageController.php");
 ?>
 <head>
     <meta charset="utf-8">
