@@ -369,3 +369,14 @@ ul.dropdown-cart li .item-right button{
     font-size: 20px;
     font-weight: bold;
 }
+
+/* ShoppingCart CSS */
+.badge#countShoppingCart {
+    background-color: red;
+}
+
+#basket {
+    overflow: hidden;
+    overflow-y: scroll;
+    height: 15em;
+}

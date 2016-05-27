@@ -222,7 +222,7 @@ function search() {
             if($product.length > 0) {
                 $("#Product"+item.id).find("#quantity").text("x"+item.quantity);
             } else {
-                var buttonRemoveHTML = '<button type="button" class="removeItem btn btn-danger" style="position: absolute;padding: 0px;margin: 0px;margin-left: 145px;width: 19px;">X</button>';
+                var buttonRemoveHTML = '<button type="button" class="removeItem btn btn-danger" style="position: relative;padding: 0px;margin: 0px;margin-left: 90%;width: 19px;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>';
                 $("#basket").append('<span class="item" id="Product'+item.id+'">'+buttonRemoveHTML+'<span onclick="loadDetailGame('+item.id+')" class="item-left"><img src="'+item.image+'" alt="'+item.name+'" width="85px" height="105px"/><span class="item-info"><span>'+item.name+'</span><span id="quantity">x'+item.quantity+'</span><span>'+(parseFloat(item.price)*parseFloat(item.quantity))+' €</span></span></span></span><li class="divider"></li>');
                 nitems++;
             }
@@ -273,7 +273,7 @@ function search() {
             updateTotalShopping(Cookies.getJSON('shoppingCart'));
         }
         if (newGame) {
-            var buttonRemoveHTML = '<button type="button" class="removeItem btn btn-danger" style="position: absolute;padding: 0px;margin: 0px;margin-left: 145px;width: 19px;">X</button>';
+            var buttonRemoveHTML = '<button type="button" class="removeItem btn btn-danger" style="position: relative;padding: 0px;margin: 0px;margin-left: 90%;width: 19px;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>';
             var linesHTML = '<span class="item" id="Product'+id+'">'+buttonRemoveHTML+'<span onclick="loadDetailGame('+id+')" class="item-left">';
             linesHTML += '<img src="'+itemImageURL+'" alt="'+title+'" width="85px" height="105px"/><span class="item-info">';
             linesHTML += '<span>'+title+'</span>';
@@ -319,14 +319,14 @@ $(document).on("click", ".buyGame", function (e) {
             $("#countShoppingCart").text(nitems);
         } else {
             newGame = false;
-            $("#Product"+id).find(".quantity").text("x"+game.quantity);
-            $("#Product"+id).find(".price").text((parseFloat(price)*parseFloat(game.quantity))+" €");
+            $("#Product"+id).find(".item-info span:eq(1)").text("x"+(game.quantity));
+            $("#Product"+id).find(".item-info span:eq(2)").text((parseFloat(price)*parseFloat(game.quantity))+" €");
         }
         Cookies.set('shoppingCart', items, { expires: 1 });
         updateTotalShopping(Cookies.getJSON('shoppingCart'));
     }
     if (newGame) {
-        var buttonRemoveHTML = '<button type="button" class="removeItem btn btn-danger" style="position: absolute;padding: 0px;margin: 0px;margin-left: 145px;width: 19px;">X</button>';
+        var buttonRemoveHTML = '<button type="button" class="removeItem btn btn-danger" style="position: relative;padding: 0px;margin: 0px;margin-left: 90%;width: 19px;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>';
         var linesHTML = '<span class="item" id="Product'+id+'">'+buttonRemoveHTML+'<span onclick="loadDetailGame('+id+')" class="item-left">';
         linesHTML += '<img src="'+itemImageURL+'" alt="'+title+'" width="85px" height="105px"/><span class="item-info">';
         linesHTML += '<span>'+title+'</span>';

@@ -8,7 +8,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="../mainViews/home.php"><img src="../resources/images/logo.png" class="brand-img img-responsive"></a>
+                <a href="../mainViews/home.php"><img src="../resources/images/logo.png" class="img-responsive"></a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
