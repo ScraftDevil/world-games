@@ -14,7 +14,7 @@ class commentDAO {
         return $resultat;
     }*/
 
-	/*public function getAllComment($order) {
+	 function getAllComment($order) {
 
 		$orderSQL = "";
 			if (!empty($order)) {
@@ -30,9 +30,9 @@ class commentDAO {
 			$result = $stmt->FetchAll();
 			return $result;
 		}
-	}*/
+	
 
-	public function getGameComments($id) {
+	 function getGameComments($id) {
 		try {
 	        $db = unserialize($_SESSION['dbconnection']);
 	        $sqlUser = "(SELECT R.Username FROM registered R WHERE R.ID_Registered=RC.Registered_ID) as Usuario";

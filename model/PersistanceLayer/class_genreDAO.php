@@ -4,8 +4,6 @@ require_once($_SESSION["BASE_PATH"]."/model/autoload.php");
 class genreDAO {
 
    
-
-    
 public function deleteGenre($id) {
 
 		try {
@@ -25,13 +23,6 @@ public function deleteGenre($id) {
 		}
 	}
 
-	/*function getGenreByID($idgenre) {
-		$db = unserialize($_SESSION['dbconnection']);
-		$sql = "SELECT ID_Genre, Name FROM genre WHERE ID_Genre = '".$idgenre."'";
-        $stmt = $db->getLink()->prepare($sql); 
-        $stmt->execute();
-        $result = $stmt->FetchAll();
-        return $result;
-	}*/
+	
 }
 ?>

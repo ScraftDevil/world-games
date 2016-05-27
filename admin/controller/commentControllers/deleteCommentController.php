@@ -10,23 +10,23 @@ if (session_id() == '') {
 	
 		if (isset($_POST['delete']) AND !empty($_POST['delete'])) {
 			$id = $_POST['delete'];
-			$result = deleteGenre($id);
+			$result = deleteComment($id);
 			if($result != -1) {
-				header("Location:../../view/genreViews/genreListView.php?msg=deleteSuccess");
+				header("Location:../../view/commentViews/commentListView.php?msg=deleteSuccess");
 			} else {
-				header("Location:../../view/genreViews/genreListView.php?msg=deleteFail");
+				header("Location:../../view/commentViews/commentListView.php?msg=deleteFail");
 			}
 		} else {
-			header("Location:../../view/genreViews/genreListView.php?msg=deleteFail");
+			header("Location:../../view/commentViews/commentListView.php?msg=deleteFail");
 		}
 	
 
 	
 
-	function deleteGenre($id) {
+	function deleteComment($id) {
 		$proces = -1;
 		$db = unserialize($_SESSION['dbconnection']);
-		$proces = $db->deleteGenre($id);
+		$proces = $db->deleteComment($id);
 		return $proces;
 	}
 

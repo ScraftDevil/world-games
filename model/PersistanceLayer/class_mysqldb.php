@@ -195,6 +195,11 @@ public function deleteGenre($id) {
 		$genre = $GenreDAO->deleteGenre($id);		
 	}
 	
+public function deletePlatform($id) {
+		$PlatformDAO = new PlatformDAO();
+		$platform = $PlatformDAO->deletePlatform($id);		
+	}
+
 
 	public function deleteGame($id){
 	$gameDAO = new gameDAO();

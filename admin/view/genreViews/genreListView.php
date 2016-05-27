@@ -74,7 +74,7 @@
 	</div>
 	<footer>
 		<?php include("../sections/footer.php"); ?>	
-		<script type="text/javascript" src="../resources/js/gamesManage.js"></script>
+		<script type="text/javascript" src="../resources/js/genresManage.js"></script>
 		<script>
 	</script>
 	</footer>

@@ -10,23 +10,23 @@ if (session_id() == '') {
 	
 		if (isset($_POST['delete']) AND !empty($_POST['delete'])) {
 			$id = $_POST['delete'];
-			$result = deleteGenre($id);
+			$result = deletePlatform($id);
 			if($result != -1) {
-				header("Location:../../view/genreViews/genreListView.php?msg=deleteSuccess");
+				header("Location:../../view/platformViews/platformListView.php?msg=deleteSuccess");
 			} else {
-				header("Location:../../view/genreViews/genreListView.php?msg=deleteFail");
+				header("Location:../../view/platformViews/platformListView.php?msg=deleteFail");
 			}
 		} else {
-			header("Location:../../view/genreViews/genreListView.php?msg=deleteFail");
+			header("Location:../../view/platformViews/platformListView.php?msg=deleteFail");
 		}
 	
 
 	
 
-	function deleteGenre($id) {
+	function deletePlatform($id) {
 		$proces = -1;
 		$db = unserialize($_SESSION['dbconnection']);
-		$proces = $db->deleteGenre($id);
+		$proces = $db->deletePlatform($id);
 		return $proces;
 	}
 
