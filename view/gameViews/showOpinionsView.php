@@ -8,9 +8,6 @@ function printMessages($list) {
 			$imgURL = "../resources/images/avatars/".$list[$i]['UserID']."/".$list[$i]['AvatarURL'];
 		} else {
 			//default avatar = images/avatars/userid/userid.png
-			$imgURL = "../resources/images/avatars/".$list[$i]['UserID']."/".$list[$i]['UserID'].".png";
-		}
-		if(!file_exists($_SESSION['BASE_PATH']."/view/".$imgURL)) {
 			$imgURL = "../resources/images/avatars/default.png";
 		}
 
