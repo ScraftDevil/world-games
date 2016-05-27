@@ -66,5 +66,6 @@ FALTA:
 -Aviso si no hay session shop en home
 -Aviso al añadir algo al carro
 -Subir imagen en editar juego y en perfil [Importante]
--Reparar cascade eliminar mensajes de juego
+-Reparar cascade eliminar mensajes de juego <-- [Hecho]
+-Reparar UTF8 en nombres <-- [Hecho]
 ##############################################################
