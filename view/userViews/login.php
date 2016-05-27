@@ -121,7 +121,7 @@
             <?php
             include("../sections/footer.php");
             ?>
-            <script src='https://www.google.com/recaptcha/api.js'></script>
+            <script type="text/javascript" src="../resources/js/api.js"></script>
             <script type="text/javascript" src="../resources/js/loginUserFunctions.js"></script>
         </footer>
     </body>
