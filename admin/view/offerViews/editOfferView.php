@@ -1,14 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<?php
-
-		include("../../controller/adminAuthControllers/authController.php");
-		if (!checkAuth()) {
-			header("Location:../mainViews/adminLoginView.php");
-		}
-		if ($_SESSION['usertype'] == "Professional") {
-			header("Location:../index.php");
-		}
+	
 		include("../sections/head.php"); 
 
 		$id = null;

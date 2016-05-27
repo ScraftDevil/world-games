@@ -59,13 +59,23 @@ function getInsertOfferProcess(data) {
 
         case "successOffer":
             var delay = 0;
-            setTimeout(function(){ window.location = "../../view/gameViews/gameListView.php?msg=" + data.id; }, delay);
+            setTimeout(function(){ window.location = "../../view/offerViews/manageOfferView.php?msg=" + data.id; }, delay);
         break;
 
         default:
             $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error inesperado!</strong></div>");
         break;
     }
+}
+
+function deleteOffer(value) {
+    var id = value;
+    var alert = "<img class=\"alert-img\" src=\"../resources/images/alert.png\"/>";
+    var deleteButton = "<button name=\"delete\" value=\"" + id + "\" type=\"submit\" class=\"btn btn-success btn-delete\">Borrar</button>";
+    var cancel = "<button onclick=\"cancelDelete()\" type=\"button\" class=\"btn btn-danger btn-cancel\">Cancelar</button>";
+    var form = "<form action=\"../../controller/offerControllers/deleteOfferController.php?id=" + id + "\" method=\"POST\">" + deleteButton + " " + cancel + "</form>";
+    var deleteoffer = "<div class=\"confirm\"><div class=\"confirm-msg\">" + alert + "<p>¿Seguro que deseas eliminar la Oferta con ID " + id + "?</p>" + form + "</div></div>";
+    $("body").append("<div class=\"delete\">" + deleteoffer + "</div>");
 }
 
 function updateOffer(offer) {

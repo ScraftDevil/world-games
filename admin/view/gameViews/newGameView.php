@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 <html>
-<?php
-include("../../controller/adminAuthControllers/authController.php");
-if (!checkAuth()) {
-	header("Location:../mainViews/adminLoginView.php");
-}
-include("../sections/head.php"); 
-?>
+
+<?php include("../sections/head.php"); ?>
+
 <body>
-	<?php
-	include("../sections/header.php"); 
-	?>
+
+	<?php include("../sections/header.php"); ?>
+	
 	<div class="container-fluid">
 		<div class="row row-admin">
 			<?php include ("../sections/menu.php"); ?>
@@ -70,15 +66,17 @@ include("../sections/head.php");
 				$("#forminsert ").validate({
 					rules: {
 						title: {
-							required: true,
-							maxlength: 45
+							required: true
+							/*minlength:10
+							maxlength: 45*/
 
 						},
 					},
 					messages: {
 						title: {
-							required:"El campo username esta vacio",
-							maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
+							required:"El campo username esta vacio"
+							//minlength: jQuery.validator.format("No puedes poner menos de  {0} caracteres"),
+							//maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
 						},
 					}
 				});

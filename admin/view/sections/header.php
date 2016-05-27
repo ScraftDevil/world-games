@@ -8,13 +8,13 @@
 <header id="adminView">
 	<div class="row">
 		<div class="col-md-2">
-			<div class="logo"><a href="../mainViews/adminView.php"><img src="../resources/images/logo.png"/></a></div>
+			<div class="logo"><a href="../mainViews/mainView.php"><img src="../resources/images/logo.png"/></a></div>
 		</div>
 		<div class="col-md-offset-2 col-md-4">
 			<h1 id="header-name">Panel de Administración</h1>
 		</div>
 		<div class="col-md-4">
-			<form id="logout" action="../../controller/adminAuthControllers/adminLogoutController.php" method="POST">
+			<form id="logout" action="../../controller/backAuthControllers/backLogoutController.php" method="POST">
 				<div class="row">
 					<?php
 

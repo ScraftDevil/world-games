@@ -9,7 +9,7 @@ class registeredDAO {
       $userid = -1;
       try {
         $db = unserialize($_SESSION['dbconnection']);
-        $stmt = $db->getLink()->prepare("SELECT ID_Registered FROM registered WHERE Username='$username' AND Password='$password' LIMIT 1;");
+        $stmt = $db->getLink()->prepare("SELECT ID_Registered FROM registered WHERE Username='$username' AND Password='".md5($password)."' LIMIT 1;");
         $stmt->execute();
         $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
         if($stmt->rowCount() > 0) {
@@ -50,7 +50,7 @@ class registeredDAO {
 
 		try {
 
-			$query = ("SELECT r.Username, r.Email, r.BannedTime, r.BirthDate, r.PaypalAccount, r.AvatarURL, c.Name as 'Pais'
+			$query = ("SELECT r.ID_Registered, r.Username, r.Password, r.Email, r.BannedTime, r.BirthDate, r.PaypalAccount, r.AvatarURL, c.Name as 'Pais'
 			FROM registered r INNER JOIN country c ON r.Country_ID = c.ID_Country where r.ID_Registered = '$id';");			
 
 			$db = unserialize($_SESSION['dbconnection']);
@@ -337,9 +337,8 @@ class registeredDAO {
 				// EMAIL VALIDATION IN TABLES
 				if($this->emailInUse($registered, $db, "insert") == false) {
 					// INSERT ALL COLUMNS IN REGISTERED TABLE
-					$query = ("INSERT INTO registered (ID_Registered, Username, Password, Email, BannedTime, BirthDate, PaypalAccount, AvatarURL, Shop_ID, Country_ID) VALUES (:id, :username, :password, :email, :bannedtime, :birthdate, :paypal, :avatar, :shop_id, :country)");
+					$query = ("INSERT INTO registered (ID_Registered, Username, Password, Email, BannedTime, BirthDate, PaypalAccount, AvatarURL, Shop_ID, Country_ID) VALUES ('', :username, :password, :email, :bannedtime, :birthdate, :paypal, :avatar, :shopid, :country)");
 					$stmt = $db->getLink()->prepare($query);
-					$stmt->bindParam(':id', $this->getLastID());
 				    $stmt->bindParam(':username', $registered->getUsername());
 				    $stmt->bindParam(':password', $registered->getPassword());
 				    $stmt->bindParam(':email', $registered->getEmail());
@@ -347,7 +346,7 @@ class registeredDAO {
 				    $stmt->bindParam(':birthdate', $registered->getBirthDate());
 				    $stmt->bindParam(':paypal', $registered->getPaypalAccount());
 				    $stmt->bindParam(':avatar', $registered->getAvatarUrl());
-				    $stmt->bindParam(':shop_id', $this->getShopID());
+				    $stmt->bindParam(':shopid', $this->getShopID());
 				    $stmt->bindParam(':country', $registered->getCountry());
 				    $stmt->execute();
 				    $proces = "success";

@@ -13,6 +13,10 @@ header {
     color: white;
 }
 
+.divestadisticas{
+    width: 100%;
+    overflow: auto;
+}
 button {
     cursor: pointer !important;
 }
@@ -480,8 +484,8 @@ a {
 }
 
 /* Gráfico de estadísticas */
-#chartContainer {
-    width: 650px;
+.statisticsGraphics {
+    width: 100%;
     height: 300px;
     margin: 0 auto;
     margin-top: 20px;

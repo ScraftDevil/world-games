@@ -2,18 +2,13 @@
 <html>
 	<?php
 
-		include("../../controller/adminAuthControllers/authController.php");
-		if (!checkAuth()) {
-			header("Location:../mainViews/adminLoginView.php");
-		}
+		include("../sections/head.php");
 
 		if (isset($_GET['id'])) {
 			$id = $_GET['id'];
 		} else {
 			header("Location:../index.php");
 		}
-
-		include("../sections/head.php"); 
 
 	?>
 <body>

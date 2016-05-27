@@ -8,6 +8,7 @@ if (!isset($pathUpload)) {
 if (!isset($uploadText)) {
   $uploadText['text'] = "Upload Image";
   $uploadText['textUploadBtn'] = "Choose File";
+  $uploadText['textUploadBtnRetry'] = "Choose Another File";
 }
 ?>
 <script src="<?php echo $pathUploaderPHP; ?>/js/simpleAjaxUploader.js"></script>
@@ -62,7 +63,7 @@ if (!isset($uploadText)) {
             btn.innerHTML = 'Uploading...'; // change button text to "Uploading..."
           },
           onComplete: function( filename, response ) {
-            btn.innerHTML = 'Choose Another File';
+            btn.innerHTML = '<?php echo $uploadText['textUploadBtnRetry']?>';
             progressOuter.style.display = 'none'; // hide progress bar when upload is completed
             if ( !response ) {
               msgBox.innerHTML = 'Unable to upload file';

@@ -2,42 +2,19 @@
 <html>
 	<?php
 
-		include("../../controller/adminAuthControllers/authController.php");
-		if (!checkAuth()) {
-			header("Location:../mainViews/adminLoginView.php");
-		}
+		include("../sections/head.php");
+
 		if ($_SESSION['usertype'] == "Professional") {
 			header("Location:../index.php");
 		}
-		include("../sections/head.php"); 
 
+		$_SESSION['userDataGrid'] = "registered";
+		
 		$users = null;
 		$label = null;
 
-		if(isset($_GET['group'])) {
-			switch ($_GET['group'])  {
-				case "administrator": {
-					$label = 'Administradores';
-					$users = 'administrator';
-					break;
-				}
-				case "professional": {
-					$label ='Profesionales';
-					$users = 'professional';
-					break;
-				}
-				case "registered": {
-					$label = 'Registrados';
-					$users = 'registered';
-					break;
-				}
-			}
-		} else {
-			header("Location:../index.php");
-		}
-
-		if(isset($_GET['msg']) AND !empty($_GET['msg'])) {
-			$msg = $_GET['msg'];
+		if(isset($_SESION['msg']) AND !empty($_SESSION['msg'])) {
+			$msg = $_SESSION['msg'];
 			switch($msg) {
 				case "i-success":
 				$message = "<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-ok\"></span> ¡Usuario creado satisfactoriamente!</strong></div>";
@@ -67,6 +44,7 @@
 					$message = null;
 				break;
 			}
+			unset($_SESSION['msg']);
 		} else {
 			$message = null;
 		}
@@ -87,7 +65,7 @@
 						<div class="col-md-12">
 							<div class="panel panel-primary">
 								<div class="panel-heading">
-									<h2 class="panel-title"> Lista de usuarios <?php echo $label; ?></h2>
+									<h2 class="panel-title"> Lista de usuarios Registrados</h2>
 								</div>
 							  	<div class="panel-body">
 									<div class="grid">
@@ -99,19 +77,19 @@
 										<div class="new-button">
 											<div class="btn-group">
 											  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											    <?php echo $label; ?>
+											    Registrados
 												<span class="caret"></span>
 											  </button>
 											  <ul class="dropdown-menu">
-											    <li><a href="userListView.php?group=registered">Registrados</a></li>
-											    <li><a href="userListView.php?group=professional">Profesionales</a></li>
-											    <li><a href="userListView.php?group=administrator">Administradores</a></li>
+											    <li><a href="registeredListView.php">Registrados</a></li>
+											    <li><a href="professionalListView.php">Profesionales</a></li>
+											    <li><a href="administratorListView.php">Administradores</a></li>
 											  </ul>
 											</div>
-											<button type="button" class="btn btn-success"><a href="newUserView.php?group=<?php echo $users; ?>"><i class="fa fa-user" aria-hidden="true"></i> Nuevo Usuario</a></button>
+											<button type="button" class="btn btn-success"><a href="newUserView.php"><i class="fa fa-user" aria-hidden="true"></i> Nuevo Usuario</a></button>
 										</div>
 										<?php
-											include("../../controller/userControllers/showUsersController.php");
+											include("../../controller/userControllers/showRegisteredController.php");
 										?>
 									</div>
 								</div>

@@ -25,5 +25,10 @@ class Platform {
         $this->name = $name;
     }
 
+    function insertPlatform() {
+        $platformDAO = new platformDAO();
+        return  $platformDAO->insertPlatform($this); 
+    }
+
 
 }

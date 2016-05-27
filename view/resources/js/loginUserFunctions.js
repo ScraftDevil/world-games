@@ -18,7 +18,8 @@ $(document).ready(function () {
     });
     $("#login-form").on("submit", function (e) {
         e.preventDefault();
-        var params = {"username": $("#username").val(), "password": $("#password").val()};
+
+        var params = {"username": $("#username").val(), "password": $("#password").val(), "recaptcha": $("#g-recaptcha-response").val()};
         $.ajax({
             data: params,
             url: '../../controller/frontAuthControllers/loginController.php',
@@ -29,7 +30,23 @@ $(document).ready(function () {
                     $("#msg").attr("class", "alert alert-danger");
                     $("#msg").html('<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span class="sr-only">Error:</span>&nbsp;Usuario y/o contraseña incorrecto. Compruebelo e intente de nuevo.');
                     $("#msg").slideDown();
-                } else if (data.STATUS == "LOGIN_OK") {
+
+                } else if (data.STATUS == "RECATPCHA_ERROR") {
+                    $("#msg").attr("class", "alert alert-danger");
+                    $("#msg").html('<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span class="sr-only">Error:</span>&nbsp;Recaptcha vacío o incorrecto. Compruebelo e intente de nuevo.');
+                    $("#msg").slideDown();
+
+                    } else if (data.STATUS == "LOGIN_OK") {
+                        $("#msg").attr("class", "alert alert-success");
+                        $("#msg").html('<span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span><span class="sr-only">Login Correcto:</span>&nbsp;Has entrado con exito en la cuenta. Seras redirigido a tu perfil en menos de 1 segundo.');
+                        $("#msg").slideDown();
+                        var delay = 1000;
+                        setTimeout(function () {
+                            window.location = "../index.php";
+                        }, delay);
+                    }
+
+                /*if (data.STATUS == "LOGIN_OK") {
                     $("#msg").attr("class", "alert alert-success");
                     $("#msg").html('<span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span><span class="sr-only">Login Correcto:</span>&nbsp;Has entrado con exito en la cuenta. Seras redirigido a tu perfil en menos de 1 segundo.');
                     $("#msg").slideDown();
@@ -37,7 +54,7 @@ $(document).ready(function () {
                     setTimeout(function () {
                         window.location = "../index.php";
                     }, delay);
-                }
+                }*/
             }
         });
         return false;
@@ -56,10 +73,12 @@ $("#login-form").validate({
     rules: {
         username: {
             required: true,
+            minlength: 3,
             maxlength: 20
         },
         password: {
             required: true,
+            minlength: 3,
             maxlength: 20
         }
     },
@@ -79,8 +98,9 @@ $("#login-form").validate({
 $("#register-form").validate({
     oonkeyup: true,
     rules: {
-        username: {
+        username_register: {
             required: true,
+            minlength: 3,
             maxlength: 20
         },
         email: {
@@ -90,10 +110,12 @@ $("#register-form").validate({
         },
         passwordregister: {
             required: true,
+            minlength: 6,
             maxlength: 20
         },
         confirmpassword: {
             required: true,
+            minlength: 6,
             maxlength: 20,
             equalTo: "#passwordregister"
         },
@@ -103,13 +125,13 @@ $("#register-form").validate({
         },
         country: {
             required: true
-           
         }
     },
     messages: {
-        username: {
+        username_register: {
             required: "El campo username esta vacio",
-            maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
+            maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres"),
+            minlength: jQuery.validator.format("No puedes poner menos de  {0} caracteres")
         },
         email: {
             required: "El campo email esta vacio",
@@ -118,11 +140,13 @@ $("#register-form").validate({
         },
         passwordregister: {
             required: "El campo password esta vacio",
-            maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
+            maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres"),
+            minlength: jQuery.validator.format("No puedes poner menos de  {0} caracteres")
         },
         confirmpassword: {
             required: "El campo confirmpassword esta vacio",
             maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres"),
+            minlength: jQuery.validator.format("No puedes poner menos de  {0} caracteres"),
             equalTo: "La contraseña no corresponde con la primera"
         },
         calendar: {
@@ -134,5 +158,29 @@ $("#register-form").validate({
            
 
         }
+    },
+    submitHandler: function() {
+        var username = $("#username_register").val();
+        var passwordregister = $("#passwordregister").val();
+        var email = $("#email").val();
+        var birthdate = $("#calendar").val();
+        var paypal = $("#paypal").val();
+        var country = document.getElementById("country").value;     
+       // var image = $("#image").val();
+       var registered = {"username":username,"passwordregister":passwordregister,"email":email, "birthdate":birthdate, "paypal":paypal, "country":country};
+       registerUser(registered);
     }
 });
+
+function registerUser(registered) {
+   var registered = JSON.stringify(registered);
+   $.ajax({
+    data: "registered=" + registered,
+    url: '../../controller/frontAuthControllers/insertUserController.php',   
+    type: 'POST',
+    dataType: 'json',
+    success: function () {
+        
+    }
+    });
+}

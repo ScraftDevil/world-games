@@ -1,3 +1,16 @@
+<?php
+
+	$file = basename($_SERVER["SCRIPT_FILENAME"], '.php');
+
+	if ($file != "backLoginView") {
+		include("../../controller/backAuthControllers/authController.php");
+		if (!checkAuth()) {
+			header("Location:../mainViews/backLoginView.php");
+		}
+	}
+
+?>
+
 <head>
 	<title>Admin Panel - World Games</title>
 	<meta charset="utf-8"/>

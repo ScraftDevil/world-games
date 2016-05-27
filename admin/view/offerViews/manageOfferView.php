@@ -1,18 +1,14 @@
 <!DOCTYPE html>
 <html>
 	<?php
+
+		include("../sections/head.php");
+
 		$gameid = 0;
 		if (isset($_GET['gameid'])) {
 			$gameid = $_GET['gameid'];
 		}
-		include("../../controller/adminAuthControllers/authController.php");
-		if (!checkAuth()) {
-			header("Location:../adminLoginView.php");
-		}
-		if ($_SESSION['usertype'] == "Professional") {
-			header("Location:../index.php");
-		}
-		include("../sections/head.php");
+
 	?>
 <body>
 	<?php
@@ -34,6 +30,8 @@
 										<div class="new-button">
 											<button id="newOffer" type="button" class="btn btn-success"><a href="newOfferView.php?gameid=<?php echo $_GET['gameid'];?>" id="newOfferRef"><i class="fa fa-gift" aria-hidden="true"></i> Nueva Oferta</a></button>
 										</div>
+
+										
 										<?php
 											include("../../controller/offerControllers/showOfferController.php");
 										?>

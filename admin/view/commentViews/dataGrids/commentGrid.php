@@ -32,13 +32,13 @@
 		$id = $record['ID_Comment'];
 		return "
 		<div class=\"btn-group\">
-		  <a href=\"#\" onclick=\"deleteComment($id)\"  class=\"btn btn-danger selectGame\">Eliminar</a>
+		  <a href=\"#\" onclick=\"deleteComment($id)\"  class=\"btn btn-danger \">Eliminar</a>
 		</div>";
 	}
 
 	function PrintUTF8($params){
 		extract($params);
-		$fieldData = $record['Platform'];
+		$fieldData = $record['Text'];
 		return utf8_encode($fieldData);
 	}
 

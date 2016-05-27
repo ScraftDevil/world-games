@@ -3,9 +3,16 @@ require_once($_SESSION["BASE_PATH"]."/model/autoload.php");
 
 class genreDAO {
 
+   public function insertGenre($genre) {
+       // $statusResult = 0;
+        $db = unserialize($_SESSION['dbconnection']);
+        $query = "insert into genre values('', '" . $genre->getName() . "')";
+        $resultat = $db->getLink()->prepare($query);
+        $resultat->execute();
+        	        
+        return $resultat;
+    }
    
-
-    
 public function deleteGenre($id) {
 
 		try {
@@ -25,13 +32,6 @@ public function deleteGenre($id) {
 		}
 	}
 
-	/*function getGenreByID($idgenre) {
-		$db = unserialize($_SESSION['dbconnection']);
-		$sql = "SELECT ID_Genre, Name FROM genre WHERE ID_Genre = '".$idgenre."'";
-        $stmt = $db->getLink()->prepare($sql); 
-        $stmt->execute();
-        $result = $stmt->FetchAll();
-        return $result;
-	}*/
+	
 }
 ?>

@@ -1,10 +1,20 @@
 <?php
 
 	require_once("../../model/autoload.php");
+	require_once("recaptchaValidationController.php");
+
+	// coge la librería recaptcha
+    require_once("../../lib/recaptchalib.php");
 
 	if (session_id() == '') {
 	    session_start();
 	}
+
+	//clave secreta
+	$secret = "6Lf_HSETAAAAAEAlKHOPiCbqTFYm8FmSLej3-4_Y";
+
+	//aquí guarda la respuesta del catpcha del usuario
+	$captcha = $_POST['recaptcha'];
 
 	$status = array();
 
@@ -14,9 +24,14 @@
 		$db = unserialize($_SESSION['dbconnection']);
 		$userid = $db->registeredBackLogin($username, $password);
 		if ($userid!=-1) {
-			$_SESSION['frontAuth'] = true;
-			$_SESSION['user_id'] = $userid;
-			$status["STATUS"] = "LOGIN_OK";
+			if (validateCaptcha($captcha, $secret)) {
+				$_SESSION['frontAuth'] = true;
+				$_SESSION['user_id'] = $userid;
+				$status["STATUS"] = "LOGIN_OK";			
+			}
+			else {
+				$status["STATUS"] = "RECATPCHA_ERROR";	
+			}
 		} else {
 			$status["STATUS"] = "LOGIN_INVALID_INFO";
 		}

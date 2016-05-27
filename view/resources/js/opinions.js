@@ -1,5 +1,8 @@
 $(document).ready(function() {
-setInterval(ajaxCall, 2000);
+//start in page load
+ajaxCall();
+//interval load opinions
+setInterval(ajaxCall, 10000);
 function ajaxCall() {
     $.ajax({
       type: "POST",
@@ -59,6 +62,7 @@ $("#sendOpinion").click(function (){
               $("#comentari").each(function () {
                 this.style.setProperty( 'border', '3px solid green', 'important' );
               });
+              ajaxCall();
             }
           }
         }

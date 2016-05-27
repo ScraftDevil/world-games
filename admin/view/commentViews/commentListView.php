@@ -2,15 +2,7 @@
 <html>
 	<?php
 
-		include("../../controller/adminAuthControllers/authController.php");
-		if (!checkAuth()) {
-			header("Location:../adminLoginView.php");
-		}
-		if ($_SESSION['usertype'] == "Professional") {
-			header("Location:../index.php");
-		}
 		include("../sections/head.php"); 
-
 
 		if(isset($_GET['msg']) AND !empty($_GET['msg'])) {
 			$msg = $_GET['msg'];
@@ -79,30 +71,8 @@
 	</div>
 	<footer>
 		<?php include("../sections/footer.php"); ?>	
-		<script type="text/javascript" src="../resources/js/gamesManage.js"></script>
-		<script>
-		var idgame = 0;
-		$("#offerGame").click(function () {
-			var anySelected = false;
-			$('.grid tr').each(function() {
-				if ($(this).hasClass("selected")) {
-					anySelected = true;
-				}
-			});
-			if (!anySelected) {
-				window.location.href = 'gameListView.php?msg=gameNotSelected';
-				return false;
-			}
-		});
-		$(".selectGame").click(function () {
-			$('.grid tr').each(function() {
-				$(this).removeClass("selected");
-			});
-			idgame = $(this).parent().parent().parent().find("td:eq(0)").text();
-			$("#offerGame a").attr("href", "../offerViews/manageOfferView.php?gameid="+idgame);
-			$(this).parent().parent().parent().attr("class", "selected");
-		});
-		</script>
+		<script type="text/javascript" src="../resources/js/commentsManage.js"></script>
+		
 	</footer>
 </body>
 </html>

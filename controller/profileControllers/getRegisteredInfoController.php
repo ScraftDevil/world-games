@@ -4,15 +4,19 @@
 
 	function createObjectRegistered($registered) {
 
-		$name = $registered[0][0];
-		$email = $registered[0][1];
-		$birthDate = $registered[0][3];
+		$id = $registered[0][0];
+		$name = $registered[0][1];
+		$password = $registered[0][2];
+		$email = $registered[0][3];
+		$bannedtime = $registered[0][4];
+		$birthDate = $registered[0][5];
 		$birthDate = date('d-m-Y', strtotime($birthDate));
-		$paypalAccount = $registered[0][4];
-		$avatarUrl = $registered[0][5];
-		$country = $registered[0][6];
+		$paypalAccount = $registered[0][6];
+		$avatarUrl = $registered[0][7];
+		$country = $registered[0][8];
 
-		$registeredObj = new Registered($name, "", $email, $birthDate, $country);
+		$registeredObj = new Registered($name, $password, $email, $birthDate, $country);
+		$registeredObj->setId($id);
 		$registeredObj->setPaypalAccount($paypalAccount);
 		$registeredObj->setAvatarURL($avatarUrl);
 

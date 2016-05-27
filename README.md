@@ -41,3 +41,30 @@ $pathUpload = "../../../view/resources/images/avatars/".$id."/"; //ruta relativa
 include("../../../view/sections/uploader/showUploadView.php");//Ruta para incluir el form uploader
 
 ##################################################################
+
+
+Tareas de documentacion
+
+infraestructura web amb maquina virtual -> david
+administracio remota -> david
+virtual host -> david
+connexions segures -> david
+documentacio (sistema de php doc) -> ignacio
+sistema control de versions -> ignacio
+
+##############################################################
+FALTA:
+-Editar Juego
+-Eliminar ofertas
+-Gestion comentarios juego, plataformas, generos
+-Recapcha en Login Registrado
+-Cargar dinamicamente filtros plataformas y generos disponbibles
+-Arreglar estadisticas y agregar al index administrator panel
+-JS de footer aparte
+-Detalles de compra (Compra incluida paypal)
+-Aviso al hacer el redirect con problema de permisos
+-Aviso si no hay session shop en home
+-Aviso al añadir algo al carro
+-Subir imagen en editar juego y en perfil [Importante]
+-Reparar cascade eliminar mensajes de juego
+##############################################################

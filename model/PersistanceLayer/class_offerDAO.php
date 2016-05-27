@@ -15,5 +15,24 @@ class offerDAO {
         }
         return $statusResult;
     }
+
+    public function deleteOffer($id) {
+
+        try {
+            
+            $query = ("DELETE FROM offer WHERE ID_Offer = '$id'");
+
+            $db = unserialize($_SESSION['dbconnection']);
+            $resultat = $db->getLink()->prepare($query);
+            $resultat->execute();
+
+        } catch(PDOException $ex) {
+            echo "An Error ocurred!";
+            some_loggging_function($ex->getMessage());
+        } finally {
+            return $resultat;
+            $_SESSION['dbconnection'] = serialize($shopDb);         
+        }
+    }
 }
  ?>

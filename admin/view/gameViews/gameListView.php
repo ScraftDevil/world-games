@@ -2,15 +2,7 @@
 <html>
 	<?php
 
-		include("../../controller/adminAuthControllers/authController.php");
-		if (!checkAuth()) {
-			header("Location:../adminLoginView.php");
-		}
-		if ($_SESSION['usertype'] == "Professional") {
-			header("Location:../index.php");
-		}
 		include("../sections/head.php"); 
-
 
 		if(isset($_GET['msg']) AND !empty($_GET['msg'])) {
 			$msg = $_GET['msg'];
@@ -57,9 +49,9 @@
 
 	?>
 <body>
-	<?php
-		include("../sections/header.php"); 
-	?>
+
+	<?php include("../sections/header.php"); ?>
+	
 	<div class="container-fluid">
 		<div class="row row-admin">
 			<?php include ("../sections/menu.php"); ?>

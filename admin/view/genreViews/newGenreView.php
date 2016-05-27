@@ -1,15 +1,8 @@
 <!DOCTYPE html>
 <html>
-	<?php
 
-		include("../../controller/adminAuthControllers/authController.php");
-		if (!checkAuth()) {
-			header("Location:../mainViews/adminLoginView.php");
-		}
-
-		include("../sections/head.php"); 
-
-	?>
+	<?php include("../sections/head.php"); ?>
+	
 <body>
 	<?php
 
@@ -55,7 +48,7 @@
 	</div>
 	<footer>
 		<?php include("../sections/footer.php"); ?>
-		<script type="text/javascript" src="../resources/js/gamesManage.js"></script>
+		<script type="text/javascript" src="../resources/js/genresManage.js"></script>
 	</footer>
 </body>
 </html>

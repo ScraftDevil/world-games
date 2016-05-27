@@ -12,12 +12,12 @@ if (session_id() == '') {
 			$id = $_POST['delete'];
 			$result = deleteGenre($id);
 			if($result != -1) {
-				header("Location:../../view/gameViews/genreListView.php?msg=deleteSuccess");
+				header("Location:../../view/genreViews/genreListView.php?msg=deleteSuccess");
 			} else {
-				header("Location:../../view/gameViews/genreListView.php?msg=deleteFail");
+				header("Location:../../view/genreViews/genreListView.php?msg=deleteFail");
 			}
 		} else {
-			header("Location:../../view/gameViews/genreListView.php?msg=deleteFail");
+			header("Location:../../view/genreViews/genreListView.php?msg=deleteFail");
 		}
 	
 

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-05-2016 a las 16:41:00
+-- Tiempo de generación: 27-05-2016 a las 13:57:42
 -- Versión del servidor: 5.6.26
 -- Versión de PHP: 5.5.28
 
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `administrator` (
 --
 
 INSERT INTO `administrator` (`ID_Administrator`, `Username`, `Password`, `Email`, `BannedTime`, `BirthDate`, `Shop_id`) VALUES
-(1, 'admin', 'admin', 'admin@admin.com', NULL, '2016-05-04', 1);
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin@admin.com', NULL, '2016-05-04', 1);
 
 -- --------------------------------------------------------
 
@@ -73,7 +73,15 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `Game_ID` int(11) NOT NULL,
   `Text` text,
   `Date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `comment`
+--
+
+INSERT INTO `comment` (`ID_Comment`, `Game_ID`, `Text`, `Date`) VALUES
+(1, 2, 'test', '2016-05-26 18:55:46'),
+(2, 2, 'test2', '2016-05-26 18:58:53');
 
 -- --------------------------------------------------------
 
@@ -178,7 +186,10 @@ CREATE TABLE IF NOT EXISTS `game_has_genre` (
 INSERT INTO `game_has_genre` (`Game_ID`, `Genre_ID`) VALUES
 (1, 1),
 (1, 2),
-(2, 3);
+(4, 2),
+(2, 3),
+(3, 5),
+(5, 6);
 
 -- --------------------------------------------------------
 
@@ -209,7 +220,8 @@ CREATE TABLE IF NOT EXISTS `game_has_valoration` (
 --
 
 INSERT INTO `game_has_valoration` (`Game_ID`, `Valoration_ID`, `Registered_ID`) VALUES
-(1, 3, 1);
+(1, 3, 1),
+(2, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -220,7 +232,7 @@ INSERT INTO `game_has_valoration` (`Game_ID`, `Valoration_ID`, `Registered_ID`) 
 CREATE TABLE IF NOT EXISTS `genre` (
   `ID_Genre` int(11) NOT NULL,
   `Name` char(45) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `genre`
@@ -230,7 +242,9 @@ INSERT INTO `genre` (`ID_Genre`, `Name`) VALUES
 (1, 'Aventura'),
 (2, 'Accion'),
 (3, 'Arcade'),
-(4, 'RPG');
+(4, 'RPG'),
+(5, 'Shooter'),
+(6, 'Deportes');
 
 -- --------------------------------------------------------
 
@@ -305,7 +319,7 @@ CREATE TABLE IF NOT EXISTS `professional` (
 --
 
 INSERT INTO `professional` (`ID_Professional`, `Username`, `Password`, `Email`, `BannedTime`, `BirthDate`, `Telephone`, `Shop_ID`) VALUES
-(1, 'professional', 'professional', 'professional@professional.com', NULL, '1985-01-01', NULL, 1);
+(1, 'professional', '27ade1b64f9515dbb776cc3cc5bc3377', 'professional@professional.com', NULL, '1985-01-01', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -343,9 +357,9 @@ CREATE TABLE IF NOT EXISTS `registered` (
 --
 
 INSERT INTO `registered` (`ID_Registered`, `Username`, `Password`, `Email`, `BannedTime`, `BirthDate`, `PaypalAccount`, `AvatarURL`, `Shop_ID`, `Country_ID`) VALUES
-(1, 'registered', 'registered', 'registered@registered.com', NULL, '1985-01-01', NULL, NULL, 1, 1),
-(2, 'registered2', 'registered2', 'registered2@registered2.com', 0, '1995-07-10', '', NULL, 1, 1),
-(3, 'registered3', 'registered3', 'registered3@registered3.com', NULL, '2016-05-04', NULL, NULL, 1, 1);
+(1, 'registered', 'a2b8ed9c305b8ea86116b603cca78a97', 'registered@registered.com', NULL, '1985-01-01', NULL, NULL, 1, 1),
+(2, 'registered2', '80ec84b21baf9b0feb14ee4ec2042faf', 'registered2@registered2.com', 0, '1995-07-10', '', NULL, 1, 1),
+(3, 'registered3', '6110e563e57d3a395c2f301c1c681b72', 'registered3@registered3.com', NULL, '2016-05-04', NULL, NULL, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -358,6 +372,14 @@ CREATE TABLE IF NOT EXISTS `registered_has_comment` (
   `Comment_ID` int(11) NOT NULL,
   `Game_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `registered_has_comment`
+--
+
+INSERT INTO `registered_has_comment` (`Registered_ID`, `Comment_ID`, `Game_ID`) VALUES
+(1, 1, 2),
+(1, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -444,14 +466,15 @@ CREATE TABLE IF NOT EXISTS `shopping` (
 CREATE TABLE IF NOT EXISTS `valoration` (
   `ID_Valoration` int(11) NOT NULL,
   `Valoration` char(45) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `valoration`
 --
 
 INSERT INTO `valoration` (`ID_Valoration`, `Valoration`) VALUES
-(3, '3');
+(3, '3'),
+(4, '5');
 
 --
 -- Índices para tablas volcadas
@@ -652,7 +675,7 @@ ALTER TABLE `administrator_has_report`
 -- AUTO_INCREMENT de la tabla `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `ID_Comment` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Comment` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `complaint`
 --
@@ -672,7 +695,7 @@ ALTER TABLE `game`
 -- AUTO_INCREMENT de la tabla `genre`
 --
 ALTER TABLE `genre`
-  MODIFY `ID_Genre` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `ID_Genre` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `message`
 --
@@ -717,7 +740,7 @@ ALTER TABLE `shopping`
 -- AUTO_INCREMENT de la tabla `valoration`
 --
 ALTER TABLE `valoration`
-  MODIFY `ID_Valoration` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `ID_Valoration` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- Restricciones para tablas volcadas
 --
@@ -760,7 +783,7 @@ ALTER TABLE `game_has_complaint`
 --
 ALTER TABLE `game_has_genre`
   ADD CONSTRAINT `fk_Game_has_Genre_Game1` FOREIGN KEY (`Game_ID`) REFERENCES `game` (`ID_Game`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Game_has_Genre_Genre1` FOREIGN KEY (`Genre_ID`) REFERENCES `genre` (`ID_Genre`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Game_has_Genre_Genre1` FOREIGN KEY (`Genre_ID`) REFERENCES `genre` (`ID_Genre`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `game_has_shopping`

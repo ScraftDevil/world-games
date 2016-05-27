@@ -5,8 +5,7 @@ class mysqldb {
 	private $dsn, $username, $password, $link;
 
 	public function __construct() {
-		$params = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8");  
-		$this->setDSN("mysql:dbname=".$GLOBALS['DATABASE'].";host=".$GLOBALS['SERVER'], $params);
+		$this->setDSN("mysql:dbname=".$GLOBALS['DATABASE'].";host=".$GLOBALS['SERVER'].";charset=utf8", $params);
 		$this->setUsername($GLOBALS['USERNAME']);
 		$this->setPassword($GLOBALS['PASSWORD']);
 		$this->connect();
@@ -117,6 +116,20 @@ public function getAllMessages($order) {
 		return $result;
 	}
 
+	public function existCountry($id) {
+		$sql = "SELECT ID_Country FROM Country WHERE ID_Country='$id'";
+		$stmt = $this->getLink()->prepare($sql); 
+		$stmt->execute();
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+		if($result) {
+			$result = true;
+		} else {
+			$result = false;
+		}
+		return $result;
+	}
+
+
 	public function getPlatform() {
 		$sql = "SELECT ID_Platform, Name FROM platform";
 		$stmt = $this->getLink()->prepare($sql); 
@@ -181,10 +194,30 @@ public function deleteGenre($id) {
 		$genre = $GenreDAO->deleteGenre($id);		
 	}
 	
+public function deletePlatform($id) {
+		$PlatformDAO = new PlatformDAO();
+		$platform = $PlatformDAO->deletePlatform($id);		
+	}
+
+public function deleteComment($id) {
+		$CommentDAO = new CommentDAO();
+		$comment = $CommentDAO->deleteComment($id);		
+	}
+
+public function deleteMessage($id) {
+		$MessageDAO = new MessageDAO();
+		$message = $MessageDAO->deleteMessage($id);		
+	}
+
 
 	public function deleteGame($id){
 	$gameDAO = new gameDAO();
 		$game = $gameDAO->deleteGame($id);
+}
+
+	public function deleteOffer($id){
+	$offerDAO = new offerDAO();
+		$offer = $offerDAO->deleteOffer($id);
 }
 
 	public function searchGame($value) {
@@ -197,12 +230,12 @@ public function deleteGenre($id) {
 
     public function staffLogin($username, $password) {
     	$info = array();
-    	$sql = "SELECT ID_Administrator, Username FROM Administrator WHERE Username='$username' AND Password='$password' LIMIT 1;";
+    	$sql = "SELECT ID_Administrator, Username FROM Administrator WHERE Username='$username' AND Password='".md5($password)."' LIMIT 1;";
 		$stmt = $this->getLink()->prepare($sql);
 		$stmt->execute();
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
 		if (!$result) {
-			$sql = "SELECT ID_Professional, Username FROM Professional WHERE Username='$username' AND Password='$password' LIMIT 1;";
+			$sql = "SELECT ID_Professional, Username FROM Professional WHERE Username='$username' AND Password='".md5($password)."' LIMIT 1;";
 			$stmt = $this->getLink()->prepare($sql);
 			$stmt->execute();
 			$result2 = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -220,7 +253,8 @@ public function deleteGenre($id) {
     }
 
     public function registeredLogin($username, $password) {
-    	$sql = "SELECT ID_Registered FROM Registered WHERE Username='$username' AND Password='$password';";
+    	die(md5($password));
+    	$sql = "SELECT ID_Registered FROM Registered WHERE Username='$username' AND Password='".md5($password)."';";
 		$stmt = $this->getLink()->prepare($sql);
 		$stmt->execute();
 		$result = $stmt->FetchAll();
@@ -322,6 +356,39 @@ public function deleteGenre($id) {
 		}
 	}
 
+	/* Consulta para obtener una lista con los nombres de los géneros */
+	public function getGenreNames() {
+
+		try {
+			$query = ("SELECT Name FROM genre;");
+			$resultat = $this->getLink()->prepare($query);
+			$resultat->execute();
+			$result = $resultat->FetchAll();
+		} catch(PDOException $ex) {
+			echo "An Error ocurred!";
+			some_loggging_function($ex->getMessage());
+		} finally {
+			return $result;		
+		}
+	}
+
+	//Consulta para obtener la cantidad de juegos por género
+	public function countGameForGenre() {
+
+		try {
+			$query = ("SELECT gen.Name, COUNT(*) AS 'Total' FROM genre gen INNER JOIN game_has_genre rel ON gen.ID_Genre = rel.Genre_ID 
+				INNER JOIN game g ON rel.Game_ID = g.ID_Game GROUP BY gen.Name;");
+			$resultat = $this->getLink()->prepare($query);
+			$resultat->execute();
+			$result = $resultat->FetchAll();
+		} catch(PDOException $ex) {
+			echo "An Error ocurred!";
+			some_loggging_function($ex->getMessage());
+		} finally {
+			return $result;		
+		}
+	}
+
 	public function getReport($id_user, $id_report, $group) {
 		$reportDAO = new reportDAO();
 		switch($group) {
@@ -392,28 +459,6 @@ public function deleteGenre($id) {
 		$valorationDAO = new valorationDAO();
 		return $valorationDAO->userInsertValoration($userid, $gameid, $rate);
 	}
-
-	public function getThisDate() {
-		try {
-			$query = ("SELECT SYSDATE() as date");
-			$resultat = $this->getLink()->prepare($query);
-			$resultat->execute();
-			$result = $resultat->FetchAll();
-			$date = $result[0][0];
-		} catch(PDOException $ex) {
-			echo "An Error ocurred!";
-			some_loggging_function($ex->getMessage());
-			die();
-		} finally {
-			$result = "";
-			for ($i = 0; $i < 10; $i++) { 
-				$result = $result.$date[$i];
-			}
-			$result = date("d-m-Y", strtotime($result));
-			return $result;
-		}
-	}
-
 
 }
 ?>

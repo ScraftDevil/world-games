@@ -8,6 +8,11 @@
             <?php
             include("../sections/nav.php");
 
+            if (isset($_GET['message']) && isset($_SESSION[$_GET['message']])) {
+                echo $_SESSION[$_GET['message']];
+                unset($_SESSION[$_GET['message']]);
+            }
+            
             if (isset($_GET['msg']) && $_GET['msg']=="ACCOUNT_DELETED") {
                 ?>
                 <script type="text/javascript" src="../resources/js/redirection.js"></script>

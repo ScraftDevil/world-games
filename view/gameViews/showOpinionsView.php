@@ -8,23 +8,26 @@ function printMessages($list) {
 			$imgURL = "../resources/images/avatars/".$list[$i]['UserID']."/".$list[$i]['AvatarURL'];
 		} else {
 			//default avatar = images/avatars/userid/userid.png
-			$imgURL = "../resources/images/avatars/".$list[$i]['UserID']."/".$list[$i]['UserID'].".png";
-		}
-		if(!file_exists($_SESSION['BASE_PATH']."/view/".$imgURL)) {
 			$imgURL = "../resources/images/avatars/default.png";
 		}
-		echo ' <img class ="img-responsive " src="'.$imgURL.'">';
-		echo '</div >';
 
-		echo '<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 " >';
-		echo ' <span class="span2 nomusuari span2grandaria">Escrito por '.$list[$i]['Usuario'].'</span>';
-		echo '<p >';
-		echo ' <span class=" glyphicon glyphicon-calendar margin-left ">'.$list[$i]['Date'].'</span>';
-		echo ' <span class=" glyphicon glyphicon-exclamation-sign "><a class="linkreport" href="../view/formNew">REPORT</a></span>'; 
-		echo '</p >';
-		echo '<span id="comentariojuego">'.$list[$i]['Text'].'</span>';
-		echo '</div >';
-		echo '</div >';
+		?>
+
+		<img class ="img-responsive " src="<?php echo $imgURL ?>">
+		</div>
+		<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+			<span class="span2 nomusuari span2grandaria">Escrito por <?php echo $list[$i]['Usuario'] ?> </span>
+			<p>
+				<span class=" glyphicon glyphicon-calendar margin-left "><?php echo $list[$i]['Date'] ?> </span>
+				<span class=" glyphicon glyphicon-exclamation-sign "><a class="linkreport" href="../view/formNew">REPORT</a></span>
+				<span class=" glyphicon glyphicon-exclamation-sign">
+
+					<a class="linkmessage" href="../userViews/sendPrivateMessageView.php?receiverName=<?php echo $list[$i]['Usuario'];?>">ENVIAR MENSAJE</a></span> 
+			</p>
+			<span id="comentariojuego"> <?php echo $list[$i]['Text'] ?> </span>
+				</div>
+				</div>
+		<?php
 	}
 }
 ?>

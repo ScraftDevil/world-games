@@ -14,7 +14,7 @@ class commentDAO {
         return $resultat;
     }*/
 
-	/*public function getAllComment($order) {
+	 function getAllComment($order) {
 
 		$orderSQL = "";
 			if (!empty($order)) {
@@ -30,9 +30,9 @@ class commentDAO {
 			$result = $stmt->FetchAll();
 			return $result;
 		}
-	}*/
+	
 
-	public function getGameComments($id) {
+	 function getGameComments($id) {
 		try {
 	        $db = unserialize($_SESSION['dbconnection']);
 	        $sqlUser = "(SELECT R.Username FROM registered R WHERE R.ID_Registered=RC.Registered_ID) as Usuario";
@@ -48,6 +48,25 @@ class commentDAO {
 	    } finally {
 	       return $result;
 	    }
+	}
+
+	public function deleteComment($id) {
+
+		try {
+			
+			$query = ("DELETE FROM comment WHERE ID_Comment = '$id'");
+
+			$db = unserialize($_SESSION['dbconnection']);
+			$resultat = $db->getLink()->prepare($query);
+        	$resultat->execute();
+
+		} catch(PDOException $ex) {
+			echo "An Error ocurred!";
+			some_loggging_function($ex->getMessage());
+		} finally {
+			return $resultat;
+			$_SESSION['dbconnection'] = serialize($shopDb);			
+		}
 	}
 }
 

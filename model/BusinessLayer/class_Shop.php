@@ -22,6 +22,7 @@ class Shop {
         //get data for array games from database
         $this->populateGames($db);
         //end get data games
+        $this->getGenres();
     }
 
     function getName() {
@@ -118,6 +119,30 @@ class Shop {
             }
         }
         return $gamesFiltered;
+    }
+
+    function getGenres() {
+        $db = unserialize($_SESSION['dbconnection']);
+        $genres = $db->getGenre();
+        $genresObjList = array();
+        foreach ($genres as $genre) {
+            $genreObj = new Genre($genre['Name']);
+            $genreObj->setId($genre['ID_Genre']);
+            $genresObjList[] = $genreObj;
+        }
+        return $genresObjList;
+    }
+
+    function getPlatforms() {
+        $db = unserialize($_SESSION['dbconnection']);
+        $platforms = $db->getPlatform();
+        $platformsObjList = array();
+        foreach ($platforms as $platform) {
+            $platformObj = new Genre($platform['Name']);
+            $platformObj->setId($platform['ID_Platform']);
+            $platformsObjList[] = $platformObj;
+        }
+        return $platformsObjList;
     }
 }
 

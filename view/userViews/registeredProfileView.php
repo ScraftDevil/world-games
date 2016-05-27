@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
 
-    <?php
-    /* codigo php */
+<?php
+/* codigo php */
 
-    include("../sections/head.php");
+include("../sections/head.php");
 
     // controladores del perfil de usuario registrado
     include("../../controller/profileControllers/getRegisteredInfoController.php");
 
     if (!isset($_SESSION['user_id'])) {
-        header("Location: ../mainViews/home.php");
+        redirect('<div class="message-redirect">¡No has hecho login. No puedes acceder a esa pagina!</div>', '/world-games/view/mainViews/home.php');
     }
 
     //array que contiene los datos del usuario segun el id obtenido después de hacer login
@@ -30,7 +30,7 @@
                     <div class="underlined-title">
                         <div class="editContent">
                             <p>
-                            <h1>Perfil de Usuario</h1>
+                                <h1>Perfil de Usuario</h1>
                             </p>
                         </div>
                         <hr>
@@ -50,7 +50,7 @@
                                 </div>
 
                                 <!-- Mensaje de Error de que no se puede actualizar por falta de datos o datos incorrectos 
-                                    o de que se han actualizado corretamente -->
+                                o de que se han actualizado corretamente -->
                                 <div id="general-error"></div>
 
                                 <!-- Formulario para poder editar los datos del usuario (obtiene los datos de la BBDD) -->
@@ -65,7 +65,7 @@
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label">Fecha de Nacimiento:</label>
                                         <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
-                                            <input id="calendar" class="form-control" type="text" name="birthdate" placeholder="AAAA-MM-DD" value="<?php echo $registeredObject->getBirthDate(); ?>">
+                                            <input id="calendar" id="birthdate" class="form-control" type="text" name="birthdate" placeholder="DD-MM-AAAA" value="<?php echo $registeredObject->getBirthDate(); ?>">
                                         </div>
                                     </div>
 
@@ -79,7 +79,7 @@
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label">País:</label>
                                         <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
-                                            <select id="country" name="country">
+                                            <select id="country" name="country" class="form-control ">
                                                 <?php getCountriesList($registeredObject->getCountry()); ?>
                                             </select>
                                         </div>
@@ -88,7 +88,14 @@
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label">Imagen de Perfil:</label>
                                         <div class="col-lg-7">
-                                            <input id="image" class="form-control" type="file" name="profileImage">
+                                        <?php
+                                        $pathUploaderPHP = "../../view/sections/uploader/";
+                                        $uploadText['text'] = "Subir Avatar";
+                                        $uploadText['textUploadBtn'] = "Elegir imagen";
+                                        $uploadText['textUploadBtnRetry'] = "Elegir otra imagen";
+                                        $pathUpload = "../../resources/images/avatars/".$registeredObject->getId()."/";
+                                        include("../../view/sections/uploader/showUploadView.php");
+                                        ?>
                                         </div>
                                     </div>
 
@@ -137,7 +144,7 @@
 
                                 <form id="profileFormDelete" action="../controller/deleteRegisteredController.php" method="POST">
                                     <div class="col-lg-12" id="configuracionUsuario">
-                                        <p>Marca la siguiente casilla para indicar que quieres eliminar tu cuenta para siempre. Después, pulsa el boton Eliminar</p>
+                                        <p id="delete-confirm">Marca la siguiente casilla para indicar que quieres eliminar tu cuenta para siempre. Después, pulsa el boton Eliminar</p>
                                         <input id="checkbox" type="checkbox" name="deleteCheckBox">
                                         Quiero eliminar mi cuenta de usuario
                                         <button type="button" id="delete-registered" name="delete" class="btn-danger pull-right btn form-button">
@@ -155,5 +162,5 @@
                 <?php include("../sections/footer.php"); ?>
                 <script type="text/javascript" src="../resources/js/userProfile.js"></script>
             </footer>
-    </body>
-</html>
+        </body>
+        </html>

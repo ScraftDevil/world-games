@@ -32,7 +32,7 @@
 		$id = $record['ID_Message'];
 		return "
 		<div class=\"btn-group\">
-		  <a href=\"#\" onclick=\"deleteMessage($id)\"  class=\"btn btn-danger selectGame\">Eliminar</a>
+		  <a href=\"#\" onclick=\"deleteMessage($id)\"  class=\"btn btn-danger \">Eliminar</a>
 		</div>";
 	}
 
