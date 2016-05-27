@@ -21,7 +21,7 @@ function printMessages($list) {
 		<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
 			<span class="span2 nomusuari span2grandaria">Escrito por <?php echo $list[$i]['Usuario'] ?> </span>
 			<p>
-				<span class=" glyphicon glyphicon-calendar margin-left "><?php echo $list[$i][0] ?> </span>
+				<span class=" glyphicon glyphicon-calendar margin-left "><?php echo $list[$i]['Date'] ?> </span>
 				<span class=" glyphicon glyphicon-exclamation-sign "><a class="linkreport" href="../view/formNew">REPORT</a></span>
 				<span class=" glyphicon glyphicon-exclamation-sign">
 
