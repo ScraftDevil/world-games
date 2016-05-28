@@ -67,15 +67,7 @@ function getInsertGameProcess(data) {
         break;
     }
 }
-function deleteGenre(value) {
-    var id = value;
-    var alert = "<img class=\"alert-img\" src=\"../resources/images/alert.png\"/>";
-    var deleteButton = "<button name=\"delete\" value=\"" + id + "\" type=\"submit\" class=\"btn btn-success btn-delete\">Borrar</button>";
-    var cancel = "<button onclick=\"cancelDelete()\" type=\"button\" class=\"btn btn-danger btn-cancel\">Cancelar</button>";
-    var form = "<form action=\"../../controller/genreControllers/deleteGenreController.php?id=" + id + "\" method=\"POST\">" + deleteButton + " " + cancel + "</form>";
-    var deletegenre = "<div class=\"confirm\"><div class=\"confirm-msg\">" + alert + "<p>¿Seguro que deseas eliminar el Genero con ID " + id + "?</p>" + form + "</div></div>";
-    $("body").append("<div class=\"delete\">" + deletegenre + "</div>");
-}
+
 // GAME DELETE FUNCTION
 function deleteGame(value) {
     var id = value;
@@ -94,7 +86,42 @@ function changePlatform(elem) {
     $("#platform").html(elem.text + " <span class=\"caret\"></span>");
 }
 
+function getGame(data) {
+   var data = JSON.stringify(data);
+   $.ajax({
+      data:  "data=" + data,
+      url:   '../../controller/gameControllers/getGameInfoController.php',
+      type:  'POST',
+      dataType: 'json',
+      success: getUserInfo
+  });
+}
 
+function getGameInfo(data) {
+   if(data != null) {
+
+      $("#title").html(data.title);
+      $("#price").val(data.price);
+      $("#platform").html(data.country + " <span class=\"caret\"></span>");
+      $("#genres").val(data.genres);
+    
+     
+   }
+}
+
+
+ function gameDataEditView(){
+      
+     
+      getGame(data);
+      $("#game-user").click(function() {
+        var title = $("#title").val();
+      var price = parseFloat($("#price").val());
+      var platform = document.getElementById("platform").value;
+        var genres = $("#genres").val();
+      var game = {"title": title, "price": price, "platform": platform, "genres": genres};
+        updateGame(game);
+      }
 /// GAME ACTIONS FINISH
 
 
