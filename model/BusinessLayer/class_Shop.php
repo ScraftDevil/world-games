@@ -94,7 +94,7 @@ class Shop {
             $registered->setId($id);
             $registered->setBannedTime($bannedtime);
             $registered->setPaypalAccount($paypal);
-            array_push($this->getUsers(), $registered);
+            array_push($this->users, $registered);
         }
     }
 
@@ -171,6 +171,22 @@ class Shop {
             $platformsObjList[] = $platformObj;
         }
         return $platformsObjList;
+    }
+
+    function getRegistered($idregistered) {
+        $registeredfound = null;
+        $registereds = $this->getUsers();
+        foreach ($registereds as $registered) {
+            if ($registered->getId()==$idregistered) {
+                $registeredfound = $registered;
+            }
+        }
+        return $registeredfound;
+    }
+
+    function insertShopping($shopping) {
+        $db = unserialize($_SESSION['dbconnection']);
+        return $db->insertShopping($shopping);
     }
 }
 

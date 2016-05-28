@@ -75,6 +75,10 @@ class Shopping {
         $this->games = $games;
     }
 
+    function insertShopping($shopping) {
+        $db = unserialize($_SESSION['dbconnection']);
+        $db->insertShopping($shopping);
+    }
 }
 
 ?>

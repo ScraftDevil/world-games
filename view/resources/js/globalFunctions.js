@@ -284,10 +284,23 @@ $(document).ready(function() {
         $("#countShoppingCart").text(getNumItems(games));
         updateTotalShopping(games);
     });
-    loadShoppingCartDetails($("#shoppingCartDetails"));
+    loadShoppingCartDetails();
+    $("#shoppingBuy").on("click", function() {
+        alertify.set({ labels: {
+            ok     : "SI",
+            cancel : "NO"
+        } });
+        alertify.confirm("Estas seguro que deseas realizar la compra?", function (e) {
+            if (e) {
+                buyItems();
+            } else {
+                alertify.error("Compra cancelada.");
+            }
+        });
+    });
 });
 
-function loadShoppingCartDetails(tableDetailsElement) {
+function loadShoppingCartDetails() {
     var json = Cookies.getJSON('shoppingCart');
     if (json.length>=1) {
         $("#msgShoppingCartDetails").html("<strong>Información:</strong> Si quieres realizar la compra, dale clic en el boton 'Realizar Compra'");
@@ -298,7 +311,32 @@ function loadShoppingCartDetails(tableDetailsElement) {
     var bodyDynamicContentHTML = '';
     var bodyEndHTML = ' </tbody>';
     $.each(json, function(i, item) {
-        bodyDynamicContentHTML += '<tr><td>'+item.name+'</td><td>'+item.quantity+'</td><td>'+item.price+'</td></tr>';
+        bodyDynamicContentHTML += '<tr><td>'+item.name+'</td><td>'+item.quantity+'</td><td>'+item.price+' €</td></tr>';
     });
-    $(tableDetailsElement).html(headHTML+bodyHTML+bodyDynamicContentHTML+bodyEndHTML);
+    $("#shoppingCartDetails").html(headHTML+bodyHTML+bodyDynamicContentHTML+bodyEndHTML);
+}
+
+function buyItems() {
+    var params = {
+        "shoppingCart" : Cookies.getJSON('shoppingCart')
+    };
+    $.ajax({
+        data:  params,
+        url:   '../../controller/gameControllers/insertShoppingController.php',
+        type:  'POST',
+        dataType: 'json',
+        success:  function (response) {
+            if(response.status=="OK") {
+                $("#msgShoppingCartDetails").remove();
+                $("#shoppingCartDetails").html('<div id="msgShoppingCartDetails" class="alert alert-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Se ha realizado la compra con exito.</div>');
+                //Cookies.set('shoppingCart', Array(), { expires: 1 });
+            } else {
+                $("#msgShoppingCartDetails").html("Buy error in server");
+            }
+        },
+        error: function () {
+            $("#msgShoppingCartDetails").remove();
+                $("#shoppingCartDetails").html('<div id="msgShoppingCartDetails" class="alert alert-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> No se ha podido realizar la compra. Por favor, Intente mas tarde.</div>');
+        }
+    });
 }

@@ -5,7 +5,7 @@ class mysqldb {
 	private $dsn, $username, $password, $link;
 
 	public function __construct() {
-		$this->setDSN("mysql:dbname=".$GLOBALS['DATABASE'].";host=".$GLOBALS['SERVER'].";charset=utf8", $params);
+		$this->setDSN("mysql:dbname=".$GLOBALS['DATABASE'].";host=".$GLOBALS['SERVER'].";charset=utf8");
 		$this->setUsername($GLOBALS['USERNAME']);
 		$this->setPassword($GLOBALS['PASSWORD']);
 		$this->connect();
@@ -472,6 +472,25 @@ public function deleteMessage($id) {
 		$professionalDAO = new professionalDAO();
 		return $professionalDAO->getAllProfessional();
 	}
+
+	/* SHOPPING */
+	 public function insertShopping($shopping) {
+        $status = null;
+        $query = "INSERT INTO shopping VALUES('', '" . $shopping->getQuantity() . "', '" . $shopping->getTotalPrice() . "', '" . 0 ."','".$shopping->getTax()."')";
+        $resultat = $this->getLink()->prepare($query);
+        $status = $resultat->execute();
+        die($status);
+        /*if($status) {
+			$lastid = $db->getLink()->lastInsertId();
+			for ($i=0; $i < count($games->getGenres()); $i++) {
+				$idgenre = $games->getGenres()[$i]->getId();
+				$query2 = "INSERT INTO game_has_genre (Game_ID , Genre_ID) VALUES ($lastid, $idgenre)";
+				$result = $db->getLink()->prepare($query2);
+				$status = $result->execute();
+			}
+		}*/
+        return $status;
+    }
 
 }
 ?>
