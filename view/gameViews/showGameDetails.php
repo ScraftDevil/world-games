@@ -56,21 +56,28 @@ function printGame($game) {
         <?php
         $priceWithDiscount = calculateDiscount($price, $offer);
         if (!empty($game->getOffer()->getDiscount())) {
-          echo '   <div class="divcontenidor">';
-          echo '  <span class="span3   spandescuento ">Descuento:</span>';
+            echo '   <div class="divcontenidor">';
+            echo '  <span class="span3   spandescuento ">Descuento:</span>';
 
-          echo '  <span class="span3  margenes spandescuento ">'.$game->getOffer()->getDiscount().'% </span>';
-          echo '</div>';
-          echo '<div class="divcontenidor"><span class="span3 spanprecio2">Stock:'.$game->getStock().'</span></div>';
-          echo '
-          <div class="sendToCart buyGame">
-            <span class="glyphicon glyphicon-shopping-cart spanenviar"></span>Enviar al carrito
-          </div><span class="span1 spanprecio">'.$priceWithDiscount.' €</span>';
+            echo '  <span class="span3  margenes spandescuento ">'.$game->getOffer()->getDiscount().'% </span>';
+            echo '</div>';
+            echo '<div class="divcontenidor"><span class="span3 spanprecio2">Stock:'.$game->getStock().'</span></div>';
+            echo '<div class="sendToCart buyGame">';
+            if ($game->getStock()<=0) {
+              echo '<span class="glyphicon glyphicon-shopping-cart"></span>No Disponible';
+            } else {
+              echo '<span class="glyphicon glyphicon-shopping-cart spanenviar"></span>Enviar al carrito';
+            }
+            echo '</div><span class="span1 spanprecio">'.$priceWithDiscount.' €</span>';
         } else {
-          echo '
-          <div class="sendToCart buyGame">
-            <span class="glyphicon glyphicon-shopping-cart spanenviar"></span>Enviar al carrito
-          </div><span class="span1 spanprecio">'.$price.' €</span>';
+           echo '<div class="divcontenidor"><span class="span3 spanprecio2">Stock:'.$game->getStock().'</span></div>';
+          echo '<div class="sendToCart buyGame">';
+          if ($game->getStock()<=0) {
+            echo '<span class="glyphicon glyphicon-shopping-cart"></span>No Disponible';
+          } else {
+            echo '<span class="glyphicon glyphicon-shopping-cart spanenviar"></span>Enviar al carrito';
+          }
+          echo '</div><span class="span1 spanprecio">'.$price.' €</span>';
         }
         ?>
        <div class="width100">
