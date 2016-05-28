@@ -87,6 +87,14 @@ function updateTotalShopping(json) {
     });
     $("#shoppingCartTotal").html("Total: " + price + " €");
 }
+
+function updateTotalShoppingDetail(json) {
+    var price = parseFloat(0);
+    $.each(json, function(i, item) {
+        price = parseFloat(price) + (parseFloat(item.price)*parseFloat(item.quantity));
+    });
+    $("#totalPrice").html("Total: " + price + " €");
+}
 /*	SEARCH	*/
 var delay = (function(){
 	var timer = 0;
@@ -301,6 +309,7 @@ $(document).ready(function() {
 
 function loadShoppingCartDetails() {
     var json = Cookies.getJSON('shoppingCart');
+    updateTotalShoppingDetail(json);
     if (typeof json.length != "undefined" && json.length>=1) {
         $("#msgShoppingCartDetails").html("<strong>Información:</strong> Si quieres realizar la compra, dale clic en el boton 'Realizar Compra'");
         $("#shoppingBuy").prop('disabled', false);

@@ -33,6 +33,7 @@
                                 <strong>Información:</strong> Ningun juego añadido a la cesta de la compra.
                             </div>
                             <table id="shoppingCartDetails" class="table table-hover"></table>
+                            <div id="totalPrice" class="col-md-12" style="text-align: right"><p>Total: 0 €</p></div>
                             <button type="button" id="shoppingBuy" class="btn btn-default pull-right" disabled>
                               <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Realizar Compra
                             </button>
