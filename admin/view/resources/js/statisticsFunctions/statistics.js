@@ -9,11 +9,11 @@
             url: "../../controller/statisticsControllers/countGameForPlatform.php",
             dataType: "json",
             success: function (array_json) {
-                var Origin = array_json[0].quantity;
-                var Steam = array_json[1].quantity;
-                var Xbox = array_json[2].quantity;
-                var PSN = array_json[3].quantity;
-                printGamePlatformStatistics(Origin, Steam, Xbox, PSN);
+                var arrayPlataform = Array();
+                for (var i = 0; i < array_json.length; i++) {
+                    arrayPlataform.push(array_json[i]);
+                }
+                printGamePlatformStatistics(arrayPlataform);
             }
         });
 
@@ -36,34 +36,32 @@
             url: "../../controller/statisticsControllers/countGameForGenre.php",
             dataType: "json",
             success: function (array_json) {
-                var Aventura = array_json[0].quantity;
-                var Accion = array_json[1].quantity;
-                var Arcade = array_json[2].quantity;
-                var RPG = array_json[3].quantity;
-                printGameGenreStatistics(Aventura, Accion, Arcade, RPG);
+                var arrayGenre = Array();
+                for (var i = 0; i < array_json.length; i++) {
+                    arrayGenre.push(array_json[i]);
+                }
+                printGameGenreStatistics(arrayGenre);
             }
         });
     });
 
     /* Funcion de respuesta de obtener estadísticas de cantidad de juegos por plataforma */
-    function printGamePlatformStatistics(Origin, Steam, Xbox, PSN) {
-
+    function printGamePlatformStatistics(arrayPlataform) {//Origin, Steam, Xbox, PSN
+        var dataPoints = [];
+        for(var i = 0; i < arrayPlataform.length; i++) {
+            dataPoints.push({ label: arrayPlataform[i].platform, y: arrayPlataform[i].quantity });
+        }
         var chart = new CanvasJS.Chart("chartContainerGamesPlatforms", {
             theme: "theme2", //theme1
             title: {
                 text: "Número de juegos por plataforma"},
             animationEnabled: true, // change to true
             data: [{
-            // Change type to "bar", "area", "spline", "pie",etc.
-            type: "pie",
-            dataPoints: [
-            {label: "Origin", y: parseInt(Origin)},
-            {label: "Steam", y: parseInt(Steam)},
-            {label: "Xbox", y: parseInt(Xbox)},
-            {label: "PSN", y: parseInt(PSN)}
-            ]
-        }]
-    });
+                // Change type to "bar", "area", "spline", "pie",etc.
+                type: "pie",
+                dataPoints: dataPoints
+            }]
+        });
         chart.render();
     }
 
@@ -89,8 +87,11 @@
     }
 
     /* Funcion de respuesta de obtener estadísticas de cantidad de juegos por género */
-    function printGameGenreStatistics(Aventura, Accion, Arcade, RPG) {
-
+    function printGameGenreStatistics(arrayGenre) {
+        var dataPoints = [];
+        for(var i = 0; i < arrayGenre.length; i++) {
+            dataPoints.push({ label: arrayGenre[i].genre, y: arrayGenre[i].quantity });
+        }
         var chart = new CanvasJS.Chart("chartContainerGamesgenres", {
             theme: "theme2", //theme1
             title: {
@@ -99,12 +100,7 @@
             data: [{
             // Change type to "bar", "area", "spline", "pie",etc.
             type: "pie",
-            dataPoints: [
-            {label: "Aventura", y: parseInt(Aventura)},
-            {label: "Accion", y: parseInt(Accion)},
-            {label: "Arcade", y: parseInt(Arcade)},
-            {label: "RPG", y: parseInt(RPG  )}
-            ]
+            dataPoints: dataPoints
         }]
     });
         chart.render();
