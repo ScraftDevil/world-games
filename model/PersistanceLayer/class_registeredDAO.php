@@ -125,7 +125,7 @@ class registeredDAO {
 
 		$id = $registered->getId();
 		$email = $registered->getEmail();
-		$country = utf8_decode($registered->getCountry());
+		$country = $registered->getCountry();
 
 		try {
 

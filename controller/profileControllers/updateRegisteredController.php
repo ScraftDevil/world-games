@@ -25,7 +25,7 @@
 
 	if ($errors == 0) {
 		$shopDb = unserialize($_SESSION['dbconnection']);
-
+		$birthdate = date("Y-m-d", strtotime($birthdate));
 		$registered = new Registered('', '', $email, $birthdate, $country);
 		$registered->setId($id);
 		$registered->setPaypalAccount($paypal);

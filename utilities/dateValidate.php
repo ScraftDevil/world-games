@@ -29,7 +29,9 @@
 		$valid = false;
 
 		if ($dateSelected <= $actualDate) {
-			$valid = true;
+			if ($actualDate != "1970-01-01") {
+				$valid = true;
+			}
 		}
 
 		return $valid;
@@ -45,7 +47,7 @@
 		$dateSintax = '/[0-9]{2}\-[0-9]{2}\-[0-9]{4}/';
 
 
-		if (preg_match($dateSintax, $date)) {
+		if (preg_match($dateSintax, $date) && strlen($date) == 10) {
 			$correct = true;
 		}
 
