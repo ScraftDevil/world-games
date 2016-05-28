@@ -474,21 +474,20 @@ public function deleteMessage($id) {
 	}
 
 	/* SHOPPING */
-	 public function insertShopping($shopping) {
+	 public function insertShopping($shopping, $userid) {
         $status = null;
-        $query = "INSERT INTO shopping VALUES('', '" . $shopping->getQuantity() . "', '" . $shopping->getTotalPrice() . "', '" . 0 ."','".$shopping->getTax()."')";
+        $query = "INSERT INTO shopping VALUES('', '" . $shopping->getQuantity() . "', '" . $shopping->getTotalPrice() . "','".$shopping->getTax()."')";
         $resultat = $this->getLink()->prepare($query);
         $status = $resultat->execute();
-        die($status);
-        /*if($status) {
-			$lastid = $db->getLink()->lastInsertId();
-			for ($i=0; $i < count($games->getGenres()); $i++) {
-				$idgenre = $games->getGenres()[$i]->getId();
-				$query2 = "INSERT INTO game_has_genre (Game_ID , Genre_ID) VALUES ($lastid, $idgenre)";
-				$result = $db->getLink()->prepare($query2);
+        if($status) {
+			$shoppingid = $this->getLink()->lastInsertId();
+			for ($i=0; $i < count($shopping->getGames()); $i++) {
+				$gameid = $shopping->getGames()[$i]->getId();
+				$query2 = "INSERT INTO game_has_shopping (Game_ID , Shopping_ID, Registered_ID) VALUES ($gameid, $shoppingid, $userid)";
+				$result = $this->getLink()->prepare($query2);
 				$status = $result->execute();
 			}
-		}*/
+		}
         return $status;
     }
 

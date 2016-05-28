@@ -64,7 +64,7 @@ FALTA:
 -Reparar cascade eliminar mensajes de juego <-- [Hecho]
 -Reparar UTF8 en nombres <-- [Hecho]
 -Aviso al añadir algo al carro <-- [Hecho]
--Detalles de compra (Compra incluida paypal)
+-Detalles de compra (Compra incluida paypal) <-- [Hecho, sin pago paypal sandbox]
 -Subir imagen en editar juego y en perfil [Importante]
 -Gestion comentarios juego, plataformas, generos
 -Editar Juego

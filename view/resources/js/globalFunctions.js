@@ -326,12 +326,19 @@ function buyItems() {
         type:  'POST',
         dataType: 'json',
         success:  function (response) {
-            if(response.status=="OK") {
+            if(response.status=="SHOPPING_OK") {
                 $("#msgShoppingCartDetails").remove();
                 $("#shoppingCartDetails").html('<div id="msgShoppingCartDetails" class="alert alert-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Se ha realizado la compra con exito.</div>');
-                //Cookies.set('shoppingCart', Array(), { expires: 1 });
-            } else {
-                $("#msgShoppingCartDetails").html("Buy error in server");
+                Cookies.set('shoppingCart', Array(), { expires: 1 });
+                $("#basket").html("<p style='margin-left: 8px'><font color='white'>Carrito de la compra vacio.</font></p>");
+                updateTotalShopping(0);
+                $("#countShoppingCart").text(0);
+            } else if(response.status=="ERROR") {
+                $("#msgShoppingCartDetails").html("Ha habido un problema al comprar. Contacta con nuestros miembros del Staff para mas información.");
+            } else if(response.status=="ERROR_STOCK") {
+                $("#msgShoppingCartDetails").html("Ha habido un problema con la compra debido a que algun producto de los seleccionados ya no se encuentra disponible. Contacta con nuestros miembros del Staff para mas información.");
+            } else if(response.status=="LOGIN_ERROR") {
+                $("#msgShoppingCartDetails").html("No has entrado en tu cuenta. Por lo tanto, no puedes comprar.");
             }
         },
         error: function () {

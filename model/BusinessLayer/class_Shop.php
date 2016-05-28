@@ -64,8 +64,9 @@ class Shop {
             $genresObj = array();
             $idGame = $game['ID_Game'];
             $genres = $db->getGenresGame($idGame);
-            $gameObj = new Game($game['Title'], $game['Price'], $game['Stock']);
+            $gameObj = new Game($game['Title'], $game['Price']);
             $gameObj->setId($idGame);
+            $gameObj->setStock($game['Stock']);
             $offer = new Offer($game['Discount']);
             foreach ($genres as $genre) {
                 $g = new Genre($genre['Name']);
@@ -184,9 +185,9 @@ class Shop {
         return $registeredfound;
     }
 
-    function insertShopping($shopping) {
+    function insertShopping($shopping, $userid) {
         $db = unserialize($_SESSION['dbconnection']);
-        return $db->insertShopping($shopping);
+        return $db->insertShopping($shopping, $userid);
     }
 }
 

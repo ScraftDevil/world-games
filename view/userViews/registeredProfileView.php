@@ -56,7 +56,7 @@ include("../sections/head.php");
                                 <!-- Formulario para poder editar los datos del usuario (obtiene los datos de la BBDD) -->
                                 <form id="profileForm">
                                     <div class="form-group col-lg-12">
-                                        <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label">Correo Eletrónico</label>
+                                        <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label">Correo Electrónico</label>
                                         <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
                                             <input id="email" class="form-control" type="text" name="email" placeholder="micorreo@ejemplo.com" value="<?php echo $registeredObject->getEmail(); ?>">
                                         </div>
