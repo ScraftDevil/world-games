@@ -284,7 +284,6 @@ $(document).ready(function() {
         $("#countShoppingCart").text(getNumItems(games));
         updateTotalShopping(games);
     });
-    loadShoppingCartDetails();
     $("#shoppingBuy").on("click", function() {
         alertify.set({ labels: {
             ok     : "SI",
@@ -302,7 +301,7 @@ $(document).ready(function() {
 
 function loadShoppingCartDetails() {
     var json = Cookies.getJSON('shoppingCart');
-    if (json.length>=1) {
+    if (typeof json.length != "undefined" && json.length>=1) {
         $("#msgShoppingCartDetails").html("<strong>Información:</strong> Si quieres realizar la compra, dale clic en el boton 'Realizar Compra'");
         $("#shoppingBuy").prop('disabled', false);
     }
