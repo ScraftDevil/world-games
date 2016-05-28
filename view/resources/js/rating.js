@@ -15,12 +15,12 @@ function showStars(nStars) {
   var txt = "";
   var rateLast = 0;
   for(var i = 0; i < rate; i++) {
-    txt += '<i id="star'+(i+1)+'" data-toggle="tooltip" title="Votar ' + (i+1) + ' estrellas" class="fa fa-star fa-2x" style="padding-top: 6px; color: #FFD700; font-weight: bold;" aria-hidden="true"></i>';
+    txt += '<i id="star'+(i+1)+'" data-toggle="tooltip" title="Votar ' + (i+1) + ' estrellas" class="fa fa-star fa-2x" style="cursor: pointer; padding-top: 6px; color: #FFD700; font-weight: bold;" aria-hidden="true"></i>';
     rateLast++;
   }
   var needStars = 5-rate;
   for(var i = 0; i < needStars; i++) {
-    txt += '<i id="star'+(rateLast+i+1)+'" data-toggle="tooltip" title="Votar ' + (rateLast+i+1) + ' estrellas" class="fa fa-star-o fa-2x" style="padding-top: 6px; color: #FFD700; font-weight: bold;" aria-hidden="true"></i>';
+    txt += '<i id="star'+(rateLast+i+1)+'" data-toggle="tooltip" title="Votar ' + (rateLast+i+1) + ' estrellas" class="fa fa-star-o fa-2x" style="cursor: pointer; padding-top: 6px; color: #FFD700; font-weight: bold;" aria-hidden="true"></i>';
   }
   $("#rating").html(txt);
   $('[data-toggle="tooltip"]').tooltip();

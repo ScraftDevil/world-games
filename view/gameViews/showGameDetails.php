@@ -19,12 +19,12 @@ function printGame($game) {
       $offer = $game->getOffer()->getDiscount();
       ?>
       <div class="imgDetail col-lg-5 col-md-5 col-sm-5 col-xs-12">
-      <img class="img-responsive imggrandaria" src="<?php echo $imgURL;?>">
+      <img class="img-responsive imageDetail" src="<?php echo $imgURL;?>">
        <span id="rating" ></span><p id="msgRate"></p>
      </div>
      <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 " >
-       <div class="pull-right widthparragraf">
-        <span class="span1 spantitul"><?php echo $game->getTitle();?></span>
+       <div class="col-md-12 pull-right nopadding">
+        <span class="span1 spanTitle"><?php echo $game->getTitle();?></span>
         <div class="divcontenidor">
           <span class="span3 spanprecio2">Genero:</span>
           <span class="span3 spangenero">
@@ -61,19 +61,23 @@ function printGame($game) {
 
           echo '  <span class="span3  margenes spandescuento ">'.$game->getOffer()->getDiscount().'% </span>';
           echo '</div>';
-          echo '<span class="span1 spanprecio">'.$priceWithDiscount.' €</span>';
+          echo '<div class="divcontenidor"><span class="span3 spanprecio2">Stock:'.$game->getStock().'</span></div>';
+          echo '
+          <div class="sendToCart buyGame">
+            <span class="glyphicon glyphicon-shopping-cart spanenviar"></span>Enviar al carrito
+          </div><span class="span1 spanprecio">'.$priceWithDiscount.' €</span>';
         } else {
-          echo '<span class="span1 spanprecio">'.$price.' €</span>';
+          echo '
+          <div class="sendToCart buyGame">
+            <span class="glyphicon glyphicon-shopping-cart spanenviar"></span>Enviar al carrito
+          </div><span class="span1 spanprecio">'.$price.' €</span>';
         }
         ?>
-        <div class="enviarcarrito buyGame">
-         <span class="glyphicon glyphicon-shopping-cart spanenviar"></span>Enviar al carrito
-       </div>
        <div class="width100">
         <form action="" method="post" class="login">
           <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 " >
            <div id="message" class="ocultar"></div>
-           <textarea id="comment" class="form-control" type="text" rows="1" name="comment" value="" placeholder="Escriu al teu comentari aqui:"></textarea>
+           <textarea id="comment" class="form-control" type="text" rows="2" name="comment" value="" placeholder="Escriu al teu comentari aqui:"></textarea>
          </div>
          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 " >
           <div class="boto" id="sendOpinion">
