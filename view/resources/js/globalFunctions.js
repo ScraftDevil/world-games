@@ -289,12 +289,16 @@ $(document).ready(function() {
 
 function loadShoppingCartDetails(tableDetailsElement) {
     var json = Cookies.getJSON('shoppingCart');
+    if (json.length>=1) {
+        $("#msgShoppingCartDetails").html("<strong>Información:</strong> Si quieres realizar la compra, dale clic en el boton 'Realizar Compra'");
+        $("#shoppingBuy").prop('disabled', false);
+    }
     var headHTML = '<thead><tr><th>Titulo</th><th>Cantidad</th><th>Precio</th></tr></thead>';
     var bodyHTML = ' <tbody>';
     var bodyDynamicContentHTML = '';
     var bodyEndHTML = ' </tbody>';
     $.each(json, function(i, item) {
         bodyDynamicContentHTML += '<tr><td>'+item.name+'</td><td>'+item.quantity+'</td><td>'+item.price+'</td></tr>';
-        $(tableDetailsElement).html(headHTML+bodyHTML+bodyDynamicContentHTML+bodyEndHTML);
     });
+    $(tableDetailsElement).html(headHTML+bodyHTML+bodyDynamicContentHTML+bodyEndHTML);
 }

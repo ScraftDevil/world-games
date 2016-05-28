@@ -29,11 +29,13 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <table id="shoppingCartDetails" class="table table-hover">
-                                <div class="alert alert-info">
-                                  <strong>Información:</strong> Ningun juego añadido a la cesta de la compra.
-                                </div>
-                            </table>
+                            <div id="msgShoppingCartDetails" class="alert alert-info">
+                                <strong>Información:</strong> Ningun juego añadido a la cesta de la compra.
+                            </div>
+                            <table id="shoppingCartDetails" class="table table-hover"></table>
+                            <button type="button" id="shoppingBuy" class="btn btn-default pull-right" disabled>
+                              <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Realizar Compra
+                            </button>
                         </div>
                     </div>
                 </div>
