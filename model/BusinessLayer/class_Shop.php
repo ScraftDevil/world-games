@@ -81,7 +81,7 @@ class Shop {
     }
 
     function populateUsers($db) {
-        $registereds = $db->getUsers();
+        $registereds = $db->getAllRegistered();
         foreach ($registereds as $row) {
             $id = $row['ID_Registered'];
             $username = $row['Username'];
@@ -90,7 +90,7 @@ class Shop {
             $birthdate = $row['BirthDate'];
             $paypal = $row['PaypalAccount'];
             $country = $row['Country_ID'];
-            $registered = new Registered($username, "", $email, $birthDate, $country);
+            $registered = new Registered($username, "", $email, $birthdate, $country);
             $registered->setId($id);
             $registered->setBannedTime($bannedtime);
             $registered->setPaypalAccount($paypal);
