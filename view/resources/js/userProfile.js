@@ -20,13 +20,17 @@ function load() {
 
 
     $('#update-registered').click(function() {
-        var email = $("#email").val();
-        var birthdate = $("#calendar").val();
-        var paypal = $("#paypal").val();
-        var country = $("#country").val();        
-        var image = "avatar.png";
-        var registered = {"email":email, "birthdate":birthdate, "paypal":paypal, "country":country, "image":image};
-        updateUser(registered);
+        if ($("#profileForm").valid() == true) {
+            var email = $("#email").val();
+            var birthdate = $("#calendar").val();
+            var paypal = $("#paypal").val();
+            var country = $("#country").val();        
+            var image = "avatar.png";
+            var registered = {"email":email, "birthdate":birthdate, "paypal":paypal, "country":country, "image":image};
+            updateUser(registered);
+        } else {
+            $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> Validación Cliente: ¡Error en la validación de datos del usuario!</strong></div>");
+        }
     });
 
 
@@ -197,5 +201,16 @@ oonkeyup: true,
         country: {
             required: "El campo pais esta vacio"
         }        
+    },
+    submitHandler: function() {
+        $('#update-registered').click(function() {
+            var email = $("#email").val();
+            var birthdate = $("#calendar").val();
+            var paypal = $("#paypal").val();
+            var country = $("#country").val();        
+            var image = "avatar.png";
+            var registered = {"email":email, "birthdate":birthdate, "paypal":paypal, "country":country, "image":image};
+            updateUser(registered);
+        });
     }
 });
