@@ -2,6 +2,7 @@
 session_start();
 require_once("../../model/autoload.php");
 $shop = unserialize($_SESSION['shop']);
+$shop->populateShop();//update all data
 $shoppingCart = $_POST["shoppingCart"];
 $status['status'] = "ERROR";
 if (!empty($shoppingCart)) {
@@ -14,7 +15,7 @@ if (!empty($shoppingCart)) {
 		for ($i=0; $i < count($shoppingCart); $i++) {
 			$totalprice += (($shoppingCart[$i]['price'])*($shoppingCart[$i]['quantity']));
 			$game = $shop->getGame($shoppingCart[$i]['id']);
-			if ($game->getStock()<=0) {
+			if (empty($game) || ($game->getStock()<=0)) {
 				$status['status'] = "ERROR_STOCK";
 			} else {
 				$games[] = $game;

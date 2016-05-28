@@ -483,6 +483,9 @@ public function deleteMessage($id) {
 			$shoppingid = $this->getLink()->lastInsertId();
 			for ($i=0; $i < count($shopping->getGames()); $i++) {
 				$gameid = $shopping->getGames()[$i]->getId();
+				$queryUpdGame = "UPDATE game SET Stock='".($shopping->getGames()[$i]->getStock()-1)."' WHERE ID_Game=$gameid";
+				$resultUpdGame = $this->getLink()->prepare($queryUpdGame);
+        		$resultUpdGame->execute();
 				$query2 = "INSERT INTO game_has_shopping (Game_ID , Shopping_ID, Registered_ID) VALUES ($gameid, $shoppingid, $userid)";
 				$result = $this->getLink()->prepare($query2);
 				$status = $result->execute();
