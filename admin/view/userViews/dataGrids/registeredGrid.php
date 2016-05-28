@@ -35,6 +35,7 @@
 	function PrintOption($params){
 		extract($params);
 		$id = $record['ID_Registered'];
+		$group = $_SESSION['userDataGrid'];
 		return "
 		<div class=\"btn-group\">
 		  <button type=\"button\" class=\"btn btn-danger\"><a class=\"drop-grid\" href=\"#\">Opciones</a></button>
@@ -44,7 +45,7 @@
 		  </button>
 		  <ul class=\"dropdown-menu\">
 		  	<li><a href=\"userDataEditView.php?group=registered&id=$id\">Modificar</a></li>
-		    <li><a href=\"#\" onclick=\"deleteUser($id)\">Eliminar</a></li>
+		    <li><a href=\"#\" onclick=\"deleteUser($id, '$group')\">Eliminar</a></li>
 		  </ul>
 		</div>";
 	}

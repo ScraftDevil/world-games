@@ -67,6 +67,7 @@
 
 			case "success":
 			$response = array("id" => "success", "group" => $group);
+				$_SESSION['msg'] = "i-success";
 			break;
 
 			case "username":
@@ -78,7 +79,8 @@
 			break;
 
 			case "invalid-fields":
-			$response = array("id" => "invalid-fields", "errors" => $_SESSION['msg']);
+				$response = array("id" => "invalid-fields", "errors" => $_SESSION['msg']);
+				unset($_SESSION['msg']);
 			break;
 
 			default:

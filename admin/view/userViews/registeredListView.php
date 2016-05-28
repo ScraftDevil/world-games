@@ -12,8 +12,7 @@
 		
 		$users = null;
 		$label = null;
-
-		if(isset($_SESION['msg']) AND !empty($_SESSION['msg'])) {
+		if(isset($_SESSION['msg']) AND !empty($_SESSION['msg'])) {
 			$msg = $_SESSION['msg'];
 			switch($msg) {
 				case "i-success":

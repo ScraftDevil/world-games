@@ -76,7 +76,9 @@ function getInsertUserProcess(data) {
 
         case "success":
             var delay = 0;
-            setTimeout(function(){ window.location = "../../view/userViews/userListView.php?group=" + data.group + "&msg=i-" + data.id; }, delay);
+            if (data.group == "registered") {
+              setTimeout(function(){ window.location = "../../view/userViews/registeredListView.php"; }, delay);
+            }
         break;
 
         case "email-error":
@@ -96,13 +98,12 @@ function getInsertUserProcess(data) {
 }
 
 // DELETE USER FUNCTION
-function deleteUser(value) {
-  var group = getterURL("group");
+function deleteUser(value, group) {
   var id = value;
   var info = "<img class=\"alert-img\" src=\"../resources/images/alert.png\"/>";
-  var deleteButton = "<button name=\"delete\" value=\"" + id + "\" type=\"submit\" class=\"btn btn-success btn-delete\">Borrar</button>";
+  var deleteButton = "<button name=\"delete\" value=\"" + id + "-" + group + "\" type=\"submit\" class=\"btn btn-success btn-delete\">Borrar</button>";
   var cancel = "<button onclick=\"cancelDelete()\" type=\"button\" class=\"btn btn-danger btn-cancel\">Cancelar</button>";
-  var form = "<form action=\"../../controller/userControllers/deleteUserController.php?group=" + group + "\" method=\"POST\">" + deleteButton + " " + cancel + "</form>";
+  var form = "<form action=\"../../controller/userControllers/deleteUserController.php\" method=\"POST\">" + deleteButton + " " + cancel + "</form>";
   var deleteUsr = "<div class=\"confirm\"><div class=\"confirm-msg\">" + info + "<p>¿Seguro que deseas eliminar el Usuario con ID " + id + "?</p>" + form + "</div></div>";
   $("body").append("<div class=\"delete\">" + deleteUsr + "</div>");
 }
