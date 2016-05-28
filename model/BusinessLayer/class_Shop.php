@@ -81,7 +81,12 @@ class Shop {
         }
     }
 
+    /**
+    /*  USER FUNCTIONS
+    /**/
+
     function populateUsers($db) {
+        $this->users = array();
         $registereds = $db->getAllRegistered();
         $professionals = $db->getAllProfessional();
         $administrators = $db->getAllAdministrator();
@@ -136,6 +141,13 @@ class Shop {
 		return $proces;
     }
 
+    function deleteRegistered($id) {
+        $db = unserialize($_SESSION['dbconnection']);
+        $proces = $db->deleteRegistered($id);
+        $this->populateUsers($db);
+        return $proces;
+    }
+
     function addProfessional($username, $password, $email, $birthdate) {
         $birthdate = date('Y-m-d', strtotime($birthdate));
         $password = md5($password);
@@ -147,6 +159,13 @@ class Shop {
         return $proces;
     }
 
+    function deleteProfessional($id) {
+        $db = unserialize($_SESSION['dbconnection']);
+        $proces = $db->deleteProfessional($id);
+        $this->populateUsers($db);
+        return $proces;
+    }
+
     function addAdministrator($username, $password, $email, $birthdate) {
         $birthdate = date('Y-m-d', strtotime($birthdate));
         $password = md5($password);
@@ -155,6 +174,13 @@ class Shop {
         if ($proces == "success") {
             array_push($this->users, $administrator);
         }
+        return $proces;
+    }
+
+    function deleteAdministrator($id) {
+        $db = unserialize($_SESSION['dbconnection']);
+        $proces = $db->deleteAdministrator($id);
+        $this->populateUsers($db);
         return $proces;
     }
 

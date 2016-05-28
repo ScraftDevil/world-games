@@ -1,8 +1,8 @@
 <?php
 
-	require_once($_SESSION["BASE_PATH"]."/model/autoload.php");
-
 	include("../backAuthControllers/authController.php");
+
+	require_once($_SESSION['BASE_PATH']."/model/autoload.php");
 
 	include("validateUserFieldsController.php");
 
@@ -31,8 +31,6 @@
 				} else {
 					$response = messages("invalid-fields", "registered");
 				}
-				
-				
 			break;
 
 			case 'professional':
@@ -41,18 +39,17 @@
 					$proces = addProfessional($username, $password, $email, $birthdate);
 					$response = messages($proces, $group);
 				} else {
-					$response = messages("invalid-fields", "registered");
+					$response = messages("invalid-fields", "professional");
 				}
 			break;
 
 			case 'administrator':
-				$proces = addAdministrator();
-				if ($proces == 0) {
-					//header("Location:../view/newUserView.php?group=".$group."&msg=fail");
-				} else if ($proces == 1) {
-					//header("Location:../view/userListView.php?group=".$group."&msg=errusername");
+				$errors = validateAdminProfessionalInsertFields($username, $password, $email, $birthdate);
+				if ($errors == 0) {
+					$proces = addAdministrator($username, $password, $email, $birthdate);
+					$response = messages($proces, $group);
 				} else {
-					//header("Location:../view/userListView.php?group=".$group."&msg=success");
+					$response = messages("invalid-fields", "administrator");
 				}
 			break;			
 		}
@@ -108,7 +105,7 @@
 
 	function addAdministrator($username, $password, $email, $birthdate) {
 		$shop = unserialize($_SESSION['shop']);
-		$proces = $shop->addProfessional($username, $password, $email, $birthdate);
+		$proces = $shop->addAdministrator($username, $password, $email, $birthdate);
 		$_SESSION['shop'] = serialize($shop);
 		return $proces;
 	}

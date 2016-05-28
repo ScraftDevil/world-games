@@ -63,31 +63,29 @@
     }
 
     public function insertProfessional($professional) {
-      $proces = 0;
+      $proces = "";
       try {
-        $exist = 0;
-        $username = $professional->getUsername();
-        $email = $professional->getEmail();
         $db = unserialize($_SESSION['dbconnection']);
-        $query = ("SELECT p.Username FROM professional p WHERE p.Username='$username' OR p.Email='$email' UNION SELECT a.Username FROM administrator a WHERE a.Username='$username' OR a.Email='$email' UNION SELECT r.Username FROM registered r WHERE r.Username='$username' OR r.Email='$email'");
-        $resultat = $db->getLink()->prepare($query);
-        $resultat->execute();
-        $result = $resultat->fetch(PDO::FETCH_ASSOC);
-        if (!$result) {
-          $query = ("INSERT INTO professional (ID_Professional, Username, Password, Email, BannedTime, BirthDate, Telephone, Shop_ID) VALUES (:id, :username, :password, :email, :bannedtime, :birthdate, :telephone, :shop_id)");
-          $stmt = $db->getLink()->prepare($query);
-          $stmt->bindParam(':id', $this->getLastID());
-            $stmt->bindParam(':username', $professional->getUsername());
-            $stmt->bindParam(':password', $professional->getPassword());
-            $stmt->bindParam(':email', $professional->getEmail());
-            $stmt->bindParam(':bannedtime', $professional->getBannedTime());
-            $stmt->bindParam(':birthdate', $professional->getBirthDate());
-            $stmt->bindParam(':telephone', $professional->getTelephone());
-            $stmt->bindParam(':shop_id', $this->getShopID());
-            $stmt->execute();
-            $proces = 2;
+        // USERNAME VALIDATION IN TABLES
+        if($this->usernameInUse($professional, $db, "insert") == false) {
+          // EMAIL VALIDATION IN TABLES
+          if($this->emailInUse($professional, $db, "insert") == false) {
+            // INSERT ALL COLUMNS IN REGISTERED TABLE
+            $query = ("INSERT INTO professional (ID_Professional, Username, Password, Email, BannedTime, BirthDate, Shop_ID) VALUES ('', :username, :password, :email, :bannedtime, :birthdate, :shopid)");
+              $stmt = $db->getLink()->prepare($query);
+              $stmt->bindParam(':username', $professional->getUsername());
+              $stmt->bindParam(':password', $professional->getPassword());
+              $stmt->bindParam(':email', $professional->getEmail());
+              $stmt->bindParam(':bannedtime', $professional->getBannedTime());
+              $stmt->bindParam(':birthdate', $professional->getBirthDate());
+              $stmt->bindParam(':shopid', $this->getShopID());
+              $stmt->execute();
+              $proces = "success";
+          } else {
+            $proces = "email";
+          }
         } else {
-          $proces = 1;
+          $proces = "username";
         }
       } catch(PDOException $ex) {
         echo "An Error ocurred!";
@@ -99,21 +97,23 @@
     }
 
     public function deleteProfessionalUser($id) {
-
+      $proces = -1;
       try {
-      
-        $query = ("DELETE FROM professional WHERE ID_Professional = '$id'");
-
         $db = unserialize($_SESSION['dbconnection']);
-        $resultat = $db->getLink()->prepare($query);
-            $resultat->execute();
-
+        $sql = ("SELECT ID_Professional FROM professional WHERE ID_Professional='$id'");
+        $resultat = $db->getLink()->prepare($sql);
+        $result = $resultat->execute();
+        if ($result) {
+          $query = ("DELETE FROM professional WHERE ID_Professional = '$id'");
+          $resultat = $db->getLink()->prepare($query);
+          $resultat->execute();
+          $proces = 1;
+        }
       } catch(PDOException $ex) {
         echo "An Error ocurred!";
         some_loggging_function($ex->getMessage());
       } finally {
-        return $resultat;
-        $_SESSION['dbconnection'] = serialize($shopDb);     
+        return $proces;    
       }
 
     }
@@ -149,6 +149,92 @@
       } finally {
         return $result;   
       }
+    }
+
+    private function emailInUse($professional, $db, $type) {
+      $use = 0;
+
+      $email = $professional->getEmail();
+      $id = $professional->getID();
+
+      // Select que comprueba si existe el email en cualquiera de las tablas de usuario
+      $query = ("SELECT p.Username FROM professional p WHERE p.Email='$email' UNION SELECT a.Username FROM administrator a WHERE a.Email='$email' UNION SELECT r.Username FROM registered r WHERE r.Email='$email'");
+      $resultat = $db->getLink()->prepare($query);
+      $resultat->execute();
+      $emailInTables = $resultat->fetch(PDO::FETCH_ASSOC);
+
+      switch($type) {
+        case "insert":
+          if (!$emailInTables) {
+            $use = false;
+          } else {
+            $use = true;
+          }
+        break;
+
+        case "update":
+          // Select que comprueba si el nombre de usuario es el mismo que esta usando
+          $query = ("SELECT ID_Professional FROM professional WHERE Email='$email' AND ID_Professional='$id'");
+          $resultat = $db->getLink()->prepare($query);
+          $resultat->execute();
+          $thisEmail = $resultat->fetch(PDO::FETCH_ASSOC);
+          // Si el nombre de usuario existe en una tabla, esta es la tabla del usuario y su ID coincide o si el nombre de usuario no existe en ninguna tabla devuelve un 0 porque puede usarlo, en caso contrario devuelve un 1 denegando la operacion.
+          if (!$emailInTables) {
+            $use = false;
+          } else {
+            if (!$thisEmail) {
+              $use = true;
+            } else {
+              $use = false;
+            }
+          }
+        break;
+      }
+
+      return $use;
+    }
+
+    private function usernameInUse($professional, $db, $type) {
+      $use = 0;
+
+      $username = $professional->getUsername();
+      $id = $professional->getID();
+
+      // Select que comprueba si existe el nombre de usuario en cualquiera de las tablas de usuario
+      $query = ("SELECT p.Username FROM professional p WHERE p.Username='$username' UNION SELECT a.Username FROM administrator a WHERE a.Username='$username' UNION SELECT r.Username FROM registered r WHERE r.Username='$username'");
+      $resultat = $db->getLink()->prepare($query);
+      $resultat->execute();
+      $usernameInTables = $resultat->fetch(PDO::FETCH_ASSOC);
+
+      switch($type) {
+        case "insert":
+          if (!$usernameInTables) {
+            $use = false;
+          } else {
+            $use = true;
+          }
+        break;
+
+        case "update":
+          // Select que comprueba si el nombre de usuario es el mismo que esta usando
+          $query = ("SELECT ID_Professional FROM professional WHERE Username='$username' AND ID_Registered='$id'");
+          $resultat = $db->getLink()->prepare($query);
+          $resultat->execute();
+          $thisUsername = $resultat->fetch(PDO::FETCH_ASSOC);
+          // Si el nombre de usuario existe en una tabla, esta es la tabla del usuario y su ID coincide o si el nombre de usuario no existe en ninguna tabla devuelve un 0 porque puede usarlo, en caso contrario devuelve un 1 denegando la operacion.
+          if (!$usernameInTables) {
+            $use = false;
+          } else {
+            if (!$thisUsername) {
+              $use = true;
+            } else {
+              $use = false;
+            }
+          }
+        break;
+      }
+
+      return $use;
     }
 
   }

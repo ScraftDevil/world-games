@@ -9,54 +9,28 @@
 	
 
 	if (isset($_POST['delete']) AND !empty($_POST['delete'])) {
-		$string = $_POST['delete'];
-		$id = "";
-		$group = "";
-		$separate = false;
-		for ($i = 0; $i < strlen($string); $i++) { 
-			if ($separate == false) {
-				if ($string[$i] == "-") {
-					$separate = true;
-				} else {
-					$id = $id.$string[$i];
-				}
-			} else {
-				if ($string[$i] != "-") {
-					$group = $group.$string[$i];
-				}
-			}
-		}
-		echo $id;
+		$id = $_POST['delete'];
+		$group = $_SESSION['userDataGrid'];
 		if ($group == "registered" || $group == "professional" || $group == "administrator") {
 			switch ($group) {
 				case 'registered':
 					$proces = deleteRegistered($id);
-					if ($proces == -1) {
-						$_SESSION['msg'] = "deleteFail";
-						header("Location:../../view/userViews/".$group."ListView.php");
-					} else {
-						$_SESSION['msg'] = "deleteSuccess";
-						header("Location:../../view/userViews/".$group."ListView.php");
-					}
 				break;
 
 				case 'professional':
-					$proces = deleteProfessional();
-					if ($proces == -1) {
-						//header("Location:../../view/userViews/newUserView.php?group=".$group."&msg=deleteFail");
-					} else {
-						//header("Location:../../view/userViews/userListView.php?group=".$group."&msg=deleteSuccess");
-					}
+					$proces = deleteProfessional($id);
 				break;
 
 				case 'administrator':
-					$proces = deleteAdministrator();
-					if ($proces == -1) {
-						//header("Location:../../view/userViews/newUserView.php?group=".$group."&msg=deleteFail");
-					} else {
-						//header("Location:../../view/userViews/userListView.php?group=".$group."&msg=deleteSuccess");
-					}
+					$proces = deleteAdministrator($id);
 				break;		
+			}
+			if ($proces == -1) {
+				$_SESSION['msg'] = "deleteFail";
+				header("Location:../../view/userViews/".$group."ListView.php");
+			} else {
+				$_SESSION['msg'] = "deleteSuccess";
+				header("Location:../../view/userViews/".$group."ListView.php");
 			}
 		} else {
 			//header("Location:../../index.php");
@@ -67,26 +41,22 @@
 
 	function deleteRegistered($id) {
 		$proces = -1;
-		$db = unserialize($_SESSION['dbconnection']);
-		$proces = $db->deleteRegisteredUser($id);
+		$shop = unserialize($_SESSION['shop']);
+		$proces = $shop->deleteRegistered($id);
 		return $proces;
 	}
 
-	function deleteProfessional() {
+	function deleteProfessional($id) {
 		$proces = -1;
-		if (isset($_POST['delete']) AND !empty($_POST['delete'])) {
-			$db = unserialize($_SESSION['dbconnection']);
-			$proces = $db->deleteProfessionalUser($_POST['delete']);
-		}
+		$shop = unserialize($_SESSION['shop']);
+		$proces = $shop->deleteProfessional($id);
 		return $proces;
 	}
 
-	function deleteAdministrator() {
+	function deleteAdministrator($id) {
 		$proces = -1;
-		if (isset($_POST['delete']) AND !empty($_POST['delete'])) {
-			$db = unserialize($_SESSION['dbconnection']);
-			$proces = $db->deleteAdministratorUser($_POST['delete']);
-		}
+		$shop = unserialize($_SESSION['shop']);
+		$proces = $shop->deleteAdministrator($id);
 		return $proces;
 	}
 

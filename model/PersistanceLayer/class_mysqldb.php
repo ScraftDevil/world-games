@@ -184,9 +184,10 @@ public function getAllMessages($order) {
 		return $registeredDao->updateAllRegisteredUser($registered);
 	}
 
-	public function deleteRegisteredUser($id) {
+	public function deleteRegistered($id) {
 		$registeredDao = new registeredDAO();
-		$registered = $registeredDao->deleteRegisteredUser($id);		
+		$registered = $registeredDao->deleteRegistered($id);
+		return $registered;		
 	}
 
 public function deleteGenre($id) {
@@ -281,14 +282,16 @@ public function deleteMessage($id) {
     	return $professional->showProfessionals($order);
     }
 
-    public function deleteProfessionalUser($id) {
+    public function deleteProfessional($id) {
 		$professional = new ProfessionalDAO();
-		$professional = $professional->deleteProfessionalUser($id);		
+		$professional = $professional->deleteProfessionalUser($id);	
+		return $professional;
 	}
 
-	public function deleteAdministratorUser($id) {
+	public function deleteAdministrator($id) {
 		$administrator = new AdministratorDAO();
-		$administrator = $administrator->deleteAdministratorUser($id);		
+		$administrator = $administrator->deleteAdministratorUser($id);
+		return $administrator;		
 	}
 
 	public function getPrivateMessages($id) {

@@ -58,7 +58,7 @@
 								    			include("userForms/newRegisteredForm.php");
 								    		break;
 
-								    		case "professional":
+								    		case "professional": case "administrator":
 								    			include("userForms/newAdminProfessionalForm.php");
 								    		break;
 
