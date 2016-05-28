@@ -9,7 +9,7 @@
 
 	$email = $registered->email;
 	$birthdate = $registered->birthdate;
-	$birthdate = date('Y-m-d', strtotime($birthdate));
+	//$birthdate = date('Y-m-d', strtotime($birthdate));
 	$paypal = $registered->paypal;
 	$image = $registered->image;
 	$country = $registered->country;

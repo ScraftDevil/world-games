@@ -1,6 +1,6 @@
 <?php
-
 	function validateDate($date) {
+		$_SESSION['msg'] = array();
 		$correct = false;
 		if ($date != null && $date != "") {
 			if (validateDateFormat($date) == true) {
@@ -31,7 +31,6 @@
 		if ($dateSelected <= $actualDate) {
 			$valid = true;
 		}
-
 		return $valid;
 
 	}
@@ -40,10 +39,10 @@
 	function validateDateFormat($date) {
 
 		$correct = false;
+		$date = date("d-m-Y", strtotime($date));
 
 		/* Date regular expression */
 		$dateSintax = '/[0-9]{2}\-[0-9]{2}\-[0-9]{4}/';
-
 
 		if (preg_match($dateSintax, $date)) {
 			$correct = true;
