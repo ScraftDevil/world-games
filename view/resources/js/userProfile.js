@@ -151,8 +151,16 @@ function getPageName() {
 return result;
 }
 
-$("#profileForm").validate({  
-oonkeyup: true,  
+$.validator.addMethod(
+    "spainDate",
+    function(value, element) {
+        return value.match(/^\d\d\-\d\d\-\d\d\d\d$/);
+    },
+    "Fecha con formato incorrecto"
+);
+
+$("#profileForm").validate({ 
+oonkeyup: true, 
     rules: {
         email: {
             required: true,
@@ -160,7 +168,7 @@ oonkeyup: true,
         },
         birthdate: {
             required: true,
-            date:true
+            spainDate:true
         },
         paypal: {
             required: false,
