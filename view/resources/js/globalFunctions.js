@@ -198,6 +198,7 @@ function search() {
             $("#basket").append(linesHTML);
             updateTotalShopping(Cookies.getJSON('shoppingCart'));
         }
+    alertify.success("Producto añadido al carrito!"); 
     });
 //buy from detailProduct
 $(document).on("click", ".buyGame", function (e) {
@@ -250,6 +251,7 @@ $(document).on("click", ".buyGame", function (e) {
         linesHTML += '</span></span></span>';
         $("#basket").append(linesHTML);
     }
+    alertify.success("Producto añadido al carrito!"); 
 });
 
 

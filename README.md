@@ -63,8 +63,8 @@ FALTA:
 -Aviso si no hay session shop en home <-- [Hecho]
 -Reparar cascade eliminar mensajes de juego <-- [Hecho]
 -Reparar UTF8 en nombres <-- [Hecho]
+-Aviso al añadir algo al carro <-- [Hecho]
 -Detalles de compra (Compra incluida paypal)
--Aviso al añadir algo al carro
 -Subir imagen en editar juego y en perfil [Importante]
 -Gestion comentarios juego, plataformas, generos
 -Editar Juego

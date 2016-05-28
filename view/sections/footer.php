@@ -40,4 +40,5 @@
 <script type="text/javascript" src="../resources/js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="../resources/js/logoutFunction.js"></script>
 <script type="text/javascript" src="../resources/js/globalFunctions.js"></script>
+<script type="text/javascript" src="../resources/js/alertify.min.js"></script>
 <!--[if lt IE 9]><script src="js/html5shiv.js"></script><script src="js/respond.min.js"></script><![endif]-->

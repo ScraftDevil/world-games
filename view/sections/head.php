@@ -19,6 +19,10 @@ include("../../controller/mainControllers/messageController.php");
     <link href="../resources/css/header.css" rel="stylesheet">
     <link href="../resources/css/footer.css" rel="stylesheet">
     <link href="../resources/css/style.css" rel="stylesheet">
+    <!-- ALERT CSS -->
+    <link rel="stylesheet" href="../resources/css/alertify/alertify.core.css" />
+    <link rel="stylesheet" href="../resources/css/alertify/alertify.default.css" id="toggleCSS" />
+    <!-- END ALERT CSS -->
     <?php
     if (basename($_SERVER['PHP_SELF'])=="gameDetailsView.php") {
         echo '<link rel="stylesheet" href="../resources/css/gameDetails.css"/>';
