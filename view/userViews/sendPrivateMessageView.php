@@ -6,6 +6,10 @@
 /* codigo php */
 include("../sections/head.php");
 
+if (!isset($_SESSION['user_id'])) {
+        redirect('<div class="message-redirect">¡No has hecho login. No puedes acceder a esa pagina!</div>', '/world-games/view/mainViews/home.php');
+}
+
 if (isset($_GET['receiverName']) && $_GET['receiverName'] != "") {
     $receiverName = $_GET['receiverName'];
 }

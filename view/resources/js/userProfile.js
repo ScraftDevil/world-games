@@ -160,8 +160,7 @@ oonkeyup: true,
         },
         birthdate: {
             required: true,
-            date:true,
-             maxlength: 1
+            date:true
         },
         paypal: {
             required: false,

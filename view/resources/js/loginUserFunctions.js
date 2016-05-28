@@ -45,16 +45,6 @@ $(document).ready(function () {
                             window.location = "../index.php";
                         }, delay);
                     }
-
-                /*if (data.STATUS == "LOGIN_OK") {
-                    $("#msg").attr("class", "alert alert-success");
-                    $("#msg").html('<span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span><span class="sr-only">Login Correcto:</span>&nbsp;Has entrado con exito en la cuenta. Seras redirigido a tu perfil en menos de 1 segundo.');
-                    $("#msg").slideDown();
-                    var delay = 1000;
-                    setTimeout(function () {
-                        window.location = "../index.php";
-                    }, delay);
-                }*/
             }
         });
         return false;
