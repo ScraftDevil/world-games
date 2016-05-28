@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-05-2016 a las 00:10:50
+-- Tiempo de generación: 28-05-2016 a las 14:05:27
 -- Versión del servidor: 10.1.10-MariaDB
 -- Versión de PHP: 5.6.19
 
@@ -357,7 +357,7 @@ CREATE TABLE `registered` (
 --
 
 INSERT INTO `registered` (`ID_Registered`, `Username`, `Password`, `Email`, `BannedTime`, `BirthDate`, `PaypalAccount`, `AvatarURL`, `Shop_ID`, `Country_ID`) VALUES
-(1, 'registered', 'a2b8ed9c305b8ea86116b603cca78a97', 'registered@registered.com', NULL, '1985-01-01', NULL, NULL, 1, 1),
+(1, 'registered', 'a2b8ed9c305b8ea86116b603cca78a97', 'registered@registered.com', NULL, '1985-01-01', 'avatar.png', NULL, 1, 1),
 (2, 'registered2', '80ec84b21baf9b0feb14ee4ec2042faf', 'registered2@registered2.com', 0, '1995-07-10', '', NULL, 1, 1),
 (3, 'registered3', '6110e563e57d3a395c2f301c1c681b72', 'registered3@registered3.com', NULL, '2016-05-04', NULL, NULL, 1, 1);
 
@@ -756,7 +756,7 @@ ALTER TABLE `administrator`
 --
 ALTER TABLE `administrator_has_report`
   ADD CONSTRAINT `fk_Admistrador_has_Report_Admistrador1` FOREIGN KEY (`Administrator_ID`) REFERENCES `administrator` (`ID_Administrator`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Admistrador_has_Report_Registered1` FOREIGN KEY (`Registered_ID`) REFERENCES `registered` (`ID_Registered`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Admistrador_has_Report_Registered1` FOREIGN KEY (`Registered_ID`) REFERENCES `registered` (`ID_Registered`) ON DELETE CASCADE ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Admistrador_has_Report_Report1` FOREIGN KEY (`Report_ID`) REFERENCES `report` (`ID_Report`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -790,7 +790,7 @@ ALTER TABLE `game_has_genre`
 --
 ALTER TABLE `game_has_shopping`
   ADD CONSTRAINT `fk_Game_has_Shopping_Game1` FOREIGN KEY (`Game_ID`) REFERENCES `game` (`ID_Game`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Game_has_Shopping_Registered1` FOREIGN KEY (`Registered_ID`) REFERENCES `registered` (`ID_Registered`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Game_has_Shopping_Registered1` FOREIGN KEY (`Registered_ID`) REFERENCES `registered` (`ID_Registered`) ON DELETE CASCADE ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Game_has_Shopping_Shopping1` FOREIGN KEY (`Shopping_ID`) REFERENCES `shopping` (`ID_Shopping`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -798,7 +798,7 @@ ALTER TABLE `game_has_shopping`
 --
 ALTER TABLE `game_has_valoration`
   ADD CONSTRAINT `fk_Game_has_Valoration_Game1` FOREIGN KEY (`Game_ID`) REFERENCES `game` (`ID_Game`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Game_has_Valoration_Registered1` FOREIGN KEY (`Registered_ID`) REFERENCES `registered` (`ID_Registered`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Game_has_Valoration_Registered1` FOREIGN KEY (`Registered_ID`) REFERENCES `registered` (`ID_Registered`) ON DELETE CASCADE ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Game_has_Valoration_Valoration1` FOREIGN KEY (`Valoration_ID`) REFERENCES `valoration` (`ID_Valoration`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -812,7 +812,7 @@ ALTER TABLE `professional`
 --
 ALTER TABLE `professional_has_report`
   ADD CONSTRAINT `fk_Professional_has_Report_Professional1` FOREIGN KEY (`Professional_ID`) REFERENCES `professional` (`ID_Professional`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Professional_has_Report_Registered1` FOREIGN KEY (`Registered_ID`) REFERENCES `registered` (`ID_Registered`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Professional_has_Report_Registered1` FOREIGN KEY (`Registered_ID`) REFERENCES `registered` (`ID_Registered`) ON DELETE CASCADE ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Professional_has_Report_Report1` FOREIGN KEY (`Report_ID`) REFERENCES `report` (`ID_Report`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -848,7 +848,7 @@ ALTER TABLE `registered_has_message`
 -- Filtros para la tabla `report`
 --
 ALTER TABLE `report`
-  ADD CONSTRAINT `fk_Report_Registered1` FOREIGN KEY (`Registered_ID`) REFERENCES `registered` (`ID_Registered`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Report_Registered1` FOREIGN KEY (`Registered_ID`) REFERENCES `registered` (`ID_Registered`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
