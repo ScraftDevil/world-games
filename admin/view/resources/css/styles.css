@@ -35,16 +35,6 @@ a:hover {
     color: white;
 }
 
-input.error,textarea.error {
-    border: 1px solid red !important;
-}
-
-label.error{
-    display: block;
-   color: blue;
-    
-}
-
 .card-container.card {
     padding: 40px 40px;
 }
@@ -441,6 +431,19 @@ a {
     width: 100%;
 }
 
+/* */
+input.error,textarea.error {
+    border: 1px solid red !important;
+}
+
+label.error {
+    display: inline;
+    margin-left: 10px;
+    color: red;
+    max-width: 100%;
+    width: 100%; 
+    background-color: white !important;
+}
 
 /* Mobile */
 @media only screen and (min-width: 320px) {
