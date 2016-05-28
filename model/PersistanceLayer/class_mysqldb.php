@@ -460,5 +460,18 @@ public function deleteMessage($id) {
 		return $valorationDAO->userInsertValoration($userid, $gameid, $rate);
 	}
 
+
+	/* USERS LIST */
+
+	public function getAllRegistered() {
+		$registeredDAO = new registeredDAO();
+		return $registeredDAO->getAllRegistered();
+	}
+
+	public function getAllProfessional() {
+		$professionalDAO = new professionalDAO();
+		return $professionalDAO->getAllProfessional();
+	}
+
 }
 ?>

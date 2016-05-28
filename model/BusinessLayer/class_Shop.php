@@ -21,6 +21,7 @@ class Shop {
         $this->games = array();
         //get data for array games from database
         $this->populateGames($db);
+        $this->populateUsers($db);
         //end get data games
         $this->getGenres();
     }
@@ -76,6 +77,24 @@ class Shop {
             $gameObj->setGenres($genresObj);
             $gameObj->setPlatform($platform);
             array_push($this->games, $gameObj);
+        }
+    }
+
+    function populateUsers($db) {
+        $registereds = $db->getUsers();
+        foreach ($registereds as $row) {
+            $id = $row['ID_Registered'];
+            $username = $row['Username'];
+            $email = $row['Email'];
+            $bannedtime = $row['BannedTime'];
+            $birthdate = $row['BirthDate'];
+            $paypal = $row['PaypalAccount'];
+            $country = $row['Country_ID'];
+            $registered = new Registered($username, "", $email, $birthDate, $country);
+            $registered->setId($id);
+            $registered->setBannedTime($bannedtime);
+            $registered->setPaypalAccount($paypal);
+            array_push($this->getUsers(), $registered);
         }
     }
 

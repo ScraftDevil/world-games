@@ -438,6 +438,23 @@ class registeredDAO {
 	    $result = $stmt->FetchAll();
 	    return $result[0]['total'];
 	}
+
+	/* REGISTERED LIST */
+
+	private function getAllRegistered() {
+		try {
+			$query = ("SELECT ID_Registered, Username, Email, BannedTime, BirthDate, PaypalAccount, Country_ID FROM registered r");				
+			$db = unserialize($_SESSION['dbconnection']);
+			$resultat = $db->getLink()->prepare($query);
+        	$resultat->execute();
+ 			$result = $resultat->fetch(PDO::FETCH_ASSOC);
+		} catch(PDOException $ex) {
+			echo "An Error ocurred!";
+			some_loggging_function($ex->getMessage());
+		} finally {
+			return $result;		
+		}
+	}
 }
 
 ?>
