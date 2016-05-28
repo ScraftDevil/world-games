@@ -63,6 +63,7 @@
             }
         }
         ?>
+        <script>loadShoppingCartDetails();</script>
         </div>
     </body>
 </html>
