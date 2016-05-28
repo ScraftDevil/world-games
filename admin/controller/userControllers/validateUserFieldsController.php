@@ -8,7 +8,7 @@
 	include($_SESSION["BASE_PATH"]."/utilities/dateValidate.php");
 	include($_SESSION["BASE_PATH"]."/utilities/countryValidate.php");
 
-	function validateRegisteredFields($username, $password, $email, $birthdate, $country) {
+	function validateRegisteredInsertFields($username, $password, $email, $birthdate, $country) {
 		$errors = 0;
 		if (validateUsername($username) == false) {
 			$errors++;
@@ -23,6 +23,23 @@
 			$errors++;
 		}
 		if (validateCountry($country) == false) {
+			$errors++;
+		}
+		return $errors;
+	}
+
+	function validateAdminProfessionalInsertFields($username, $password, $email, $birthdate) {
+		$errors = 0;
+		if (validateUsername($username) == false) {
+			$errors++;
+		}
+		if (validatePassword($password) == false) {
+			$errors++;
+		}
+		if (validateEmail($email) == false) {
+			$errors++;
+		}
+		if (validateDate($birthdate) == false) {
 			$errors++;
 		}
 		return $errors;

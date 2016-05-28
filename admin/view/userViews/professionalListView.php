@@ -8,11 +8,13 @@
 			header("Location:../index.php");
 		}
 		
+		$_SESSION['userDataGrid'] = "professional";
+
 		$users = null;
 		$label = null;
 
-		if(isset($_GET['msg']) AND !empty($_GET['msg'])) {
-			$msg = $_GET['msg'];
+		if(isset($_SESSION['msg']) AND !empty($_SESSION['msg'])) {
+			$msg = $_SESSION['msg'];
 			switch($msg) {
 				case "i-success":
 				$message = "<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-ok\"></span> ¡Usuario creado satisfactoriamente!</strong></div>";
@@ -42,6 +44,7 @@
 					$message = null;
 				break;
 			}
+			unset($_SESSION['msg']);
 		} else {
 			$message = null;
 		}

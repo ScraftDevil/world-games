@@ -162,7 +162,33 @@ function changeCountry(elem) {
    $("#country").html(elem.text + " <span class=\"caret\"></span>");
 }
 
-$("#insert-registered").validate({ 
+function newUserView() {
+  $("#insert-user").click(function() {
+    if ($("#insert-registered").valid() == true) {
+      var username = $("#username").val();
+      var password = $("#password").val();
+      var email = $("#email").val();
+      var birthdate = $("#calendar").val();
+      var country = document.getElementById("country").value; 
+      var user = {"username": username, "password": password, "email": email, "birthdate": birthdate, "country": country, "group": group};
+      sendUser(user);
+    }
+  });
+
+  $("#insert-pro").click(function() {
+    //if ($("#new-user-pro").valid() == true) {
+      var username = $("#username").val();
+      var password = $("#password").val();
+      var email = $("#email").val();
+      var birthdate = $("#calendar").val();
+      var user = {"username": username, "password": password, "email": email, "birthdate": birthdate, "group": group};
+      sendUser(user);
+    //}
+  });
+}
+
+
+$("#new-user-pro").validate({ 
   oonkeyup: true,
   rules: {
     username: {
@@ -215,16 +241,49 @@ $("#insert-registered").validate({
   }
 });
 
-function newUserView() {
-  $("#insert-user").click(function() {
-    if ($("#insert-registered").valid() == true) {
-      var username = $("#username").val();
-      var password = $("#password").val();
-      var email = $("#email").val();
-      var birthdate = $("#calendar").val();
-      var country = document.getElementById("country").value; 
-      var user = {"username": username, "password": password, "email": email, "birthdate": birthdate, "country": country, "group": group};
-      sendUser(user);
+$("#new-user-pro").validate({ 
+  oonkeyup: true,
+  rules: {
+    username: {
+      required: true,
+      alphanumeric: true,
+      minlength: 3,
+      maxlength: 20         
+    },
+    password: {
+      required: true,
+      minlength: 6,
+      maxlength: 20          
+    },
+    email: {
+      required: true,
+      email: true           
+    },
+    birthdate: {
+      required: true,
+      spainDate:true,
+      futureDate:true
     }
-  });
-}
+  }, messages: {
+      username: {
+        required: "¡El nombre de usuario no puede estar vacío!",
+        alphanumeric: "¡El nombre de usuario no puede contener carácteres especiales!",
+        minlength: "¡El nombre de usuario tiene que tener más de 2 carácteres!",
+        maxlength: "¡El nombre de usuario no puede tener más de 20 carácteres!"
+      },
+      password: {
+        required: "¡La contraseña no puede estar vacío!",
+        minlength: "¡La contraseña tiene que tener más de 5 carácteres!",
+        maxlength: "¡La contraseña no puede tener más de 20 carácteres!"
+      },
+      email: {
+        required: "¡El email no puede estar vacío!",
+        email: "¡Formato de email no válido!"
+      },
+      birthdate: {
+        required: "¡La fecha de cumpleaños no puede estar vacía!",
+        spainDate: "¡Formato de fecha no válido!",
+        futureDate: "¡La fecha de cumpleaños es futura!"
+      }
+  }
+});

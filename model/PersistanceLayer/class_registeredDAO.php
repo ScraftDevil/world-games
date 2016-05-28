@@ -443,7 +443,7 @@ class registeredDAO {
 
 	public function getAllRegistered() {
 		try {
-			$query = ("SELECT ID_Registered, Username, Email, BannedTime, BirthDate, PaypalAccount, Country_ID FROM registered r");				
+			$query = ("SELECT ID_Registered, Username, Email, BannedTime, BirthDate, PaypalAccount, Country_ID FROM registered");				
 			$db = unserialize($_SESSION['dbconnection']);
 			$resultat = $db->getLink()->prepare($query);
         	$resultat->execute();

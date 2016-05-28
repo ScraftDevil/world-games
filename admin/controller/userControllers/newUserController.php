@@ -1,9 +1,10 @@
 <?php
 
+	require_once($_SESSION["BASE_PATH"]."/model/autoload.php");
+
 	include("../backAuthControllers/authController.php");
 
-	include("validateRegisteredFieldsController.php");
-	include("addRegisteredController.php");
+	include("validateUserFieldsController.php");
 
 	$response = "";
 
@@ -23,7 +24,7 @@
 		switch ($group) {
 			case 'registered':
 				$country = $user->country;
-				$errors = validateRegisteredFields($username, $password, $email, $birthdate, $country);
+				$errors = validateRegisteredInsertFields($username, $password, $email, $birthdate, $country);
 				if ($errors == 0) {
 					$proces = addRegistered($username, $password, $email, $birthdate, $country);
 					$response = messages($proces, $group);
@@ -35,13 +36,12 @@
 			break;
 
 			case 'professional':
-				$proces = addProfessional();
-				if ($proces == 0) {
-					//header("Location:../view/newUserView.php?group=".$group."&msg=fail");
-				} else if ($proces == 1) {
-					//header("Location:../view/userListView.php?group=".$group."&msg=errusername");
+				$errors = validateAdminProfessionalInsertFields($username, $password, $email, $birthdate);
+				if ($errors == 0) {
+					$proces = addProfessional($username, $password, $email, $birthdate);
+					$response = messages($proces, $group);
 				} else {
-					//header("Location:../view/userListView.php?group=".$group."&msg=success");
+					$response = messages("invalid-fields", "registered");
 				}
 			break;
 
@@ -90,6 +90,27 @@
 			break;
 		}
 		return $response;
+	}
+
+	function addRegistered($username, $password, $email, $birthdate, $country) {
+		$shop = unserialize($_SESSION['shop']);
+		$proces = $shop->addRegistered($username, $password, $email, $birthdate, $country);
+		$_SESSION['shop'] = serialize($shop);
+		return $proces;
+	}
+
+	function addProfessional($username, $password, $email, $birthdate) {
+		$shop = unserialize($_SESSION['shop']);
+		$proces = $shop->addProfessional($username, $password, $email, $birthdate);
+		$_SESSION['shop'] = serialize($shop);
+		return $proces;
+	}
+
+	function addAdministrator($username, $password, $email, $birthdate) {
+		$shop = unserialize($_SESSION['shop']);
+		$proces = $shop->addProfessional($username, $password, $email, $birthdate);
+		$_SESSION['shop'] = serialize($shop);
+		return $proces;
 	}
 
 	echo json_encode($response);

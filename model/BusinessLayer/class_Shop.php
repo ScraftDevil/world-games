@@ -83,6 +83,8 @@ class Shop {
 
     function populateUsers($db) {
         $registereds = $db->getAllRegistered();
+        $professionals = $db->getAllProfessional();
+        $administrators = $db->getAllAdministrator();
         foreach ($registereds as $row) {
             $id = $row['ID_Registered'];
             $username = $row['Username'];
@@ -97,6 +99,30 @@ class Shop {
             $registered->setPaypalAccount($paypal);
             array_push($this->users, $registered);
         }
+        foreach ($professionals as $row) {
+            $id = $row['ID_Professional'];
+            $username = $row['Username'];
+            $email = $row['Email'];
+            $bannedtime = $row['BannedTime'];
+            $birthdate = $row['BirthDate'];
+            $phone = $row['Telephone'];
+            $professional = new Professional($username, "", $email, $birthdate, $phone);
+            $professional->setId($id);
+            $professional->setBannedTime($bannedtime);
+            $professional->setTelephone($phone);
+            array_push($this->users, $professional);
+        }
+        foreach ($administrators as $row) {
+            $id = $row['ID_Administrator'];
+            $username = $row['Username'];
+            $email = $row['Email'];
+            $bannedtime = $row['BannedTime'];
+            $birthdate = $row['BirthDate'];
+            $administrator = new Administrator($username, "", $email, $birthdate);
+            $administrator->setId($id);
+            $administrator->setBannedTime($bannedtime);
+            array_push($this->users, $administrator);
+        }
     }
 
     function addRegistered($username, $password, $email, $birthdate, $country) {
@@ -108,6 +134,28 @@ class Shop {
 			array_push($this->users, $registered);
 		}
 		return $proces;
+    }
+
+    function addProfessional($username, $password, $email, $birthdate) {
+        $birthdate = date('Y-m-d', strtotime($birthdate));
+        $password = md5($password);
+        $professional = new Professional($username, $password, $email, $birthdate);
+        $proces = $professional->insertProfessional();
+        if ($proces == "success") {
+            array_push($this->users, $professional);
+        }
+        return $proces;
+    }
+
+    function addAdministrator($username, $password, $email, $birthdate) {
+        $birthdate = date('Y-m-d', strtotime($birthdate));
+        $password = md5($password);
+        $administrator = new Administrator($username, $password, $email, $birthdate);
+        $proces = $administrator->insertAdministrator();
+        if ($proces == "success") {
+            array_push($this->users, $administrator);
+        }
+        return $proces;
     }
 
   	function addGame($title,$price) {

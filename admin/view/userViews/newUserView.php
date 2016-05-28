@@ -7,8 +7,6 @@
 		if ($_SESSION['usertype'] == "Professional") {
 			header("Location:../index.php");
 		}
-
-		
 		
 		$users = null;
 		$label = null;
@@ -53,15 +51,17 @@
 								</div>
 							  	<div class="panel-body">
 								    <?php
+
 								    	switch($users) {
 								    		
 								    		case "registered":
 								    			include("userForms/newRegisteredForm.php");
 								    		break;
 
-								    		case "professional": case "administrator":
+								    		case "professional":
 								    			include("userForms/newAdminProfessionalForm.php");
 								    		break;
+
 								    	}
 								    ?>
 							  	</div>

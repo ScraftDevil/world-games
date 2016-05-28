@@ -473,6 +473,11 @@ public function deleteMessage($id) {
 		return $professionalDAO->getAllProfessional();
 	}
 
+	public function getAllAdministrator() {
+		$administratorDAO = new administratorDAO();
+		return $administratorDAO->getAllAdministrator();
+	}
+
 	/* SHOPPING */
 	 public function insertShopping($shopping, $userid) {
         $status = null;

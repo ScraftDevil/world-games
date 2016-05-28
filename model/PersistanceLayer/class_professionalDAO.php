@@ -134,6 +134,22 @@
         return $result[0]['ID_Shop'];
     }
 
+    /* PROFESSIONAL LIST */
+
+    public function getAllProfessional() {
+      try {
+        $query = ("SELECT ID_Professional, Username, Email, BannedTime, BirthDate, Telephone FROM professional");       
+        $db = unserialize($_SESSION['dbconnection']);
+        $resultat = $db->getLink()->prepare($query);
+        $resultat->execute();
+        $result = $resultat->FetchAll();;
+      } catch(PDOException $ex) {
+        echo "An Error ocurred!";
+        some_loggging_function($ex->getMessage());
+      } finally {
+        return $result;   
+      }
+    }
 
   }
 

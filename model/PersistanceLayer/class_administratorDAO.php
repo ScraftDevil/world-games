@@ -132,6 +132,23 @@
         return $result[0]['ID_Shop'];
     }
 
+    /* ADMINISTRATOR LIST */
+
+    public function getAllAdministrator() {
+      try {
+        $query = ("SELECT ID_Administrator, Username, Email, BannedTime, BirthDate FROM administrator");
+        $db = unserialize($_SESSION['dbconnection']);
+        $resultat = $db->getLink()->prepare($query);
+        $resultat->execute();
+        $result = $resultat->FetchAll();;
+      } catch(PDOException $ex) {
+        echo "An Error ocurred!";
+        some_loggging_function($ex->getMessage());
+      } finally {
+        return $result;   
+      }
+    }
+
   }
 
 ?>
