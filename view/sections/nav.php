@@ -25,7 +25,7 @@
                           <li><a class="text-center" id="shoppingCartTotal">Total: 0 €</a></li>
                           <li class="divider"></li>
                           <li><a class="text-center" href="#" id="clearShop">Vaciar Carrito</a></li>
-                          <li><a class="text-center" href="shoppingCart.php">Finalizar Compra</a></li>
+                          <li><a class="text-center" href="../gameViews/shoppingCart.php">Finalizar Compra</a></li>
                       </ul>
                     </li>
                     <!-- END SHOPPING CART -->

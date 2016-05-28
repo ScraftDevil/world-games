@@ -284,5 +284,17 @@ $(document).ready(function() {
         $("#countShoppingCart").text(getNumItems(games));
         updateTotalShopping(games);
     });
-
+    loadShoppingCartDetails($("#shoppingCartDetails"));
 });
+
+function loadShoppingCartDetails(tableDetailsElement) {
+    var json = Cookies.getJSON('shoppingCart');
+    var headHTML = '<thead><tr><th>Titulo</th><th>Cantidad</th><th>Precio</th></tr></thead>';
+    var bodyHTML = ' <tbody>';
+    var bodyDynamicContentHTML = '';
+    var bodyEndHTML = ' </tbody>';
+    $.each(json, function(i, item) {
+        bodyDynamicContentHTML += '<tr><td>'+item.name+'</td><td>'+item.quantity+'</td><td>'+item.price+'</td></tr>';
+        $(tableDetailsElement).html(headHTML+bodyHTML+bodyDynamicContentHTML+bodyEndHTML);
+    });
+}
