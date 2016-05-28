@@ -54,18 +54,19 @@ sistema control de versions -> ignacio
 
 ##############################################################
 FALTA:
--Editar Juego
--Eliminar ofertas
--Gestion comentarios juego, plataformas, generos
--Recapcha en Login Registrado
--Cargar dinamicamente filtros plataformas y generos disponbibles
--Arreglar estadisticas y agregar al index administrator panel
--JS de footer aparte
--Detalles de compra (Compra incluida paypal)
+-Eliminar ofertas <-- [Hecho]
+-Recapcha en Login Registrado <-- [Hecho]
+-Cargar dinamicamente filtros plataformas y generos disponbibles <-- [Hecho]
+-Arreglar estadisticas y agregar al index administrator panel <-- [Hecho]
+-JS de footer aparte <-- [Hecho]
 -Aviso al hacer el redirect con problema de permisos <-- [Hecho]
 -Aviso si no hay session shop en home <-- [Hecho]
--Aviso al añadir algo al carro
--Subir imagen en editar juego y en perfil [Importante]
 -Reparar cascade eliminar mensajes de juego <-- [Hecho]
 -Reparar UTF8 en nombres <-- [Hecho]
+-Detalles de compra (Compra incluida paypal)
+-Aviso al añadir algo al carro
+-Subir imagen en editar juego y en perfil [Importante]
+-Gestion comentarios juego, plataformas, generos
+-Editar Juego
+-Estructura de shop -> shopdao/classdao
 ##############################################################

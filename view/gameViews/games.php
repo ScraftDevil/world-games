@@ -35,6 +35,7 @@
             <?php
             include("../sections/footer.php");
             ?>
+            <script type="text/javascript" src="../resources/js/filter.js"></script>
         </div>
     </body>
 </html>
