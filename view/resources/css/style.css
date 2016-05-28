@@ -10,7 +10,6 @@
     cursor:pointer;
     padding-left: 10px;
     margin-bottom: 10px;
-    /*border:1px solid #16A085;*/
 }
 
 /* Apartado de datos del perfil de usuari donde puede cambiar sus datos personales */
@@ -31,44 +30,45 @@
 
 .btn.btn-default {
     background: #eeeeee;
-box-shadow: 0 2px #bdc3c7;
-color: #747474;
+    box-shadow: 0 2px #bdc3c7;
+    color: #747474;
 }
+
 #login-form  .form-control{
-border: 2px solid #E6E6E6;
-width: 70%;
-margin-left: auto;
-margin-right: auto;
-position: relative;
+    border: 2px solid #E6E6E6;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
 
 }
+
 #register-form .form-control{
-border: 2px solid #E6E6E6;
-width: 100%;
-margin-left: auto;
-margin-right: auto;
+    border: 2px solid #E6E6E6;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
 
 }
+
 #register-form label.error{
- color: red;
- float: right;
-background-color: white;
-
-text-align: center;
-width: 100%;
-
+    color: red;
+    float: right;
+    background-color: white;
+    text-align: center;
+    width: 100%;
 }
+
 .posicionarizquierda{
     text-align: left;
 }
+
 #login-form label.error{
- color: red;
- float: right;
-background-color: white;
-
-text-align: center;
-width: 100%;
-
+    color: red;
+    float: right;
+    background-color: white;
+    text-align: center;
+    width: 100%;
 }
 
 input.error,textarea.error{
@@ -76,19 +76,12 @@ input.error,textarea.error{
     background-color: white;
    
 }
-label.error{
-   
-             /* color: red;
-    background-color: white;
-    margin-top: -32px;
-    margin-left: 191px;
-    width: 42%;
-    position: absolute;*/
-}
+
 input:focus{
-border: 2px solid #4CB9A3;
+    border: 2px solid #4CB9A3;
 
 }
+
 /* separacion entre los form-groups (label + input) en resolucion de tablet */
 @media only screen and (min-width:768px) and (max-width:1200px) {
     .form-group {
@@ -249,16 +242,19 @@ border: 2px solid #4CB9A3;
 ul.dropdown-cart{
     min-width:250px;
 }
+
 ul.dropdown-cart li .item{
     display:block;
     padding:3px 10px;
     margin: 3px 0;
 }
+
 ul.dropdown-cart li .item:hover{
     background-color: #193441;
     cursor: pointer;
     cursor: hand;
 }
+
 ul.dropdown-cart li .item:after{
     visibility: hidden;
     display: block;
@@ -271,22 +267,28 @@ ul.dropdown-cart li .item:after{
 ul.dropdown-cart li .item-left{
     float:left;
 }
+
 ul.dropdown-cart li .item-left img,
 ul.dropdown-cart li .item-left span.item-info{
     float:left;
 }
+
 ul.dropdown-cart li .item-left span.item-info{
     margin-left:10px;   
 }
+
 ul.dropdown-cart li .item-left span.item-info span{
     display:block;
 }
+
 ul.dropdown-cart li .item-right{
     float:right;
 }
+
 ul.dropdown-cart li .item-right button{
     margin-top:14px;
 }
+
 .item-info span {
     color: white;
 }
@@ -333,7 +335,7 @@ ul.dropdown-cart li .item-right button{
     margin-bottom: 5px;
 }
 
-/* Bot´´o de responder mensaje  */
+/* Botón de responder mensaje  */
 #answerMessageButton {
     padding-left:5px;
     padding-right: 5px;
