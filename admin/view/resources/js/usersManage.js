@@ -74,21 +74,9 @@ function getInsertUserProcess(data) {
           $("#general-error").html(errors);
         break;
 
-        case "success":
+        case "success": case "email-error": case "username-error":
             var delay = 0;
-            if (data.group == "registered") {
-              setTimeout(function(){ window.location = "../../view/userViews/registeredListView.php"; }, delay);
-            }
-        break;
-
-        case "email-error":
-            var delay = 0;
-            setTimeout(function(){ window.location = "../../view/userViews/userListView.php?group=" + data.group + "&msg=" + data.id; }, delay);
-        break;
-
-        case "username-error":
-            var delay = 0;
-            setTimeout(function(){ window.location = "../../view/userViews/userListView.php?group=" + data.group + "&msg=" + data.id; }, delay);
+            setTimeout(function(){ window.location = "../../view/userViews/" + data.group + "ListView.php"; }, delay);
         break;
 
         default:

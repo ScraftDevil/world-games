@@ -66,25 +66,27 @@
 		switch($proces) {
 
 			case "success":
-			$response = array("id" => "success", "group" => $group);
+				$response = array("id" => "success", "group" => $group);
 				$_SESSION['msg'] = "i-success";
 			break;
 
 			case "username":
-			$response = array("id" => "username-error", "group" => $group);
+				$response = array("id" => "username-error", "group" => $group);
+				$_SESSION['msg'] = "username-error";
 			break;
 
 			case "email":
-			$response = array("id" => "email-error", "group" => $group);
+				$response = array("id" => "email-error", "group" => $group);
+				$_SESSION['msg'] = "email-error";
 			break;
 
 			case "invalid-fields":
-				$response = array("id" => "invalid-fields", "errors" => $_SESSION['msg']);
+				$response = array("id" => "invalid-fields", "errors" => $_SESSION['msg'], "group" => $group);
 				unset($_SESSION['msg']);
 			break;
 
 			default:
-			$response = array("id" => "error", "group" => $group);
+				$response = array("id" => "error", "group" => $group);
 			break;
 		}
 		return $response;

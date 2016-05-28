@@ -57,7 +57,7 @@ class Shop {
         $this->id = $id;
     }
 
-   function populateGames($db) {
+   	function populateGames($db) {
         $games = $db->getGames();
         foreach ($games as $game) {
             $genresObj = array();
@@ -79,9 +79,18 @@ class Shop {
         }
     }
 
+    function addRegistered($username, $password, $email, $birthdate, $country) {
+    	$birthdate = date('Y-m-d', strtotime($birthdate));
+    	$password = md5($password);
+    	$registered = new Registered($username, $password, $email, $birthdate, $country);
+		$proces = $registered->insertRegistered();
+		if ($proces == "success") {
+			array_push($this->users, $registered);
+		}
+		return $proces;
+    }
 
-
-  function addGame($title,$price) {
+  	function addGame($title,$price) {
 
         $games = new Game($title,$price);
 

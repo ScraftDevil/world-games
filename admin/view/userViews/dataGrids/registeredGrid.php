@@ -25,7 +25,7 @@
 		$dg->addColumn($column);
 		$column = new Structures_DataGrid_Column('Avatar', 'AvatarURL', 'AvatarURL', array('class'=>'grid-cel'));
 		$dg->addColumn($column);
-		$column = new Structures_DataGrid_Column('País', 'Country', 'Country', array('class'=>'grid-cel'), null, 'PrintUTF8()');
+		$column = new Structures_DataGrid_Column('País', 'Country', 'Country', array('class'=>'grid-cel'));
 		$dg->addColumn($column);
 		$column = new Structures_DataGrid_Column("<a href='#'>Opciones</a>", null, null, array('class'=>'grid-cel'), null, 'PrintOption()');
 		$dg->addColumn($column);
@@ -48,12 +48,6 @@
 		    <li><a href=\"#\" onclick=\"deleteUser($id, '$group')\">Eliminar</a></li>
 		  </ul>
 		</div>";
-	}
-
-	function PrintUTF8($params){
-		extract($params);
-		$fieldData = $record['Country'];
-		return utf8_encode($fieldData);
 	}
 
 ?>
