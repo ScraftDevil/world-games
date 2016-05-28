@@ -22,7 +22,7 @@
 
 	//BirthDate validation
 	if(nullInputValidate($birthdate) AND $birthdate != '1970-01-01') {
-		if (!validateDate($birthdate) AND !validateDateFormat($birthdate)) {
+		if (!validateFutureDate($birthdate) OR !validateDateFormat($birthdate)) {
 			$errors++;
 		}
 	}
