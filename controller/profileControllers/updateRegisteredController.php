@@ -20,6 +20,8 @@
 
 	$response = "";
 
+	$_SESSION['msg'] = array();
+
 	//Validacion de los campos introducidos. Si devuelve 0 es que no hay errores
 	$errors = validateInputs($email, $birthdate, $paypal, $image, $country);
 
