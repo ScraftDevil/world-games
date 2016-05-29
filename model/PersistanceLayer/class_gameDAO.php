@@ -63,5 +63,37 @@ public function deleteGame($id) {
         $result = $stmt->FetchAll();
         return $result;
 	}
+
+
+	 function getAllGameInfo($id) {
+		try {
+
+			$query = ("SELECT g.Title, g.Price, g.Stock, (SELECT ge.Name FROM genre  ge WHERE ge.ID_Genre=gg.Genre_ID) AS Genre ,  (SELECT pla.Name FROM platform pla WHERE g.Platform_ID=pla.ID_platform) AS Platform FROM game g INNER JOIN game_has_genre AS gg ON  g.ID_Game = gg.Game_ID
+			 where ID_Game = '$id'");				
+			$db = unserialize($_SESSION['dbconnection']);
+			$resultat = $db->getLink()->prepare($query);
+        	$resultat->execute();
+ 			while ($row = $resultat->fetch(PDO::FETCH_ASSOC)) {
+				$title = $row['Title'];
+				$price = $row['Price'];
+				$stock = $row['Stock'];
+				$genreID = $row['Genre_ID'];
+				$genre = $row['Genre'];
+				$platformID = $row['Platform_ID'];
+				$platform = $row['Platform'];
+				$game = array('Title'=> $title, 'Price'=> $price, 'Stock'=>$stock, 'Genre_ID'=> $genreID, "Genre"=> $genre, "Platform_ID"=> $platformID, "Platform"=>$platform);
+			}
+			$result = $game;
+
+		} catch(PDOException $ex) {
+			echo "An Error ocurred!";
+			some_loggging_function($ex->getMessage());
+		} finally {
+			return $result;		
+		}
+
+	}
+
+
 }
 ?>

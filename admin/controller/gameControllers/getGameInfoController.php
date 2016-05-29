@@ -18,20 +18,18 @@
 	$id = $data->id;
 
 	if ($data != null) {
-		if ($group == "registered" || $group == "professional" || $group == "administrator") {
-			else {
+		
+			/*else {
 				$response = array("id" => "id-error");
-			}
-		} else {
-			$response = array("id" => "group-error");
-		}
+			}*/
+		
 	} else {
 		$response = array("id" => "data-error");
 	}
 
-	function getRegisteredInfo($id) {
+	function getGameInfo($id) {
 		$db = unserialize($_SESSION['dbconnection']);
-		$proces = $db->getAllRegisteredInfo($id);
+		$proces = $db->getAllGameInfo($id);
 		return $proces;
 	}
 
