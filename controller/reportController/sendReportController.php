@@ -1,37 +1,35 @@
 <?php
-
-require_once("../../model/autoload.php");
+session_start();
+require_once($_SESSION['BASE_PATH']."/model/autoload.php");
 //include("../profileControllers/sendMessageValidationController.php");
 
-$myId = $_SESSION['user_id'];
 
-$infoReport = json_decode($_REQUEST['infoReport']);
+$infoReport = json_decode($_POST['infoReport']);
 
 $reportuserName = $infoReport->reportuserName;
-$reason = $infoReport->reason;
-$contentreport = $infoReport->contentreport;
-
+$reasonreport = $infoReport->reasonreport;
+$contentReport = $infoReport->contentReport;
 
   
 
 $errors = 0;
 $response = null;
 
-//$errors = sendMessageValidation($receiverName, $message);
+//$errors = sendMessageValidation($reportuserName, $message);
 
-	if ($errors == 0) {
-		$shopDb = unserialize($_SESSION['dbconnection']);
-  
-$reason, $date, $status, $userRegistered, $professionalUser, $administratorUser
+//	if ($errors == 0) {
+	
 
 
-		$myReport = new Report($reason, "","No Leído", $myId, "","");
-		$shopDb = unserialize($_SESSION['dbconnection']);
-		$response = $shopDb->sendPrivateMessage($myMessage, $receiverName);
-	}
-	else {
-		$response = "error";		
-	}
+		$myReport = new Report($reasonreport,$contentReport, "","", $reportuserName);
+		
+		$db = unserialize($_SESSION['dbconnection']);
+		$response = $db->sendReport($myReport,$reportuserName);
+		
+//	}
+//	else {
+//		$response = "error";		
+	//}
 
 	echo json_encode($response);
 

@@ -43,12 +43,12 @@ else {
 
                     <div class="control-label col-xs-12 col-sm-12 col-md-12 col-lg-6">
                             <label>Usuario responsable</label>
-                            <input id="responsibleName" disabled class="form-control" type="text" name="responsibleName" value="<?php echo $_SESSION['user_id'];?>" >
+                            <input id="responsibleName"  class="form-control" type="text" name="responsibleName" value="<?php echo $_SESSION['user_id'];?>" >
                         </div>
 
                     	<div class="control-label col-xs-12 col-sm-12 col-md-12 col-lg-6">
                             <label>Usuario reportado</label>
-                            <input disabled id="reportuserName"  class="form-control" type="text" name="receiverName" value="<?php echo $reportedName?>" >
+                            <input  id="reportuserName"  class="form-control" type="text" name="receiverName" value="<?php echo $reportedName?>" >
                         </div>
 
                         <div class="control-label col-xs-12 col-sm-12 col-md-12 col-lg-6">
@@ -58,14 +58,14 @@ else {
 
                         <div class="control-label col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <label>Contenido de la queja:</label>
-                            <textarea maxlength="100" class="form-control contentReport" type="text" name="contentReport"  rows="6" placeholder="Escribe tu queja aquí"></textarea>
+                            <textarea maxlength="100" class="form-control contentReport" id="contentReport" type="text" name="contentReport"  rows="6" placeholder="Escribe tu queja aquí"></textarea>
                         </div>
 
                         <a href="../userViews/registeredProfileView.php" class="button-profile pull-left btn form-button" role="button">
                             <i class="fa fa-arrow-left" aria-hidden="true"></i>
                             Volver al Perfil
                         </a>
-                        <button type="button" class="sendReportreason" id="sendReportreason" class="button-green pull-right btn form-button">
+                        <button type="button"  id="sendReportreason" class="button-green pull-right btn form-button">
                             <span class="glyphicon glyphicon-send"></span>
                             Enviar Queja
                         </button>
