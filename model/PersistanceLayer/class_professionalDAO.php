@@ -1,5 +1,7 @@
 <?php
-  
+
+require_once($_SESSION['BASE_PATH']."/model/autoload.php");
+
   class professionalDAO {
     
     public function login($username, $password) {
@@ -63,105 +65,62 @@
     }
 
     public function updateAllProfessionalUser($professional) {
-      $proces = "";
-      try {
+        $proces = "";
+        $id = $professional->getId();
+        $username = $professional->getUsername();
+        $email = $professional->getEmail();
         $db = unserialize($_SESSION['dbconnection']);
-        // USERNAME VALIDATION IN TABLES
-        if($this->usernameInUse($professional, $db, "update") == false) {
-          // EMAIL VALIDATION IN TABLES
-          if($this->emailInUse($professional, $db, "update") == false) {
-            // UPDATE ALL COLUMNS IN REGISTERED TABLE
+        try {
+          // USERNAME VALIDATION IN TABLES
+          if($this->usernameInUse($professional, $db, "update") == false) {
+            // EMAIL VALIDATION IN TABLES
+            if($this->emailInUse($professional, $db, "update") == false) {
+              $password = $professional->getPassword();
+              $bannedtime = $professional->getBannedTime();
+              $birthdate = $professional->getBirthDate();
+              $phone = $professional->getTelephone();
 
-            // registered all info
-            $id = $professional->getId();
-            $username = $professional->getUsername();
-            $password = $professional->getPassword();
-            $email = $professional->getEmail();
-            $bannedtime = $professional->getBannedTime();
-            $birthdate = $professional->getBirthDate();
-            $phone = $professional->getTelephone();
+              // update string
+              $updateString = "Username='$username', ";
+              
+              if ($password != null && $password != "") {
+                $updateString = $updateString."Password='$password', ";
+              }
 
-            // update string
-            $updateString = "Username='$username', ";
-            
-            if ($password != null && $password != "") {
-              $updateString = $updateString."Password='$password', ";
-            }
+              $updateString = $updateString."Email='$email', ";
 
-            $updateString = $updateString."Email='$email', ";
+              if ($bannedtime != null && $bannedtime != "") {
+                $updateString = $updateString."BannedTime='$bannedtime', ";
+              } else {
+                $updateString = $updateString."BannedTime='', ";
+              }
 
-            if ($bannedtime != null && $bannedtime != "") {
-              $updateString = $updateString."BannedTime='$bannedtime', ";
+              $updateString = $updateString."BirthDate='$birthdate', ";
+
+              if ($phone != null && $phone != "") {
+                $updateString = $updateString."Telephone='$phone', ";
+              } else {
+                $updateString = $updateString."Telephone='', ";
+              }
+
+              $query = ("UPDATE professional SET ".$updateString." WHERE ID_Professional='$id'");
+              $stmt = $db->getLink()->prepare($query);
+              $stmt->execute();
+              $proces = "success";
             } else {
-              $updateString = $updateString."BannedTime='', ";
+              $proces = "email";
             }
-
-            $updateString = $updateString."BirthDate='$birthdate', ";
-
-            if ($paypal != null && $paypal != "") {
-              $updateString = $updateString."Telephone='$phone', ";
-            } else {
-              $updateString = $updateString."Telephone='', ";
-            }
-
-            $query = ("UPDATE professional SET ".$updateString." WHERE ID_Professional='$id'");
-            $stmt = $db->getLink()->prepare($query);
-            $stmt->execute();
-            $proces = "success";
           } else {
-            $proces = "email";
+            $proces = "username";
           }
-        } else {
-          $proces = "username";
+        } catch(PDOException $ex) {
+          echo "An Error ocurred!";
+          some_loggging_function($ex->getMessage());
+          $proces = "error";
+          die();
+        } finally {
+          return $proces;
         }
-      } catch(PDOException $ex) {
-        echo "An Error ocurred!";
-        some_loggging_function($ex->getMessage());
-        $proces = "error";
-        die();
-      } finally {
-        return $proces;
-      }
-    }
-
-
-    public function updateProfessionalUser($professional) {
-
-      $id = $professional->getId();
-      $email = $professional->getEmail();
-
-      try {
-
-        $query = ('SELECT ID_Professional FROM Registered WHERE Email = "$email";');
-
-        $db = unserialize($_SESSION['dbconnection']);
-        $resultat = $db->getLink()->prepare($query);
-            $result = $resultat->execute();
-
-            if(!$result == "" || $result == $id) {
-              $query = ('UPDATE registered r INNER JOIN country c ON "'.$country.'" = c.Name 
-          SET r.Email = "'.$registered->getEmail().'", r.BirthDate = "'.$registered->getBirthDate().'",
-          r.PaypalAccount = "'.$registered->getPaypalAccount().'", r.AvatarURL = "'.$registered->getAvatarUrl().'", 
-          r.Country_ID = c.ID_Country WHERE r.ID_Registered = "'.$registered->getId().';"');
-          
-          $db = unserialize($_SESSION['dbconnection']);
-          $resultat = $db->getLink()->prepare($query);
-              $resultat->execute();
-
-              $response = "success";
-            }
-            else {
-              $response = "email-error";
-            }
-
-      } catch(PDOException $ex) {
-        echo "An Error ocurred!";
-        some_loggging_function($ex->getMessage());
-      } finally {
-        return $response;
-        $_SESSION['dbconnection'] = serialize($db);     
-      }
-
     }
 
     public function deleteProfessionalUser($id) {
@@ -219,13 +178,13 @@
       }
     }
 
-    private function emailInUse($professional, $db, $type) {
+    private function emailInUse($registered, $db, $type) {
       $use = 0;
 
-      $email = $professional->getEmail();
-      $id = $professional->getID();
+      $email = $registered->getEmail();
+      $id = $registered->getID();
 
-      // Select que comprueba si existe el email en cualquiera de las tablas de usuario
+    // Select que comprueba si existe el email en cualquiera de las tablas de usuario
       $query = ("SELECT p.Username FROM professional p WHERE p.Email='$email' UNION SELECT a.Username FROM administrator a WHERE a.Email='$email' UNION SELECT r.Username FROM registered r WHERE r.Email='$email'");
       $resultat = $db->getLink()->prepare($query);
       $resultat->execute();
@@ -233,29 +192,29 @@
 
       switch($type) {
         case "insert":
-          if (!$emailInTables) {
-            $use = false;
-          } else {
-            $use = true;
-          }
+        if (!$emailInTables) {
+          $use = false;
+        } else {
+          $use = true;
+        }
         break;
 
         case "update":
-          // Select que comprueba si el nombre de usuario es el mismo que esta usando
-          $query = ("SELECT ID_Professional FROM professional WHERE Email='$email' AND ID_Professional='$id'");
-          $resultat = $db->getLink()->prepare($query);
-          $resultat->execute();
-          $thisEmail = $resultat->fetch(PDO::FETCH_ASSOC);
-          // Si el nombre de usuario existe en una tabla, esta es la tabla del usuario y su ID coincide o si el nombre de usuario no existe en ninguna tabla devuelve un 0 porque puede usarlo, en caso contrario devuelve un 1 denegando la operacion.
-          if (!$emailInTables) {
-            $use = false;
+        // Select que comprueba si el nombre de usuario es el mismo que esta usando
+        $query = ("SELECT ID_Professional FROM professional WHERE Email='$email' AND ID_Professional='$id'");
+        $resultat = $db->getLink()->prepare($query);
+        $resultat->execute();
+        $thisEmail = $resultat->fetch(PDO::FETCH_ASSOC);
+        // Si el nombre de usuario existe en una tabla, esta es la tabla del usuario y su ID coincide o si el nombre de usuario no existe en ninguna tabla devuelve un 0 porque puede usarlo, en caso contrario devuelve un 1 denegando la operacion.
+        if (!$emailInTables) {
+          $use = false;
+        } else {
+          if (!$thisEmail) {
+            $use = true;
           } else {
-            if (!$thisEmail) {
-              $use = true;
-            } else {
-              $use = false;
-            }
+            $use = false;
           }
+        }
         break;
       }
 
@@ -268,7 +227,7 @@
       $username = $professional->getUsername();
       $id = $professional->getID();
 
-      // Select que comprueba si existe el nombre de usuario en cualquiera de las tablas de usuario
+    // Select que comprueba si existe el nombre de usuario en cualquiera de las tablas de usuario
       $query = ("SELECT p.Username FROM professional p WHERE p.Username='$username' UNION SELECT a.Username FROM administrator a WHERE a.Username='$username' UNION SELECT r.Username FROM registered r WHERE r.Username='$username'");
       $resultat = $db->getLink()->prepare($query);
       $resultat->execute();
@@ -276,33 +235,60 @@
 
       switch($type) {
         case "insert":
-          if (!$usernameInTables) {
-            $use = false;
-          } else {
-            $use = true;
-          }
+        if (!$usernameInTables) {
+          $use = false;
+        } else {
+          $use = true;
+        }
         break;
 
         case "update":
-          // Select que comprueba si el nombre de usuario es el mismo que esta usando
-          $query = ("SELECT ID_Professional FROM professional WHERE Username='$username' AND ID_Registered='$id'");
-          $resultat = $db->getLink()->prepare($query);
-          $resultat->execute();
-          $thisUsername = $resultat->fetch(PDO::FETCH_ASSOC);
-          // Si el nombre de usuario existe en una tabla, esta es la tabla del usuario y su ID coincide o si el nombre de usuario no existe en ninguna tabla devuelve un 0 porque puede usarlo, en caso contrario devuelve un 1 denegando la operacion.
-          if (!$usernameInTables) {
-            $use = false;
+        // Select que comprueba si el nombre de usuario es el mismo que esta usando
+        $query = ("SELECT ID_Professional FROM professional WHERE Username='$username' AND ID_Professional='$id'");
+        $resultat = $db->getLink()->prepare($query);
+        $resultat->execute();
+        $thisUsername = $resultat->fetch(PDO::FETCH_ASSOC);
+        // Si el nombre de usuario existe en una tabla, esta es la tabla del usuario y su ID coincide o si el nombre de usuario no existe en ninguna tabla devuelve un 0 porque puede usarlo, en caso contrario devuelve un 1 denegando la operacion.
+        if (!$usernameInTables) {
+          $use = false;
+        } else {
+          if (!$thisUsername) {
+            $use = true;
           } else {
-            if (!$thisUsername) {
-              $use = true;
-            } else {
-              $use = false;
-            }
+            $use = false;
           }
+        }
         break;
       }
 
       return $use;
+    }
+
+    public function getAllProfessionalInfo($id) {
+      try {
+
+        $query = ("SELECT Username, Password, Email, BannedTime, BirthDate, Telephone as Phone FROM professional where ID_Professional = '$id'");
+        $db = unserialize($_SESSION['dbconnection']);
+        $resultat = $db->getLink()->prepare($query);
+        $resultat->execute();
+        while ($row = $resultat->fetch(PDO::FETCH_ASSOC)) {
+          $username = $row['Username'];
+          $password = $row['Password'];
+          $email = $row['Email'];
+          $bannedtime = $row['BannedTime'];
+          $birthdate = $row['BirthDate'];
+          $phone = $row['Phone'];
+          $user = array('username'=> $username, 'password'=> $password, 'email'=>$email, 'bannedtime'=> $bannedtime, "birthdate"=> date('d-m-Y', strtotime($birthdate)), "phone"=> $phone);
+        }
+        $result = $user;
+
+      } catch(PDOException $ex) {
+        echo "An Error ocurred!";
+        some_loggging_function($ex->getMessage());
+      } finally {
+        return $result;   
+      }
+
     }
 
   }

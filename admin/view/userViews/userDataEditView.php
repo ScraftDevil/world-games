@@ -45,10 +45,25 @@
 			$email = $info->email;
 			$bannedtime = $info->bannedtime;
 			$birthdate = $info->birthdate;
-			$paypal = $info->paypal;
-			$avatar = $info->avatar;
-			$countryID = $info->countryID;
-			$country = $info->country;
+			switch($users) {
+				case "registered":
+					$label = "Registered";
+					$paypal = $info->paypal;
+					$avatar = $info->avatar;
+					$countryID = $info->countryID;
+					$country = $info->country;
+				break;
+
+				case "professional":
+					$label ='Profesional';
+					$phone = $info->phone;
+				break;
+
+				case "administrator":
+					$label = 'Administrador';
+				break;
+			}
+			
 		} else {
 			header("Location:".$users."ListView.php");
 		}
@@ -69,21 +84,18 @@
 						<div class="col-md-12">
 							<div class="panel panel-primary">
 								<div class="panel-heading">
-									<h2 class="panel-title"> Modificar Usuario <span id="user"></span></h2>
+									<h2 class="panel-title"> Modificar Usuario <?php echo $label; ?></h2>
 								</div>
 							  	<div class="panel-body">
 								    <?php
 								    	switch ($users)  {
 
 											case "administrator":
-												$label = 'Administrador';
-												$users = 'administrator';
-
+												include("userForms/updateAdministratorForm.php");
 											break;
 
 											case "professional":
-												$label ='Profesional';
-												$users = 'professional';
+												include("userForms/updateProfessionalForm.php");
 											break;
 
 											case "registered":

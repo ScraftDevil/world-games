@@ -13,35 +13,7 @@ function load() {
     break;
 
     case "userDataEditView":
-    var opacity = '0.5';
-    var avatar = null;
-      $("#avatar").click(function() {
-        if(document.getElementById("avatar").value == "yes") {
-          document.getElementById("avatar").value = "no";
-          $("#img").fadeTo("slow", 0.5);
-          avatar = "no";
-        } else if (document.getElementById("avatar").value == "no") {
-          document.getElementById("avatar").value = "yes";
-          avatar = "yes";
-          $("#img").fadeTo("slow", 1.0);
-        } else {
-          avatar = null;
-        }
-      });
-
-      $("#update-userregistered").click(function() {
-        if ($("#update-registered").valid() == true) {
-          var username = $("#username").val();
-          var password = $("#password").val();
-          var email = $("#email").val();
-          var bannedtime = $("#bannedtime").val();
-          var birthdate = $("#calendar").val();
-          var paypal = $("#paypal").val();
-          var country = document.getElementById("country").value;
-          var user = {"username": username, "password": password, "email": email, "bannedtime": bannedtime, "birthdate": birthdate, "paypal":paypal, "avatar": avatar, "country": country};
-          updateUser(user);
-        }
-      });
+      userDataEditView();
     break;
 
   }
@@ -171,6 +143,65 @@ function getInsertUserProcess(data) {
   }
 }
 
+// UPDATE FUNCTIONS
+
+function userDataEditView() {
+  var opacity = '0.5';
+  var avatar = null;
+  $("#avatar").click(function() {
+    if(document.getElementById("avatar").value == "yes") {
+      document.getElementById("avatar").value = "no";
+      $("#img").fadeTo("slow", 0.5);
+      avatar = "no";
+    } else if (document.getElementById("avatar").value == "no") {
+      document.getElementById("avatar").value = "yes";
+      avatar = "yes";
+      $("#img").fadeTo("slow", 1.0);
+    } else {
+      avatar = null;
+    }
+  });
+
+  $("#update-userregistered").click(function() {
+    if ($("#update-registered").valid() == true) {
+      var username = $("#username").val();
+      var password = $("#password").val();
+      var email = $("#email").val();
+      var bannedtime = $("#bannedtime").val();
+      var birthdate = $("#calendar").val();
+      var paypal = $("#paypal").val();
+      var country = document.getElementById("country").value;
+      var user = {"username": username, "password": password, "email": email, "bannedtime": bannedtime, "birthdate": birthdate, "paypal":paypal, "avatar": avatar, "country": country};
+      updateUser(user);
+    }
+  });
+
+  $("#update-userprofessional").click(function() {
+    if ($("#update-professional").valid() == true) {
+      var username = $("#username").val();
+      var password = $("#password").val();
+      var email = $("#email").val();
+      var bannedtime = $("#bannedtime").val();
+      var birthdate = $("#calendar").val();
+      var phone = $("#phone").val();
+      var user = {"username": username, "password": password, "email": email, "bannedtime": bannedtime, "birthdate": birthdate, "phone": phone};
+      updateUser(user);
+    }
+  });
+
+  $("#update-useradministrator").click(function() {
+    if ($("#update-administrator").valid() == true) {
+      var username = $("#username").val();
+      var password = $("#password").val();
+      var email = $("#email").val();
+      var bannedtime = $("#bannedtime").val();
+      var birthdate = $("#calendar").val();
+      var user = {"username": username, "password": password, "email": email, "bannedtime": bannedtime, "birthdate": birthdate};
+      updateUser(user);
+    }
+  });
+}
+
 // DELETE USER FUNCTION
 function deleteUser(value) {
   var id = value;
@@ -188,13 +219,6 @@ function changeCountry(elem) {
    document.getElementById("country").value = value;
    $("#country").html(elem.text + " <span class=\"caret\"></span>");
 }
-
-
-
-
-
-
-
 
 //////// FORM VALIDATIONS
 
@@ -408,6 +432,115 @@ $("#update-registered").validate({
       },
       country: {
         required: "¡Debes seleccionar un país!"
+      }
+  }
+});
+
+$("#update-professional").validate({ 
+  oonkeyup: true,
+  rules: {
+    username: {
+      required: true,
+      alphanumeric: true,
+      minlength: 3,
+      maxlength: 20         
+    },
+    password: {
+      required: false,
+      minlength: 6,
+      maxlength: 20          
+    },
+    email: {
+      required: true,
+      email: true           
+    },
+    bannedtime: {
+      required: false,
+      integer: true
+    },
+    birthdate: {
+      required: true,
+      spainDate: true,
+      futureDate: true
+    },
+    phone: {
+      required: false,
+    }
+  }, messages: {
+      username: {
+        required: "¡El nombre de usuario no puede estar vacío!",
+        alphanumeric: "¡El nombre de usuario no puede contener carácteres especiales!",
+        minlength: "¡El nombre de usuario tiene que tener más de 2 carácteres!",
+        maxlength: "¡El nombre de usuario no puede tener más de 20 carácteres!"
+      },
+      password: {
+        minlength: "¡La contraseña tiene que tener más de 5 carácteres!",
+        maxlength: "¡La contraseña no puede tener más de 20 carácteres!"
+      },
+      email: {
+        required: "¡El email no puede estar vacío!",
+        email: "¡Formato de email no válido!"
+      },
+      bannedtime: {
+        integer: "¡El tiempo de baneo solo puede ser un número entero!"
+      },
+      birthdate: {
+        required: "¡La fecha de cumpleaños no puede estar vacía!",
+        spainDate: "¡Formato de fecha no válido!",
+        futureDate: "¡La fecha de cumpleaños es futura!"
+      }
+  }
+});
+
+$("#update-administrator").validate({ 
+  oonkeyup: true,
+  rules: {
+    username: {
+      required: true,
+      alphanumeric: true,
+      minlength: 3,
+      maxlength: 20         
+    },
+    password: {
+      required: false,
+      minlength: 6,
+      maxlength: 20          
+    },
+    email: {
+      required: true,
+      email: true           
+    },
+    bannedtime: {
+      required: false,
+      integer: true
+    },
+    birthdate: {
+      required: true,
+      spainDate: true,
+      futureDate: true
+    }
+  }, messages: {
+      username: {
+        required: "¡El nombre de usuario no puede estar vacío!",
+        alphanumeric: "¡El nombre de usuario no puede contener carácteres especiales!",
+        minlength: "¡El nombre de usuario tiene que tener más de 2 carácteres!",
+        maxlength: "¡El nombre de usuario no puede tener más de 20 carácteres!"
+      },
+      password: {
+        minlength: "¡La contraseña tiene que tener más de 5 carácteres!",
+        maxlength: "¡La contraseña no puede tener más de 20 carácteres!"
+      },
+      email: {
+        required: "¡El email no puede estar vacío!",
+        email: "¡Formato de email no válido!"
+      },
+      bannedtime: {
+        integer: "¡El tiempo de baneo solo puede ser un número entero!"
+      },
+      birthdate: {
+        required: "¡La fecha de cumpleaños no puede estar vacía!",
+        spainDate: "¡Formato de fecha no válido!",
+        futureDate: "¡La fecha de cumpleaños es futura!"
       }
   }
 });

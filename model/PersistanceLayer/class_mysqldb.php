@@ -290,9 +290,15 @@ class mysqldb {
     	return $professional->showProfessionals($order);
     }
 
-    public function updateAllProfessionalUser($professional) {
+    public function getAllProfessionalInfo($id) {
+		$professionalDAO = new professionalDAO();
+		$professional = $professionalDAO->getAllProfessionalInfo($id);
+		return $professional;
+	}
+
+    public function updateAllProfessionalUser($professional2) {
     	$professional = new ProfessionalDAO();
-    	return $professional->updateAllProfessionalUser($professional);
+    	return $professional->updateAllProfessionalUser($professional2);
     }
 
     public function deleteProfessional($id) {
@@ -305,6 +311,17 @@ class mysqldb {
 		$administrator = new AdministratorDAO();
 		$administrator = $administrator->deleteAdministratorUser($id);
 		return $administrator;		
+	}
+
+	public function updateAllAdministratorUser($admin) {
+    	$administrator = new AdministratorDAO();
+    	return $administrator->updateAllAdministratorUser($admin);
+    }
+
+    public function getAllAdministratorInfo($id) {
+		$administratorDAO = new administratorDAO();
+		$administrator = $administratorDAO->getAllAdministratorInfo($id);
+		return $administrator;
 	}
 
 	public function getPrivateMessages($id) {

@@ -113,4 +113,28 @@
 		return $errors;
 	}
 
+	function validateAdministratorUpdateFields($username, $password, $email, $bannedtime, $birthdate) {
+		$errors = 0;
+		if (validateUsername($username) == false) {
+			$errors++;
+		}
+		if ($password != null && $password != "") {
+			if (validatePassword($password) == false) {
+				$errors++;
+			}
+		}
+		if (validateEmail($email) == false) {
+			$errors++;
+		}
+		if ($bannedtime != null && $bannedtime != "") {
+			if (validateBannedTime($bannedtime) == false) {
+				$errors++;
+			}
+		}
+		if (validateDate($birthdate) == false) {
+			$errors++;
+		}
+		return $errors;
+	}
+
 ?>

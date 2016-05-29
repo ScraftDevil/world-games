@@ -1,5 +1,7 @@
 <?php
-  
+
+require_once($_SESSION['BASE_PATH']."/model/autoload.php");
+
   class administratorDAO {
     
     public function login($username, $password) {
@@ -95,6 +97,84 @@
       }
     }
 
+    public function getAllAdministratorInfo($id) {
+      try {
+
+        $query = ("SELECT Username, Password, Email, BannedTime, BirthDate FROM administrator where ID_Administrator = '$id'");
+        $db = unserialize($_SESSION['dbconnection']);
+        $resultat = $db->getLink()->prepare($query);
+        $resultat->execute();
+        while ($row = $resultat->fetch(PDO::FETCH_ASSOC)) {
+          $username = $row['Username'];
+          $password = $row['Password'];
+          $email = $row['Email'];
+          $bannedtime = $row['BannedTime'];
+          $birthdate = $row['BirthDate'];
+          $user = array('username'=> $username, 'password'=> $password, 'email'=>$email, 'bannedtime'=> $bannedtime, "birthdate"=> date('d-m-Y', strtotime($birthdate)));
+        }
+        $result = $user;
+
+      } catch(PDOException $ex) {
+        echo "An Error ocurred!";
+        some_loggging_function($ex->getMessage());
+      } finally {
+        return $result;   
+      }
+
+    }
+
+    public function updateAllAdministratorUser($administrator) {
+        $proces = "";
+        $id = $administrator->getId();
+        $username = $administrator->getUsername();
+        $email = $administrator->getEmail();
+        $db = unserialize($_SESSION['dbconnection']);
+        try {
+          // USERNAME VALIDATION IN TABLES
+          if($this->usernameInUse($administrator, $db, "update") == false) {
+            // EMAIL VALIDATION IN TABLES
+            if($this->emailInUse($administrator, $db, "update") == false) {
+              $password = $administrator->getPassword();
+              $bannedtime = $administrator->getBannedTime();
+              $birthdate = $administrator->getBirthDate();
+
+              // update string
+              $updateString = "Username='$username', ";
+              
+              if ($password != null && $password != "") {
+                $updateString = $updateString."Password='$password', ";
+              }
+
+              $updateString = $updateString."Email='$email', ";
+
+              if ($bannedtime != null && $bannedtime != "") {
+                $updateString = $updateString."BannedTime='$bannedtime', ";
+              } else {
+                $updateString = $updateString."BannedTime='', ";
+              }
+
+              $updateString = $updateString."BirthDate='$birthdate'";
+
+              $query = ("UPDATE administrator SET ".$updateString." WHERE ID_Administrator='$id'");
+              $stmt = $db->getLink()->prepare($query);
+              $stmt->execute();
+              $proces = "success";
+            } else {
+              $proces = "email";
+            }
+          } else {
+            $proces = "username";
+          }
+        } catch(PDOException $ex) {
+          echo "An Error ocurred!";
+          some_loggging_function($ex->getMessage());
+          $proces = "error";
+          die();
+        } finally {
+          return $proces;
+        }
+    }
+
     public function deleteAdministratorUser($id) {
 
       try {
@@ -148,11 +228,11 @@
       }
     }
 
-    private function emailInUse($professional, $db, $type) {
+    private function emailInUse($administrator, $db, $type) {
       $use = 0;
 
-      $email = $professional->getEmail();
-      $id = $professional->getID();
+      $email = $administrator->getEmail();
+      $id = $administrator->getID();
 
       // Select que comprueba si existe el email en cualquiera de las tablas de usuario
       $query = ("SELECT p.Username FROM professional p WHERE p.Email='$email' UNION SELECT a.Username FROM administrator a WHERE a.Email='$email' UNION SELECT r.Username FROM registered r WHERE r.Email='$email'");
@@ -171,7 +251,7 @@
 
         case "update":
           // Select que comprueba si el nombre de usuario es el mismo que esta usando
-          $query = ("SELECT ID_Professional FROM professional WHERE Email='$email' AND ID_Professional='$id'");
+          $query = ("SELECT ID_Administrator FROM administrator WHERE Email='$email' AND ID_Administrator='$id'");
           $resultat = $db->getLink()->prepare($query);
           $resultat->execute();
           $thisEmail = $resultat->fetch(PDO::FETCH_ASSOC);
@@ -191,11 +271,11 @@
       return $use;
     }
 
-    private function usernameInUse($professional, $db, $type) {
+    private function usernameInUse($administrator, $db, $type) {
       $use = 0;
 
-      $username = $professional->getUsername();
-      $id = $professional->getID();
+      $username = $administrator->getUsername();
+      $id = $administrator->getID();
 
       // Select que comprueba si existe el nombre de usuario en cualquiera de las tablas de usuario
       $query = ("SELECT p.Username FROM professional p WHERE p.Username='$username' UNION SELECT a.Username FROM administrator a WHERE a.Username='$username' UNION SELECT r.Username FROM registered r WHERE r.Username='$username'");
@@ -214,7 +294,7 @@
 
         case "update":
           // Select que comprueba si el nombre de usuario es el mismo que esta usando
-          $query = ("SELECT ID_Professional FROM professional WHERE Username='$username' AND ID_Registered='$id'");
+          $query = ("SELECT ID_Administrator FROM administrator WHERE Username='$username' AND ID_Administrator='$id'");
           $resultat = $db->getLink()->prepare($query);
           $resultat->execute();
           $thisUsername = $resultat->fetch(PDO::FETCH_ASSOC);

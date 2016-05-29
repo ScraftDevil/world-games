@@ -39,30 +39,31 @@
 			break;
 
 			case 'professional':
-				$proces = addProfessional();
+				$phone = $user->phone;
 				$errors = validateProfessionalUpdateFields($username, $password, $email, $bannedtime, $birthdate, $phone);
 				if ($errors == 0) {
 					$proces = updateProfessional($id, $username, $password, $email, $bannedtime, $birthdate, $phone);
 					$response = messages($proces, $users);
 				} else {
-					$response = messages("invalid-fields", "registered");
+					$response = messages("invalid-fields", "professional");
 				}
 			break;
 
 			case 'administrator':
-				$proces = addAdministrator();
-				if ($proces == 0) {
-					//header("Location:../view/newUserView.php?group=".$group."&msg=fail");
-				} else if ($proces == 1) {
-					//header("Location:../view/userListView.php?group=".$group."&msg=errusername");
+				$errors = validateAdministratorUpdateFields($username, $password, $email, $bannedtime, $birthdate);
+				if ($errors == 0) {
+					$proces = updateAdministrator($id, $username, $password, $email, $bannedtime, $birthdate);
+					$response = messages($proces, $users);
 				} else {
-					//header("Location:../view/userListView.php?group=".$group."&msg=success");
+					$response = messages("invalid-fields", "administrator");
 				}
 			break;			
 		}
 	} else {
 		//header("Location:../index.php");
 	}
+
+	
 	function messages($proces, $users) {
 		$response = null;
 		switch($proces) {
@@ -104,7 +105,14 @@
 
 	function updateProfessional($id, $username, $password, $email, $bannedtime, $birthdate, $phone) {
 		$shop = unserialize($_SESSION['shop']);
-		$proces = $shop updateAdminProfessional($id, $username, $password, $email, $bannedtime, $birthdate, $phone);
+		$proces = $shop->updateAdminProfessional($id, $username, $password, $email, $bannedtime, $birthdate, $phone);
+		$_SESSION['shop'] = serialize($shop);
+		return $proces;
+	}
+
+	function updateAdministrator($id, $username, $password, $email, $bannedtime, $birthdate) {
+		$shop = unserialize($_SESSION['shop']);
+		$proces = $shop->updateAdminAdministrator($id, $username, $password, $email, $bannedtime, $birthdate);
 		$_SESSION['shop'] = serialize($shop);
 		return $proces;
 	}

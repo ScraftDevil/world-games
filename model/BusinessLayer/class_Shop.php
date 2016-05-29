@@ -181,9 +181,9 @@ class Shop {
             $password = md5($password);
         }
         $birthdate = date('Y-m-d', strtotime($birthdate));
-        $professional = new Registered($username, $password, $email, $birthdate);
+        $professional = new Professional($username, $password, $email, $birthdate);
         $professional->setId($id);
-        $professioanl->setTelephone($phone);
+        $professional->setTelephone($phone);
         $db = unserialize($_SESSION['dbconnection']);
     	$proces = $db->updateAllProfessionalUser($professional);
     	return $proces;
@@ -207,6 +207,18 @@ class Shop {
         return $proces;
     }
 
+    function updateAdminAdministrator($id, $username, $password, $email, $bannedtime, $birthdate) {
+    	if ($password != null && $password != "") {
+            $password = md5($password);
+        }
+        $birthdate = date('Y-m-d', strtotime($birthdate));
+        $administrator = new Administrator($username, $password, $email, $birthdate);
+        $administrator->setId($id);
+        $db = unserialize($_SESSION['dbconnection']);
+    	$proces = $db->updateAllAdministratorUser($administrator);
+    	return $proces;
+    }
+
     function deleteAdministrator($id) {
         $db = unserialize($_SESSION['dbconnection']);
         $proces = $db->deleteAdministrator($id);
@@ -220,6 +232,12 @@ class Shop {
         switch($group) {
             case "registered":
                 $info = $db->getAllRegisteredInfo($id);
+            break;
+            case "professional":
+            	$info = $db->getAllProfessionalInfo($id);
+            break;
+            case "administrator":
+            	$info = $db->getAllAdministratorInfo($id);
             break;
         }
         return json_encode($info);

@@ -37,9 +37,8 @@
 		$id = $record['ID_Registered'];
 		return "
 		<form action=\"userDataEditView.php\" method=\"POST\">
-		  	<button class=\"btn btn-danger\" type=\"submit\" name=\"user\" value=\"$id\" title=\"Modificar\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></button>
-		</form>
-		<button class=\"btn btn-danger\" type=\"button\" onclick=\"deleteUser($id)\" title=\"Borrar\"><i class=\"fa fa-trash\" aria-hidden=\"true\"></i></button>";
+		  	<button class=\"btn btn-danger\" type=\"submit\" name=\"user\" value=\"$id\" title=\"Modificar\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></button><button class=\"btn btn-danger\" type=\"button\" onclick=\"deleteUser($id)\" title=\"Borrar\"><i class=\"fa fa-trash\" aria-hidden=\"true\"></i></button>
+		</form>";
 	}
 
 ?>
