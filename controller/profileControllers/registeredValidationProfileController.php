@@ -30,9 +30,9 @@
 	}
 
 	//Country validation
-	/*if (validateCountry($country) == false) {
+	if (validateCountry($country) == false) {
 		$errors++;
-	}*/
+	}
 
 	//Image validation (validación en desarrollo)
 

@@ -71,6 +71,13 @@ class mysqldb {
 		return $gameDAO->getAllGames($order);
 	}
 
+	public function getAllGameInfo($id) {
+		$gameDAO = new gameDAO();
+		$game = $gameDAO->getAllGameInfo($id);
+		return $game;
+	}
+
+
 	public function getOfferGame($gameid) {
 		$sql = "SELECT G.Title as Game, O.ID_Offer, O.Discount FROM game G INNER JOIN offer O WHERE O.ID_Offer=G.Offer_ID AND G.ID_Game=$gameid";
 		$stmt = $this->getLink()->prepare($sql); 
@@ -102,14 +109,9 @@ public function getAllMessages($order) {
 		return $result;
 	}
 
-	public function getCountriesList() {
-		$registeredDao = new RegisteredDAO();
-		$countries = $registeredDao->getCountriesList();
-		return $countries;
-	}
-
+	/* Metodo para obtener el ID y el nombre de cada pais de la tabla Country */
 	public function getCountries() {
-		$sql = "SELECT ID_Country, Name FROM Country";
+		$sql = "SELECT ID_Country, Name FROM Country ORDER BY Name";
 		$stmt = $this->getLink()->prepare($sql); 
 		$stmt->execute();
 		$result = $stmt->FetchAll();
