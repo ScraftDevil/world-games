@@ -14,7 +14,7 @@ class complaintDAO {
 				$orderSQL = "ORDER BY 3, 2";
 			}
 
-			$query = ("SELECT c.ID_Complaint, c.Status, c.Date, c.Reason, (SELECT g.Title FROM game g INNER JOIN game_has_complaint gc INNER JOIN complaint c ON c.ID_Complaint=gc.Complaint_ID AND g.ID_Game=gc.Game_ID) as 'GameComplainted', (SELECT p.Name FROM platform p INNER JOIN game g INNER JOIN game_has_complaint gc ON g.ID_Game=gc.Game_ID AND g.Platform_ID=p.ID_Platform) AS 'Platform', (SELECT r.Username FROM registered r INNER JOIN game_has_complaint gc ON r.ID_Registered=gc.Registered_ID) as 'User' FROM complaint c $orderSQL");
+			$query = ("SELECT c.ID_Complaint, c.Status, c.Date, c.Reason, g.Title AS 'GameComplainted', p.Name AS 'Platform', r.Username AS 'User' FROM complaint c INNER JOIN game_has_complaint gc INNER JOIN game g INNER JOIN platform p INNER JOIN registered r ON c.ID_Complaint=gc.Complaint_ID AND gc.Game_ID=g.ID_Game AND gc.Registered_ID=r.ID_Registered GROUP BY 1 $orderSQL");
 
 			$db = unserialize($_SESSION['dbconnection']);
 			$resultat = $db->getLink()->prepare($query);

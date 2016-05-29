@@ -17,7 +17,7 @@
 		$dg->addColumn($column);
 		$column = new Structures_DataGrid_Column('Fecha', 'Date', 'Date', array('class'=>'grid-cel'), null, 'setDateFormat()');
 		$dg->addColumn($column);
-		$column = new Structures_DataGrid_Column('Razón', 'Reason', 'Reason', array('class'=>'grid-cel'), null, 'PrintUTF8()');
+		$column = new Structures_DataGrid_Column('Razón', 'Reason', 'Reason', array('class'=>'grid-cel'));
 		$dg->addColumn($column);
 		$column = new Structures_DataGrid_Column('Juego<br>Denunciado', 'GameComplainted', 'GameComplainted', array('class'=>'grid-cel'));
 		$dg->addColumn($column);
@@ -45,12 +45,6 @@
 		    <li><a href=\"#\" onclick=\"deleteComplaint($id)\">Eliminar</a></li>
 		  </ul>
 		</div>";
-	}
-
-	function PrintUTF8($params){
-		extract($params);
-		$fieldData = $record['Reason'];
-		return utf8_encode($fieldData);
 	}
 
 	function PrintStatus($params){

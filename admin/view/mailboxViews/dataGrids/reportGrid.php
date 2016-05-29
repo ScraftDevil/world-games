@@ -51,16 +51,9 @@
 		</div>";
 	}
 
-	function PrintUTF8($params){
-		extract($params);
-		$fieldData = $record['Country'];
-		return utf8_encode($fieldData);
-	}
-
 	function PrintStatus($params){
 		extract($params);
 		$fieldData = $record['Status'];
-		$fieldData = utf8_encode($fieldData);
 		switch($fieldData) {
 			case "No leído":
 				$fieldData = "<p class=\"noRead\">".$fieldData."</p>";

@@ -13,8 +13,33 @@ class reportDAO {
 			} else {
 				$orderSQL = "ORDER BY 3, 2";
 			}
+			$query = ("SELECT rp.ID_Report, rp.Status, rp.Date, rp.Reason, rp.Text, r.Username AS 'UserReported', re.Username AS 'UserReclaim' FROM report rp INNER JOIN registered r INNER JOIN administrator_has_report ar INNER JOIN registered re ON r.ID_Registered=rp.Registered_ID AND ar.Registered_ID=re.ID_Registered WHERE ar.Administrator_ID='$id' GROUP BY 1 $orderSQL");
 
-			$query = ("SELECT ID_Report, Status, Date, Reason, Text, (SELECT Username FROM registered WHERE ID_Registered=Registered_ID) AS UserReported, (SELECT r.Username FROM registered r INNER JOIN administrator_has_report ar ON r.ID_Registered=ar.Registered_ID) AS UserReclaim FROM report WHERE ID_Report IN (SELECT Report_ID FROM administrator_has_report WHERE Administrator_ID='$id') $orderSQL");
+			$db = unserialize($_SESSION['dbconnection']);
+			$resultat = $db->getLink()->prepare($query);
+			$resultat->execute();
+
+			$result = $resultat->FetchAll(); 			
+
+		} catch(PDOException $ex) {
+			echo "An Error ocurred!";
+			some_loggging_function($ex->getMessage());
+		} finally {
+			return $result;		
+		}
+
+	}
+
+	public function getProfessionalReports($id, $order) {
+
+		try {
+			$orderSQL = "";
+			if (!empty($order)) {
+				$orderSQL = "ORDER BY 3, 2, ".$order;
+			} else {
+				$orderSQL = "ORDER BY 3, 2";
+			}
+			$query = ("SELECT rp.ID_Report, rp.Status, rp.Date, rp.Reason, rp.Text, r.Username AS 'UserReported', re.Username AS 'UserReclaim' FROM report rp INNER JOIN registered r INNER JOIN professional_has_report pr INNER JOIN registered re ON r.ID_Registered=rp.Registered_ID AND pr.Registered_ID=re.ID_Registered WHERE pr.Professional_ID='$id' GROUP BY 1; $orderSQL");
 
 			$db = unserialize($_SESSION['dbconnection']);
 			$resultat = $db->getLink()->prepare($query);
