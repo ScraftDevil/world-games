@@ -7,10 +7,15 @@ function showSearchGames($list) {
 }
 
 function printGame($game) {
-    echo '
-    <div class="row">
+    $imgPathCheck = "../../view/resources/images/games/".$game['ID_Game'].".png";
+    if (!file_exists($imgPathCheck)) {
+        $imgURL = "../resources/images/games/noimage.png";
+    } else {
+        $imgURL = "../resources/images/games/".$game['ID_Game'].".png";
+    }
+    echo '<div class="row">
         <div class="col-md-6 col-xs-6">
-        <span><a href="../gameViews/gameDetailsView.php?gameid='.$game['ID_Game'].'"><img src="../resources/images/games/'.$game['ID_Game'].'.png" class="img-responsive" style="float:left;" alt="'.$game['Title'].'" width="135px"></img></span>
+        <span><a href="../gameViews/gameDetailsView.php?gameid='.$game['ID_Game'].'"><img src="'.$imgURL.'" class="img-responsive" style="float:left;" alt="'.$game['Title'].'" width="135px"></img></a></span>
         </div>
         <div class="col-md-6 col-xs-6">
         '.$game['Title'].'<br><strong style="color:orange">'.$game['Price'].' €</strong>

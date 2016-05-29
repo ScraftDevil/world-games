@@ -18,8 +18,7 @@ $(document).ready(function () {
     });
     $("#login-form").on("submit", function (e) {
         e.preventDefault();
-
-        var params = {"username": $("#username").val(), "password": $("#password").val(), "recaptcha": $("#g-recaptcha-response").val()};
+        var params = {"username": $("#username").val(), "password": $("#password").val(), "recaptcha": $("#g-recaptcha-response").val(), "remember": $("#remember").is(':checked')};
         $.ajax({
             data: params,
             url: '../../controller/frontAuthControllers/loginController.php',

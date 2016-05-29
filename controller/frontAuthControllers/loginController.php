@@ -21,6 +21,11 @@
 	if (isset($_POST['username']) AND isset($_POST['password'])) {
 		$username = $_POST['username'];
 		$password = $_POST['password'];
+		if (isset($_POST['remember']) && $_POST['remember']=="true") {
+			setcookie("user", $username, time() + 3600, "/");
+		} else {
+        	setcookie("user", $username, time() - 3600, "/");
+    	}
 		$db = unserialize($_SESSION['dbconnection']);
 		$userid = $db->registeredBackLogin($username, $password);
 		if ($userid!=-1) {
@@ -30,7 +35,7 @@
 				$status["STATUS"] = "LOGIN_OK";			
 			}
 			else {
-				$status["STATUS"] = "RECATPCHA_ERROR";	
+				$status["STATUS"] = "RECATPCHA_ERROR";
 			}
 		} else {
 			$status["STATUS"] = "LOGIN_INVALID_INFO";

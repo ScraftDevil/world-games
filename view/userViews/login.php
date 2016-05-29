@@ -30,14 +30,12 @@
                                                 <a href="#" id="register-form-link">No tienes cuenta?</a>
                                             </div>
                                         </div>
-
                                         <div class="panel-body">
                                             <div class="row">
                                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                                     <form id="login-form" style="display: block;">
                                                         <div class="form-group">
-                                                            <input type="username" name="username" id="username" tabindex="1" class="form-control" placeholder="Usuario" value="">
-
+                                                            <input type="username" name="username" id="username" tabindex="1" class="form-control" placeholder="Usuario" value="<?php if(isset($_COOKIE['user'])) { echo $_COOKIE['user'];} ?>">
                                                         </div>
 
                                                         <div class="form-group">
@@ -52,8 +50,8 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group text-center">
-                                                            <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
                                                             <label for="remember"> Recordarme</label>
+                                                            <input type="checkbox" tabindex="3" name="remember" id="remember">
                                                         </div>
 
                                                         <div class="form-group">
