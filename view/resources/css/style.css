@@ -39,6 +39,11 @@
     color: #747474;
 }
 
+/* Tipo de cursor en la selecció de pais en el perfil de usuario */
+#country {
+    cursor: pointer;
+}
+
 #login-form  .form-control{
     border: 2px solid #E6E6E6;
     width: 70%;
@@ -386,4 +391,45 @@ ul.dropdown-cart li .item-right button{
     overflow: hidden;
     overflow-y: scroll;
     height: 15em;
+}
+
+/* Estilos Data Grid */
+.grid {
+    padding: 15px;
+}
+
+.grid th {
+    border: solid black 1px;
+    text-align: center;
+    padding: 6px;
+    background: #193441;
+    border-bottom: 4px solid #9ea7af;
+    border-right: 1px solid #343a45;
+}
+
+.grid th a {
+    text-decoration: none;
+    color: #D5DDE5;
+}
+
+.grid td {
+    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+    border: 1px solid #C1C3D1;
+    background-color: #EBEBEB;
+    text-align: center;
+    padding: 6px;
+}
+
+.selected td {
+    background-color: #B3FFE6;
+}
+
+.drop-grid {
+    text-decoration: none;
+    color: white;
+}
+
+.drop-grid a {
+    text-decoration: none;
+    color: white !important;
 }

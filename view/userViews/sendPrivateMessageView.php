@@ -47,7 +47,7 @@ else {
 
                         <div class="control-label col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <label>Contenido del Mensaje</label>
-                            <textarea maxlength="1000" class="form-control contentMessage" type="text" name="contentMessage"  rows="10" placeholder="Escribe tu mensaje aquí"></textarea>
+                            <textarea class="form-control contentMessage" type="text" name="contentMessage"  rows="10" placeholder="Escribe tu mensaje aquí"></textarea>
                         </div>
 
                         <a href="registeredProfileView.php" class="button-profile pull-left btn form-button" role="button">

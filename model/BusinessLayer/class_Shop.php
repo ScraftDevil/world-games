@@ -375,6 +375,20 @@ class Shop {
         }
         return $genreFound;
     }
+
+    /* Get the reports list of the user */
+    function getRegisteredReports($id, $order) {
+        $registeredDao = new registeredDAO();
+        $reports = $registeredDao->getRegisteredReports($id, $order);
+        return $reports;
+    }
+
+    /* Get the complaints list of the user */
+    function getRegisteredComplaints($id, $order) {
+        $registeredDao = new registeredDAO();
+        $complaints = $registeredDao->getRegisteredComplaints($id, $order);
+        return $complaints;
+    }
 }
 
 ?>

@@ -20,12 +20,12 @@
                     <div class="underlined-title">
                         <div class="editContent">
                             <p>
-                            <h1>Shopping Cart</h1>
+                            <h1>Carrito de Compra</h1>
                             </p>
                         </div>
                         <hr>
                         <div class="editContent">
-                            <h2>Aqui tienes los producos añadidos al carrito de la compra</h2></div>
+                            <h2>Aqui tienes los productos añadidos a tu carrito de compra</h2></div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">

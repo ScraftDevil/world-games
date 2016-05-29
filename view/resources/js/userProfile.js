@@ -24,7 +24,7 @@ function load() {
             var email = $("#email").val();
             var birthdate = $("#calendar").val();
             var paypal = $("#paypal").val();
-            var country = $("#country").val();        
+            var country = document.getElementById("country").value;
             var image = "avatar.png";
             var registered = {"email":email, "birthdate":birthdate, "paypal":paypal, "country":country, "image":image};
             updateUser(registered);
@@ -227,9 +227,3 @@ oonkeyup: true,
         }        
     }
 });
-
-function changeCountry(elem) {
-   var value = elem.getAttribute("value");
-   document.getElementById("country").value = value;
-   $("#country").html(elem.text + " <span class=\"caret\"></span>");
-}

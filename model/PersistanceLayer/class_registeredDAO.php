@@ -469,6 +469,53 @@ class registeredDAO {
 			return $result;		
 		}
 	}
+
+	/* Metodo para obtener todas las quejas del usuario registrado */
+	public function getRegisteredReports($id, $order) {
+
+		try {
+			$orderSQL = "";
+			if (!empty($order)) {
+				$orderSQL = "ORDER BY ".$order;
+			}
+			$query = ("SELECT Reason, Text, Date, Status FROM report WHERE Registered_ID = '$id' $orderSQL");
+			$db = unserialize($_SESSION['dbconnection']);
+			$resultat = $db->getLink()->prepare($query);
+			$resultat->execute();
+ 			$result = $resultat->FetchAll();
+
+		} catch(PDOException $ex) {
+			echo "An Error ocurred!";
+			some_loggging_function($ex->getMessage());
+		} finally {
+			return $result;		
+		}
+
+	}
+
+	/* Metodo para obtener todas las denúncias del usuario registrado */
+	public function getRegisteredComplaints($id, $order) {
+
+		try {
+			$orderSQL = "";
+			if (!empty($order)) {
+				$orderSQL = "ORDER BY ".$order;
+			}
+			$query = ("SELECT c.Reason, c.Text, c.Date, c.Status, g.Title FROM complaint c 
+				INNER JOIN game_has_complaint rel ON c.ID_Complaint = rel.Complaint_ID 
+				INNER JOIN game g ON g.ID_Game = rel.Game_ID WHERE rel.Registered_ID = '$id' $orderSQL");
+			$db = unserialize($_SESSION['dbconnection']);
+			$resultat = $db->getLink()->prepare($query);
+			$resultat->execute();
+ 			$result = $resultat->FetchAll();
+
+		} catch(PDOException $ex) {
+			echo "An Error ocurred!";
+			some_loggging_function($ex->getMessage());
+		} finally {
+			return $result;		
+		}
+	}
 }
 
 ?>

@@ -79,9 +79,11 @@ include("../sections/head.php");
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label">País:</label>
                                         <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
-                                            <?php include("../userViews/countryList.php"); ?>
+                                            <select id="country" name="country" class="form-control ">
+                                                <?php getCountriesList($registeredObject->getCountry()); ?>
+                                            </select>
                                         </div>
-                                    </div>                                    
+                                    </div>
 
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label">Imagen de Perfil:</label>
@@ -120,16 +122,28 @@ include("../sections/head.php");
                                     Gestión de Mensajes Privados
                                 </div>
                                 <div id="messagesList" class="col-lg-offset-1 col-xs-12 col-sm-12 col-md-12 col-lg-10">
-                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                        <a href="showInboxMessagesView.php" id="showInbox" class="button-profile pull-left btn form-button" role="button">
+                                    <div class="pull-left col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                        <a href="showInboxMessagesView.php" id="showInbox" class="button-profile btn form-button" role="button">
                                             <i class="fa fa-inbox" aria-hidden="true"></i>
                                             Ver mis Mensajes
                                         </a>
                                     </div>
-                                    <div class="pull-right col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                        <a href="sendPrivateMessageView.php" id="newMessage" class="button-profile pull-right btn form-button" role="button">
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                        <a href="sendPrivateMessageView.php" id="newMessage" class="button-profile btn form-button pull-right" role="button">
                                             <span class="glyphicon glyphicon-send"></span>
                                             Nuevo Mensaje
+                                        </a>
+                                    </div>
+                                    <div class="pull-left col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                        <a href="showregisteredReportsView.php" id="showReports" class="button-profile btn form-button" role="button">
+                                            <i class="fa fa-inbox" aria-hidden="true"></i>
+                                            Mis quejas
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                        <a href="showregisteredComplaintsView.php" id="showComplaints" class="button-profile btn form-button pull-right" role="button">
+                                            <i class="fa fa-inbox" aria-hidden="true"></i>
+                                            Mis Denúncias
                                         </a>
                                     </div>
                                 </div>
