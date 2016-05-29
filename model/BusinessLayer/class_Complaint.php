@@ -1,17 +1,26 @@
 <?php
-
+/**
+ * Class for Complaint
+ */
 class Complain {
-    
-    //attributes
     private $id;
     private $reason;
     private $date;
     private $status;
     private $userRegistered;
     private $professionalUser;
-    private $game;    
-    
-    //constructor
+    private $game;
+
+    /**
+     * Constructor for complaint
+     * @param reason 
+     * @param date 
+     * @param status 
+     * @param userRegistered 
+     * @param professionalUser 
+     * @param game 
+     * @return none
+     */
     function __construct($reason, $date, $status, $userRegistered, $professionalUser, $game) {
         $this->setReason($reason);
         $this->setDate($date);
@@ -21,7 +30,6 @@ class Complain {
         $this->setGame($game);
     }
 
-    //getters and setters
     function getId() {
         return $this->id;
     }
