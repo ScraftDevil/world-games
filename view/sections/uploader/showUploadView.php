@@ -54,28 +54,28 @@ if (!isset($uploadText)) {
           },
           onSubmit: function() {
             msgBox.innerHTML = ''; // empty the message box
-            btn.innerHTML = 'Uploading...'; // change button text to "Uploading..."
+            btn.innerHTML = 'Subiendo...'; // change button text to "Uploading..."
           },
           onComplete: function( filename, response ) {
             btn.innerHTML = '<?php echo $uploadText['textUploadBtnRetry']?>';
             progressOuter.style.display = 'none'; // hide progress bar when upload is completed
             if ( !response ) {
-              msgBox.innerHTML = 'Unable to upload file';
+              msgBox.innerHTML = 'No se puede subir la imagen';
               return;
             }
             if ( response.success === true ) {
-              msgBox.innerHTML = '<strong>' + escapeTags( filename ) + '</strong>' + ' successfully uploaded.';
+              msgBox.innerHTML = '<strong>' + escapeTags( filename ) + '</strong>' + ' Se ha subido con exito.';
             } else {
               if ( response.msg )  {
                 msgBox.innerHTML = escapeTags( response.msg );
               } else {
-                msgBox.innerHTML = 'An error occurred and the upload failed.';
+                msgBox.innerHTML = 'Ha ocurrido algo, no se ha subido la imagen.';
               }
             }
           },
           onError: function() {
             progressOuter.style.display = 'none';
-            msgBox.innerHTML = 'Unable to upload file';
+            msgBox.innerHTML = 'No puedes subir la imagen. Ha ocurrido un error.';
           }
         });
   };
