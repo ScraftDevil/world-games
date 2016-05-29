@@ -22,28 +22,6 @@ class registeredDAO {
         return $userid;
       }
  	}
-
- 	/* Metodo para obtener el nombre de cada pais de la tabla Country */
- 	public function getCountriesList() {
-
- 		try {
-
-			$query = ("SELECT Name FROM Country ORDER BY Name");
-
-			$db = unserialize($_SESSION['dbconnection']);
-			$resultat = $db->getLink()->prepare($query);
-        	$resultat->execute();
-
- 			$result = $resultat->FetchAll(); 			
-
-		} catch(PDOException $ex) {
-			echo "An Error ocurred!";
-			some_loggging_function($ex->getMessage());
-		} finally {
-			return $result;		
-		}
-
- 	}
  	
 	/* Metodo para obtener datos del usuario registrado */
 	public function getRegisteredInfo($id) {

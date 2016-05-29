@@ -23,8 +23,8 @@ function load() {
         var email = $("#email").val();
         var birthdate = $("#calendar").val();
         var paypal = $("#paypal").val();
-        var country = $("#country").val();        
-        var image = "avatar.png";
+        var country = document.getElementById("country").value;
+        var image = "avatar";
         var registered = {"email":email, "birthdate":birthdate, "paypal":paypal, "country":country, "image":image};
         updateUser(registered);
     });

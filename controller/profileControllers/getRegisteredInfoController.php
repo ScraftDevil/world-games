@@ -35,16 +35,19 @@
 	/* Metodo para obtener la lista de nombres de los paises de la BD */
 	function getCountriesList($myCountry) {
 		$shopDb = unserialize($_SESSION['dbconnection']);
-		$countries = $shopDb->getCountriesList();
+		$countries = $shopDb->getCountries();		
 
     	// version estandar valida solo para usuarios ya registrados, ya que selecciona el pais con el que se registró
     	for ($x = 0; $x < count($countries); $x++) {
-        	if ($countries[$x][0] == $myCountry) {
-        		?><option selected><?php echo $myCountry ?></option><?php
+    		$id = $countries[$x][0];
+    		
+        	if ($countries[$x][1] == $myCountry) {
+        		?><option selected value="<?php echo $id ?>"><?php echo $myCountry ?></option><?php
         	} else {
-        		?><option><?php echo $countries[$x][0] ?></option><?php
+        		?><option value="<?php echo $id ?>"><?php echo $countries[$x][1] ?></option><?php
         	}
     	}
+    	
 	}
 
 ?>

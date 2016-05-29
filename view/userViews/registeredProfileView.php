@@ -60,6 +60,7 @@ include("../sections/head.php");
                                         <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
                                             <input id="email" class="form-control" type="text" name="email" placeholder="micorreo@ejemplo.com" value="<?php echo $registeredObject->getEmail(); ?>">
                                         </div>
+                                        (<span class="glyphicon glyphicon-asterisk"></span>)
                                     </div>
 
                                     <div class="form-group col-lg-12">
@@ -76,21 +77,14 @@ include("../sections/head.php");
                                         </div>
                                     </div>
 
-                                    <!--<div class="form-group col-lg-12">
-                                        <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label">País:</label>
-                                        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
-                                            <select id="country" name="country" class="form-control ">
-                                                <?php getCountriesList($registeredObject->getCountry()); ?>
-                                            </select>
-                                        </div>
-                                    </div>-->
-
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label">País:</label>
                                         <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
-                                            <?php include("../userViews/countryList.php"); ?>
+                                            <select id="country" name="country" class="form-control country-list">
+                                                <?php getCountriesList($registeredObject->getCountry()); ?>
+                                            </select>
                                         </div>
-                                    </div>                                    
+                                    </div>
 
                                     <div class="form-group col-lg-12">
                                         <label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label">Imagen de Perfil:</label>
