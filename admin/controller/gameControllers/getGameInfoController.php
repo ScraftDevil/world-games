@@ -12,17 +12,10 @@
 
 	$response = null;
 
-	$game = null;
-
-	$group = $data->group;
-	$id = $data->id;
+	$gameid = $data;
 
 	if ($data != null) {
-		
-			/*else {
-				$response = array("id" => "id-error");
-			}*/
-		
+		$response = getGameInfo($gameid);
 	} else {
 		$response = array("id" => "data-error");
 	}

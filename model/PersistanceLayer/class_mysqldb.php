@@ -532,5 +532,9 @@ class mysqldb {
         return $status;
     }
 
+    public function updateGame($game) {
+		$gameDAO = new gameDAO();
+		return $gameDAO->updateGame($game);
+	}
 }
 ?>

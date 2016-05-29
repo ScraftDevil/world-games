@@ -12,12 +12,12 @@ if (session_id() == '') {
 			$id = $_POST['delete'];
 			$result = deleteOffer($id);
 			if($result != -1) {
-				header("Location:../../view/offerViews/manageOfferView.php?msg=deleteSuccess");
+				header("Location:../../view/gameViews/gameListView.php?msg=successDeleteOffer");
 			} else {
-				header("Location:../../view/offerViews/manageOfferView.php?msg=deleteFail");
+				header("Location:../../view/gameViews/gameListView.php?msg=failDeleteOffer");
 			}
 		} else {
-			header("Location:../../view/offerViews/manageOfferView.php?msg=deleteFail");
+			header("Location:../../view/gameViews/gameListView.php?msg=failDeleteOffer");
 		}
 	
 

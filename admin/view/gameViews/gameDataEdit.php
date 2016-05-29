@@ -3,16 +3,8 @@
 	<?php
 
 		include("../sections/head.php"); 
-		
-		
-		
-
-		
 		$label = null;
 		$id = null;
-
-		
-
 		if (isset($_GET['id'])) {
 			$id = $_GET['id'];
 			if ($id != "" AND $id != null) {
@@ -46,10 +38,11 @@
 									<h2 class="panel-title">Update Juego</h2>
 								</div>
 								<div class="panel-body">
-									<form id="forminsert">
+									<form id="formupdate">
 										<div class="col-md-4">
 											<div id="general-error"></div>
 											<div class="form-group">
+												<input id="idGame" type="hidden" value="<?php echo $id; ?>">
 												<span for="Title">Titulo</span><span > (<span class="glyphicon glyphicon-asterisk"></span>)</span>
 												<input type="title" class="form-control" name="title" id="title" placeholder="Titulo"  />
 											</div>
@@ -73,7 +66,7 @@
 												<?php include("../sections/platformList.php"); ?><span class="server-error"></span>
 											</div>
 											<div class="form-group">
-												<button type="button" name="insert-game" id="insert-game" class="btn btn-info pull-left">Enviar</button>
+												<button type="button" name="update-game" id="update-game" class="btn btn-info pull-left">Guardar</button>
 											</div>
 										</div>
 										
@@ -88,11 +81,11 @@
 	</div>
 	<footer>
 		<?php include("../sections/footer.php"); ?>
+		<script type="text/javascript" src="../resources/js/gamesManage.js"></script>
 		<script type="text/javascript">
-			group = "<?php echo $group ?>";
 			id = "<?php echo $_GET['id']; ?>";
+			getGame(id);
 		</script>
-		<script type="text/javascript" src="../resources/js/gameManage.js"></script>
 	</footer>
 </body>
 </html>

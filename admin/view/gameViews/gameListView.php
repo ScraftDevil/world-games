@@ -11,7 +11,7 @@
 				$message = "<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-ok\"></span> ¡Juego creado satisfactoriamente!</strong></div>";
 				break;
 				
-				case "errusername":
+				case "exists":
 				$message = "<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Ese Juego ya existe!</strong></div>";
 				break;
 
@@ -27,8 +27,20 @@
 				$message = "<div class=\"alert alert-warning\"><strong>Aviso:</strong> No has seleccionado ningún juego para gestionar su oferta.</div>";
 				break;
 
+				case "successUpdate":
+				$message = "<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-ok\"></span> ¡Se ha actualizado el juego con exito!</strong></div>";
+				break;
+
 				case "successOffer":
 				$message = "<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-ok\"></span> ¡Se ha creado la oferta del juego con exito!</strong></div>";
+				break;
+
+				case "successDeleteOffer":
+				$message = "<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-ok\"></span> ¡Se ha borrado la oferta del juego con exito!</strong></div>";
+				break;
+
+				case "failDeleteOffer":
+				$message = "<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡No se ha podido borrar la oferta del juego.</strong></div>";
 				break;
 
 				case "errorOffer":

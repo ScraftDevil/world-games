@@ -316,7 +316,7 @@ class Shop {
         $platforms = $db->getPlatform();
         $platformsObjList = array();
         foreach ($platforms as $platform) {
-            $platformObj = new Genre($platform['Name']);
+            $platformObj = new Platform($platform['Name']);
             $platformObj->setId($platform['ID_Platform']);
             $platformsObjList[] = $platformObj;
         }
@@ -337,6 +337,43 @@ class Shop {
     function insertShopping($shopping, $userid) {
         $db = unserialize($_SESSION['dbconnection']);
         return $db->insertShopping($shopping, $userid);
+    }
+    
+    function updateGame($id, $title, $price, $stock, $platform, $genres) {
+        $db = unserialize($_SESSION['dbconnection']);
+        $genresObjList = array();
+        for($i = 0; $i < count($genres); $i++) {
+            $genresObjList [] = $this->getGenreByID($genres[$i]);
+        }
+        $game = new Game($title, $price);
+        $game->setId($id);
+        $game->setStock($stock);
+        $game->setPlatform($this->getPlatformByID($platform));
+        $game->setGenres($genresObjList);
+        $proces = $db->updateGame($game);
+        return $proces;
+    }
+
+    function getPlatformByID($idplatform) {
+        $platformFound = null;
+        $platforms = $this->getPlatforms();
+        foreach($platforms as $platform) {
+            if ($platform->getId()==$idplatform) {
+                $platformFound = $platform;
+            }
+        }
+        return $platformFound;
+    }
+
+     function getGenreByID($idgenre) {
+        $genreFound = null;
+        $genres = $this->getGenres();
+        foreach($genres as $genre) {
+            if ($genre->getId()==$idgenre) {
+                $genreFound = $genre;
+            }
+        }
+        return $genreFound;
     }
 }
 

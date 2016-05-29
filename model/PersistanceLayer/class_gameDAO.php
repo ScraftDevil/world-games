@@ -36,7 +36,8 @@ class gameDAO {
 		$result = $stmt->FetchAll();
 		return $result;
 	}
-public function deleteGame($id) {
+
+	public function deleteGame($id) {
 
 		try {
 			
@@ -64,36 +65,60 @@ public function deleteGame($id) {
         return $result;
 	}
 
+	public function getGenresGame($gameid) {
+		$db = unserialize($_SESSION['dbconnection']);
+		$sql = "SELECT GE.ID_Genre, GE.Name FROM game_has_genre GG INNER JOIN Genre GE
+		WHERE GE.ID_Genre = GG.Genre_ID AND GG.Game_ID = $gameid";
+		$stmt = $db->getLink()->prepare($sql); 
+		$stmt->execute();
+		$result = $stmt->FetchAll();
+		return $result;
+	}
 
-	 function getAllGameInfo($id) {
+	function getAllGameInfo($id) {
 		try {
-
-			$query = ("SELECT g.Title, g.Price, g.Stock, (SELECT ge.Name FROM genre  ge WHERE ge.ID_Genre=gg.Genre_ID) AS Genre ,  (SELECT pla.Name FROM platform pla WHERE g.Platform_ID=pla.ID_platform) AS Platform FROM game g INNER JOIN game_has_genre AS gg ON  g.ID_Game = gg.Game_ID
-			 where ID_Game = '$id'");				
 			$db = unserialize($_SESSION['dbconnection']);
+			$query = "SELECT G.Title, G.Price, G.Stock, P.ID_Platform as PlatformID, P.Name as Platform FROM game G INNER JOIN platform P WHERE P.ID_Platform=G.Platform_ID AND G.ID_Game = '$id'";
 			$resultat = $db->getLink()->prepare($query);
         	$resultat->execute();
  			while ($row = $resultat->fetch(PDO::FETCH_ASSOC)) {
 				$title = $row['Title'];
 				$price = $row['Price'];
 				$stock = $row['Stock'];
-				$genreID = $row['Genre_ID'];
-				$genre = $row['Genre'];
-				$platformID = $row['Platform_ID'];
 				$platform = $row['Platform'];
-				$game = array('Title'=> $title, 'Price'=> $price, 'Stock'=>$stock, 'Genre_ID'=> $genreID, "Genre"=> $genre, "Platform_ID"=> $platformID, "Platform"=>$platform);
+				$platformid = $row['PlatformID'];
+				$game = array('Title'=> $title, 'Price'=> $price, 'Stock'=>$stock, 'Genres'=>$this->getGenresGame($id), 'Platform'=>$platform, 'PlatformID'=>$platformid);
 			}
 			$result = $game;
-
 		} catch(PDOException $ex) {
 			echo "An Error ocurred!";
 			some_loggging_function($ex->getMessage());
 		} finally {
 			return $result;		
 		}
-
 	}
 
-
+	public function updateGame($game) {
+        $query = "UPDATE game SET Title='".$game->getTitle()."', Price='".$game->getPrice()."', Stock='".$game->getStock()."', Platform_ID='".$game->getPlatform()->getId()."' WHERE ID_Game='".$game->getId()."'";
+        $db = unserialize($_SESSION['dbconnection']);
+        $result = $db->getLink()->prepare($query);
+        $status = null;
+        $status = $result->execute();
+        if ($status) {
+        	$query = "DELETE FROM game_has_genre WHERE Game_ID='".$game->getId()."'";
+        	$result = $db->getLink()->prepare($query);
+        	$status = $result->execute();
+        	if ($status) {
+        		$genres = $game->getGenres();
+        		foreach($genres as $genre) {
+        			$genreid = $genre->getId();
+        			$query = "INSERT INTO game_has_genre VALUES(".$game->getId().", ".$genreid.")";
+	        		$result = $db->getLink()->prepare($query);
+	        		$status = $result->execute();
+        		}
+        	}
+        }
+        return $status;
+    }
 }
 ?>

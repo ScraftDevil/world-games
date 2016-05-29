@@ -14,7 +14,7 @@
 				<?php
 					for ($i=0; $i < count($genre); $i++) {
 						$id = $genre[$i][0];
-						$name = utf8_encode($genre[$i][1]);
+						$name = $genre[$i][1];
 						echo "<option value=\"$id\" class=\"dropdown-header\"><a href=\"#\" class=\"genre\" >$name</a></option>";
 					}
 				?>
