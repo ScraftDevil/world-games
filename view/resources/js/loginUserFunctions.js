@@ -174,7 +174,6 @@ function registerUser(registered) {
                 $("#msgRegister").attr("class", "alert alert-danger");
                 $("#msgRegister").html('<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span class="sr-only">Error:</span>&nbsp;Este nombre de usuario ya existe. Por favor, pruebe con otro.');
                 $("#msgRegister").slideDown();
-                console.log("userMSG");
             } else if (data.STATUS == "email") {
                 $("#msgRegister").attr("class", "alert alert-danger");
                 $("#msgRegister").html('<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span class="sr-only">Error:</span>&nbsp;Este correo ya existe, pruebe con otro.');
