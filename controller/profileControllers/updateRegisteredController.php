@@ -9,10 +9,9 @@
 
 	$email = $registered->email;
 	$birthdate = $registered->birthdate;
-	//$birthdate = date('Y-m-d', strtotime($birthdate));
 	$paypal = $registered->paypal;
 	$image = $registered->image;
-	$country = $registered->country;
+	$country = $registered->country;	
 
 	$shopDb = unserialize($_SESSION['dbconnection']);
 
@@ -23,7 +22,7 @@
 	$_SESSION['msg'] = array();
 
 	//Validacion de los campos introducidos. Si devuelve 0 es que no hay errores
-	$errors = validateInputs($email, $birthdate, $paypal, $image, $country);
+	$errors = registeredProfileUpdateValidations($email, $birthdate, $paypal, $image, $country);
 
 	if ($errors == 0) {
 		$shopDb = unserialize($_SESSION['dbconnection']);
@@ -34,11 +33,38 @@
 		$registered->setAvatarURL($image);
 
 		$result = $shopDb->updateRegisteredUser($registered);
-
-		$response = 0;
+		$response = messages($result);
 	}
 	else {
-		$response = 1;		
+		$response = messages("invalid-fields");		
+	}
+
+	//Determinación del mensaje del error convertido en un array json
+	function messages($result) {
+		$response = null;
+		switch($result) {
+
+			case "success":
+				$response = array("id" => "success");
+				unset($_SESSION['msg']);
+			break;
+
+			case "email":
+				$response = array("id" => "email-error", "errors" => $_SESSION['msg']);
+				unset($_SESSION['msg']);
+			break;
+
+			case "invalid-fields":
+				$response = array("id" => "invalid-fields", "errors" => $_SESSION['msg']);
+				unset($_SESSION['msg']);
+			break;
+
+			default:
+				$response = array("id" => "error");
+				unset($_SESSION['msg']);
+			break;
+		}
+		return $response;
 	}
 
 	echo json_encode($response);

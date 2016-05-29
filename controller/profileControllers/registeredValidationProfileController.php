@@ -1,41 +1,38 @@
 <?php
 
-	include("../../utilities/inputNullValidate.php");
-	include("../../utilities/emailValidate.php");
-	include("../../utilities/dateValidate.php");
+	session_start();
 
-	function validateInputs($email, $birthdate, $paypal, $image, $country) {
+	include($_SESSION["BASE_PATH"]."/utilities/emailValidate.php");
+	include($_SESSION["BASE_PATH"]."/utilities/dateValidate.php");
+	include($_SESSION["BASE_PATH"]."/utilities/countryValidate.php");
+
+	function registeredProfileUpdateValidations($email, $birthdate, $paypal, $image, $country) {
 
 	$registered = unserialize($_SESSION['registered']);
 
 	$errors = 0;
 
 	//Email validation
-	if(nullInputValidate($email)) {
-		if (!validateEmail($email)) {
-			$errors++;
-		}
-	}
-	else {
-		$errors++;
+	if(validateEmail($email) == false) {
+		$errors++;		
 	}
 
 	//BirthDate validation
-	if(nullInputValidate($birthdate) AND $birthdate != '1970-01-01') {
-		if (!validateFutureDate($birthdate) OR !validateDateFormat($birthdate)) {
-			$errors++;
-		}
-	}
-	else {
+	if(validateDate($birthdate) == false) {
 		$errors++;
 	}
 
 	//PaypalAccount validation
-	if(nullInputValidate($paypal)) {
-		if (!validateEmail($paypal)) {
+	if ($paypal != null) {
+		if(validateEmail($paypal) == false) {
 			$errors++;
 		}
 	}
+
+	//Country validation
+	/*if (validateCountry($country) == false) {
+		$errors++;
+	}*/
 
 	//Image validation (validación en desarrollo)
 

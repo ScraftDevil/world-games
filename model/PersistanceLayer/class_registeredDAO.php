@@ -148,7 +148,7 @@ class registeredDAO {
 	        	$response = "success";
         	}
         	else {
-        		$response = "email";
+        		$response = "email-error";
         	}
 
 		} catch(PDOException $ex) {

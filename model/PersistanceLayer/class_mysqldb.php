@@ -176,7 +176,8 @@ public function getAllMessages($order) {
 
 	public function updateRegisteredUser($registered) {
 		$registeredDao = new RegisteredDAO();
-		$registered = $registeredDao->updateRegisteredUser($registered);
+		$result = $registeredDao->updateRegisteredUser($registered);
+		return $result;
 	}
 
 	public function updateAllRegisteredUser($registered) {

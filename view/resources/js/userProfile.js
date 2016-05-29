@@ -20,17 +20,13 @@ function load() {
 
 
     $('#update-registered').click(function() {
-        if ($("#profileForm").valid() == true) {
-            var email = $("#email").val();
-            var birthdate = $("#calendar").val();
-            var paypal = $("#paypal").val();
-            var country = $("#country").val();        
-            var image = "avatar.png";
-            var registered = {"email":email, "birthdate":birthdate, "paypal":paypal, "country":country, "image":image};
-            updateUser(registered);
-        } else {
-            $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> Validación Cliente: ¡Error en la validación de datos del usuario!</strong></div>");
-        }
+        var email = $("#email").val();
+        var birthdate = $("#calendar").val();
+        var paypal = $("#paypal").val();
+        var country = $("#country").val();        
+        var image = "avatar.png";
+        var registered = {"email":email, "birthdate":birthdate, "paypal":paypal, "country":country, "image":image};
+        updateUser(registered);
     });
 
 
@@ -88,10 +84,35 @@ function updateUser(registered) {
 /* Mensajes de actualización del perfil de usuario */
 function getUpdateResponseMessage(data) {
 
-    if (data == 0) {
-        $("#general-error").html("<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-add\"></span> ¡Tus datos se han actualizado satisfactoriamente!</strong></div>");
-    } else {
-        $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en la validación de datos del usuario!</strong></div>");
+    switch (data.id) {
+        case "null-error":
+            $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en la validación de datos del usuario!</strong></div>");
+            break;
+        case "invalid-fields":
+            var max = 0;
+
+            for(error in data.errors) {
+                max++;
+            }
+
+            var errors = "<div class=\"alert error\">";
+            
+            for (var i = 0; i < max; i++) {
+                errors = errors + "<strong><span class=\"glyphicon glyphicon-remove\"></span> " + data.errors[i] + "</strong><br>";
+            }
+
+            errors = errors + "</div>";
+            $("#general-error").html(errors);
+            break;
+        case "success":
+            $("#general-error").html("<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-add\"></span> ¡Tus datos se han actualizado satisfactoriamente!</strong></div>");
+            break;
+        case "email-error":
+            $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-add\"></span> ¡La fecha no es válida!</strong></div>");
+            break;
+        default:
+            $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error inesperado!</strong></div>");
+            break;
     }
 }
 
@@ -120,7 +141,7 @@ function getSendMessageResponse(data) {
             $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en el envío del mensaje! El nombre de usuario es incorrecto o no se encuentra en nuestra base de datos</strong></div>");
         }
         else {
-            $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en el envío del mensaje! Por favor revisa los campos y prueba de nuevo</strong></div>");
+            $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en el envío del mensaje! Por favor revisa que los campos no esten vacíos y prueba de nuevo</strong></div>");
         }
     }
 }
