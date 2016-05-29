@@ -176,6 +176,19 @@ class Shop {
         return $proces;
     }
 
+    function updateAdminProfessional($id, $username, $password, $email, $bannedtime, $birthdate, $phone) {
+    	if ($password != null && $password != "") {
+            $password = md5($password);
+        }
+        $birthdate = date('Y-m-d', strtotime($birthdate));
+        $professional = new Registered($username, $password, $email, $birthdate);
+        $professional->setId($id);
+        $professioanl->setTelephone($phone);
+        $db = unserialize($_SESSION['dbconnection']);
+    	$proces = $db->updateAllProfessionalUser($professional);
+    	return $proces;
+    }
+
     function deleteProfessional($id) {
         $db = unserialize($_SESSION['dbconnection']);
         $proces = $db->deleteProfessional($id);

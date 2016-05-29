@@ -62,25 +62,52 @@
 
     }
 
-    public function insertProfessional($professional) {
+    public function updateAllProfessionalUser($professional) {
       $proces = "";
       try {
         $db = unserialize($_SESSION['dbconnection']);
         // USERNAME VALIDATION IN TABLES
-        if($this->usernameInUse($professional, $db, "insert") == false) {
+        if($this->usernameInUse($professional, $db, "update") == false) {
           // EMAIL VALIDATION IN TABLES
-          if($this->emailInUse($professional, $db, "insert") == false) {
-            // INSERT ALL COLUMNS IN REGISTERED TABLE
-            $query = ("INSERT INTO professional (ID_Professional, Username, Password, Email, BannedTime, BirthDate, Shop_ID) VALUES ('', :username, :password, :email, :bannedtime, :birthdate, :shopid)");
-              $stmt = $db->getLink()->prepare($query);
-              $stmt->bindParam(':username', $professional->getUsername());
-              $stmt->bindParam(':password', $professional->getPassword());
-              $stmt->bindParam(':email', $professional->getEmail());
-              $stmt->bindParam(':bannedtime', $professional->getBannedTime());
-              $stmt->bindParam(':birthdate', $professional->getBirthDate());
-              $stmt->bindParam(':shopid', $this->getShopID());
-              $stmt->execute();
-              $proces = "success";
+          if($this->emailInUse($professional, $db, "update") == false) {
+            // UPDATE ALL COLUMNS IN REGISTERED TABLE
+
+            // registered all info
+            $id = $professional->getId();
+            $username = $professional->getUsername();
+            $password = $professional->getPassword();
+            $email = $professional->getEmail();
+            $bannedtime = $professional->getBannedTime();
+            $birthdate = $professional->getBirthDate();
+            $phone = $professional->getTelephone();
+
+            // update string
+            $updateString = "Username='$username', ";
+            
+            if ($password != null && $password != "") {
+              $updateString = $updateString."Password='$password', ";
+            }
+
+            $updateString = $updateString."Email='$email', ";
+
+            if ($bannedtime != null && $bannedtime != "") {
+              $updateString = $updateString."BannedTime='$bannedtime', ";
+            } else {
+              $updateString = $updateString."BannedTime='', ";
+            }
+
+            $updateString = $updateString."BirthDate='$birthdate', ";
+
+            if ($paypal != null && $paypal != "") {
+              $updateString = $updateString."Telephone='$phone', ";
+            } else {
+              $updateString = $updateString."Telephone='', ";
+            }
+
+            $query = ("UPDATE professional SET ".$updateString." WHERE ID_Professional='$id'");
+            $stmt = $db->getLink()->prepare($query);
+            $stmt->execute();
+            $proces = "success";
           } else {
             $proces = "email";
           }
@@ -90,10 +117,51 @@
       } catch(PDOException $ex) {
         echo "An Error ocurred!";
         some_loggging_function($ex->getMessage());
+        $proces = "error";
         die();
       } finally {
         return $proces;
       }
+    }
+
+
+    public function updateProfessionalUser($professional) {
+
+      $id = $professional->getId();
+      $email = $professional->getEmail();
+
+      try {
+
+        $query = ('SELECT ID_Professional FROM Registered WHERE Email = "$email";');
+
+        $db = unserialize($_SESSION['dbconnection']);
+        $resultat = $db->getLink()->prepare($query);
+            $result = $resultat->execute();
+
+            if(!$result == "" || $result == $id) {
+              $query = ('UPDATE registered r INNER JOIN country c ON "'.$country.'" = c.Name 
+          SET r.Email = "'.$registered->getEmail().'", r.BirthDate = "'.$registered->getBirthDate().'",
+          r.PaypalAccount = "'.$registered->getPaypalAccount().'", r.AvatarURL = "'.$registered->getAvatarUrl().'", 
+          r.Country_ID = c.ID_Country WHERE r.ID_Registered = "'.$registered->getId().';"');
+          
+          $db = unserialize($_SESSION['dbconnection']);
+          $resultat = $db->getLink()->prepare($query);
+              $resultat->execute();
+
+              $response = "success";
+            }
+            else {
+              $response = "email-error";
+            }
+
+      } catch(PDOException $ex) {
+        echo "An Error ocurred!";
+        some_loggging_function($ex->getMessage());
+      } finally {
+        return $response;
+        $_SESSION['dbconnection'] = serialize($db);     
+      }
+
     }
 
     public function deleteProfessionalUser($id) {

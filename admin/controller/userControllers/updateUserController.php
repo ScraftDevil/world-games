@@ -40,12 +40,12 @@
 
 			case 'professional':
 				$proces = addProfessional();
-				if ($proces == 0) {
-					//header("Location:../view/newUserView.php?group=".$group."&msg=fail");
-				} else if ($proces == 1) {
-					//header("Location:../view/userListView.php?group=".$group."&msg=errusername");
+				$errors = validateProfessionalUpdateFields($username, $password, $email, $bannedtime, $birthdate, $phone);
+				if ($errors == 0) {
+					$proces = updateProfessional($id, $username, $password, $email, $bannedtime, $birthdate, $phone);
+					$response = messages($proces, $users);
 				} else {
-					//header("Location:../view/userListView.php?group=".$group."&msg=success");
+					$response = messages("invalid-fields", "registered");
 				}
 			break;
 
@@ -98,6 +98,13 @@
 	function updateRegistered($id, $username, $password, $email, $bannedtime, $birthdate, $paypal, $avatar, $country) {
 		$shop = unserialize($_SESSION['shop']);
 		$proces = $shop->updateAdminRegistered($id, $username, $password, $email, $bannedtime, $birthdate, $paypal, $avatar, $country);
+		$_SESSION['shop'] = serialize($shop);
+		return $proces;
+	}
+
+	function updateProfessional($id, $username, $password, $email, $bannedtime, $birthdate, $phone) {
+		$shop = unserialize($_SESSION['shop']);
+		$proces = $shop updateAdminProfessional($id, $username, $password, $email, $bannedtime, $birthdate, $phone);
 		$_SESSION['shop'] = serialize($shop);
 		return $proces;
 	}

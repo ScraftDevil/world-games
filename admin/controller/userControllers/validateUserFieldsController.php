@@ -67,6 +67,35 @@
 		return $errors;
 	}
 
+	function validateProfessionalUpdateFields($username, $password, $email, $bannedtime, $birthdate, $phone) {
+		$errors = 0;
+		if (validateUsername($username) == false) {
+			$errors++;
+		}
+		if ($password != null && $password != "") {
+			if (validatePassword($password) == false) {
+				$errors++;
+			}
+		}
+		if (validateEmail($email) == false) {
+			$errors++;
+		}
+		if ($bannedtime != null && $bannedtime != "") {
+			if (validateBannedTime($bannedtime) == false) {
+				$errors++;
+			}
+		}
+		if (validateDate($birthdate) == false) {
+			$errors++;
+		}
+		if ($phone != null && $phone != "") {
+			if(validatePhone($phone)) {
+				$errors++;
+			}
+		}
+		return $errors;
+	}
+
 	function validateAdminProfessionalInsertFields($username, $password, $email, $birthdate) {
 		$errors = 0;
 		if (validateUsername($username) == false) {

@@ -86,10 +86,7 @@ class mysqldb {
 		return $result;
 	}
 
-
-	
-
-public function getAllMessages($order) {
+	public function getAllMessages($order) {
 		$messageDAO = new messageDAO();
 		return $messageDAO->getAllMessages($order);
 	}
@@ -99,7 +96,6 @@ public function getAllMessages($order) {
 		return $commentDAO->getAllComment($order);
 	}
 
-	
 	public function getGenresGame($gameid) {
 		$sql = "SELECT GE.ID_Genre, GE.Name FROM game_has_genre GG INNER JOIN Genre GE
 		WHERE GE.ID_Genre = GG.Genre_ID AND GG.Game_ID = $gameid";
@@ -119,7 +115,8 @@ public function getAllMessages($order) {
 	}
 
 	public function getCountryByName($name) {
-		$sql = "SELECT ID_Country, Name FROM Country WHERE Name='$name'";
+		$country = utf8_decode($name);
+		$sql = "SELECT ID_Country, Name FROM Country WHERE Name='$country'";
 		$stmt = $this->getLink()->prepare($sql); 
 		$stmt->execute();
 		$result = $stmt->FetchAll();
@@ -201,36 +198,36 @@ public function getAllMessages($order) {
 		return $registered;		
 	}
 
-public function deleteGenre($id) {
+	public function deleteGenre($id) {
 		$GenreDAO = new GenreDAO();
 		$genre = $GenreDAO->deleteGenre($id);		
 	}
 	
-public function deletePlatform($id) {
+	public function deletePlatform($id) {
 		$PlatformDAO = new PlatformDAO();
 		$platform = $PlatformDAO->deletePlatform($id);		
 	}
 
-public function deleteComment($id) {
+	public function deleteComment($id) {
 		$CommentDAO = new CommentDAO();
 		$comment = $CommentDAO->deleteComment($id);		
 	}
 
-public function deleteMessage($id) {
+	public function deleteMessage($id) {
 		$MessageDAO = new MessageDAO();
 		$message = $MessageDAO->deleteMessage($id);		
 	}
 
 
 	public function deleteGame($id){
-	$gameDAO = new gameDAO();
+		$gameDAO = new gameDAO();
 		$game = $gameDAO->deleteGame($id);
-}
+	}
 
 	public function deleteOffer($id){
-	$offerDAO = new offerDAO();
+		$offerDAO = new offerDAO();
 		$offer = $offerDAO->deleteOffer($id);
-}
+	}
 
 	public function searchGame($value) {
     	$sql = "SELECT G.ID_Game, G.Title, G.Price FROM game G WHERE G.Title LIKE '%".$value."%'";
@@ -291,6 +288,11 @@ public function deleteMessage($id) {
     public function getProfessionalUsers($order) {
     	$professional = new ProfessionalDAO();
     	return $professional->showProfessionals($order);
+    }
+
+    public function updateAllProfessionalUser($professional) {
+    	$professional = new ProfessionalDAO();
+    	return $professional->updateAllProfessionalUser($professional);
     }
 
     public function deleteProfessional($id) {
@@ -493,7 +495,7 @@ public function deleteMessage($id) {
 	}
 
 	/* SHOPPING */
-	 public function insertShopping($shopping, $userid) {
+	public function insertShopping($shopping, $userid) {
         $status = null;
         $query = "INSERT INTO shopping VALUES('', '" . $shopping->getQuantity() . "', '" . $shopping->getTotalPrice() . "','".$shopping->getTax()."')";
         $resultat = $this->getLink()->prepare($query);
