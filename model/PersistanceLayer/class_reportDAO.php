@@ -31,6 +31,33 @@ class reportDAO {
 
 	}
 
+	public function getProfessionalReports($id, $order) {
+
+		try {
+			$orderSQL = "";
+			if (!empty($order)) {
+				$orderSQL = "ORDER BY 3, 2, ".$order;
+			} else {
+				$orderSQL = "ORDER BY 3, 2";
+			}
+
+			$query = ("SELECT ID_Report, Status, Date, Reason, Text, (SELECT Username FROM registered WHERE ID_Registered=Registered_ID) AS UserReported, (SELECT r.Username FROM registered r INNER JOIN professional_has_report ar ON r.ID_Registered=ar.Registered_ID) AS UserReclaim FROM report WHERE ID_Report IN (SELECT Report_ID FROM professional_has_report WHERE Professional_ID='$id') $orderSQL");
+			die($query);
+			$db = unserialize($_SESSION['dbconnection']);
+			$resultat = $db->getLink()->prepare($query);
+			$resultat->execute();
+
+			$result = $resultat->FetchAll(); 			
+
+		} catch(PDOException $ex) {
+			echo "An Error ocurred!";
+			some_loggging_function($ex->getMessage());
+		} finally {
+			return $result;		
+		}
+
+	}
+
 	public function getAdminReport($id_admin, $id_report) {
 
 		try {
@@ -140,6 +167,59 @@ class reportDAO {
 			return $proces;		
 		}
 	}
+
+
+	public function sendReport($myReport,$reportuserName) {
+
+		$report = utf8_decode($myReport->getContentreport());
+		$idReport = "";
+		$proces = "";
+
+		try {
+
+			$query = ('SELECT ID_Registered FROM Registered WHERE Username = "'.$reportuserName.'";');
+			$db = unserialize($_SESSION['dbconnection']);
+			$resultat = $db->getLink()->prepare($query);
+        	$resultat->execute();
+        	$result = $resultat->fetch(PDO::FETCH_ASSOC);
+
+        	if($result) {
+
+        		//id of receiver user
+        		$idReport = $result['ID_Registered'];
+
+        		$query = ("INSERT INTO report values('','No Leído',sysdate(),'".$myReport->getReason()."', '".$myReport->getContentreport()."','".$idReport."')");
+        		//die($query);
+        		$resultat = $db->getLink()->prepare($query);
+        		$result = $resultat->execute();
+
+        		if($result) {
+
+        			//id of new message
+        			$newIdReport = $db->getLink()->lastInsertId();
+
+        			$query = ("INSERT INTO professional_has_report values('1', 
+        				'".$newIdReport."', '".$idReport."')");
+        			$resultat = $db->getLink()->prepare($query);
+        			$result = $resultat->execute();
+
+        			$proces = "success";
+        		}     		
+
+        	} else {
+        		$proces = "username";
+        	}
+			
+		} catch (PDOException $e) {
+			echo "An Error ocurred!";
+			some_loggging_function($ex->getMessage());
+		} finally {
+			return $proces;
+			$_SESSION['dbconnection'] = serialize($db);			
+		}
+	}
+
+	
 
 }
 

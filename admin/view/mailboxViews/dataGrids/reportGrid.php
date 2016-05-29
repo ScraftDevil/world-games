@@ -25,6 +25,8 @@
 		$dg->addColumn($column);
 		$column = new Structures_DataGrid_Column('Razón', 'Reason', 'Reason', array('class'=>'grid-cel'));
 		$dg->addColumn($column);
+		$column = new Structures_DataGrid_Column('Razón', 'Text', 'Text', array('class'=>'grid-cel'));
+		$dg->addColumn($column);
 		$column = new Structures_DataGrid_Column('Usuario<br>Reportado', 'UserReported', 'UserReported', array('class'=>'grid-cel'));
 		$dg->addColumn($column);
 		$column = new Structures_DataGrid_Column('Usuario<br>Reclamando', 'UserReclaim', 'UserReclaim', array('class'=>'grid-cel'));

@@ -335,10 +335,21 @@ class mysqldb {
 		return $registered->sendPrivateMessage($myMessage, $receiverName);		
 	}
 
+	public function sendReport($myReport,$reportuserName) {
+		$report = new ReportDAO();
+		return $report->sendReport($myReport, $reportuserName);		
+	}
+
 	public function getAdministratorReports($id, $order) {
 		$reportDAO = new reportDAO();
 		return $reportDAO->getAdministratorReports($id, $order);
 	}
+
+		public function getProfessionalReports($id, $order) {
+		$reportDAO = new reportDAO();
+		return $reportDAO->getProfessionalReports($id, $order);
+	}
+
 
 	/* Consulta para obtener una lista con los nombres de las plataformas */
 	public function getPlatformNames() {

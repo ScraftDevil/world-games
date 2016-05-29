@@ -17,10 +17,10 @@ class Report {
         $this->setReason($reason);
         $this->setContentreport($contentreport);
         $this->setDate($date);
-        $this->setState($status);
+        $this->setStatus($status);
         $this->setUserRegistered($userRegistered);
-        $this->setProfessionalUser(null);
-        $this->setAdministratorUser(null);
+      /*  $this->setProfessionalUser(null);
+        $this->setAdministratorUser(null);*/
     }
     
     //getters i setters
