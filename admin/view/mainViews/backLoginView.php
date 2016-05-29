@@ -15,15 +15,14 @@
 					<p id="profile-name" class="profile-name-card"></p>
 					<form class="form-signin">
 						<span id="reauth-email" class="reauth-email"></span>
-						<input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
+						<input type="text" id="username" name="username" class="form-control" placeholder="Username" value="<?php if(isset($_COOKIE['userBack'])) { echo $_COOKIE['userBack'];} ?>" required autofocus>
 						<input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
 						<div id="remember" class="checkbox">
 							<label>
-								<input type="checkbox" value="remember-me"> Remember me
+								<input type="checkbox" value="remember-me" id="rememberCheck"> Remember me
 							</label>
 						</div>
 						<button class="btn btn-lg btn-primary btn-block btn-signin login" type="submit" id="login"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Sign in</button>
-						<a href="#" class="forgot-password">Forgot the password?</a>
 						<div id="msg" role="alert" style="margin-top:40px"></div>
 					</form>
 				</div>

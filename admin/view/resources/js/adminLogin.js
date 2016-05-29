@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $(".form-signin").on("submit", function(e) {
         e.preventDefault();
-        var params = {"username" : $("#username").val(), "password" : $("#password").val()};
+        var params = {"username" : $("#username").val(), "password" : $("#password").val(), "remember": $("#rememberCheck").is(':checked')};
             $.ajax({
                 data:  params,
                 url:   '../../controller/backAuthControllers/backLoginController.php',

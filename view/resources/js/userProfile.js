@@ -20,13 +20,15 @@ function load() {
 
 
     $('#update-registered').click(function() {
-        var email = $("#email").val();
-        var birthdate = $("#calendar").val();
-        var paypal = $("#paypal").val();
-        var country = $("#country").val();        
-        var image = "avatar.png";
-        var registered = {"email":email, "birthdate":birthdate, "paypal":paypal, "country":country, "image":image};
-        updateUser(registered);
+        if ($('#profileForm').valid()) {
+            var email = $("#email").val();
+            var birthdate = $("#calendar").val();
+            var paypal = $("#paypal").val();
+            var country = $("#country").val();        
+            var image = "avatar.png";
+            var registered = {"email":email, "birthdate":birthdate, "paypal":paypal, "country":country, "image":image};
+            updateUser(registered);
+        }
     });
 
 
@@ -189,7 +191,8 @@ oonkeyup: true,
     rules: {
         email: {
             required: true,
-            email: true           
+            email: true,
+            minlength: 6
         },
         birthdate: {
             required: true,
@@ -198,7 +201,7 @@ oonkeyup: true,
         paypal: {
             required: false,
             email: true,
-            maxlength: 45
+            minlength: 6
         },
         country: {
             required: true
@@ -209,7 +212,7 @@ oonkeyup: true,
         email: {
             required: "El campo email esta vacio",
             email: "Formato de email incorrecto",
-          //  maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
+            minlength: jQuery.validator.format("Debes poner almenos  {0} caracteres")
         },
         birthdate: {
             required: "La fecha de nacimiento esta vacio",
@@ -217,21 +220,10 @@ oonkeyup: true,
         },
         paypal: {
             email: "Formato de email incorrecto",
-            //maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
+            minlength: jQuery.validator.format("Debes poner almenos  {0} caracteres")
         },        
         country: {
             required: "El campo pais esta vacio"
         }        
-    },
-    submitHandler: function() {
-        $('#update-registered').click(function() {
-            var email = $("#email").val();
-            var birthdate = $("#calendar").val();
-            var paypal = $("#paypal").val();
-            var country = $("#country").val();        
-            var image = "avatar.png";
-            var registered = {"email":email, "birthdate":birthdate, "paypal":paypal, "country":country, "image":image};
-            updateUser(registered);
-        });
     }
 });

@@ -11,6 +11,11 @@
 	if (isset($_POST['username']) AND isset($_POST['password'])) {
 		$username = $_POST['username'];
 		$password = $_POST['password'];
+		if (isset($_POST['remember']) && $_POST['remember']=="true") {
+			setcookie("userBack", $username, time() + 3600, "/");
+		} else {
+        	setcookie("userBack", $username, time() - 3600, "/");
+    	}
 		$db = unserialize($_SESSION['dbconnection']);
 		$infouser = $db->staffLogin($username, $password);
 		if (isset($infouser['userid']) && !empty($infouser['userid'])) {
