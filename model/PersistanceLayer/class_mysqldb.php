@@ -71,6 +71,13 @@ class mysqldb {
 		return $gameDAO->getAllGames($order);
 	}
 
+	public function getAllGameInfo($id) {
+		$gameDAO = new gameDAO();
+		$game = $gameDAO->getAllGameInfo($id);
+		return $game;
+	}
+
+
 	public function getOfferGame($gameid) {
 		$sql = "SELECT G.Title as Game, O.ID_Offer, O.Discount FROM game G INNER JOIN offer O WHERE O.ID_Offer=G.Offer_ID AND G.ID_Game=$gameid";
 		$stmt = $this->getLink()->prepare($sql); 
