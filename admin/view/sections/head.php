@@ -9,6 +9,12 @@
 		}
 	}
 
+	if ($file != "userDataEditView") {
+		if(isset($_SESSION['selectedID'])) {
+			unset($_SESSION['selectedID']);
+		}
+	}
+
 ?>
 
 <head>

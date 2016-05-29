@@ -148,17 +148,51 @@ class registeredDAO {
 				// EMAIL VALIDATION IN TABLES
 				if($this->emailInUse($registered, $db, "update") == false) {
 					// UPDATE ALL COLUMNS IN REGISTERED TABLE
-					$query = ("UPDATE registered SET Username=:username, Password=:password, Email=:email, BannedTime=:bannedtime, BirthDate=:birthdate, PaypalAccount=:paypal, AvatarURL=:avatar, Country_ID=:country WHERE ID_Registered=:id");
+
+					// registered all info
+					$id = $registered->getId();
+					$username = $registered->getUsername();
+					$password = $registered->getPassword();
+					$email = $registered->getEmail();
+					$bannedtime = $registered->getBannedTime();
+					$birthdate = $registered->getBirthDate();
+					$paypal = $registered->getPaypalAccount();
+					$avatar = $registered->getAvatarUrl();
+					$country = $registered->getCountry();
+
+					// update string
+					$updateString = "Username='$username', ";
+					
+					if ($password != null && $password != "") {
+						$updateString = $updateString."Password='$password', ";
+					}
+
+					$updateString = $updateString."Email='$email', ";
+
+					if ($bannedtime != null && $bannedtime != "") {
+						$updateString = $updateString."BannedTime='$bannedtime', ";
+					} else {
+						$updateString = $updateString."BannedTime='', ";
+					}
+
+					$updateString = $updateString."BirthDate='$birthdate', ";
+
+					if ($paypal != null && $paypal != "") {
+						$updateString = $updateString."PaypalAccount='$paypal', ";
+					} else {
+						$updateString = $updateString."PaypalAccount='', ";
+					}
+
+					if ($avatar != null && $avatar != "") {
+						if ($avatar == "no") {
+							$updateString = $updateString."AvatarURL='', ";
+						}
+					}
+
+					$updateString = $updateString."Country_ID='$country'";
+
+					$query = ("UPDATE registered SET ".$updateString." WHERE ID_Registered='$id'");
 					$stmt = $db->getLink()->prepare($query);
-					$stmt->bindParam(':id', $registered->getID());
-					$stmt->bindParam(':username', $registered->getUsername());
-					$stmt->bindParam(':password', $registered->getPassword());
-					$stmt->bindParam(':email', $registered->getEmail());
-					$stmt->bindParam(':bannedtime', $registered->getBannedTime());
-					$stmt->bindParam(':birthdate', $registered->getBirthDate());
-					$stmt->bindParam(':paypal', $registered->getPaypalAccount());
-					$stmt->bindParam(':avatar', $registered->getAvatarUrl());
-					$stmt->bindParam(':country', $registered->getCountry());
 					$stmt->execute();
 				    $proces = "success";
 				} else {

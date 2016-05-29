@@ -118,6 +118,14 @@ public function getAllMessages($order) {
 		return $result;
 	}
 
+	public function getCountryByName($name) {
+		$sql = "SELECT ID_Country, Name FROM Country WHERE Name='$name'";
+		$stmt = $this->getLink()->prepare($sql); 
+		$stmt->execute();
+		$result = $stmt->FetchAll();
+		return $result;
+	}
+
 	public function existCountry($id) {
 		$sql = "SELECT ID_Country FROM Country WHERE ID_Country='$id'";
 		$stmt = $this->getLink()->prepare($sql); 

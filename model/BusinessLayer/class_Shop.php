@@ -141,6 +141,23 @@ class Shop {
 		return $proces;
     }
 
+    function updateAdminRegistered($id, $username, $password, $email, $bannedtime, $birthdate, $paypal, $avatar, $country) {
+        if ($password != null && $password != "") {
+            $password = md5($password);
+        }
+        $birthdate = date('Y-m-d', strtotime($birthdate));
+        $registered = new Registered($username, $password, $email, $birthdate, $country);
+        $registered->setId($id);
+        $registered->setBannedTime($bannedtime);
+        $registered->setPaypalAccount($paypal);
+        $registered->setAvatarUrl($avatar);
+        $registered->setCountry($country);
+        $db = unserialize($_SESSION['dbconnection']);
+        $proces = $db->updateAllRegisteredUser($registered);
+        $this->populateUsers($db);
+        return $proces;
+    }
+
     function deleteRegistered($id) {
         $db = unserialize($_SESSION['dbconnection']);
         $proces = $db->deleteRegistered($id);
@@ -193,6 +210,22 @@ class Shop {
             break;
         }
         return json_encode($info);
+    }
+
+    /**/
+    /*  Country Functions
+    /**/
+
+    function getCountrybyName($name) {
+        $db = unserialize($_SESSION['dbconnection']);
+        $country = $db->getCountrybyName($name);
+        return $country;
+    }
+
+    function getCountries() {
+        $db = unserialize($_SESSION['dbconnection']);
+        $countries = $db->getCountries();
+        return $countries;
     }
 
   	function addGame($title,$price) {

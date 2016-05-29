@@ -13,22 +13,48 @@ function load() {
     break;
 
     case "userDataEditView":
-      $("#update-user").click(function() {
-        var username = $("#username").val();
-        var password = $("#password").val();
-        var email = $("#email").val();
-        var bannedtime = $("#bannedtime").val();
-        var birthdate = $("#calendar").val();
-        var paypal = $("#paypal").val();
-        var avatar = null;
-        var country = document.getElementById("country").value;
-        var user = {"id": id, "username": username, "password": password, "email": email, "bannedtime": bannedtime, "birthdate": birthdate, "paypal":paypal, "avatar": avatar, "country": country, "group": group};
-        updateUser(user);
+    var opacity = '0.5';
+    var avatar = null;
+      $("#avatar").click(function() {
+        if(document.getElementById("avatar").value == "yes") {
+          document.getElementById("avatar").value = "no";
+          $("#img").fadeTo("slow", 0.5);
+          avatar = "no";
+        } else if (document.getElementById("avatar").value == "no") {
+          document.getElementById("avatar").value = "yes";
+          avatar = "yes";
+          $("#img").fadeTo("slow", 1.0);
+        } else {
+          avatar = null;
+        }
+      });
+
+      $("#update-userregistered").click(function() {
+        if ($("#update-registered").valid() == true) {
+          var username = $("#username").val();
+          var password = $("#password").val();
+          var email = $("#email").val();
+          var bannedtime = $("#bannedtime").val();
+          var birthdate = $("#calendar").val();
+          var paypal = $("#paypal").val();
+          var country = document.getElementById("country").value;
+          var user = {"username": username, "password": password, "email": email, "bannedtime": bannedtime, "birthdate": birthdate, "paypal":paypal, "avatar": avatar, "country": country};
+          updateUser(user);
+        }
       });
     break;
 
   }
 
+}
+
+function deleteAvatar() {
+  if (document.getElementById("avatar").value == "yes") {
+    document.getElementById("avatar").value = "no";
+  } else {
+    document.getElementById("avatar").value = "yes";
+  }
+  
 }
 
 // USER UPDATE AJAX FUNCTION
@@ -46,23 +72,22 @@ function updateUser(user) {
 //
 function getUpdateUserProcess(data) {
   switch(data.id) {
-    case "null-error":
-            $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en la validación de datos del usuario!</strong></div>");
+        case "invalid-fields":
+          var max = 0;
+          for(error in data.errors) {
+            max++;
+          }
+          var errors = "<div class=\"alert error\">";
+          for (var i = 0; i < max; i++) {
+            errors = errors + "<strong><span class=\"glyphicon glyphicon-remove\"></span> " + data.errors[i] + "</strong><br>";
+          }
+          errors = errors + "</div>";
+          $("#general-error").html(errors);
         break;
 
-        case "success":
+        case "success": case "email-error": case "username-error":
             var delay = 0;
-            setTimeout(function(){ window.location = "../../view/userViews/userListView.php?group=" + data.group + "&msg=u-" + data.id; }, delay);
-        break;
-
-        case "email-error":
-            var delay = 0;
-            setTimeout(function(){ window.location = "../../view/userViews/userListView.php?group=" + data.group + "&msg=" + data.id; }, delay);
-        break;
-
-        case "username-error":
-            var delay = 0;
-            setTimeout(function(){ window.location = "../../view/userViews/userListView.php?group=" + data.group + "&msg=" + data.id; }, delay);
+            setTimeout(function(){ window.location = "../../view/userViews/" + data.group + "ListView.php"; }, delay);
         break;
 
         default:
@@ -122,10 +147,6 @@ function sendUser(user) {
 // INSERT USER AJAX RESPONSE
 function getInsertUserProcess(data) {
   switch(data.id) {
-        case "null-error":
-            $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en la validación de datos del usuario!</strong></div>");
-        break;
-
         case "invalid-fields":
           var max = 0;
           for(error in data.errors) {
@@ -321,6 +342,72 @@ $("#new-user-admin").validate({
         required: "¡La fecha de cumpleaños no puede estar vacía!",
         spainDate: "¡Formato de fecha no válido!",
         futureDate: "¡La fecha de cumpleaños es futura!"
+      }
+  }
+});
+
+$("#update-registered").validate({ 
+  oonkeyup: true,
+  rules: {
+    username: {
+      required: true,
+      alphanumeric: true,
+      minlength: 3,
+      maxlength: 20         
+    },
+    password: {
+      required: false,
+      minlength: 6,
+      maxlength: 20          
+    },
+    email: {
+      required: true,
+      email: true           
+    },
+    bannedtime: {
+      required: false,
+      integer: true
+    },
+    birthdate: {
+      required: true,
+      spainDate: true,
+      futureDate: true
+    },
+    paypal: {
+      required: false,
+      email: true
+    },
+    country: {
+      required: true
+    }
+  }, messages: {
+      username: {
+        required: "¡El nombre de usuario no puede estar vacío!",
+        alphanumeric: "¡El nombre de usuario no puede contener carácteres especiales!",
+        minlength: "¡El nombre de usuario tiene que tener más de 2 carácteres!",
+        maxlength: "¡El nombre de usuario no puede tener más de 20 carácteres!"
+      },
+      password: {
+        minlength: "¡La contraseña tiene que tener más de 5 carácteres!",
+        maxlength: "¡La contraseña no puede tener más de 20 carácteres!"
+      },
+      email: {
+        required: "¡El email no puede estar vacío!",
+        email: "¡Formato de email no válido!"
+      },
+      bannedtime: {
+        integer: "¡El tiempo de baneo solo puede ser un número entero!"
+      },
+      birthdate: {
+        required: "¡La fecha de cumpleaños no puede estar vacía!",
+        spainDate: "¡Formato de fecha no válido!",
+        futureDate: "¡La fecha de cumpleaños es futura!"
+      },
+      paypal: {
+        email: "¡Formato de email de Paypal incorrecto!"
+      },
+      country: {
+        required: "¡Debes seleccionar un país!"
       }
   }
 });

@@ -11,34 +11,36 @@
 		}
 		
 
-		$group = null;
+		$users = null;
 		$label = null;
 		$id = null;
 
 		if(isset($_SESSION['userDataGrid'])) {
 			switch ($_SESSION['userDataGrid'])  {
-				case "administrator": {
+
+				case "administrator":
 					$label = 'Administrador';
-					$group = 'administrator';
-					break;
-				}
-				case "professional": {
+					$users = 'administrator';
+				break;
+
+				case "professional":
 					$label ='Profesional';
-					$group = 'professional';
-					break;
-				}
-				case "registered": {
+					$users = 'professional';
+				break;
+				
+				case "registered":
 					$label = 'Registrado';
-					$group = 'registered';
-					break;
-				}
+					$users = 'registered';
+				break;
+
 			}
 		}
 
 		if (isset($_POST['user']) && $_POST['user'] != "") {
 			$id = $_POST['user'];
+			$_SESSION['selectedID'] = $id;
 			$shop = unserialize($_SESSION['shop']);
-			$info = json_decode($shop->getUserWithGroup($id, $group));
+			$info = json_decode($shop->getUserWithGroup($id, $users));
 			$name = $info->username;
 			$email = $info->email;
 			$bannedtime = $info->bannedtime;
@@ -48,7 +50,7 @@
 			$countryID = $info->countryID;
 			$country = $info->country;
 		} else {
-			header("Location:userListView.php?group=".$group);
+			header("Location:".$users."ListView.php");
 		}
 
 	?>
@@ -70,62 +72,25 @@
 									<h2 class="panel-title"> Modificar Usuario <span id="user"></span></h2>
 								</div>
 							  	<div class="panel-body">
-								    <form id="registered-user">
-										<div class="row">
-											<div class="col-md-12">
-												<div id="general-error"></div>
-												<div class="form-group">
-													<label for="username">Nombre de Usuario</label><label for="user-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
-													<div class="input-group input-radius">
-													<input type="text" class="form-control" name="username" id="username" placeholder="Username" value="<?php echo $name; ?>"required>
-													</div>
-												</div>
-												<div class="form-group">
-													<label for="password">Contraseña</label><label for="password-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
-													<div class="input-group input-radius">
-														<input type="password" class="form-control" id="password" name="password" placeholder="Password" required><span class="server-error"></span>
-													</div>
-												</div>
-												<div class="form-group">
-													<label for="email">Email</label><label for="email-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
-													<div class="input-group input-radius">
-														<input type="email" class="form-control" id="email" name="email" placeholder="Email" value="<?php echo $email ?>" required>
-													</div>
-												</div>
-												<div class="form-group">
-													<label for="bannedtime">Tiempo de Baneo</label><label for="bannedtime-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
-													<div class="input-group input-radius">
-														<input type="text" class="form-control" id="bannedtime" name="bannedtime" placeholder="Tiempo de Baneo" value="<?php echo $bannedtime ?>" required>
-													</div>
-												</div>
-												<div class="form-group">
-													<label for="birthdate">Fecha de Nacimiento</label><label for="birthdate-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
-													<div class="input-group input-radius">
-														<input type="text" class="form-control" id="calendar" name="birthdate" placeholder="Birthdate" value="<?php echo $birthdate ?>" required>
-													</div>
-												</div>
-												<div class="form-group">
-													<label for="paypal">Paypal</label><label for="paypal-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
-													<div class="input-group input-radius">
-														<input type="email" class="form-control" id="paypal" name="paypal" placeholder="Paypal Email" value="<?php echo $paypal ?>" required>
-													</div>
-												</div>
-												<div class="form-group">
-													<label for="avatar">Avatar</label><label for="avatar-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
-													<div class="input-group input-radius">
-														<input type="file" class="form-control" id="avatar" name="avatar" placeholder="Avatar" required>
-													</div>
-												</div>
-												<div class="form-group">
-													<label for="country">País</label><label for="country-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
-													<?php include("../sections/countryList.php"); ?>
-												</div>
-												<div class="form-group">
-												<button type="button" name="update-user" id="update-user" class="btn btn-info pull-left">Enviar</button>
-												</div>
-											</div>
-										</div>
-									</form>
+								    <?php
+								    	switch ($users)  {
+
+											case "administrator":
+												$label = 'Administrador';
+												$users = 'administrator';
+
+											break;
+
+											case "professional":
+												$label ='Profesional';
+												$users = 'professional';
+											break;
+
+											case "registered":
+												include("userForms/updateRegisteredForm.php");
+											break;
+										}
+								    ?>
 							  	</div>
 							</div>
 						</div>
@@ -137,11 +102,6 @@
 	<footer>
 		<?php include("../sections/footer.php"); ?>
 		<script type="text/javascript" src="../resources/js/usersManage.js"></script>
-		<script type="text/javascript">
-			document.getElementById("country").value = (<?php echo $countryID; ?>);
-			var country2 = (<?php echo $country; ?>);
-			$("#country").html(country2);
-		</script>
 	</footer>
 </body>
 </html>

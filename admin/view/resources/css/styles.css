@@ -445,6 +445,20 @@ label.error {
     background-color: white !important;
 }
 
+.avatar-url {
+    width: 128px;
+    height: 128px;
+    background-color: red;
+}
+
+.avatar-url img {
+    max-width: 100%;
+}
+
+.delete-avatar {
+    margin-top: 15px;
+}
+
 /* Mobile */
 @media only screen and (min-width: 320px) {
 

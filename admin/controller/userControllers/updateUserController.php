@@ -1,10 +1,10 @@
 <?php
 
-	if (session_id() == '') {
-	    session_start();
-	}
+	include("../backAuthControllers/authController.php");
 
-	require_once($_SESSION["BASE_PATH"]."/model/autoload.php");
+	require_once($_SESSION['BASE_PATH']."/model/autoload.php");
+
+	include("validateUserFieldsController.php");
 
 	// Variable de respuesta para json
 
@@ -14,28 +14,28 @@
 
 	$user = json_decode($post);
 
-	$group = $user->group;
+	$users = $_SESSION['userDataGrid'];
+	$_SESSION['msg'] = array();
 
-	if ($group == "registered" || $group == "professional" || $group == "administrator") {
-		$id = $user->id;
+	if ($users == "registered" || $users == "professional" || $users == "administrator") {
+		$id = $_SESSION['selectedID'];
 		$username = $user->username;
 		$password = $user->password;
 		$email = $user->email;
 		$bannedtime = $user->bannedtime;
 		$birthdate = $user->birthdate;
-		$birthdate = date('Y-m-d', strtotime($birthdate));
-		switch ($group) {
+		switch ($users) {
 			case 'registered':
 				$paypal = $user->paypal;
 				$avatar = $user->avatar;
 				$country = $user->country;
-				$registered = new Registered($username, $password, $email, $birthdate, $country);
-				$registered->setID($id);
-				$registered->setBannedTime($bannedtime);
-				$registered->setPaypalAccount($paypal);
-				$registered->setAvatarUrl($avatar);
-				$proces = updateRegistered($registered);
-				$response = messages($proces, $group);
+				$errors = validateRegisteredUpdateFields($username, $password, $email, $bannedtime, $birthdate, $paypal, $avatar, $country);
+				if ($errors == 0) {
+					$proces = updateRegistered($id, $username, $password, $email, $bannedtime, $birthdate, $paypal, $avatar, $country);
+					$response = messages($proces, $users);
+				} else {
+					$response = messages("invalid-fields", "registered");
+				}
 			break;
 
 			case 'professional':
@@ -63,103 +63,43 @@
 	} else {
 		//header("Location:../index.php");
 	}
-
-
-	function updateRegistered($registered) {
-		if ($registered->getUsername() != "" AND $registered->getPassword() != "" AND $registered->getEmail() != "" AND $registered->getBirthdate() != "" AND $registered->getCountry() != "") {
-				$db = unserialize($_SESSION['dbconnection']);
-				$proces = $db->updateAllRegisteredUser($registered);
-		} else {
-			$proces = "null";
-		}
-		return $proces;
-	}
-
-	function addProfessional() {
-		$proces = 0;
-		if (isset($_POST['username']) AND isset($_POST['password']) AND isset($_POST['email']) AND isset($_POST['birthdate'])) {
-			if (!empty($_POST['username']) AND !empty($_POST['password']) AND !empty($_POST['email']) AND !empty($_POST['birthdate'])) {
-				$username = $_POST['username'];
-				$password = $_POST['password'];
-				$email = $_POST['email'];
-				$birthdate = $_POST['birthdate'];
-				$birthdate = date('Y-m-d', strtotime($birthdate));
-				$professional = new Professional($username, $password, $email, $birthdate);
-				$proces = $professional->insertProfessional();
-			}
-		}
-		return $proces;
-	}
-
-	function addAdministrator() {
-		$proces = 0;
-		if (isset($_POST['username']) AND isset($_POST['password']) AND isset($_POST['email']) AND isset($_POST['birthdate'])) {
-			if (!empty($_POST['username']) AND !empty($_POST['password']) AND !empty($_POST['email']) AND !empty($_POST['birthdate'])) {
-				$username = $_POST['username'];
-				$password = $_POST['password'];
-				$email = $_POST['email'];
-				$birthdate = $_POST['birthdate'];
-				$birthdate = date('Y-m-d', strtotime($birthdate));
-				$administrator = new Administrator($username, $password, $email, $birthdate);
-				$proces = $administrator->insertAdministrator();
-			}
-		}
-		return $proces;
-	}
-
-	function validateDateFormat($date) {
-
-		$correct = false;
-
-		/* Date regular expression */
-		$dateSintax = '/[0-9]{2}\-[0-9]{2}\-[0-9]{4}/';
-
-
-		if (preg_match($dateSintax, $date)) {
-			$correct = true;
-		}
-
-		return $correct;
-
-	}
-
-	function validateEmail($email) {
-		$correct = false;
-
-		/* Email regular expression */
-		$emailSintax = '/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/';
-
-		if (preg_match($emailSintax, $email)) {
-			$correct = true;
-		}
-
-		return $correct;
-	}
-
-	function messages($proces, $group) {
+	function messages($proces, $users) {
 		$response = null;
 		switch($proces) {
+
 			case "success":
-			$response = array("id" => "success", "group" => $group);
+				$response = array("id" => "success", "group" => $users);
+				$_SESSION['msg'] = "u-success";
 			break;
 
 			case "username":
-			$response = array("id" => "username-error", "group" => $group);
+				$response = array("id" => "username-error", "group" => $users);
+				$_SESSION['msg'] = "username-error";
 			break;
 
 			case "email":
-			$response = array("id" => "email-error", "group" => $group);
+				$response = array("id" => "email-error", "group" => $users);
+				$_SESSION['msg'] = "email-error";
 			break;
 
-			case "null":
-			$response = array("id" => "null-error", "group" => $group);
+			case "invalid-fields":
+				$response = array("id" => "invalid-fields", "errors" => $_SESSION['msg'], "group" => $users);
+				unset($_SESSION['msg']);
 			break;
 
 			default:
-			$response = array("id" => "error", "group" => $group);
+				$response = array("id" => "error", "group" => $users);
 			break;
 		}
 		return $response;
+	}
+
+
+	function updateRegistered($id, $username, $password, $email, $bannedtime, $birthdate, $paypal, $avatar, $country) {
+		$shop = unserialize($_SESSION['shop']);
+		$proces = $shop->updateAdminRegistered($id, $username, $password, $email, $bannedtime, $birthdate, $paypal, $avatar, $country);
+		$_SESSION['shop'] = serialize($shop);
+		return $proces;
 	}
 
 	echo json_encode($response);
