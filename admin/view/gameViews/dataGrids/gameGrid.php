@@ -19,7 +19,7 @@
 		$dg->addColumn($column);
 		$column = new Structures_DataGrid_Column('Stock juego', 'Stock', 'Stock', array('class'=>'grid-cel'));
 		$dg->addColumn($column);
-		$column = new Structures_DataGrid_Column('ID de <br> plataforma', 'Platform', 'Platform', array('class'=>'grid-cel'));
+		$column = new Structures_DataGrid_Column('Plataforma', 'Platform', 'Platform', array('class'=>'grid-cel'));
 		$dg->addColumn($column);
 		
 		$column = new Structures_DataGrid_Column("<a href='#'>Opciones</a>", null, null, array('class'=>'grid-cel'), null, 'PrintOption()');

@@ -7,7 +7,11 @@ if (!file_exists($upload_dir)) {
 }
 $uploader = new FileUpload('uploadfile');
 $ext = $uploader->getExtension(); // Get the extension of the uploaded file
-$uploader->newFileName = 'avatar.'.$ext;
+if (isset($_GET['filename'])) {
+	$uploader->newFileName = $_GET['filename'].".".$ext;
+} else {
+	$uploader->newFileName = 'avatar.'.$ext;
+}
 $result = $uploader->handleUpload($upload_dir);
 if (!$result) {
   exit(json_encode(array('success' => false, 'msg' => $uploader->getErrorMsg())));  

@@ -48,7 +48,7 @@ if (!isset($uploadText)) {
     msgBox = document.getElementById('msgBox');
     var uploader = new ss.SimpleUpload({
       button: btn,
-      url: '<?php echo $pathUploaderPHP."file_upload.php?pathUpload=".$pathUpload?>',
+      url: '<?php echo $pathUploaderPHP."file_upload.php?pathUpload=".$pathUpload; if (isset($filenameUpload)) { echo "&filename=".$filenameUpload; } ?>',
       name: 'uploadfile',
       multipart: true,
       hoverClass: 'hover',

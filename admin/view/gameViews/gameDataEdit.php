@@ -66,6 +66,18 @@
 												<?php include("../sections/platformList.php"); ?><span class="server-error"></span>
 											</div>
 											<div class="form-group">
+												<span for="imageGame">Imagen de Juego</span><span for="country-error"></span>
+												 <?php
+			                                        $pathUploaderPHP = "../../../view/sections/uploader/";
+			                                        $uploadText['text'] = "Subir Imagen";
+			                                        $uploadText['textUploadBtn'] = "Elegir imagen";
+			                                        $uploadText['textUploadBtnRetry'] = "Elegir otra imagen";
+			                                        $pathUpload = "../../../view/resources/images/games/";
+			                                        $filenameUpload = $id;
+			                                        include("../../../view/sections/uploader/showUploadView.php");
+			                                     ?>
+											</div>
+											<div class="form-group">
 												<button type="button" name="update-game" id="update-game" class="btn btn-info pull-left">Guardar</button>
 											</div>
 										</div>
