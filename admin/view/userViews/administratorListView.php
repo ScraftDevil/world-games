@@ -44,6 +44,14 @@
 				$message = "<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-ok\"></span> ¡Usuario eliminado satisfactoriamente!</strong></div>";
 				break;
 
+				case "group-error":
+					$message = "<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-ok\"></span> ¡Grupo erroneo!</strong></div>";
+				break;
+
+				case "access":
+					$message = "<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-ok\"></span> ¡Acceso denegado!</strong></div>";
+				break;
+
 				default:
 					$message = null;
 				break;

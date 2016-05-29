@@ -6,8 +6,6 @@
 
 	require_once($_SESSION["BASE_PATH"]."/model/autoload.php");
 
-	
-
 	if (isset($_POST['delete']) AND !empty($_POST['delete'])) {
 		$id = $_POST['delete'];
 		$group = $_SESSION['userDataGrid'];
@@ -33,10 +31,12 @@
 				header("Location:../../view/userViews/".$group."ListView.php");
 			}
 		} else {
-			//header("Location:../../index.php");
+			$_SESSION['msg'] = "group-error";
+			header("Location:../../view/userViews/".$group."ListView.php");
 		}
 	} else {
-		//header("Location:../../index.php");
+		$_SESSION['msg'] = "access";
+		header("Location:../../view/userViews/".$group."ListView.php");
 	}
 
 	function deleteRegistered($id) {

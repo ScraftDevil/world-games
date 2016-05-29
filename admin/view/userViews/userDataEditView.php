@@ -4,6 +4,8 @@
 
 		include("../sections/head.php"); 
 		
+		require_once($_SESSION['BASE_PATH']."/model/autoload.php");
+
 		if ($_SESSION['usertype'] == "Professional") {
 			header("Location:../index.php");
 		}
@@ -13,8 +15,8 @@
 		$label = null;
 		$id = null;
 
-		if(isset($_GET['group'])) {
-			switch ($_GET['group'])  {
+		if(isset($_SESSION['userDataGrid'])) {
+			switch ($_SESSION['userDataGrid'])  {
 				case "administrator": {
 					$label = 'Administrador';
 					$group = 'administrator';
@@ -33,16 +35,18 @@
 			}
 		}
 
-		if (isset($_GET['id'])) {
-			$id = $_GET['id'];
-			if ($id != "" AND $id != null) {
-				$id = intval($id);
-				if (is_nan($id)) {
-					header("Location:userListView.php?group=".$group);
-				}
-			} else {
-				header("Location:userListView.php?group=".$group);
-			}
+		if (isset($_POST['user']) && $_POST['user'] != "") {
+			$id = $_POST['user'];
+			$shop = unserialize($_SESSION['shop']);
+			$info = json_decode($shop->getUserWithGroup($id, $group));
+			$name = $info->username;
+			$email = $info->email;
+			$bannedtime = $info->bannedtime;
+			$birthdate = $info->birthdate;
+			$paypal = $info->paypal;
+			$avatar = $info->avatar;
+			$countryID = $info->countryID;
+			$country = $info->country;
 		} else {
 			header("Location:userListView.php?group=".$group);
 		}
@@ -73,7 +77,7 @@
 												<div class="form-group">
 													<label for="username">Nombre de Usuario</label><label for="user-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
 													<div class="input-group input-radius">
-													<input type="text" class="form-control" name="username" id="username" placeholder="Username" required><span id="user-error" class="server-error"></span>
+													<input type="text" class="form-control" name="username" id="username" placeholder="Username" value="<?php echo $name; ?>"required>
 													</div>
 												</div>
 												<div class="form-group">
@@ -85,36 +89,36 @@
 												<div class="form-group">
 													<label for="email">Email</label><label for="email-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
 													<div class="input-group input-radius">
-														<input type="email" class="form-control" id="email" name="email" placeholder="Email" required><span class="server-error"></span>
+														<input type="email" class="form-control" id="email" name="email" placeholder="Email" value="<?php echo $email ?>" required>
 													</div>
 												</div>
 												<div class="form-group">
 													<label for="bannedtime">Tiempo de Baneo</label><label for="bannedtime-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
 													<div class="input-group input-radius">
-														<input type="text" class="form-control" id="bannedtime" name="bannedtime" placeholder="Tiempo de Baneo" required><span class="server-error"></span>
+														<input type="text" class="form-control" id="bannedtime" name="bannedtime" placeholder="Tiempo de Baneo" value="<?php echo $bannedtime ?>" required>
 													</div>
 												</div>
 												<div class="form-group">
 													<label for="birthdate">Fecha de Nacimiento</label><label for="birthdate-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
 													<div class="input-group input-radius">
-														<input type="text" class="form-control" id="calendar" name="birthdate" placeholder="Birthdate" required><span class="server-error"></span>
+														<input type="text" class="form-control" id="calendar" name="birthdate" placeholder="Birthdate" value="<?php echo $birthdate ?>" required>
 													</div>
 												</div>
 												<div class="form-group">
 													<label for="paypal">Paypal</label><label for="paypal-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
 													<div class="input-group input-radius">
-														<input type="email" class="form-control" id="paypal" name="paypal" placeholder="Paypal Email" required><span class="server-error"></span>
+														<input type="email" class="form-control" id="paypal" name="paypal" placeholder="Paypal Email" value="<?php echo $paypal ?>" required>
 													</div>
 												</div>
 												<div class="form-group">
 													<label for="avatar">Avatar</label><label for="avatar-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
 													<div class="input-group input-radius">
-														<input type="file" class="form-control" id="avatar" name="avatar" placeholder="Avatar" required><span class="server-error"></span>
+														<input type="file" class="form-control" id="avatar" name="avatar" placeholder="Avatar" required>
 													</div>
 												</div>
 												<div class="form-group">
 													<label for="country">País</label><label for="country-error"> (<span class="glyphicon glyphicon-asterisk"></span>)</label>
-													<?php include("../sections/countryList.php"); ?><span class="server-error"></span>
+													<?php include("../sections/countryList.php"); ?>
 												</div>
 												<div class="form-group">
 												<button type="button" name="update-user" id="update-user" class="btn btn-info pull-left">Enviar</button>
@@ -132,11 +136,12 @@
 	</div>
 	<footer>
 		<?php include("../sections/footer.php"); ?>
-		<script type="text/javascript">
-			group = "<?php echo $group ?>";
-			id = "<?php echo $_GET['id']; ?>";
-		</script>
 		<script type="text/javascript" src="../resources/js/usersManage.js"></script>
+		<script type="text/javascript">
+			document.getElementById("country").value = (<?php echo $countryID; ?>);
+			var country2 = (<?php echo $country; ?>);
+			$("#country").html(country2);
+		</script>
 	</footer>
 </body>
 </html>

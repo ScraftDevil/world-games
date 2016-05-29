@@ -13,9 +13,6 @@ function load() {
     break;
 
     case "userDataEditView":
-      var group = deleteGetTrash(group);
-      var data = {"group": group, "id": id};
-      getUser(data);
       $("#update-user").click(function() {
         var username = $("#username").val();
         var password = $("#password").val();
@@ -32,37 +29,6 @@ function load() {
 
   }
 
-}
-
-
-
-
-
-// GET USER DATA FROM ID
-function getUser(data) {
-   var data = JSON.stringify(data);
-   $.ajax({
-      data:  "data=" + data,
-      url:   '../../controller/userControllers/getUserInfoController.php',
-      type:  'POST',
-      dataType: 'json',
-      success: getUserInfo
-  });
-}
-
-function getUserInfo(data) {
-   if(data != null) {
-      $("#user").html(data.username);
-      $("#username").val(data.username);
-      $("#password").val(data.password);
-      $("#email").val(data.email);
-      $("#bannedtime").val(data.bannedtime);
-      $("#calendar").val(data.birthdate);
-      $("#paypal").val(data.paypal);
-      $("avatar").val(data.avatar);
-      document.getElementById("country").value = data.countryID;
-      $("#country").html(data.country + " <span class=\"caret\"></span>");
-   }
 }
 
 // USER UPDATE AJAX FUNCTION

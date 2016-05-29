@@ -17,27 +17,35 @@
 			$msg = $_SESSION['msg'];
 			switch($msg) {
 				case "i-success":
-				$message = "<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-ok\"></span> ¡Usuario creado satisfactoriamente!</strong></div>";
+					$message = "<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-ok\"></span> ¡Usuario creado satisfactoriamente!</strong></div>";
 				break;
 
 				case "u-success":
-				$message = "<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-ok\"></span> ¡Usuario actualizado satisfactoriamente!</strong></div>";
+					$message = "<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-ok\"></span> ¡Usuario actualizado satisfactoriamente!</strong></div>";
 				break;
 				
 				case "username-error":
-				$message = "<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Ese nombre de Usuario ya existe!</strong></div>";
+					$message = "<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Ese nombre de Usuario ya existe!</strong></div>";
 				break;
 
 				case "email-error":
-				$message = "<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Ese email ya esta en uso!</strong></div>";
+					$message = "<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Ese email ya esta en uso!</strong></div>";
 				break;
 
 				case "deleteFail":
-				$message = "<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error al borrar el Usuario!</strong></div>";
+					$message = "<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error al borrar el Usuario!</strong></div>";
 				break;
 
 				case "deleteSuccess":
-				$message = "<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-ok\"></span> ¡Usuario eliminado satisfactoriamente!</strong></div>";
+					$message = "<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-ok\"></span> ¡Usuario eliminado satisfactoriamente!</strong></div>";
+				break;
+
+				case "group-error":
+					$message = "<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-ok\"></span> ¡Grupo erroneo!</strong></div>";
+				break;
+
+				case "access":
+					$message = "<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-ok\"></span> ¡Acceso denegado!</strong></div>";
 				break;
 
 				default:

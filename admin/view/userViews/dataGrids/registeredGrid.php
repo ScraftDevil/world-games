@@ -36,17 +36,10 @@
 		extract($params);
 		$id = $record['ID_Registered'];
 		return "
-		<div class=\"btn-group\">
-		  <button type=\"button\" class=\"btn btn-danger\"><a class=\"drop-grid\" href=\"#\">Opciones</a></button>
-		  <button type=\"button\" class=\"btn btn-danger dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
-		    <span class=\"caret\"></span>
-		    <span class=\"sr-only\"><a class=\"drop-grid\" href=\"#\">Opciones</a></span>
-		  </button>
-		  <ul class=\"dropdown-menu\">
-		  	<li><a href=\"userDataEditView.php?group=registered&id=$id\">Modificar</a></li>
-		    <li><a href=\"#\" onclick=\"deleteUser($id)\">Eliminar</a></li>
-		  </ul>
-		</div>";
+		<form action=\"userDataEditView.php\" method=\"POST\">
+		  	<button class=\"btn btn-danger\" type=\"submit\" name=\"user\" value=\"$id\" title=\"Modificar\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></button>
+		</form>
+		<button class=\"btn btn-danger\" type=\"button\" onclick=\"deleteUser($id)\" title=\"Borrar\"><i class=\"fa fa-trash\" aria-hidden=\"true\"></i></button>";
 	}
 
 ?>

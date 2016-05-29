@@ -184,6 +184,17 @@ class Shop {
         return $proces;
     }
 
+    function getUserWithGroup($id, $group) {
+        $db = unserialize($_SESSION['dbconnection']);
+        $info = null;
+        switch($group) {
+            case "registered":
+                $info = $db->getAllRegisteredInfo($id);
+            break;
+        }
+        return json_encode($info);
+    }
+
   	function addGame($title,$price) {
 
         $games = new Game($title,$price);
