@@ -7,18 +7,20 @@ class Report {
     private $reason;
     private $date;
     private $status;
+    private $contentreport;
     private $userRegistered;
     private $professionalUser;
     private $administratorUser;
     
     //constructor
-    function __construct($reason, $date, $status, $userRegistered, $professionalUser, $administratorUser) {
+    function __construct($reason,$contentreport, $date, $status, $userRegistered) {
         $this->setReason($reason);
+        $this->setContentreport($contentreport);
         $this->setDate($date);
         $this->setState($status);
         $this->setUserRegistered($userRegistered);
-        $this->setProfessionalUser($professionalUser);
-        $this->setAdministratorUser($administratorUser);
+        $this->setProfessionalUser(null);
+        $this->setAdministratorUser(null);
     }
     
     //getters i setters
@@ -36,6 +38,10 @@ class Report {
 
     function getStatus() {
         return $this->status;
+    }
+
+    function getContentreport() {
+        return $this->contentreport;
     }
 
     function getUserRegistered() {
@@ -66,17 +72,21 @@ class Report {
         $this->status = $status;
     }
 
-    function setUserRegistered($userRegistered) {
+    function setContentreport($contentreport) {
+        $this->contentreport = $contentreport;
+    }
+
+     function setUserRegistered($userRegistered) {
         $this->userRegistered = $userRegistered;
     }
 
-    function setProfessionalUser($professionalUser) {
+    /*function setProfessionalUser($professionalUser) {
         $this->professionalUser = $professionalUser;
     }
 
     function setAdministratorUser($administratorUser) {
         $this->administratorUser = $administratorUser;
-    }
+    }*/
 }
 
 ?>

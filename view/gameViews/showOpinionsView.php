@@ -19,7 +19,7 @@ function printMessages($list) {
 			<span class="span2 nomusuari span2grandaria">Escrito por <?php echo $list[$i]['Usuario'] ?> </span>
 			<p>
 				<span class=" glyphicon glyphicon-calendar margin-left "><?php echo $list[$i]['Date'] ?> </span>
-				<span class=" glyphicon glyphicon-exclamation-sign "><a class="linkreport" href="../view/formNew">REPORT</a></span>
+				<span class=" glyphicon glyphicon-exclamation-sign "><a class="linkreport" href="formNewReport.php?reportedName=<?php echo $list[$i]['Usuario'];?>">REPORT</a></span>
 				<span class=" glyphicon glyphicon-exclamation-sign">
 
 					<a class="linkmessage" href="../userViews/sendPrivateMessageView.php?receiverName=<?php echo $list[$i]['Usuario'];?>">ENVIAR MENSAJE</a></span> 
