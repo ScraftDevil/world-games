@@ -6,18 +6,13 @@ if (!isset($pathUpload)) {
   $pathUpload = "uploads";
 }
 if (!isset($uploadText)) {
-  $uploadText['text'] = "Upload Image";
   $uploadText['textUploadBtn'] = "Choose File";
   $uploadText['textUploadBtnRetry'] = "Choose Another File";
 }
 ?>
 <script src="<?php echo $pathUploaderPHP; ?>/js/simpleAjaxUploader.js"></script>
-<div class="container">
-  <?php echo $uploadText['text'];?>
   <div class="row">
-    <div class="col-xs-2">
-      <button id="uploadBtn" class="btn btn-large btn-primary"> <?php echo $uploadText['textUploadBtn'];?></button>
-    </div>
+    <button id="uploadBtn" class="btn btn-large btn-primary"> <?php echo $uploadText['textUploadBtn'];?></button>
     <div class="col-xs-10">
       <div id="progressOuter" class="progress progress-striped active" style="display:none;">
         <div id="progressBar" class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
@@ -31,7 +26,6 @@ if (!isset($uploadText)) {
       </div>
     </div>
   </div>
-</div>
 <script>
   function escapeTags( str ) {
     return String( str )

@@ -90,8 +90,7 @@ include("../sections/head.php");
                                         <div class="col-lg-7">
                                         <?php
                                         $pathUploaderPHP = "../../view/sections/uploader/";
-                                        $uploadText['text'] = "Subir Avatar";
-                                        $uploadText['textUploadBtn'] = "Elegir imagen";
+                                        $uploadText['textUploadBtn'] = "Subir Avatar";
                                         $uploadText['textUploadBtnRetry'] = "Elegir otra imagen";
                                         $pathUpload = "../../resources/images/avatars/".$registeredObject->getId()."/";
                                         include("../../view/sections/uploader/showUploadView.php");
