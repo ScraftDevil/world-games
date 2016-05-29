@@ -93,14 +93,14 @@ function getGame(data) {
       url:   '../../controller/gameControllers/getGameInfoController.php',
       type:  'POST',
       dataType: 'json',
-      success: getUserInfo
+      success: getGameInfo
   });
 }
 
 function getGameInfo(data) {
    if(data != null) {
 
-      $("#title").html(data.title);
+      $("#title").val(data.title);
       $("#price").val(data.price);
       $("#platform").html(data.country + " <span class=\"caret\"></span>");
       $("#genres").val(data.genres);

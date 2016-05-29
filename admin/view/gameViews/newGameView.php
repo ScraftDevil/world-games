@@ -61,27 +61,7 @@
 	</div>
 	<footer>
 		<?php include("../sections/footer.php"); ?>
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$("#forminsert ").validate({
-					rules: {
-						title: {
-							required: true
-							/*minlength:10
-							maxlength: 45*/
-
-						},
-					},
-					messages: {
-						title: {
-							required:"El campo username esta vacio"
-							//minlength: jQuery.validator.format("No puedes poner menos de  {0} caracteres"),
-							//maxlength: jQuery.validator.format("No puedes poner mas de  {0} caracteres")
-						},
-					}
-				});
-			});
-		</script>
+		
 		<script type="text/javascript" src="../resources/js/gamesManage.js"></script>
 	</footer>
 </body>

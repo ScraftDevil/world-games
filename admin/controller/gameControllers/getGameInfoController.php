@@ -12,7 +12,7 @@
 
 	$response = null;
 
-	$registered = null;
+	$game = null;
 
 	$group = $data->group;
 	$id = $data->id;
