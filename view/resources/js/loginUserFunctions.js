@@ -42,7 +42,7 @@ $(document).ready(function () {
                             $("#msg").slideDown();
                             var delay = 1000;
                             setTimeout(function () {
-                                window.location = "../index.php";
+                                window.location = "registeredProfileView.php";
                             }, delay);
                         }
                 }
@@ -85,7 +85,6 @@ $("#login-form").validate({
     }
 });
 
-
 $("#register-form").validate({
     oonkeyup: true,
     rules: {
@@ -112,7 +111,7 @@ $("#register-form").validate({
         },
         calendar: {
             required: true,
-            date:true
+            date: true
         },
         country: {
             required: true
@@ -142,7 +141,7 @@ $("#register-form").validate({
         },
         calendar: {
             required: "La fecha de nacimiento esta vacio",
-            date:"La fecha es invalida"
+            date: "No tiene un formato adequado"
         },
         country: {
             required: "El campo pais esta vacio"
@@ -166,12 +165,29 @@ $("#register-form").validate({
 function registerUser(registered) {
    var registered = JSON.stringify(registered);
    $.ajax({
-    data: "registered=" + registered,
-    url: '../../controller/frontAuthControllers/insertUserController.php',   
-    type: 'POST',
-    dataType: 'json',
-    success: function () {
-        
-    }
+        data: "registered=" + registered,
+        url: '../../controller/frontAuthControllers/insertUserController.php',   
+        type: 'POST',
+        dataType: 'json',
+        success: function (data) {
+            if (data.STATUS == "username") {
+                $("#msgRegister").attr("class", "alert alert-danger");
+                $("#msgRegister").html('<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span class="sr-only">Error:</span>&nbsp;Este nombre de usuario ya existe. Por favor, pruebe con otro.');
+                $("#msgRegister").slideDown();
+                console.log("userMSG");
+            } else if (data.STATUS == "email") {
+                $("#msgRegister").attr("class", "alert alert-danger");
+                $("#msgRegister").html('<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span class="sr-only">Error:</span>&nbsp;Este correo ya existe, pruebe con otro.');
+                $("#msgRegister").slideDown();
+            } else if (data.STATUS == "success") {
+                $("#msgRegister").attr("class", "alert alert-success");
+                $("#msgRegister").html('<span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span><span class="sr-only">Registro correcto:</span>&nbsp;Te has registrado con exito. Seras redirigido a la pagina de login en menos de 1 segundo.');
+                $("#msgRegister").slideDown();
+                var delay = 1000;
+                setTimeout(function () {
+                    window.location = "login.php";
+                }, delay);
+            }
+        }
     });
 }

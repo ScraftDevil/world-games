@@ -102,8 +102,8 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <div id="msgRegister" role="alert"></div>
                                                     </form>
-
                                                 </div>
                                             </div>
                                         </div>

@@ -343,7 +343,7 @@ class registeredDAO {
 	}
 
 	public function insertRegistered($registered) {
-		$proces = "";
+		$status = "";
 		try {
 			$db = unserialize($_SESSION['dbconnection']);
 			// USERNAME VALIDATION IN TABLES
@@ -354,7 +354,7 @@ class registeredDAO {
 					$query = ("INSERT INTO registered (ID_Registered, Username, Password, Email, BannedTime, BirthDate, PaypalAccount, AvatarURL, Shop_ID, Country_ID) VALUES ('', :username, :password, :email, :bannedtime, :birthdate, :paypal, :avatar, :shopid, :country)");
 					$stmt = $db->getLink()->prepare($query);
 				    $stmt->bindParam(':username', $registered->getUsername());
-				    $stmt->bindParam(':password', $registered->getPassword());
+				    $stmt->bindParam(':password', md5($registered->getPassword()));
 				    $stmt->bindParam(':email', $registered->getEmail());
 				    $stmt->bindParam(':bannedtime', $registered->getBannedTime());
 				    $stmt->bindParam(':birthdate', $registered->getBirthDate());
@@ -363,19 +363,19 @@ class registeredDAO {
 				    $stmt->bindParam(':shopid', $this->getShopID());
 				    $stmt->bindParam(':country', $registered->getCountry());
 				    $stmt->execute();
-				    $proces = "success";
+        			$status["STATUS"] = "success";
 				} else {
-					$proces = "email";
+					$status["STATUS"] ="email";
 				}
 			} else {
-				$proces = "username";
+				$status["STATUS"] = "username";
 			}
 		} catch(PDOException $ex) {
 			echo "An Error ocurred!";
 			some_loggging_function($ex->getMessage());
 			die();
 		} finally {
-			return $proces;
+			return $status;
 		}
 	}
 
