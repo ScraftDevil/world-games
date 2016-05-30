@@ -21,6 +21,7 @@ function printGame($game) {
       <div class="imgDetail col-lg-5 col-md-5 col-sm-5 col-xs-12">
       <img class="img-responsive imageDetail" src="<?php echo $imgURL;?>">
        <span id="rating" ></span><p id="msgRate"></p>
+        
      </div>
      <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 " >
        <div class="col-md-12 pull-right nopadding">
@@ -92,7 +93,12 @@ function printGame($game) {
          </div>
        </div>
      </form>
+ <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " >
+ </div>
+
+
    </div>
+
  </div>
 </div>
 <div class="clear"></div>

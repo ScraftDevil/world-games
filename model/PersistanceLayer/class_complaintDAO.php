@@ -2,7 +2,7 @@
 
 require_once($_SESSION['BASE_PATH']."/model/autoload.php");
 
-class complaintDAO {
+class ComplaintDAO {
 
 	public function getAllComplaints($order) {
 
@@ -67,6 +67,57 @@ class complaintDAO {
 			return $proces;		
 		}
 	}
+
+	public function sendComplain($myComplain) {
+
+		
+		$idReport = "";
+		$proces = "";
+
+		try {
+$report = utf8_decode($myComplain->getContentcomplain());
+			/*$query = ('SELECT ID_Registered FROM Registered WHERE Username = "'.$reportuserName.'";');
+			
+			$resultat = $db->getLink()->prepare($query);
+        	$resultat->execute();
+        	$result = $resultat->fetch(PDO::FETCH_ASSOC);*/
+
+        	//if($result) {
+
+        		//id of receiver user
+        		//$idReport = $result['ID_Registered'];
+$db = unserialize($_SESSION['dbconnection']);
+        		$query = ("INSERT INTO complaint values('','".$myComplain->getReason()."', '".$myComplain->getContentcomplain()."',sysdate(),'No Leído')");
+        		
+        		$resultat = $db->getLink()->prepare($query);
+        		$result = $resultat->execute();
+
+        		if($result) {
+
+        			//id of new message
+        			$newIdComplain = $db->getLink()->lastInsertId();
+
+        			$query = ("INSERT INTO game_has_complaint values('2', 
+        				'".$newIdComplain."', '2')");
+        			$resultat = $db->getLink()->prepare($query);
+        			$result = $resultat->execute();
+
+        			$proces = "success";
+        		}     		
+
+        	/*} else {
+        		$proces = "username";
+        	}*/
+			
+		} catch (PDOException $e) {
+			echo "An Error ocurred!";
+			some_loggging_function($ex->getMessage());
+		} finally {
+			return $proces;
+			$_SESSION['dbconnection'] = serialize($db);			
+		}
+	}
+
 
 }
 

@@ -329,3 +329,14 @@ width: 0;
 .buyGame {
 	float: right;
 }
+
+.linkcomplaint{
+	color: red;
+	padding-bottom: 20px;
+}
+
+.linkcomplaint:hover{
+	color: red;
+	
+	padding-bottom: 20px;
+}

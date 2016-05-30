@@ -2,9 +2,10 @@
 /**
  * Class for Complaint
  */
-class Complain {
+class Complaint {
     private $id;
     private $reason;
+    private $contentcomplain;
     private $date;
     private $status;
     private $userRegistered;
@@ -21,13 +22,14 @@ class Complain {
      * @param game 
      * @return none
      */
-    function __construct($reason, $date, $status, $userRegistered, $professionalUser, $game) {
+    function __construct($reason,$contentcomplain, $date, $status) {
         $this->setReason($reason);
+         $this->setContentcomplain($contentcomplain);
         $this->setDate($date);
-        $this->setState($status);
-        $this->setUserRegistered($userRegistered);
-        $this->setProfessionalUser($professionalUser);
-        $this->setGame($game);
+        $this->setStatus($status);
+       // $this->setUserRegistered($userRegistered);
+       // $this->setProfessionalUser($professionalUser);
+        //$this->setGame($game);
     }
 
     function getId() {
@@ -38,6 +40,10 @@ class Complain {
         return $this->reason;
     }
 
+     function getContentcomplain() {
+        return $this->contentcomplain;
+    }
+
     function getDate() {
         return $this->date;
     }
@@ -46,17 +52,17 @@ class Complain {
         return $this->status;
     }
 
-    function getUserRegistered() {
+    /* function getUserRegistered() {
         return $this->userRegistered;
     }
 
-    function getProfessionalUser() {
+   function getProfessionalUser() {
         return $this->professionalUser;
     }
 
     function getGame() {
         return $this->game;
-    }
+    }*/
 
     function setId($id) {
         $this->id = $id;
@@ -64,6 +70,10 @@ class Complain {
 
     function setReason($reason) {
         $this->reason = $reason;
+    }
+
+      function setContentcomplain($contentcomplain) {
+        $this->contentcomplain = $contentcomplain;
     }
 
     function setDate($date) {
@@ -74,7 +84,7 @@ class Complain {
         $this->status = $status;
     }
 
-    function setUserRegistered($userRegistered) {
+    /*function setUserRegistered($userRegistered) {
         $this->userRegistered = $userRegistered;
     }
 
@@ -84,7 +94,7 @@ class Complain {
 
     function setGame($game) {
         $this->game = $game;
-    }    
+    } */   
 }
 
 ?>

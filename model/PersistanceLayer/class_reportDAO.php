@@ -56,32 +56,7 @@ class reportDAO {
 
 	}
 
-	public function getProfessionalReports($id, $order) {
-
-		try {
-			$orderSQL = "";
-			if (!empty($order)) {
-				$orderSQL = "ORDER BY 3, 2, ".$order;
-			} else {
-				$orderSQL = "ORDER BY 3, 2";
-			}
-
-			$query = ("SELECT ID_Report, Status, Date, Reason, Text, (SELECT Username FROM registered WHERE ID_Registered=Registered_ID) AS UserReported, (SELECT r.Username FROM registered r INNER JOIN professional_has_report ar ON r.ID_Registered=ar.Registered_ID) AS UserReclaim FROM report WHERE ID_Report IN (SELECT Report_ID FROM professional_has_report WHERE Professional_ID='$id') $orderSQL");
-			die($query);
-			$db = unserialize($_SESSION['dbconnection']);
-			$resultat = $db->getLink()->prepare($query);
-			$resultat->execute();
-
-			$result = $resultat->FetchAll(); 			
-
-		} catch(PDOException $ex) {
-			echo "An Error ocurred!";
-			some_loggging_function($ex->getMessage());
-		} finally {
-			return $result;		
-		}
-
-	}
+	
 
 	public function getAdminReport($id_admin, $id_report) {
 

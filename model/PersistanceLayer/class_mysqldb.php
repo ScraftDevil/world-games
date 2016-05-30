@@ -339,6 +339,12 @@ class mysqldb {
 		$report = new ReportDAO();
 		return $report->sendReport($myReport, $reportuserName);		
 	}
+public function sendComplain($myComplain) {
+		$complain = new ComplaintDAO();
+		return $complain->sendComplain($myComplain);		
+	}
+
+
 
 	public function getAdministratorReports($id, $order) {
 		$reportDAO = new reportDAO();
