@@ -105,16 +105,6 @@ include("../sections/head.php");
 
                                 </form>
 
-                                <!-- Compras del usuario -->                               
-                                <div id="shoppings" class="desplegableProfile col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                    <span class="glyphicon glyphicon-shopping-cart"></span>
-                                    Mis Compras
-                                </div>
-                                <div class="col-lg-12" id="userShoppings">
-                                    Lista de compras
-                                </div>
-
-
                                 <!-- Mis Mensajes -->
                                 <div id="messages" class="desplegableProfile col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                     <span class="glyphicon glyphicon-envelope"></span>

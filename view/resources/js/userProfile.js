@@ -6,10 +6,6 @@ function load() {
         $('#profileForm').toggle(500);
     });
 
-    $('#shoppings').click(function () {
-        $('#userShoppings').toggle(500);
-    });
-
     $('#messages').click(function () {
         $('#messagesList').toggle(500);
     });
