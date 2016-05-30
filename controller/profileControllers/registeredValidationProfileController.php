@@ -34,8 +34,6 @@
 		$errors++;
 	}
 
-	//Image validation (validación en desarrollo)
-
 	return $errors;
 
 	}

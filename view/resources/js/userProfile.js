@@ -20,7 +20,7 @@ function load() {
 
 
     $('#update-registered').click(function() {
-        if ($('#profileForm').valid()) {
+        if ($('#profileForm').valid() == true) {
             var email = $("#email").val();
             var birthdate = $("#calendar").val();
             var paypal = $("#paypal").val();
@@ -60,10 +60,12 @@ function load() {
 
 /* Evento del botón de envío de mensaje privado */
 $('#sendPrivateMessage').click(function() {
-    var receiverName = $("#receiverName").val();
-    var message = $(".contentMessage").val();
-    var infoMessage = {"receiverName":receiverName, "message":message};
-    sendMessage(infoMessage);
+    if ($('#messageForm').valid() == true) {
+        var receiverName = $("#receiverName").val();
+        var message = $(".contentMessage").val();
+        var infoMessage = {"receiverName":receiverName, "message":message};
+        sendMessage(infoMessage);
+    }
 });
 
 }
@@ -141,10 +143,12 @@ function getSendMessageResponse(data) {
     } else {
         if (data == "username") {
             $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en el envío del mensaje! El nombre de usuario es incorrecto o no se encuentra en nuestra base de datos</strong></div>");
-        }
-        else {
-            $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en el envío del mensaje! Por favor revisa que los campos no esten vacíos y prueba de nuevo</strong></div>");
-        }
+        } else
+            if (data == "overlength") {
+                $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en el envío del mensaje! El mensaje no puede superar los 100 carácteres!</strong></div>");
+            } else {
+                $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en el envío del mensaje! Por favor revisa que los campos no esten vacíos y prueba de nuevo</strong></div>");
+            }
     }
 }
 
@@ -186,7 +190,7 @@ $.validator.addMethod(
     "Fecha con formato incorrecto"
 );
 
-$("#profileForm").validate({ 
+$("#profileForm").validate({
 oonkeyup: true, 
     rules: {
         email: {
@@ -225,5 +229,29 @@ oonkeyup: true,
         country: {
             required: "El campo pais esta vacio"
         }        
+    }
+});
+
+$("#messageForm").validate({
+oonkeyup: true,
+    rules: {
+        receiverName: {
+            required: true
+        },
+        contentMessage: {
+            required: true,
+            minlength: 10,
+            maxlength: 100
+        }
+    },
+    messages: {
+        receiverName: {
+            required: "El nombre del usuario está vacío!"
+        },
+        contentMessage: {
+            required: "El contenido del mensaje está vacío!",
+            minlength: "El mensaje debe contener almenos 10 carácteres!",
+            maxlength: "El mensaje no puede contener más de 100 carácteres!"
+        }
     }
 });

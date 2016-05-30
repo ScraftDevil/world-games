@@ -2,6 +2,7 @@
 
 require_once("../../model/autoload.php");
 include("../profileControllers/sendMessageValidationController.php");
+include($_SESSION["BASE_PATH"]."/utilities/validateLength.php");
 
 $myId = $_SESSION['user_id'];
 
@@ -15,15 +16,21 @@ $response = null;
 
 $errors = sendMessageValidation($receiverName, $message);
 
-	if ($errors == 0) {
-		$shopDb = unserialize($_SESSION['dbconnection']);
+	if (validateLength($message, 100)) {
 
-		$myMessage = new Message($message, "", $myId, "");
-		$shopDb = unserialize($_SESSION['dbconnection']);
-		$response = $shopDb->sendPrivateMessage($myMessage, $receiverName);
-	}
-	else {
-		$response = "error";		
+		if ($errors == 0) {
+			$shopDb = unserialize($_SESSION['dbconnection']);
+
+			$myMessage = new Message($message, "", $myId, "");
+			$shopDb = unserialize($_SESSION['dbconnection']);
+			$response = $shopDb->sendPrivateMessage($myMessage, $receiverName);
+		}
+		else {
+			$response = "error";		
+		}
+		
+	} else {
+		$response = "overlength";
 	}
 
 	echo json_encode($response);
