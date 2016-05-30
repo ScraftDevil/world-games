@@ -23,18 +23,9 @@
 	function PrintOption($params){
 		extract($params);
 		$id = $record['ID_Genre'];
-		return "
-		<div class=\"btn-group\">
-		  <button type=\"button\" class=\"btn btn-danger selectGenre\">Selecciona</button>
-		  <button type=\"button\" class=\"btn btn-danger dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
-		    <span class=\"caret\"></span>
-		    <span class=\"sr-only\">Selecciona una opcion</span>
-		  </button>
-		  <ul class=\"dropdown-menu\">
-		    <li><a class=\"drop-grid\" href=\"genreDataEdit.php?id=$id\">Editar</a></span></li>
-		     <li><a href=\"#\" onclick=\"deleteGenre($id)\">Eliminar</a></li>
-		  </ul>
-		</div>";
+		return "<form action=\"genreDataEditView.php\" method=\"POST\">
+		  	<button class=\"btn btn-danger\" type=\"submit\" name=\"genre\" value=\"$id\" title=\"Modificar\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></button><button class=\"btn btn-danger\" type=\"button\" onclick=\"deleteGenre($id)\" title=\"Borrar\"><i class=\"fa fa-trash\" aria-hidden=\"true\"></i></button>
+		</form>";
 	}
 
 	function PrintUTF8($params){

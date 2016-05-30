@@ -10,6 +10,10 @@
 				case "success":
 				$message = "<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-ok\"></span> ¡Genero creado satisfactoriamente!</strong></div>";
 				break;
+
+				case "u-success":
+				$message = "<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-ok\"></span> ¡Genero actualizado satisfactoriamente!</strong></div>";
+				break;
 				
 				case "errusername":
 				$message = "<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Ese Genero ya existe!</strong></div>";

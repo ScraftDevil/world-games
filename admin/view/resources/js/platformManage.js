@@ -9,12 +9,17 @@ function deletePlatform(value) {
 }
 
 $("#insert-platform").click(function() {
-      var name = $("#name").val();
-     
-     
-     var platform = {"name": name};
-      sendPlatform(platform);
-  });
+    var name = $("#name").val();
+    var platform = {"name": name};
+    sendPlatform(platform);
+});
+
+$("#update-platform").click(function() {
+    var name = $("#name").val();
+    var id = document.getElementById("update-platform").value;
+    var platform = {"name": name, "id": id};
+    updatePlatform(platform);
+});
 
 function sendPlatform(platform) {
     var platform = JSON.stringify(platform);
@@ -27,6 +32,17 @@ function sendPlatform(platform) {
     });
 }
 
+function updatePlatform(platform) {
+    var platform = JSON.stringify(platform);
+    $.ajax({
+        data:  "platform=" + platform,
+        url:   '../../controller/platformControllers/updatePlatformController.php',
+        type:  'POST',
+        dataType: 'json',
+        success: getUpdatePlatformProcess
+    });
+}
+
 function getInsertPlatformProcess(data) {
     switch(data.id) {
         case "error":
@@ -36,6 +52,23 @@ function getInsertPlatformProcess(data) {
         case "success":
             var delay = 0;
             setTimeout(function(){ window.location = "../../view/platformViews/platformListView.php?msg=" + data.id; }, delay);
+        break;
+
+        default:
+            $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error inesperado!</strong></div>");
+        break;
+    }
+}
+
+function getUpdatePlatformProcess(data) {
+    switch(data.id) {
+        case "error":
+            $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en la validación de datos de la plataforma!</strong></div>");
+        break;
+
+        case "success":
+            var delay = 0;
+            setTimeout(function(){ window.location = "../../view/platformViews/platformListView.php?msg=u-" + data.id; }, delay);
         break;
 
         default:

@@ -269,7 +269,7 @@ class Shop {
         return $games;
     }
 
-  function getGame($idgame) {
+    function getGame($idgame) {
         $gamefound = null;
         $games = $this->getGames();
         foreach ($games as $game) {
@@ -278,6 +278,30 @@ class Shop {
             }
         }
         return $gamefound;
+    }
+
+    function getPlatform($id) {
+        $db = unserialize($_SESSION['dbconnection']);
+        $name = $db->getPlatformById($id);
+        return $name[0][0];
+    }
+
+    function updatePlatform($name, $id) {
+        $db = unserialize($_SESSION['dbconnection']);
+        $proces = $db->updatePlatform($name, $id);
+        return $proces;
+    }
+
+    function getGenre($id) {
+        $db = unserialize($_SESSION['dbconnection']);
+        $name = $db->getGenreById($id);
+        return $name[0][0];
+    }
+
+    function updateGenre($name, $id) {
+        $db = unserialize($_SESSION['dbconnection']);
+        $proces = $db->updateGenre($name, $id);
+        return $proces;
     }
 
     function filterGames($filter, $type) {

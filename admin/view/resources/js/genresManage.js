@@ -9,12 +9,17 @@ function deleteGenre(value) {
 }
 
 $("#insert-genre").click(function() {
-      var name = $("#name").val();
-     
-     
-     var genre = {"name": name};
-      sendGenre(genre);
-  });
+    var name = $("#name").val();
+    var genre = {"name": name};
+    sendGenre(genre);
+});
+
+$("#update-genre").click(function() {
+    var name = $("#name").val();
+    var id = document.getElementById("update-genre").value;
+    var genre = {"name": name, "id": id};
+    updateGenre(genre);
+});
 
 function sendGenre(genre) {
     var genre = JSON.stringify(genre);
@@ -27,6 +32,17 @@ function sendGenre(genre) {
     });
 }
 
+function updateGenre(genre) {
+    var genre = JSON.stringify(genre);
+    $.ajax({
+        data:  "genre=" + genre,
+        url:   '../../controller/genreControllers/updateGenreController.php',
+        type:  'POST',
+        dataType: 'json',
+        success: getUpdateGenreProcess
+    });
+}
+
 function getInsertGenreProcess(data) {
     switch(data.id) {
         case "error":
@@ -36,6 +52,23 @@ function getInsertGenreProcess(data) {
         case "success":
             var delay = 0;
             setTimeout(function(){ window.location = "../../view/genreViews/genreListView.php?msg=" + data.id; }, delay);
+        break;
+
+        default:
+            $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error inesperado!</strong></div>");
+        break;
+    }
+}
+
+function getUpdateGenreProcess(data) {
+    switch(data.id) {
+        case "error":
+            $("#general-error").html("<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Error en la validación de datos del Genero!</strong></div>");
+        break;
+
+        case "success":
+            var delay = 0;
+            setTimeout(function(){ window.location = "../../view/genreViews/genreListView.php?msg=u-" + data.id; }, delay);
         break;
 
         default:

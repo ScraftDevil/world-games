@@ -24,17 +24,9 @@
 		extract($params);
 		$id = $record['ID_Platform'];
 		return "
-		<div class=\"btn-group\">
-		  <button type=\"button\" class=\"btn btn-danger selectPlatform\">Selecciona</button>
-		  <button type=\"button\" class=\"btn btn-danger dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
-		    <span class=\"caret\"></span>
-		    <span class=\"sr-only\">Selecciona una opcion</span>
-		  </button>
-		  <ul class=\"dropdown-menu\">
-		    <li><a class=\"drop-grid\" href=\"platformDataEdit.php?id=$id\">Editar</a></span></li>
-		     <li><a href=\"#\" onclick=\"deletePlatform($id)\">Eliminar</a></li>
-		  </ul>
-		</div>";
+		<form action=\"editPlatformView.php\" method=\"POST\">
+		  	<button class=\"btn btn-danger\" type=\"submit\" name=\"platform\" value=\"$id\" title=\"Modificar\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></button><button class=\"btn btn-danger\" type=\"button\" onclick=\"deletePlatform($id)\" title=\"Borrar\"><i class=\"fa fa-trash\" aria-hidden=\"true\"></i></button>
+		</form>";
 	}
 
 	function PrintUTF8($params){

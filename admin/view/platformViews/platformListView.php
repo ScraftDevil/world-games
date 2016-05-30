@@ -10,6 +10,10 @@
 				case "success":
 				$message = "<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-ok\"></span> ¡Plataforma creada satisfactoriamente!</strong></div>";
 				break;
+
+				case "u-success":
+				$message = "<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-ok\"></span> ¡Plataforma actualizada satisfactoriamente!</strong></div>";
+				break;
 				
 				case "errusername":
 				$message = "<div class=\"alert error\"><strong><span class=\"glyphicon glyphicon-remove\"></span> ¡Esa Plataforma ya existe!</strong></div>";
@@ -21,10 +25,6 @@
 
 				case "deleteSuccess":
 				$message = "<div class=\"alert success\"><strong><span class=\"glyphicon glyphicon-ok\"></span> ¡Plataforma eliminada satisfactoriamente!</strong></div>";
-				break;
-
-				case "gameNotSelected":
-				$message = "<div class=\"alert alert-warning\"><strong>Aviso:</strong> No has seleccionado ningúna plataforma para gestionar el juego.</div>";
 				break;
 
 				

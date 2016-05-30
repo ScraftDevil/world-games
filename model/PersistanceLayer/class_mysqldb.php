@@ -145,6 +145,36 @@ class mysqldb {
 		return $result;
 	}
 
+	public function getPlatformById($id) {
+		$sql = "SELECT Name FROM platform Where ID_Platform='$id'";
+		$stmt = $this->getLink()->prepare($sql); 
+		$stmt->execute();
+		$result = $stmt->FetchAll();
+		return $result;
+	}
+
+	public function updatePlatform($name, $id) {
+		$sql = "UPDATE platform SET Name:'$name' Where ID_Platform='$id'";
+		$stmt = $this->getLink()->prepare($sql); 
+		$stmt->execute();
+		return 1;
+	}
+
+	public function getGenreById($id) {
+		$sql = "SELECT Name FROM genre Where ID_Genre='$id'";
+		$stmt = $this->getLink()->prepare($sql); 
+		$stmt->execute();
+		$result = $stmt->FetchAll();
+		return $result;
+	}
+
+	public function updateGenre($name, $id) {
+		$sql = "UPDATE genre SET Name:'$name' Where ID_Genre='$id'";
+		$stmt = $this->getLink()->prepare($sql); 
+		$stmt->execute();
+		return 1;
+	}
+
 	public function getGenre() {
 		$sql = "SELECT ID_Genre, Name FROM genre";
 		$stmt = $this->getLink()->prepare($sql); 
