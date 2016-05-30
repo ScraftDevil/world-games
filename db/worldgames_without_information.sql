@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-05-2016 a las 14:05:27
--- Versión del servidor: 10.1.10-MariaDB
--- Versión de PHP: 5.6.19
+-- Tiempo de generación: 30-05-2016 a las 11:58:54
+-- Versión del servidor: 10.1.13-MariaDB
+-- Versión de PHP: 5.5.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -36,13 +36,6 @@ CREATE TABLE `administrator` (
   `Shop_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `administrator`
---
-
-INSERT INTO `administrator` (`ID_Administrator`, `Username`, `Password`, `Email`, `BannedTime`, `BirthDate`, `Shop_id`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin@admin.com', NULL, '2016-05-04', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -54,13 +47,6 @@ CREATE TABLE `administrator_has_report` (
   `Administrator_ID` int(11) NOT NULL,
   `Registered_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `administrator_has_report`
---
-
-INSERT INTO `administrator_has_report` (`Report_ID`, `Administrator_ID`, `Registered_ID`) VALUES
-(2, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -74,14 +60,6 @@ CREATE TABLE `comment` (
   `Text` text,
   `Date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `comment`
---
-
-INSERT INTO `comment` (`ID_Comment`, `Game_ID`, `Text`, `Date`) VALUES
-(1, 2, 'test', '2016-05-26 18:55:46'),
-(2, 2, 'test2', '2016-05-26 18:58:53');
 
 -- --------------------------------------------------------
 
@@ -97,13 +75,6 @@ CREATE TABLE `complaint` (
   `Status` char(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `complaint`
---
-
-INSERT INTO `complaint` (`ID_Complaint`, `Reason`, `Text`, `Date`, `Status`) VALUES
-(1, 'me han timado', 'me han timado al comprar el juego, no es lo que esperava', '2016-05-22 00:00:00', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -114,14 +85,6 @@ CREATE TABLE `country` (
   `ID_Country` int(11) NOT NULL,
   `Name` char(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `country`
---
-
-INSERT INTO `country` (`ID_Country`, `Name`) VALUES
-(1, 'España'),
-(2, 'Argentina');
 
 -- --------------------------------------------------------
 
@@ -138,17 +101,6 @@ CREATE TABLE `game` (
   `Offer_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `game`
---
-
-INSERT INTO `game` (`ID_Game`, `Title`, `Price`, `Stock`, `Platform_ID`, `Offer_ID`) VALUES
-(1, 'Grand Theft Auto V', 60, 1, 2, 1),
-(2, 'Rocket League', 20, 1, 2, 0),
-(3, 'Call of Duty: Black Ops', 8, 10, 2, 0),
-(4, 'Star Wars Battlefront', 24.19, 15, 1, 0),
-(5, 'FIFA 16', 32.88, 20, 1, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -161,13 +113,6 @@ CREATE TABLE `game_has_complaint` (
   `Registered_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `game_has_complaint`
---
-
-INSERT INTO `game_has_complaint` (`Game_ID`, `Complaint_ID`, `Registered_ID`) VALUES
-(1, 1, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -178,18 +123,6 @@ CREATE TABLE `game_has_genre` (
   `Game_ID` int(11) NOT NULL,
   `Genre_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `game_has_genre`
---
-
-INSERT INTO `game_has_genre` (`Game_ID`, `Genre_ID`) VALUES
-(1, 1),
-(1, 2),
-(2, 3),
-(3, 5),
-(4, 2),
-(5, 6);
 
 -- --------------------------------------------------------
 
@@ -215,14 +148,6 @@ CREATE TABLE `game_has_valoration` (
   `Registered_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `game_has_valoration`
---
-
-INSERT INTO `game_has_valoration` (`Game_ID`, `Valoration_ID`, `Registered_ID`) VALUES
-(1, 3, 1),
-(2, 4, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -233,18 +158,6 @@ CREATE TABLE `genre` (
   `ID_Genre` int(11) NOT NULL,
   `Name` char(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `genre`
---
-
-INSERT INTO `genre` (`ID_Genre`, `Name`) VALUES
-(1, 'Aventura'),
-(2, 'Accion'),
-(3, 'Arcade'),
-(4, 'RPG'),
-(5, 'Shooter'),
-(6, 'Deportes');
 
 -- --------------------------------------------------------
 
@@ -269,13 +182,6 @@ CREATE TABLE `offer` (
   `Discount` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `offer`
---
-
-INSERT INTO `offer` (`ID_Offer`, `Discount`) VALUES
-(1, 60);
-
 -- --------------------------------------------------------
 
 --
@@ -286,16 +192,6 @@ CREATE TABLE `platform` (
   `ID_Platform` int(11) NOT NULL,
   `Name` char(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `platform`
---
-
-INSERT INTO `platform` (`ID_Platform`, `Name`) VALUES
-(1, 'Origin'),
-(2, 'Steam'),
-(3, 'Xbox'),
-(4, 'PSN');
 
 -- --------------------------------------------------------
 
@@ -313,13 +209,6 @@ CREATE TABLE `professional` (
   `Telephone` varchar(45) DEFAULT NULL,
   `Shop_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `professional`
---
-
-INSERT INTO `professional` (`ID_Professional`, `Username`, `Password`, `Email`, `BannedTime`, `BirthDate`, `Telephone`, `Shop_ID`) VALUES
-(1, 'professional', '27ade1b64f9515dbb776cc3cc5bc3377', 'professional@professional.com', NULL, '1985-01-01', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -352,15 +241,6 @@ CREATE TABLE `registered` (
   `Country_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `registered`
---
-
-INSERT INTO `registered` (`ID_Registered`, `Username`, `Password`, `Email`, `BannedTime`, `BirthDate`, `PaypalAccount`, `AvatarURL`, `Shop_ID`, `Country_ID`) VALUES
-(1, 'registered', 'a2b8ed9c305b8ea86116b603cca78a97', 'registered@registered.com', NULL, '1985-01-01', 'avatar.png', NULL, 1, 1),
-(2, 'registered2', '80ec84b21baf9b0feb14ee4ec2042faf', 'registered2@registered2.com', 0, '1995-07-10', '', NULL, 1, 1),
-(3, 'registered3', '6110e563e57d3a395c2f301c1c681b72', 'registered3@registered3.com', NULL, '2016-05-04', NULL, NULL, 1, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -372,14 +252,6 @@ CREATE TABLE `registered_has_comment` (
   `Comment_ID` int(11) NOT NULL,
   `Game_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `registered_has_comment`
---
-
-INSERT INTO `registered_has_comment` (`Registered_ID`, `Comment_ID`, `Game_ID`) VALUES
-(1, 1, 2),
-(1, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -419,13 +291,6 @@ CREATE TABLE `report` (
   `Registered_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `report`
---
-
-INSERT INTO `report` (`ID_Report`, `Status`, `Date`, `Reason`, `Text`, `Registered_ID`) VALUES
-(2, 'Leido', '2016-05-09 00:00:00', 'spam!', 'spam!spam!spam!spam!spam!', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -436,13 +301,6 @@ CREATE TABLE `shop` (
   `ID_Shop` int(11) NOT NULL,
   `Name` char(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `shop`
---
-
-INSERT INTO `shop` (`ID_Shop`, `Name`) VALUES
-(1, 'WorldGames');
 
 -- --------------------------------------------------------
 
@@ -467,14 +325,6 @@ CREATE TABLE `valoration` (
   `ID_Valoration` int(11) NOT NULL,
   `Valoration` char(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `valoration`
---
-
-INSERT INTO `valoration` (`ID_Valoration`, `Valoration`) VALUES
-(3, '3'),
-(4, '5');
 
 --
 -- Índices para tablas volcadas
