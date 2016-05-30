@@ -135,13 +135,13 @@ include("../sections/head.php");
                                     </div>
                                     <div class="pull-left col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                         <a href="showregisteredReportsView.php" id="showReports" class="button-profile btn form-button" role="button">
-                                            <i class="fa fa-inbox" aria-hidden="true"></i>
+                                            <i class="fa fa-flag" aria-hidden="true"></i>
                                             Mis quejas
                                         </a>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                         <a href="showregisteredComplaintsView.php" id="showComplaints" class="button-profile btn form-button pull-right" role="button">
-                                            <i class="fa fa-inbox" aria-hidden="true"></i>
+                                            <i class="fa fa-bug" aria-hidden="true"></i>
                                             Mis Denúncias
                                         </a>
                                     </div>
