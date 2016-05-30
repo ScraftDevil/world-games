@@ -94,6 +94,7 @@ function printGame($game) {
        </div>
      </form>
  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " >
+<span class=" glyphicon glyphicon-exclamation-sign "><a class="linkcomplaint" href="formNewComplain.php">COMPLAINT</a></span>
  </div>
 
 
