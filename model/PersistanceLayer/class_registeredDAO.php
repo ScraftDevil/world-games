@@ -104,6 +104,9 @@ class registeredDAO {
 		$id = $registered->getId();
 		$email = $registered->getEmail();
 		$country = $registered->getCountry();
+		$birthdate = $registered->getBirthDate();
+		$avatar = "avatar.png";
+		$paypal = $registered->getPaypalAccount();
 
 		try {
 
@@ -114,11 +117,7 @@ class registeredDAO {
         	$result = $resultat->execute();
 
         	if(!$result == "" || $result == $id) {
-	        	$query = ('UPDATE registered r INNER JOIN country c ON "'.$country.'" = c.Name 
-				SET r.Email = "'.$registered->getEmail().'", r.BirthDate = "'.$registered->getBirthDate().'",
-				r.PaypalAccount = "'.$registered->getPaypalAccount().'", r.AvatarURL = "'.$registered->getAvatarUrl().'", 
-				r.Country_ID = c.ID_Country WHERE r.ID_Registered = "'.$registered->getId().';"');
-				
+        		$query = ("UPDATE registered SET Email = '$email', BirthDate = '$birthdate', PaypalAccount = '$paypal', AvatarURL = '$avatar', Country_ID = '$country' WHERE ID_Registered = '$id'");				
 				$db = unserialize($_SESSION['dbconnection']);
 				$resultat = $db->getLink()->prepare($query);
 	        	$resultat->execute();
